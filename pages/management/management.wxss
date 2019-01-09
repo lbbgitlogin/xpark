@@ -1,0 +1,193 @@
+/* pages/appointment/appointment.wxss */
+
+page {
+  background: #282B30;
+}
+
+.appointment {
+  width: 92%;
+  margin: 0 auto 36rpx auto;
+  background: #fff;
+  height: 160rpx;
+  border-radius: 8rpx;
+  line-height: 160rpx;
+}
+
+.appointment_box {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.appoin_size {
+  font-size: 64rpx;
+}
+
+.small_size {
+  font-size: 28rpx;
+  color: #333 !important;
+}
+
+.appointment_head {
+  position: absolute;
+  top: 54rpx;
+  left: 40%;
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 132rpx;
+  border: 1px solid #fff;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.m-navbar{
+  box-shadow:0 0 0 0;
+ 
+}
+.m-tabr{
+ position: fixed;
+  top: 0;
+  width:100%;
+  z-index: 2
+}
+.m-navbar-item {padding: 32rpx 0;font-size: 28rpx;}
+.m-navbar-item:after {border: none;}
+.m-navbar-item.m-navbar-item-on {background-color: #282B30;color: #E27D00;}
+.m-navbar-item.m-navbar-item-on::before {content: " ";position: absolute;left: 40%;bottom: 0;right: 0;height: 6rpx;width:36rpx;border-bottom: 12rpx solid #E27D00;color: #CCCCCC;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);z-index: 3;}
+.fuwulist{
+  width: 100%;
+  padding: 24rpx 28rpx 0 28rpx;
+box-sizing:border-box;
+background:#282B30;
+margin-top: 20rpx
+
+}
+.fuwulist_box{
+  border-bottom:1rpx solid #1B1E23;
+padding-bottom:24rpx;
+
+}
+.fuwulist_box_heand{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.fuwulist_box_heandleft{
+  flex: 1;
+  font-size: 26rpx;
+  color: #CCCCCC
+}
+.fuwulist_box_heandright{
+
+  font-size: 26rpx;
+  color: #E27D00
+}
+.box_background{
+background: #EBECEE
+}
+.appointment_datails{
+  width: 100%;margin: 0 auto;padding: 24rpx 0 24rpx 0 ;display: flex;border-bottom: 1rpx solid #1B1E23;align-items: center;justify-content:flex-end;
+}
+.datails_imghead{
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 132rpx;
+  margin:0 24rpx 0 0;
+
+}
+.datails_title{
+  font-size: 26rpx;
+  color: #CCCCCC;
+  flex:1;
+
+}
+.manages_title{
+  font-size: 26rpx;
+  color: #BEBEBF;
+
+}
+.division{
+  width: 100%;
+  height: 20rpx;
+  background: #EBECEE
+}
+.manage_title{
+  color:#FFFFFF;
+font-size: 28rpx;
+text-align:right;
+
+}
+.appointment_bbj{
+  background:#EBECEE;
+height:320rpx;
+padding-top:124rpx;
+box-sizing:border-box;
+
+}
+.manage_mar{
+  margin-bottom: 16rpx;
+}
+.order_pic{
+  width: 146rpx;
+  height: 192rpx;
+  margin-bottom: 48rpx
+}
+.manage_shopname{
+  color: #999999;
+  font-size: 26rpx;
+}
+.order_null{
+  width: 146rpx;
+  margin: 222rpx auto 0 auto
+}
+.order_nullfont{
+  font-size: 28rpx;
+  color: #666;
+  text-align: center
+}
+.appointment_title{
+font-size: 36rpx;
+}
+.but_manage{
+ width:100%;
+margin:0 auto;
+height: 100rpx;
+display:flex;
+border-bottom:1rpx solid #1B1E23;
+align-items:center;
+justify-content:flex-end;
+
+
+}
+.close_manage{
+   width: 144rpx;
+   height: 52rpx;
+   border-radius: 52rpx;
+   color: #999999;
+   font-size: 24rpx;
+   border: 1rpx solid #999999;
+   text-align: center;
+   line-height: 52rpx;
+   margin-right: 24rpx
+}
+.payment{
+ width: 144rpx;
+   height: 52rpx;
+   border-radius: 52rpx;
+   color: #FFFFFF;
+   font-size: 24rpx;
+   text-align: center;
+   line-height: 52rpx;
+
+
+}         
+.appointment_false{
+  font-size:26rpx;
+color:#CCCCCC;
+margin-right: 70rpx
+}
+.width_tiao{
+  width: 100%;
+  height: 20rpx;background: #202428;
+
+}

@@ -1,0 +1,39 @@
+/* pages/rollback/rollback.wxss */
+page{
+  background: #fff
+}
+.entey_box{
+  width: 92%;margin: 40rpx auto 20rpx auto;font-size:48rpx;color: #000;font-weight:bold
+}
+.entey_mingxi{
+  display: flex;
+  width: 92%;
+  margin: 0 auto;
+  height: 116rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #F2F2F2
+}
+.entry_num{
+  font-size: 32rpx;
+  color: #333 ;
+  flex:1;
+
+}
+.entry_sz{
+  font-size: 26rpx;
+  color: #666
+}
+.rollback_title{
+    width: 92%;
+  margin: 100rpx auto 0 auto;
+}
+.rollback_num{
+  font-size: 26rpx;
+  color: #333;
+
+  }
+  .tatile_first{
+    font-size: 26rpx;
+    color: #666;
+    margin-top: 10rpx;
+  }

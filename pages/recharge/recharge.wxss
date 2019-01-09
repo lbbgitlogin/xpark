@@ -1,0 +1,106 @@
+/* pages/recharge/recharge.wxss */
+page{
+  background: #fff
+}
+.rech_flex{
+display:flex;
+border-bottom:1rpx solid #F2F2F2;
+width:92%;
+margin:0 auto;
+height:120rpx;
+align-items:center;
+}
+.rech_text{
+  font-size:32rpx;
+  color: #333333;
+ flex: 1
+
+}
+
+.rech_name{
+  font-size: 32rpx;
+}
+.rech_money{
+  font-size: 36rpx;
+  color: #000000
+}
+.rech_charge{
+   padding-left:20rpx;
+display:flex;
+width:92%;
+margin:0 auto;
+height:120rpx;
+align-items:center;
+}
+.rech_buttontext{
+display:flex;
+width:92%;
+margin:0 auto;
+height:120rpx;
+align-items:center;
+}
+.rech_button{
+  font-size: 32rpx;
+  color: #333333
+}
+.but_rechbox{
+  width: 92%;
+  height: 132rpx;
+  border-radius: 8rpx;
+  color: #FFFFFF;
+  margin: 0 auto;
+  display:flex;
+align-items:center;
+padding: 28rpx;
+box-sizing: border-box;
+background: #F6F6F6
+}
+.but_retext{
+  font-size: 40rpx;
+  color: #fff;
+  flex: 1
+}
+.but_tetxmon{
+  color: #fff;
+  font-size: 32rpx
+}
+.mar_rech{
+  margin: 20rpx auto 0 auto
+}
+.font_rech{
+  color: #000000
+}
+.small_font{
+  color: #333333
+}
+.rearge_details{
+  display: flex;
+  align-items:center;
+  width:92%;
+margin:0 auto;
+height:120rpx;
+justify-content:flex-end;
+
+}
+.details_text{
+  margin-right: 10rpx;
+  font: 28rpx;
+  color: #333333
+}
+.notice{
+  width: 90%;
+  margin: 10rpx auto;
+}
+.notice_text{
+  font-size: 26rpx;
+  color: #666666;
+  margin:10rpx 0 0 0;
+
+}
+.notice_toptext{
+  font-size: 26rpx;
+  color: #333
+}
+.whi_font{
+  color: #fff
+}

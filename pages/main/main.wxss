@@ -1,0 +1,99 @@
+/* pages/main/main.wxss */
+.appr_name{
+  width: 92%;
+  margin: 0 auto 60rpx auto;
+  display:flex;
+align-items:center;
+
+
+}
+.userUrl{
+  width:132rpx;
+height:132rpx;
+overflow:hidden;
+border-radius:132rpx;
+border:4rpx solid #E27D00FF;
+
+}
+.userName{
+  margin-left: 34rpx;
+  color: #fff;
+  font-size: 36rpx;
+  flex:1;
+
+}
+.bj_coupon{
+   padding: 0 28rpx;
+  box-sizing: border-box;
+  width: 694rpx;
+  color: #fff;
+  height: 100rpx;
+   background: url(http://zuul.snail.highlifes.com/common/image/20190108/c625d40f-644d-4c26-b553-0df4ae1fffeb.png) center no-repeat;
+   background-size: 100% 100%;
+   margin: 0 auto 24rpx auto;
+   display: flex;
+   font-size: 26rpx;
+   align-items: center
+}
+.oprncard_btn{
+  width: 108rpx;
+  height: 52rpx;
+  background: #333333;
+  color: #D6BE91;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 52rpx;
+  border-radius:52rpx;
+ 
+
+}
+.show_wz{
+  text-decoration:underline;
+  font-size: 26rpx;
+
+}
+.infortmation_choose{
+  width:100%;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+}
+.true_name{
+  width: 100%;
+  display: flex;
+  height: 115rpx;
+  border-bottom: 1rpx solid #1B1E23;
+  align-items: center
+}
+.true_xm{
+  font-size: 32rpx;
+  color: #FFFFFF;
+  flex: 1
+}
+.icon_zb {
+width:48rpx;
+height:48rpx;
+
+}
+.coupombj{
+  width: 36rpx;
+  height: 32rpx;
+    margin-right: 25rpx
+}
+.orderbj{
+   width: 32rpx;
+  height: 36rpx
+}
+.guidbj{
+    width: 32rpx;
+  height: 36rpx;
+  margin-right: 28rpx
+}
+.main_bj{
+width:100%;
+color:#fff;
+height:302rpx;
+background:url(http://zuul.snail.highlifes.com/common/image/20190108/f677ea46-9831-47e8-b6b1-437eef4a37a4.png) center no-repeat;
+background-size:100% 100%;
+padding:76rpx 0 0 0;
+
+}

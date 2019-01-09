@@ -1,0 +1,122 @@
+<!--pages/bookingoreder/bookingoreder.wxml-->
+
+<view  wx:if="{{orderstate == 1}}"  class='order font-colormode'>
+已支付
+</view>
+<view  wx:if="{{orderstate == 2}}"  class='order font-colormode'>
+已取消
+</view>
+<view wx:if="{{orderstate == 0}}" class='order font-colormode'>
+待支付
+</view>
+<view class='order_list'>
+  <view class='order_title'>选择服务</view>
+  <view class='appointment_datails'>
+    <!-- <view class='datails_imghead'></view> -->
+    <view class='datails_title'>{{goodsname}}</view>
+    <view class='order_datails'>
+      <view class='order_mon'> ¥{{price}}</view>
+      <view class='num_order'>x{{num}}</view>
+    </view>
+  </view>
+  <view class='list_booking'>
+    <view class='order_name'>
+      订单号
+    </view>
+    <view class='order_smallname'>
+     {{orderno}}
+    </view>
+  </view>
+ <view class='list_booking'>
+    <view class='order_name'>
+      有效期
+    </view>
+    <view class='order_smallname'>
+      2018-11-23
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      下单时间
+    </view>
+    <view class='order_smallname'>
+   {{createtime}}
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      门店
+    </view>
+    <view class='order_smallname'>
+      {{gymname}}
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      优惠券
+    </view>
+    <view class='order_smallname'>
+      k1234567(免费使用券)
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      活动促销
+    </view>
+    <view class='order_smallname'>
+     无活动促销
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      保险金额
+    </view>
+    <view class='order_smallname'>
+    ¥1
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      商品总价
+    </view>
+    <view class='order_smallname'>
+     ¥{{price}}
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      优惠金额
+    </view>
+    <view class='order_smallname'>
+     -¥{{discountmoney}}
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      付款方式
+    </view>
+    <view wx:if="{{psytype == 'xj'}}" class='order_smallname'>
+      余额
+    </view>
+      <view wx:if="{{psytype == 'wx'}}" class='order_smallname'>
+     微信支付
+    </view>
+      <view wx:if="{{psytype == 'mf'}}" class='order_smallname'>
+      免费券
+    </view>
+
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      实付款
+    </view>
+    <view class='order_smallname'>
+¥{{price}}
+    </view>
+  </view>
+
+   </view>
+     <view wx:if="{{orderstate == 0}}" class='but_manage'>
+        <view bindtap='qxorder' class='close_manage'>取消订单</view>
+         <view class='payment bj_color'>立即付款</view>
+      </view>

@@ -1,0 +1,37 @@
+
+page{
+  background: #fff
+}
+.entey_box{
+  width: 92%;margin: 40rpx auto 0rpx auto;font-size:48rpx;color: #000;font-weight:bold
+}
+.entey_mingxi{
+  display: flex;
+  width: 92%;
+  margin: 0 auto;
+  height: 172rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #F2F2F2
+}
+.entry_num{
+  font-size: 32rpx;
+  color: #333 ;
+  flex:1;
+
+}
+.entry_sz{
+  font-size: 32rpx;
+  color: #000
+}
+.detailes{
+  color:#999999;
+  font-size: 26rpx;
+margin:12rpx 0 0 0;
+
+}
+.detailes1{
+  color:#999999;
+  font-size: 26rpx;
+margin:0 0 12rpx 0;
+
+}

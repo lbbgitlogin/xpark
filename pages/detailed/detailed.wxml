@@ -1,0 +1,51 @@
+<view class='entey_box'>
+全部明细
+</view>
+<view class='entey_mingxi'>
+  <view class='entry_num'>
+  <view>充值入账</view>
+ <view class='detailes'>美格菲浦东店</view>
+  </view>
+    <view class='entry_sz'>
+    <view class='detailes1'>2018-11-22</view>
+    <view>+2100.00</view>
+    
+    
+    </view>
+</view>
+<view bindtap='expenditure' class='entey_mingxi'>
+  <view class='entry_num'>
+  <view>购买支出</view>
+ <view class='detailes'>美格菲浦东店</view>
+  </view>
+    <view class='entry_sz'>
+    <view class='detailes1'>2018-11-22</view>
+    <view>-2100.00</view>
+    
+    
+    </view>
+</view>
+<view bindtap='rollback' class='entey_mingxi'>
+  <view class='entry_num'>
+  <view>结算退回</view>
+ <view class='detailes'>美格菲浦东店</view>
+  </view>
+    <view class='entry_sz'>
+    <view class='detailes1'>2018-11-22</view>
+    <view>+2100.00</view>
+    
+    
+    </view>
+</view>
+<view bindtap='entry' class='entey_mingxi'>
+  <view class='entry_num'>
+  <view>充值入账</view>
+ <view class='detailes'>美格菲浦东店</view>
+  </view>
+    <view class='entry_sz'>
+    <view class='detailes1'>2018-11-22</view>
+    <view>+2100.00</view>
+    
+    
+    </view>
+</view>

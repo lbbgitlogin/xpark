@@ -1,0 +1,39 @@
+<!--pages/recharge/recharge.wxml-->
+<view class='rech_flex'>
+  <view class='rech_text'>储值门店</view>
+  <view class='rech_name'>美格菲浦东店</view>
+</view>
+<view class='rech_flex'>
+  <view class='rech_text'>当前余额</view>
+  <view class='rech_money'>¥300.00</view>
+</view>
+<view class='rech_buttontext'>
+  <view class='rech_button'>充值额度</view>
+</view>
+<view bindtap='transformation' data-id='1' class='but_rechbox {{bjnum==1?"bj_color":""}}'>
+  <view class='{{bjnum==1?"whi_font":""}}  but_retext font_rech'>¥500</view>
+  <view class='{{bjnum==1?"whi_font":""}} but_tetxmon small_font'>到账：500元</view>
+</view>
+<view bindtap='transformation'  data-id='2' class='but_rechbox mar_rech {{bjnum==2?"bj_color":""}}'>
+  <view class='{{bjnum==2?"whi_font":""}} but_retext font_rech'>¥2000</view>
+  <view class='{{bjnum==2?"whi_font":""}} but_tetxmon small_font'>到账：2100元</view>
+</view>
+<view bindtap='transformation'  data-id='3' class='but_rechbox mar_rech {{bjnum==3?"bj_color":""}}'>
+  <view class='{{bjnum==3?"whi_font":""}} but_retext font_rech'>¥5000</view>
+  <view class='{{bjnum==3?"whi_font":""}}  but_tetxmon small_font'>到账：5500元</view>
+</view>
+<view bindtap='details' class='rearge_details m-cell-access'>
+  <view class='details_text'>充值明细</view>
+ 
+  <image class='icon_zb' src='../../img/right_zb.png'></image>
+</view>
+<view class='notice'>
+<view class='notice_toptext'>须知：</view>
+  <view class='notice_text'>• 余额可用于什么门店课程，连锁经营如何</view>
+  <view class='notice_text'>• 余额是否可与优惠一同使用</view>
+  <view class='notice_text'>• 余额如何退款，赠送金需要清零</view>
+  <view class='notice_text'>• 余额是否可提现  </view>
+
+
+
+</view>

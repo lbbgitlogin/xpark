@@ -1,0 +1,186 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.3",
+	"appid": "wx08d766c6816e4873",
+	"projectname": "xpark",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 24,
+			"list": [
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/recharge/recharge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "扫码",
+					"pathName": "pages/approach/approach",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登陆注册",
+					"pathName": "pages/land/land",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值入账",
+					"pathName": "pages/entry/entry",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "全部明细",
+					"pathName": "pages/detailed/detailed",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/appointment/appointment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的预约xq",
+					"pathName": "pages/bookingoreder/bookingoreder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/perinformation/perinformation",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "自助健身详情页",
+					"pathName": "pages/selfdetails/selfdetails",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "确认预约",
+					"pathName": "pages/confirmationOrder/confirmationOrder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购买确认",
+					"pathName": "pages/confirmationbuy/confirmationbuy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "pages/coupon/coupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "门店订单",
+					"pathName": "pages/management/management",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "成功支付",
+					"pathName": "pages/succell/succell",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情订单",
+					"pathName": "pages/orderdetails/orderdetails",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "xiangqing ",
+					"pathName": "pages/selfdetails/selfdetails",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "教练预约",
+					"pathName": "pages/coachappointment/coachappointment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "qiulei预约",
+					"pathName": "pages/ballappointment/ballappointment",
+					"query": "areaId=3"
+				},
+				{
+					"id": -1,
+					"name": "shijian",
+					"pathName": "pages/appointmenttime/appointmenttime",
+					"query": "areaId=3"
+				},
+				{
+					"id": -1,
+					"name": "预约教练",
+					"pathName": "pages/coachappointment/coachappointment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "指南",
+					"pathName": "pages/guide/guide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/main/main",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "权益详情",
+					"pathName": "pages/interests/interests",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "pages/coupon/coupon"
+				}
+			]
+		}
+	}
+}

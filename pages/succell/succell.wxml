@@ -1,0 +1,13 @@
+<view class='succell_img'>
+<image class='nowbuy' src='../../img/nowbuy.png'></image>
+</view>
+<view class='succell_font'>支付成功</view>
+<view class='succell_title'>
+
+感谢您的购买，至“门店订单”查看“订单详情”</view>
+<view bindtap='my_appointment' class='but_succell bj_color'>
+我的预约
+</view>
+<view bindtap='backhome' style='color:#E27D00' class='but_succell'>
+返回首页
+</view>

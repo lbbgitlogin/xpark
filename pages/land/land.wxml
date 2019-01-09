@@ -1,0 +1,23 @@
+<!--pages/land/land.wxml-->
+<view class='land_title'>
+  短信快捷登录
+</view>
+<view class='land_box'>
+
+
+    <view class='land_box_child'>
+      <input placeholder="请输入手机号码"  bindfocus="pho_input"  type="number" name="phone" maxlength="11" bindinput="phone"></input>
+
+    </view>
+    <view class="land_box_child" style='border-bottom:1rpx solid #D6D6D6;margin-top:38rpx;'>
+      <input placeholder="请输入短信验证码" maxlength="6" bindfocus="dx_input"  type="number" bindinput="code" name="code" />
+      <view class='message_box bj_color'>
+          <text class="sendMsg" bindtap="sendmessage">{{btntext}}</text>
+      </view>
+     
+    </view>
+
+    <!-- <view bindtap='next_pag' class='buttonnext'>下一步</view> -->
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='buttonnext bj_color' formType="submit">登陆/注册</button>
+ 
+</view>

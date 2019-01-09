@@ -1,0 +1,67 @@
+<!--pages/guide/guide.wxml-->
+
+<!--下面这一句是重点,这里是内容切换区域-->
+<swiper circular='true' bindchange='swiperChange' current='{{activeTab}}'>
+  <swiper-item class="{{activeTab ==1?'card_choose':'choose_frist'}}">
+    <view class='ra-co-cardview'>
+      <view class='card_frist'>
+        <view class='frist_box'>
+          <view style='flex:1'>X-PARK至尊卡</view>
+          <view>¥199</view>
+        </view>
+        <view class='card_interes'>
+          全场7.5折，有效期1年
+        </view>
+        <view class='give'>
+          到店还可领X-PARK精美大礼包一份
+        </view>
+      </view>
+
+    </view>
+  </swiper-item>
+  <swiper-item class="{{activeTab ==1?'choose_sec':'choose_frist'}}">
+    <view class='ra-co-cardview'>
+      <view class='card_sec'>
+         <view class='frist_box'>
+          <view style='flex:1;color:#fff'>X-PARK至尊卡</view>
+          <view style='color:#fff'>¥399</view>
+        </view>
+        <view class='card_interes'>
+          全场8.5折，有效期1年
+        </view>
+        <view class='give'>
+          到店还可领X-PARK精美大礼包一份
+        </view>
+      </view>
+
+    </view>
+  </swiper-item>
+
+</swiper>
+<view class='titles'>
+  <view style='margin-bottom:10rpx'>须知：</view>
+  <view class='titles_box'>
+    <view class='doud' style="margin-bottom: 54rpx;"></view>
+    <view class='show_titles'>结算退回金额，只退回门店储值中实际充值尚未使用金额 赠送金额不予退回并系统自动清零</view>
+  </view>
+  <view class='titles_box'>
+    <view class='doud'></view>
+    <view class='show_titles'>余额是否可与优惠一同使用</view>
+  </view>
+  <view class='titles_box'>
+    <view class='doud'></view>
+    <view class='show_titles'>余额如何退款，赠送金需要清零</view>
+  </view>
+  <view class='titles_box'>
+    <view class='doud'></view>
+    <view class='show_titles'>退回金额还未到账，请及时联系门店工作人员</view>
+  </view>
+
+</view>
+
+<view class='bottom_box'>
+  <view wx:if="{{activeTab == 1}}" class='left_btn'>实付：¥399</view>
+  <view wx:else class='left_btn'>实付：¥199</view>
+
+  <view class='right_btn'>立即开通</view>
+</view>

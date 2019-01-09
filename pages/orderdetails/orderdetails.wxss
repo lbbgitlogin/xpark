@@ -1,0 +1,182 @@
+/* pages/bookingoreder/bookingoreder.wxss */
+page{
+  background: #EBECEE
+}
+.order{
+  width: 100%;
+  text-align: center;
+  line-height: 108rpx;
+  height: 108rpx;
+  font-size: 32rpx
+}
+.order_list{
+  padding: 40rpx 0 130rpx  0;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box
+}
+.order_title{
+  font-size: 40rpx;
+  color: #333;
+  width:92%;
+   margin:0 auto;
+
+}
+.appointment_datails{
+width:100%;
+margin:0 auto;
+padding:36rpx 28rpx 24rpx 28rpx;
+display:flex;
+border-bottom:1rpx solid #F2F2F2;
+box-sizing:border-box;
+
+}
+.datails_imghead{
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 132rpx;
+  background: red;
+  margin:0 24rpx 0 0;
+
+}
+.datails_title{
+  font-size: 32rpx;
+  color: #333;
+  flex: 1
+}
+.order_mon{
+  color:#333;
+font-size:28rpx;
+margin-bottom:17rpx;
+
+}
+.num_order{
+  color:#666;
+font-size:26rpx;
+text-align:right;
+
+}
+.order_datails{
+  padding-top:8rpx;
+box-sizing:border-box;
+
+}
+.list_booking{
+  width: 100%;
+  height: 115rpx;
+  margin: 0 auto;
+  border-bottom:1rpx solid #F2F2F2;
+  display: flex;
+  align-items: center;
+  padding:0 28rpx;
+box-sizing:border-box;
+
+}
+.order_name{
+  font-size: 32rpx;
+  color: #333;
+flex: 1
+}
+.order_smallname{
+  color: #666;
+  font-size: 26rpx;
+  margin-right: 16rpx
+}
+.tv_img{
+  width: 40rpx;
+  height: 40rpx
+}
+.remarks{
+  width:100%;
+height:188rpx;
+margin:0 auto;
+border-bottom:1rpx solid #F2F2F2;
+padding:36rpx 28rpx 0 28rpx;
+box-sizing:border-box;
+
+}
+.erweima{
+    width:100%;
+height:416rpx;
+margin:0 auto;
+border-bottom:1rpx solid #F2F2F2;
+padding:36rpx 28rpx 0 28rpx;
+box-sizing:border-box;
+}
+.order_remarks{
+color:#666;
+font-size:26rpx;
+line-height:98rpx;
+
+}
+.erweima_name{
+  display: flex;
+   align-items: center;
+}
+.name_first{
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 24rpx
+}
+.name_thrid{
+  font-size: 26rpx;
+  color: #666
+}
+.pic_ewm{
+  width: 264rpx;
+  height: 264rpx;
+  margin: 40rpx auto 36rpx auto;
+  background: red
+}
+.but_order{
+  width: 92%;
+  margin: 36rpx auto 72rpx auto;
+height: 98rpx;
+background: #fff;
+border-radius: 8rpx;
+font-size: 36rpx;
+color: #333;
+text-align: center;
+line-height: 98rpx
+}
+.but_manage{
+ width:100%;
+ position:fixed;
+ bottom: 0;
+ padding:0 28rpx;
+box-sizing:border-box;
+box-shadow: 0px 0px 5px 1rpx #ebebeb;
+ background: #fff;
+margin:0 auto;
+height: 118rpx;
+display:flex;
+border-bottom:1rpx solid #F2F2F2;
+align-items:center;
+justify-content:flex-end;
+
+
+}
+.close_manage{
+   width: 208rpx;
+   height: 72rpx;
+   border-radius: 52rpx;
+   color: #666;
+   font-size: 32rpx;
+   border: 1rpx solid #D6D6D6;
+   text-align: center;
+   line-height: 72rpx;
+   margin-right: 24rpx
+}
+.payment{
+  width: 208rpx;
+   height: 72rpx;
+   border-radius: 52rpx;
+   color: #FFFFFF;
+  font-size: 32rpx;
+   border: 1rpx solid #D6D6D6;
+   text-align: center;
+    line-height: 72rpx;
+
+
+}  

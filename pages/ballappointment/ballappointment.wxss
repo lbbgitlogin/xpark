@@ -1,0 +1,105 @@
+/* pages/ballappointment/ballappointment.wxss */
+page{
+  background: #282B30;
+}
+
+.ball-head {
+  width: 100%;
+height: 420rpx
+}
+
+.ball-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 28rpx;
+  padding-top: 44rpx;
+  padding-bottom: 36rpx;
+  color: #FFFFFF;
+}
+
+.ball-title-left {
+  font-size: 32rpx;
+}
+
+.ball-title-right {
+  font-size: 26rpx;
+}
+
+.ball-timeList {
+  margin: 40rpx 28rpx;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  border-radius: 10rpx;
+  border:1rpx solid #1B1E23
+}
+
+.ball-timeList-item {
+  width: 172rpx;
+  height: 100rpx;
+  border-right: 1rpx solid #1B1E23;
+  border-bottom: 1rpx solid #1B1E23;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+}
+
+.ball-timeList-item:nth-of-type(4n) {
+  border-right: none
+}
+
+.cantSelect {
+  background: #202428;
+}
+
+.canSelect {
+  background: #444951;
+  color: #E27D00;
+}
+
+.active {
+  background: #E27D00;
+  color: #fff;
+}
+
+.leftBtn {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.rightBtn {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.bgr {
+  background: #46CC8F;
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ball-name {
+  font-size: 32rpx;
+  color: #FFFFFF;
+  margin: 0 32rpx;
+}
+.ball-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn_anniu{
+  width: 100%;
+  height: 118rpx;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  line-height: 118rpx;
+  color: #fff;
+  font-size: 36rpx
+}

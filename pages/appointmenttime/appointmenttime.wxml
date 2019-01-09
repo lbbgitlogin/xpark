@@ -1,0 +1,23 @@
+<!--pages/appointmenttime/appointmenttime.wxml-->
+<view class='ball-head'>
+    <image  class='ball-head' src='../../img/banner_choosetime.png'></image>
+</view>
+<view class='time_box'>
+  <view class='showtime'>可约期限</view>
+
+
+  <block wx:for="{{daytime}}">
+    <view class='choose_time'>
+      <view class='font_week'>{{ item }}</view>
+      <!-- <view class='font_week'  wx:for="{{weekend}}" style='flex:1'>{{ item }}</view> -->
+      <view data-day='{{ item }}' bindtap='ballappointment' class='but_bj bj_color'>
+        预定
+      </view>
+    </view>
+  </block>
+
+
+
+
+
+</view>

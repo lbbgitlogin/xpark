@@ -1,0 +1,59 @@
+/* pages/Approach/Approach.wxss */
+page{
+  background: #EBECEE
+}
+.appr_box{
+  width: 630rpx;
+  height: 844rpx;
+  background: #fff;
+  margin: 162rpx auto;
+  border-radius:16rpx;
+  position:relative;
+  padding-top:1rpx;
+
+}
+.appr_name{
+  position:absolute;
+/* 
+top:-73rpx;
+left:39%; */
+width:100%;
+margin:0 auto;
+top:-69rpx;
+
+}
+.userUrl{
+  width:120rpx;
+height:120rpx;
+border-radius:120rpx;
+border:4rpx solid #E27D00;
+vertical-align:middle;
+/* box-shadow:0px 2rpx 15rpx rgba(0, 0, 0, 0.35); */
+overflow:hidden;
+margin:0 auto;
+
+
+}
+.userName{
+  line-height:70rpx;
+display:block;
+font-size:32rpx;
+color:#333;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+text-align:center;
+
+}
+.appr_erweima{
+  width: 424rpx;
+  height: 424rpx;
+  margin:210rpx auto 0 auto;
+
+}
+.appr_shopname{
+  margin: 100rpx auto 0  auto;
+  text-align: center;
+  color: #333;
+  font-size: 28rpx
+}

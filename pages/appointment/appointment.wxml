@@ -1,0 +1,70 @@
+<!--pages/appointment/appointment.wxml-->
+<view class='appointment_bbj'>
+  <view class='appointment'>
+    <view class='appointment_box'>
+      <view style="flex: 1;">累计运动</view>
+      <view class='font-colormode appoin_size'>
+        {{runday}}
+        <text class='small_size'>天</text>
+      </view>
+    </view>
+    <view class='appointment_head'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+  </view>
+</view>
+
+<view class='{{type == 2?"box_background":""}}'>
+  <view class="m-navbar">
+    <view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="appointment">
+      未开始
+    </view>
+    <view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="toBePaid">
+      已使用
+    </view>
+    <view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}} " bindtap="receiptOfGoods">
+      已取消
+    </view>
+
+  </view>
+  <view style='background:#282B30' wx:if="{{type == 1  }}">
+    <view class='fuwulist' wx:for='{{appointment}}'>
+
+
+      <view class='fuwulist_box'>
+        <view class='fuwulist_box_heand'>
+          <view class='fuwulist_box_heandleft'>{{item.gymName}}</view>
+          <!-- <view class='fuwulist_box_heandright'>家庭直播</view> -->
+        </view>
+      </view>
+
+
+      <view bindtap='datalis' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}' class='appointment_datails' data-uesCode='{{item.uesCode}}' data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
+        data-remark='{{item.remark}}' data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
+        <view class='datails_imghead'>
+          <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+        </view>
+        <view class='datails_title'>{{item.bookingName}}</view>
+      </view>
+
+      <view class='appointment_datails'>
+        <view class='datails_titleif'>预约时间：{{item.bookingTime}}</view>
+      </view>
+
+
+    </view>
+    <view class='tiao'>
+    </view>
+
+  </view>
+
+
+  <view wx:if="{{type == 2}}" class='order_null'>
+    <image class='order_pic' src='../../img/order_null.png'></image>
+
+  </view>
+  <view wx:if="{{type == 2}}" class='order_nullfont'>您还没有预约</view>
+
+
+
+</view>

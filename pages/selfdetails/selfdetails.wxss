@@ -1,0 +1,455 @@
+/* pages/selfdetails/selfdetails.wxss */
+page{
+  background: #282B30
+}
+.yuyue_bar{
+  width:100%;
+height:124rpx;
+display:flex;
+border-top:1rpx solid #3C4248;
+align-items:center;
+
+}
+.yuyue_address{
+    width:100%;
+height:223rpx;
+margin:0 auto;
+padding: 0rpx 0 0 0;
+box-sizing: border-box
+}
+.yuyue_address_tateils{
+  color: #666666;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  width:96%;
+margin:0 auto;
+height:140rpx;
+
+}
+.self_banner{
+  width: 100%;
+  height: 420rpx;
+}
+.self_box{
+width:96%;
+margin:24rpx auto;
+background:#202428;
+padding:0 16rpx;
+box-sizing:border-box;
+border-radius:4rpx;
+
+
+
+}
+.self_name{
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+ 
+}
+.taif{
+   border-bottom:1rpx solid #3C4248
+}
+.shop_name{
+  font-size: 56rpx;     
+  color: #FFFFFF;
+  flex: 1;
+  font-weight: bold;
+  border-right: 1rpx solid #3C4248
+}
+.self_share{
+
+  width: 34rpx;
+  height: 36rpx;
+}
+.self_time{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom:20rpx;
+
+}
+.black_time{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 24rpx
+}
+.self_font{
+  font-size: 26rpx;
+  color: #FFFFFF
+}
+.self_fontlast{
+font-size:26rpx;
+color:#FFFFFF;
+line-height:48rpx;
+margin:0 0 0 46rpx;
+
+}
+.loction_tims{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding:40rpx 0 40rpx 0;
+  box-sizing:border-box;
+border-bottom:1rpx solid #3C4248
+}
+.loctions{
+display:flex;
+align-items:center;
+font-size:26rpx;
+color:#FFFFFF;
+line-height:48rpx;
+
+
+}
+.location{
+  width: 22rpx;
+  height: 26rpx;
+  margin-right:24rpx;
+
+}
+.left_box{
+  flex: 1
+}
+.location_jiang{
+width:96%;
+height:84rpx;
+background:#202428;
+margin:0 auto;
+font-size:32rpx;
+color:#fff;
+line-height:84rpx;
+padding:0 12rpx;
+box-sizing:border-box;
+border-radius:4rpx;
+display:flex;
+align-items: center
+
+
+
+}
+.shop_introduce{
+  padding: 40rpx 0 180rpx 0;
+  box-sizing: border-box
+}
+.cpjs{
+  width: 20rpx;
+  height:24rpx;
+  margin: 0 20rpx 0 10rpx
+}
+.xz{
+  width: 24rpx;
+  height:24rpx;
+  margin: 0 20rpx 0 10rpx 
+}
+.hw{
+   width: 28rpx;
+  height:24rpx;
+  margin: 0 20rpx 0 10rpx 
+}
+.introduce_title{
+ font-size:32rpx;
+color:#fff;
+font-weight:bold;
+line-height:84rpx;
+
+
+}
+.introduce_sm{
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #666
+}
+.introduce_smalltitle{
+  color: #E27D00;
+  font-size: 32rpx;
+  margin: 80rpx 0 0 0;
+  display: flex;
+  align-items: center
+}
+.validity{
+  margin: 24rpx 0 0 0;
+  font-size: 26rpx;
+  color: #666;
+
+}
+.introduc_dian{
+  display: flex;
+  align-items: center;
+
+}
+.zifu{
+width: 8rpx;
+height: 8rpx;
+border-radius: 8rpx;
+background: #666;
+margin-right: 14rpx;
+color:#fff;
+
+}
+.validity_next{
+  font-size:26rpx;
+color:#666;
+
+}
+.list{
+  margin:0 auto 0 auto;
+  text-align: center;
+  font-size: 36rpx;
+  width: 600rpx;
+  height: 72rpx;
+  background: #EBECEE;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.under_img{
+  width: 30rpx;
+  height: 16rpx
+}
+.under{
+  margin: 16rpx auto  16rpx auto;
+  text-align: center;
+  font-size: 36rpx;
+  width: 600rpx;
+ 
+}
+.buy{
+  width: 100%;
+  height: 118rpx;
+  background: #36393F;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -2rpx 50rpx #282B30
+}
+.buy_left{
+  flex: 1;
+  font-weight: bold;
+  font-size: 40rpx;
+height: 100%;
+line-height: 118rpx;
+padding-left: 28rpx;
+box-sizing: border-box
+}
+.buy_right{
+   flex: 1;
+  font-size: 36rpx;
+  color: #fff;
+  height: 100%;
+  text-align: center;
+  line-height: 118rpx;
+}
+.hide{
+  display: none
+}
+.coupon{
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  height: 624rpx;
+  background: #EBECEE;
+  z-index: 10000
+}
+.coupon_boxheand{
+  width: 100%;
+  height:124rpx;
+  background: #282B30;
+  color: #fff;
+  font-size: 32rpx;
+  padding-left: 26rpx;
+  box-sizing: border-box;
+  line-height: 124rpx
+}
+.bj_coupon{
+  width: 694rpx;
+  height: 208rpx;
+   background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;
+   background-size: 100% 100%;
+   margin: 0 auto 24rpx auto
+}
+.coupon_list{
+  padding: 24rpx 0 0 0
+}
+.coupon_left{
+  width: 190rpx;
+float:left;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+
+}
+.coupon_right{
+  width: 502rpx;
+  float: left;
+  display:flex;
+align-items:center;
+padding-top:51rpx;
+padding-left:24rpx;
+box-sizing:border-box;
+
+}
+.coupon_mon{
+  font-size: 28rpx;
+   line-height:169rpx;
+
+}
+.coupon_maxmon{
+  font-size: 96rpx;
+  line-height:217rpx;
+margin-left: 15rpx;
+font-weight: bold
+}
+.coupon_choose{
+  width: 60rpx;
+  height: 60rpx;
+}
+.coupon_right_mon{
+  font-size: 22rpx;
+  color: #666;
+margin-right: 100rpx
+}
+.coupon_right_name{
+  font-size: 30rpx;
+  color: #E27D00
+
+}
+.choose_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.coupon_next{
+  width: 100%;
+  height: 118rpx;
+  text-align: center;
+  line-height: 118rpx;
+  color: #fff;
+  font-size: 36rpx;
+  position:fixed;
+bottom:0;
+
+}
+.hidden_box{
+  background-color:#000;
+position:fixed;
+height:100%;
+width:100%;
+opacity:0.6;
+z-index:1000;
+top:0;
+left:0;
+
+}
+.coupon_right_mon_false{
+  font-size:22rpx;
+color:#999;
+flex:1;
+
+}
+.yuyue_text{
+  color: #CCCCCC;
+  font-size: 32rpx;
+ 
+}
+.yuyue_num{
+  color: #CCCCCC;
+  font-size: 32rpx;
+  margin-left: 24rpx;
+  margin-right: 50rpx
+}
+.bar_tetails{
+  width: 120rpx;
+  height: 10rpx;
+  background: #EBECEE;
+  border-radius:15rpx;
+  
+}
+.progress{
+  height:10rpx;
+border-radius:30rpx;
+float:left;
+
+}
+.shop_details{
+display:flex;
+align-items:center;
+margin:40rpx 0 0 0;
+padding-bottom:40rpx;
+
+}
+.shop_img{
+  width: 144rpx;
+  height: 144rpx
+}
+.title_shop{
+  flex: 1;
+  padding-left:24rpx;
+
+}
+.title_name{
+  color: #000;
+  font-size: 32rpx;
+font-weight:bold;
+margin-bottom:16rpx;
+
+}
+.title_sm{
+  color: #6666;
+  font-size: 26rpx;
+  width:470rpx
+}
+.shop_mon{
+  font-size: 36rpx;
+  display: flex;
+   align-items: center;
+}
+.sj_shop_mon{
+  font-size: 26rpx;
+}
+.buy_but{
+  width: 132rpx;
+  height: 56rpx;
+  border-radius: 29rpx;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 56rpx
+}
+.shop_img_sj{
+ width:132rpx;
+height:132rpx;
+border-radius:144rpx;
+margin-left:28rpx;
+margin-right:36rpx;
+
+
+}
+.shoptetails{
+  display: flex;
+  align-items: center;
+  font-size: 48rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1rpx solid #F2F2F2;
+
+
+}
+.msk-scroll{
+  width:100%;
+height:100%;
+box-sizing:border-box;
+padding-bottom:264rpx;
+
+background:#202428;
+
+}
+.name_tiao{
+  width:6rpx;
+height:20rpx;
+background:#E27D00;
+margin-right:15rpx;
+
+}

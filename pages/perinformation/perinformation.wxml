@@ -1,0 +1,70 @@
+<!--pages/perinformation/perinformation.wxml-->
+
+<view class='infortmation_box'>
+  <view class='infortmation_box_name'>实名认证</view>
+  <view class='information_tatils'>完善个人信息将用于购买运动保险</view>
+</view>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class='infortmation_choose'>
+    <view class='true_name'>
+      <view class='true_xm'>真实姓名</view>
+      <input type='text' placeholder="请输入真实姓名" bindinput="userAccount" name="userAccount"></input>
+    </view>
+    <view class='true_name'>
+      <label class='true_xm'>手机号</label>
+      {{phone}}
+     
+           
+     
+    </view>
+     <view class='true_name'>
+      <label class='true_xm'>性别</label>
+      <view style="flex: 1;text-align: right;">
+        <picker class='pickershow' bindchange="pickerClick" value='{{pickerIndex}}' range='{{pickerData}}'>{{pickerData[pickerIndex]}}</picker>
+        
+      </view>
+  
+            <image class='icon_zb' src='../../img/right_zb.png'></image>
+     
+    </view>
+    <view class='true_name'>
+      <view class='true_xm'>身份证号</view>
+      <input type='number' placeholder="请输入身份证号" bindinput="userAccount" name="userAccount"></input>
+    </view>
+    <view class='true_name'>
+      <label class='true_xm'>生日</label>
+      <view style="flex: 1;text-align: right;">
+
+        <picker class='pickershow' mode="date" bindchange="bindDateChange">
+          {{StrBirthday}}
+        </picker>
+      </view>
+         
+             <image class='icon_zb' src='../../img/right_zb.png'></image>
+        
+    </view>
+    <view class='true_name'>
+      <label class='true_xm'>身高</label>
+      <view style="flex: 1;text-align: right;">
+        <picker class='pickershow' bindchange="pickerClickheight" value='{{pickerhe}}' range='{{pickerheight}}'>{{pickerheight[pickerhe]}}cm</picker>
+
+      </view>
+        
+             <image class='icon_zb' src='../../img/right_zb.png'></image>
+
+    </view>
+    <view class='true_name'>
+      <label class='true_xm'>体重</label>
+      <view style="flex: 1;text-align: right;">
+        <picker class='pickershow' bindchange="pickerClickweight" value='{{pickerwe}}' range='{{pickerweight}}'>{{pickerweight[pickerwe]}}kg</picker>
+
+      </view>
+            <image class='icon_zb' src='../../img/right_zb.png'></image>
+
+    </view>
+  </view>
+
+  <button class='information bj_color'>
+    保存
+  </button>
+</form>

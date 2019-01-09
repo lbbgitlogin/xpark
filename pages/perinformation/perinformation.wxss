@@ -1,0 +1,93 @@
+/* pages/perinformation/perinformation.wxss */
+.information{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 118rpx;
+  text-align: center;
+  line-height: 118rpx;
+  font-size: 36rpx;
+  color: #fff;
+  border-radius: 0
+}
+page{
+  background: #282B30FF
+}
+.information_box{
+  width: 100%;
+  height: 220rpx;
+  background: #fff;
+  padding: 50rpx 28rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.userUrl{
+  width:120rpx;
+height:120rpx;
+border-radius:120rpx;
+border:1px solid #fff;
+vertical-align:middle;
+overflow:hidden;
+margin-right: 32rpx;
+}
+.infortmation_name{
+  font-size: 32rpx;color: #333
+}
+.information_tel{
+  color: #666;
+  font-size: 28rpx;
+}
+.infortmation_box{
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  width: 100%;
+  background: #202428FF;
+  height: 124rpx;
+}
+.infortmation_box_name{
+  font-size: 36rpx;
+  color: #fff;
+  line-height:77rpx;
+  font-weight: bold
+}
+.information_tatils{
+  font-size: 24rpx;
+  color: #999
+}
+.infortmation_choose{
+  width:100%;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  background: #282B30FF
+}
+.true_name{
+  width: 100%;
+  display: flex;
+  height: 115rpx;
+  border-bottom: 1rpx solid #1B1E23FF;
+  align-items: center
+}
+.true_xm{
+  font-size: 30rpx;
+  color: #FFFFFFFF
+}
+input{
+  font-size: 30rpx;
+  color: #999;
+  flex:1;
+  text-align:right;
+
+}
+.m-cell {
+font-size:28rpx;
+display:flex;
+justify-content:space-between;
+padding:15rpx 30rpx 15rpx 60rpx;
+position:relative;
+}
+.pickershow{
+  font-size:30rpx;
+color:#999;
+
+}

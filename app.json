@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/coachappointment/coachappointment",
+    "pages/ballappointment/ballappointment",
+    "pages/logs/logs",
+    "pages/interests/interests",
+    "pages/guide/guide",
+    "pages/main/main",
+    "pages/approach/approach",
+    "pages/appointmenttime/appointmenttime",
+    "pages/land/land",
+    "pages/coupon/coupon",
+    "pages/succell/succell",
+    "pages/entry/entry",
+    "pages/management/management",
+    "pages/appointment/appointment",
+    "pages/detailed/detailed",
+    "pages/confirmationbuy/confirmationbuy",
+    "pages/rollback/rollback",
+    "pages/confirmationOrder/confirmationOrder",
+    "pages/selfdetails/selfdetails",
+    "pages/expenditure/expenditure",
+    "pages/bookingoreder/bookingoreder",
+    "pages/perinformation/perinformation",
+    "pages/orderdetails/orderdetails",
+    "pages/recharge/recharge"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为你寻找最近的健身门店！"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#282B30",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#E27D00",
+    "color": "#999999",
+    "backgroundColor": "#282B30",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/home_x200.png",
+        "selectedIconPath": "img/home_select_x200.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/appointment/appointment",
+        "iconPath": "img/orderx200.png",
+        "selectedIconPath": "img/order-select_x200.png",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/main/main",
+        "iconPath": "img/main.png",
+        "selectedIconPath": "img/main_x200.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

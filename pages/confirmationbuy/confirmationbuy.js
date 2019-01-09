@@ -1,0 +1,531 @@
+// pages/confirmationbuy/confirmationbuy.js
+var $ = require('../../utils/util.js');
+var api = require('../../api/selfdails.js');
+var apicou = require('../../api/coupon.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    memberId: "",
+    goodsId: "",
+    areaId: "",
+    tkareaId: "",
+    price: "",
+    coachId: "",
+    mobile: "",
+    shopdetails: "",
+    scheduleStart: "",
+    sta: "",
+    icon: "",
+    gymId: "",
+    optionstype: "",
+    numb: "1",
+    couponlenght: "",
+    choose: false,
+    memberName: "",
+    tk_id: "",
+    shoptype: "",
+    yuechoose: true,
+    wxyuechoose: false,
+    hidden: 1,
+    gymName: "",
+    address: "",
+    id: "",
+    openid: "",
+    itemNo: "",
+    shopid: "",
+    yuenum: "",
+    formatDate: "",
+    gymdetails: ""
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    console.log("options", options)
+    var that = this;
+
+    wx.getStorage({
+      key: 'userinfo',
+      success: function(res) {
+        that.setData({
+          memberId: res.data.memberId,
+          mobile: res.data.mobile,
+          memberName: res.data.memberName,
+          tk_id: options.tk_id,
+          couponid: options.couponid,
+          coachId: options.coachId || '',
+          scheduleDate: options.scheduleDate,
+          openid: res.data.openID
+
+        })
+        wx.getStorage({
+          key: 'gymId',
+          success: function(res) {
+            that.setData({
+              gymId: res.data.gymId,
+              id: options.id,
+              shopid: options.id,
+              optionstype: options.optionstype,
+              sta: options.sta,
+              shoptype: options.type
+            })
+            that.couponlist();
+            if (options.optionstype == 2 && options.sta != 1) {
+              that.league_schedule()
+            } else if (options.type == 3) {
+
+              that.shopdetails()
+
+            } else if (options.optionstype == 2 && options.sta == 1) {
+              that.coach_course()
+
+            } else {
+              that.gymdetails();
+            }
+
+            that.yuenum()
+          }
+        })
+
+
+      },
+      fail: function(res) {
+        $.alert("请先登录")
+        setTimeout(function() {
+
+          wx.navigateTo({
+            url: '../land/land',
+          })
+
+        }, 2000) //延迟时间 这里是1秒
+
+      },
+    })
+
+
+
+
+
+
+  },
+  shopdetails: function() {
+    var that = this;
+    var val = {}
+    $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
+      that.setData({
+        shopdetails: res.data,
+        gymName: res.data.gym.gymName,
+        areaId: res.data.areaId,
+        price: res.data.price,
+        icon: res.data.gym.icon,
+        address: res.data.gym.address,
+        goodsId: res.data.id,
+      })
+      console.log("shop详情", val)
+      console.log("shop详情", res)
+
+    })
+  },
+
+  league_schedule: function() {
+    var that = this;
+    var val = {}
+    $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
+      console.log("skxq", val)
+      console.log("skxq", res)
+
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var formatDate = year + '-' + month + '-' + day;
+      that.setData({
+        formatDate: formatDate,
+        goodsId: res.data.id,
+        tkgymdetails: res.data,
+        jindu: res.data.appointmentNumb / res.data.course.contain,
+        tkareaId: res.data.areaId
+      })
+    })
+  },
+  coach_course: function() { //私课详情
+    var that = this;
+    var val = {
+      schduleDate: that.data.scheduleDate
+    }
+
+    $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
+      console.log("私课", val)
+      console.log("私课", res)
+
+      that.setData({
+        tkgymdetails: res.data,
+        gymName: res.data.gym.gymName,
+        areaId: res.data.areaId,
+        price: res.data.price,
+        icon: res.data.course.icon,
+        address: res.data.gym.address,
+        goodsId: res.data.course.id,
+        scheduleStart: res.data.coachSchedule.scheduleStart,
+        jindu: res.data.appointmentNumb / res.data.course.contain
+      })
+    })
+  },
+  yuenum: function() {
+    var that = this;
+    var val = {
+      memberId: that.data.memberId,
+      gymId: that.data.gymId,
+    }
+    $.Requests(api.yuenum.url, val).then((res) => {
+
+
+      that.setData({
+        yuenum: res.data
+      })
+
+    })
+
+  },
+  couponlist: function() {
+    var that = this;
+    var val = {
+      memberId: that.data.memberId,
+      gymId: that.data.gymId,
+    }
+    $.Requests(apicou.couponlist.url, val).then((res) => {
+
+
+      that.setData({
+        couponlenght: res.data.length
+      })
+
+    })
+  },
+  closebuynow: function() {
+    this.setData({
+      hidden: 1
+    })
+  },
+  gymdetails: function() {
+    var that = this;
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
+    var formatDate = year + '-' + month + '-' + day;
+    that.setData({
+      formatDate: formatDate
+    })
+    var val = {
+
+      appointmentDate: formatDate
+    }
+
+    $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
+
+
+
+      that.setData({
+        itemNo: res.data.fitness.itemNo,
+        gymdetails: res.data,
+        areaId: res.data.areaId,
+        gymName: res.data.gym.gymName,
+        shopid: res.data.id,
+        address: res.data.gym.address,
+        price: res.data.price
+
+      })
+      // this.setData({
+
+      //   classifyClick: res.data.content
+
+      // })
+    })
+
+
+  },
+  choosecoupon: function() {
+    this.setData({
+      choose: true,
+      hidden: 0
+    })
+
+  },
+  choosecouponbtn: function() {
+    if (this.data.choose) {
+      this.setData({
+        choose: false,
+
+      })
+    } else {
+      this.setData({
+        choose: true,
+
+      })
+
+    }
+
+
+  },
+  testSubmit: function(e) {
+
+    console.log(this)
+    console.log("muban ", e.detail.formId)
+
+    var that = this;
+    if (that.data.yuechoose) {
+   
+      if (that.data.optionstype == 2 && that.data.sta != 1) {
+
+        var val = {
+          areaId: that.data.tkareaId,
+          couponEntityId: that.data.couponid || '',
+          gymId: that.data.gymId,
+          memberId: that.data.memberId,
+          memberMobile: that.data.mobile,
+          memberName: that.data.memberName,
+          orderGoods: [{
+            numb: '1',
+            goodsId: that.data.goodsId,
+          }],
+          payType: "xj",
+          remark: ""
+        }
+
+        $.Requests_json(api.member_ordertk.url, val).then((res) => {
+          console.log("团课预约", val)
+          console.log("团课预约", res)
+
+          if (res.status == 0) {
+
+            wx.navigateTo({
+              url: `../confirmationOrder/confirmationOrder?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}`
+            })
+          }
+
+        })
+
+
+      } else if (that.data.optionstype == 2 && that.data.sta == 1) {
+        var that = this;
+
+
+        var val = {
+          areaId: that.data.areaId,
+          couponEntityId: "0", //未接
+          gymId: that.data.gymId,
+          gymName: that.data.gymName,
+          memberId: that.data.memberId,
+          memberMobile: that.data.mobile,
+          memberName: that.data.memberName,
+          orderGoods: [{
+            numb: that.data.numb,
+            goodsId: that.data.tk_id,
+          }],
+          payType: "xj",
+          remark: "",
+        }
+
+
+
+
+        $.Requests_json(api.member_order.url, val).then((res) => {
+          console.log("私教预约", val)
+          console.log("私教预约", res)
+
+
+          if (res.status == 0) {
+  
+            wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId, 
+            })
+          }
+
+        })
+
+
+
+      } else if (that.data.shoptype == 3) {
+
+        var val = {
+          areaId: that.data.areaId,
+          couponEntityId: "0", //未接
+          gymId: that.data.gymId,
+          gymName: that.data.gymName,
+          memberId: that.data.memberId,
+          memberMobile: that.data.mobile,
+          memberName: that.data.memberName,
+          orderGoods: [{
+            numb: that.data.numb,
+            goodsId: that.data.goodsId,
+          }],
+          payType: "xj",
+          remark: "",
+        }
+
+
+
+
+        $.Requests_json(api.shopbuy.url, val).then((res) => {
+
+          console.log("sshop购买", val)
+          console.log("shop购买", res)
+          console.log("openid", that.data.openid)
+          if (res.status == 0) {
+
+            var val = {
+              formId: e.detail.formId
+            }
+            $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
+              console.log("模板消息", val)
+              console.log("模板消息", res)
+
+            })
+
+            wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+            })
+          }
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+      } else {
+
+
+
+
+        var val = {
+          areaId: that.data.areaId,
+          couponEntityId: "0", //未接
+          gymId: that.data.gymId,
+          gymName: that.data.gymName,
+          memberId: that.data.memberId,
+          memberMobile: that.data.mobile,
+          memberName: that.data.memberName,
+          orderGoods: [{
+            numb: that.data.numb,
+            goodsId: that.data.shopid,
+          }],
+          payType: "xj",
+          remark: "",
+        }
+        $.Requests_json(api.balancepay.url, val).then((res) => {
+
+    
+          if (res.data.success && that.data.itemNo != "SI-BALL") {
+           
+            wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address,
+            })
+          } else if (res.data.success && that.data.itemNo == "SI-BALL") {
+
+            wx.navigateTo({
+              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
+              // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
+            })
+          } else {
+            $.alert("余额支付失败")
+          }
+
+        })
+      }
+    } else {
+      $.alert("暂不支持！")
+      return;
+    }
+
+  },
+  yuechoose: function() {
+
+    if (this.data.yuechoose) {
+      this.setData({
+        yuechoose: true
+      })
+    } else {
+      this.setData({
+        yuechoose: true,
+        wxyuechoose: false
+      })
+    }
+
+  },
+  wxyuechoose: function() {
+
+    if (this.data.wxyuechoose) {
+      this.setData({
+        wxyuechoose: true
+      })
+    } else {
+      this.setData({
+        wxyuechoose: true,
+        yuechoose: false,
+      })
+    }
+
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  }
+})

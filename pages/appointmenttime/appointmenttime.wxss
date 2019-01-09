@@ -1,0 +1,45 @@
+/* pages/appointmenttime/appointmenttime.wxss */
+.time_box{
+width: 100%;
+height: 984rpx;
+background: #282B30
+
+}
+.showtime{
+  font-size:32rpx;
+color:#FFFFFF;
+margin:0rpx 0 40rpx 28rpx;
+padding-top:40rpx;
+
+}
+.choose_time{
+width:92%;
+margin:20rpx auto;
+height:100rpx;
+background:#202428;
+border-radius:8rpx;
+padding:0 20rpx 0 20rpx;
+display: flex;
+align-items: center
+}
+
+.font_week{
+ font-size: 28rpx;
+ color: #FFFFFF;
+ flex:1;
+ margin-right: 24rpx
+}
+.but_bj{
+  width: 132rpx;
+  height: 68rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+  line-height: 68rpx  ;
+  border-radius: 8rpx;
+}
+
+.ball-head {
+  width: 100%;
+height: 420rpx
+}

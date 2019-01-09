@@ -1,0 +1,54 @@
+<!--pages/coupon/coupon.wxml-->
+<view class='coupon_input'>
+  <input bindinput="code" placeholder='请输入兑换码' class='input_box'>
+  </input>
+  <view bindtap='exchange' class='btn_tetx font-colormode'>兑换</view>
+</view>
+<view wx:if="{{couponlist.length>0}}" class='coupon_list'>
+  已领取{{couponlist.length}}张
+</view>
+
+<view wx:if="{{couponlist.length>0}}" wx:for="{{couponlist}}" class='bj_coupon'>
+  <view class='coupon_left'>
+    <view class='coupon_mon {{item.state ==1?"font-colormode":""}}'>
+      ¥
+    </view>
+    <view class='coupon_maxmon {{item.state ==1?"font-colormode":""}}'>
+      {{item.discount}}
+    </view>
+  </view>
+  <view class='coupon_right'>
+    <view style='color:{{item.state ==1?"#666":"#999"}}' class='coupon_right_mon'>
+      <view style='color:{{item.state ==1?"#666":"#999"}}' class='coupon_right_name'>{{item.couponName}}</view>
+      <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
+      <view>有效期：{{item.endTime}}</view>
+    </view>
+    <view wx:if="{{item.state == 1}}" class='coupon_state font-colormode'>
+      可使用
+
+
+    </view>
+    <view wx:if="{{item.state !=1 &&item.state !=2 }}" class='coupon_state font-colormode'>
+      <image class='coupon_img' src='../../img/coupon_expired.png'></image>
+
+
+    </view>
+    <view wx:if="{{item.state == 2}}" class='coupon_state font-colormode'>
+      <image class='coupon_img' src='../../img/coupon_used.png'></image>
+
+
+    </view>
+
+  </view>
+</view>
+<view class='coupon_tiao'>
+</view>
+<view wx:if="{{couponlist.length == 0}}" class='null_box'>
+
+  <view class='null_coupon'>
+    <image class='bj_null' src='../../img/coupon_null.png'></image>
+  </view>
+  <view class='null_title'>
+    暂无优惠券
+  </view>
+</view>
