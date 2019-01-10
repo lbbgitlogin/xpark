@@ -20,21 +20,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
-
+  onLoad: function (options) {
+    this.getdata()
+  },
+  getdata() {
     var that = this;
-
     wx.setNavigationBarColor({
       backgroundColor: '#282B30', // 必写项
       frontColor: '#ffffff', // 必写项
     })
-
-
     wx.getStorage({
-
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           time: res.data.createTime,
@@ -42,20 +39,20 @@ Page({
         })
         that.appointment()
       },
-      fail: function(res) {
+      fail: function (res) {
         $.alert("请先登录")
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.navigateTo({
             url: '../land/land',
           })
 
         }, 2000) //延迟时间 这里是1秒
-        
+
       },
     })
   },
-  appointment: function() {
+  appointment: function () {
     var that = this;
     that.setData({
       tapindex: 1,
@@ -68,8 +65,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      
-      
+
+
       var that = this;
       if (res.data == null) {
         that.setData({
@@ -88,29 +85,28 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    this.getdata()
   },
-  datalis: function(e) {
-    
+  datalis: function (e) {
     wx.navigateTo({
-      url: '../bookingoreder/bookingoreder?icon=' + e.target.dataset.icon + "&gymName=" + e.target.dataset.gymname + "&uesCode=" + e.target.dataset.uescode + "&bookingName=" + e.target.dataset.bookingname + "&type=" + e.target.dataset.type + "&price=" + e.target.dataset.price + "&address=" + e.target.dataset.address + "&dingdanid=" + e.target.dataset.dingdanid + "&orderno=" + e.target.dataset.orderno + "&remark=" + e.target.dataset.remark
+      url: '../bookingoreder/bookingoreder?icon=' + e.currentTarget.dataset.icon + "&gymName=" + e.currentTarget.dataset.gymname + "&uesCode=" + e.currentTarget.dataset.uescode + "&bookingName=" + e.currentTarget.dataset.bookingname + "&type=" + e.currentTarget.dataset.type + "&price=" + e.currentTarget.dataset.price + "&address=" + e.currentTarget.dataset.address + "&dingdanid=" + e.currentTarget.dataset.dingdanid + "&orderno=" + e.currentTarget.dataset.orderno + "&remark=" + e.currentTarget.dataset.remark
     })
   },
-  allOrders: function() { //未开始订单
+  allOrders: function () { //未开始订单
     this.setData({
       tapindex: 1,
       type: 1
     });
   },
-  toBePaid: function() { //yishiyong 订单
+  toBePaid: function () { //yishiyong 订单
     var that = this;
     that.setData({
       tapindex: 2,
@@ -125,8 +121,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      
-      
+
+
       var that = this;
       if (res.data.content == '') {
         that.setData({
@@ -143,7 +139,7 @@ Page({
 
     })
   },
-  receiptOfGoods: function() { //已取消订单
+  receiptOfGoods: function () { //已取消订单
     var that = this;
     that.setData({
       tapindex: 3,
@@ -157,8 +153,8 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
-      
-      
+
+
       if (res.data.content.length == 0) {
         that.setData({
           type: 2
@@ -176,35 +172,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

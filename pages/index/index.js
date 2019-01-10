@@ -131,8 +131,6 @@ Page({
           key: 'gymId',
           success: function (res) {
 
-
-
           },
           fail: function () {
             // that.getLocal(that.data.latitude, that.data.longitude);

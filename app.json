@@ -24,7 +24,8 @@
     "pages/bookingoreder/bookingoreder",
     "pages/perinformation/perinformation",
     "pages/orderdetails/orderdetails",
-    "pages/recharge/recharge"
+    "pages/recharge/recharge",
+    "pages/buycard/buycard"
   ],
   "permission": {
     "scope.userLocation": {
