@@ -116,11 +116,12 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
+      let{price}= res.data
       that.setData({
         shopdetails: res.data,
         gymName: res.data.gym.gymName,
         areaId: res.data.areaId,
-        price: res.data.price,
+        price: price,
         icon: res.data.gym.icon,
         address: res.data.gym.address,
         goodsId: res.data.id,
@@ -137,6 +138,7 @@ Page({
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
       console.log("skxq", val)
       console.log("skxq", res)
+      let { price, areaId } = res.data
 
       var now = new Date();
       var year = now.getFullYear();
@@ -147,9 +149,11 @@ Page({
         formatDate: formatDate,
         goodsId: res.data.id,
         tkgymdetails: res.data,
+        price: price,
         jindu: res.data.appointmentNumb / res.data.course.contain,
-        tkareaId: res.data.areaId
+        tkareaId: areaId
       })
+      console.log("价格", that.data.tkgymdetails)
     })
   },
   coach_course: function() { //私课详情
@@ -229,11 +233,12 @@ Page({
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
 
-
+    let{price}=res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
         gymdetails: res.data,
         areaId: res.data.areaId,
+        price: price,
         gymName: res.data.gym.gymName,
         shopid: res.data.id,
         address: res.data.gym.address,

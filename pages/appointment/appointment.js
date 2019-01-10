@@ -71,7 +71,7 @@ Page({
       console.log("我的预约未开始val", val)
       console.log("我的预约未开始val", res)
       var that = this;
-      if (res.data.content == '') {
+      if (res.data == null) {
         that.setData({
           type: 2
         })

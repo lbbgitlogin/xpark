@@ -3,39 +3,41 @@
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
-    <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common/{{gymdetails.fitness.icon ||tkgymdetails.course.icon ||shopdetails.gym.icon }}'></image>
+    <image wx:if="{{vipnum == 1}}" class='datails_imghead' src='../../img/zzcard.png'></image>
+    <image wx:if="{{vipnum == 2}}" class='datails_imghead' src='../../img/zxcard.png'></image>
     </view>
     <view class='datails_title'>{{gymdetails.fitnessName ||tkgymdetails.course.courseName ||shopdetails.fullName}}</view>
     <view class='order_datails'>
-      <view class='order_mon'>¥{{price}}</view>
+      <view  wx:if="{{vipnum == 1}}" class='order_mon'>¥199</view>
+      <view  wx:if="{{vipnum == 2}}" class='order_mon'>¥399</view>
       <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
     </view>
   </view>
   <view class='list_booking'>
     <view class='order_name'>
-      门店
+   数量
     </view>
     <view class='order_smallname'>
-    {{gymdetails.gym.gymName || tkgymdetails.gymName||tkgymdetails.gym.gymName || shopdetails.gym.gymName}}
+    x1
     </view>
   </view>
   <view wx:if="{{shoptype != 3}}" class='list_booking'>
     <view class='order_name'>
-      地点
+    门店
     </view>
     <view class='order_smallname'>
-       {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
+      X-PARK运动基地
     </view>
   </view>
   <view wx:if="{{shoptype != 3}}"  class='list_booking'>
     <view class='order_name'>
-      预约时间
+      有效期
     </view>
     <view class='order_smallname'>
-     {{formatDate ||scheduleDate}}
+       {{formatDate}}至{{formatDates}}
     </view>
   </view>
-  <view class='confirmationbuy_buy'>
+  <!-- <view class='confirmationbuy_buy'>
     <view class='confirmationbuy_cou'>优惠信息</view>
     <view class='list_booking_buy'>
       <view class='order_name'>
@@ -57,7 +59,7 @@
     <view style="margin-left: 8rpx;width:48rpx;height:48rpx" class=' m-cell-access'>
        <image class='icon_zb' src='../../img/right_zb.png'></image>
     </view>
-  </view>
+  </view> -->
   <!--购买保险 <view class='confirmationbuy_buy'>
     <view class='confirmationbuy_cou'>保险选购</view>
     <view class='list_booking_buy'>
@@ -87,8 +89,11 @@
   </view>
 </view>
   <view class='buy'>
-    <view class='buy_left font-colormode'>
-     ￥{{price}}
+    <view wx:if="{{vipnum == 1}}" class='buy_left font-colormode'>
+     ￥199
+    </view>
+      <view wx:if="{{vipnum == 2}}"  class='buy_left font-colormode'>
+     ￥399
     </view>
 
      <form  class='buy_right bj_color' bindsubmit="testSubmit" report-submit="true">
@@ -98,38 +103,3 @@
 购买
     </view> -->
   </view>
-<view class="{{hidden==0?'':'hide'}}">
-  <view class='coupon {{hidden == 0?"bounceInUp animated":"bounceOutDown animated"}}'>
-    <view class='coupon_boxheand'>
-      您有免费使用券
-    </view>
-    <view class='coupon_list'>
-      <view class='bj_coupon'>
-        <view class='coupon_left'>
-          <view class='coupon_mon font-colormode'>
-            ¥
-          </view>
-          <view class='coupon_maxmon font-colormode'>
-            20
-          </view>
-        </view>
-        <view class='coupon_right'>
-          <view class='coupon_right_mon'>
-            <view class='coupon_right_name'>免费试用券</view>
-            <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">限美格非门店健身服务1次</view>
-            <view>有效期：2018.11.13 - 2019.12.1</view>
-          </view>
-          <view class='coupon_choose' bindtap='choosecouponbtn'>
-            <image wx:if="{{choose == false}}" class='choose_img' src='../../img/choose_false.png'></image>
-            <image wx:else class='choose_img' src='../../img/choose_true.png'></image>
-          </view>
-
-        </view>
-      </view>
-    </view>
-    <view bindtap='closebuynow' class='coupon_next bj_color'>
-      下一步
-    </view>
-  </view>
-</view>
-<view bindtap='closebuynow' wx:if="{{hidden == 0}}" class='hidden_box'></view>

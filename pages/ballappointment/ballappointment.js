@@ -309,6 +309,8 @@ Page({
     const TimeNumbers = menEnd - menStart
     const timeItemLenght = (TimeNumbers / (timeLength * 60 * 1000)).toFixed()
     console.log("门店上班时间",menStart)
+    console.log("shijian", coachstart.getTime())
+    console.log("shijian11", coachend.getTime())
     console.log("TimeNumbers", TimeNumbers)
     console.log("timeItemLenght", timeItemLenght)
     let group = []
@@ -342,8 +344,10 @@ Page({
    
     
       let now = new Date(`${scheduleDate} ${times}:00`).getTime()
+      console.log("now",now)
      
       if (coachstart.getTime() < now && coachend.getTime() > now || coachstart.getTime() === now ) {
+
         canSelect = true
       } else {
         canSelect = false

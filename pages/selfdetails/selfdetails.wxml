@@ -66,8 +66,14 @@
       <view class='left_box'>
         <view class='self_time'>
           <image style='height：20rpx' class='black_time' src='../../img/card_bj.png'></image>
-          <view class='self_font'>
-          XPARK尊享卡价：36元
+            <view wx:if="{{vip == 2}}" class='self_font'>
+          XPARK尊享卡价： {{gymdetails.price == 0?'0':gymdetails.price*0.8 || tkgymdetails.price*0.8 || shopdetails.price*0.8}}元
+          </view>
+            <view wx:if="{{vip == 1}}" class='self_font'>
+          XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
+          </view>
+               <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
+          XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
           </view>
         </view>
       </view>
@@ -126,17 +132,18 @@
   </view>
 
 
-  <view class='self_box shop_introduce' wx:if="{{optionstype != 3}}" style='padding:40rpx 0 40rpx 0;background:#282B30'>
+  <view class='self_box shop_introduce' style='{{optionstype == 3?"padding:40rpx 0 80px 0 ":"padding:40rpx 0 40rpx 0;background:#282B30"}}'>
     <view class='introduce_title'>
      
     </view>
     <html-view wx:if="{{gymdetails.fitness.introduce}}" class='introduce_sm' innerText='{{gymdetails.fitness.introduce}}'></html-view>
     <html-view wx:if="{{tkgymdetails.course.introduce}}" class='introduce_sm' innerText='{{tkgymdetails.course.introduce}}'></html-view>
+        <html-view wx:if="{{shopdetails.despict}}" class='introduce_sm' innerText='{{shopdetails.despict}}'></html-view>
     <!-- <view class='introduce_sm'>
       {{gymdetails.fitness.introduce ||   tkgymdetails.course.introduce}}
     </view> -->
   </view>
-  <view class='location_jiang'>
+  <view wx:if="{{optionstype != 3}}"  class='location_jiang'>
   <image class='xz' src='../../img/xz.png'></image>
       购买须知
   </view>
@@ -229,13 +236,19 @@
 
   </view>
   <view class='buy'>
-    <view class='buy_left font-colormode'>
+    <view wx:if="{{vip!=1&&vip!=2}}" class='buy_left font-colormode'>
       实付： ¥{{gymdetails.price == 0?'0':gymdetails.price || tkgymdetails.price || shopdetails.price}}
+    </view>
+      <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
+      实付： ¥{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}
+    </view>
+      <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
+      实付： ¥{{gymdetails.price == 0?'0':gymdetails.price*0.8 || tkgymdetails.price*0.8 || shopdetails.price*0.8}}
     </view>
     <view wx:if="{{!appointment && couponlength != 0 }}" bindtap='buynow' class='buy_right bj_color'>
       购买
     </view>
-    <view wx:if="{{!appointment && couponlength == 0}}" data-id='{{gymdetails.id || shopdetails.id}}' bindtap='next_self' class='buy_right bj_color'>
+    <view wx:if="{{!appointment && couponlength == 0}}" data-id='{{gymdetails.id || shopdetails.id||tkgymdetails.id}}' bindtap='next_self' class='buy_right bj_color'>
       购买
     </view>
     <view wx:if="{{appointment}}" bindtap='appointment' class='buy_right bj_color'>

@@ -53,6 +53,7 @@ Page({
     address: "",
     weekend: "",
     weekArr: "",
+    vip:"",
     sk_schedulelist: "",
     hasUserInfo: false,
     countNum: 5,
@@ -108,8 +109,8 @@ Page({
       success: function(res) {
         that.setData({
           hidden: false,
-          balance: res.data.cash + res.data.give
-
+          balance: res.data.cash + res.data.give,
+          memberId: res.data.memberId
         })
 
       },
@@ -142,7 +143,7 @@ Page({
 
           },
           fail:function(){
-            that.getLocal(that.data.latitude, that.data.longitude);
+            // that.getLocal(that.data.latitude, that.data.longitude);
           }
         })
        
@@ -158,8 +159,10 @@ Page({
     that.fitnesslist(); //自助健身子分类查询
     that.ptitemlist(); //配套服务
     that.league_schedulelist(); //课程服务团课服务查询列表
-
+    that.hwleague_schedulelist(); //课程服务团课服务查询列表
+    that.jkleague_schedulelist(); //课程服务团课服务查询列表
     that.coach_schedulelist(); //课程服务私课服务查询列表
+    that.member();
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -331,36 +334,36 @@ Page({
       }
     })
   },
-  getLocal: function(latitude, longitude) {
-    let vm = this;
-    qqmapsdk = new QQMapWX({
-      key: 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ'
-    });
+  // getLocal: function(latitude, longitude) {
+  //   let vm = this;
+  //   qqmapsdk = new QQMapWX({
+  //     key: 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ'
+  //   });
 
-    qqmapsdk.reverseGeocoder({
-      location: {
-        latitude: latitude,
-        longitude: longitude
-      },
-      success: function(res) {
+  //   qqmapsdk.reverseGeocoder({
+  //     location: {
+  //       latitude: latitude,
+  //       longitude: longitude
+  //     },
+  //     success: function(res) {
 
-        let province = res.result.ad_info.province
-        let city = res.result.ad_info.city
-        vm.setData({
-          province: province,
-          city: city,
-        })
-        vm.nearshop();
-        vm.provincelist();
-      },
-      fail: function(res) {
+  //       let province = res.result.ad_info.province
+  //       let city = res.result.ad_info.city
+  //       vm.setData({
+  //         province: province,
+  //         city: city,
+  //       })
+  //       vm.nearshop();
+  //       vm.provincelist();
+  //     },
+  //     fail: function(res) {
 
-      },
-      complete: function(res) {
-        // 
-      }
-    });
-  },
+  //     },
+  //     complete: function(res) {
+  //       // 
+  //     }
+  //   });
+  // },
   citychoose: function(e) {
     this.setData({
       city: e.target.dataset.city
@@ -456,6 +459,8 @@ Page({
             icon: item.fitness.icon,
             fitnessName: item.fitnessName,
             price: item.price,
+            zzprice:item.price*0.9,
+            zxprice: item.price * 0.8,
             areaId: item.areaId,
             id: item.id,
             itemNo: item.fitness.itemNo
@@ -539,6 +544,7 @@ Page({
         var day = now.getDate();
         var formatDate = year + '-' + month + '-' + day;
         var val = {
+          courseType:1,
           gymId: res.data.gymId,
           scheduleDate: formatDate
         }
@@ -557,6 +563,8 @@ Page({
               id: item.course.id,
               icon: item.course.icon,
               price: item.price,
+              zzprice: item.price * 0.9,
+              zxprice: item.price * 0.8,
               appointmentNumb: item.appointmentNumb,
               contain: item.course.contain,
               scheduleDate: item.scheduleDate
@@ -578,6 +586,115 @@ Page({
 
 
   },
+  hwleague_schedulelist: function () { //课程服务团课服务查询列表
+    var that = this;
+    wx.getStorage({
+      key: 'gymId',
+      success: function (res) {
+
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+        var day = now.getDate();
+        var formatDate = year + '-' + month + '-' + day;
+        var val = {
+          courseType: 2,
+          gymId: res.data.gymId,
+          scheduleDate: formatDate
+        }
+        $.Requests(api.league_schedulelist.url, val).then((res) => {
+
+          console.log("hw团课列表查询", val)
+          console.log("hw团课列表查询", res)
+          if (res.data.length != 0) {
+
+
+            var hw_schedulelist = res.data;
+            console.log("hw_schedulelist", hw_schedulelist)
+            hw_schedulelist.forEach(function (item, index, arrar) {
+              arrar[index] = {
+                name: item.course.courseName,
+                id: item.id,
+                icon: item.course.icon,
+                price: item.price,
+                zzprice: item.price * 0.9,
+                zxprice: item.price * 0.8,
+                appointmentNumb: item.appointmentNumb,
+                contain: item.course.contain,
+                scheduleDate: item.scheduleDate
+              }
+              that.setData({
+                hw_schedulelist: hw_schedulelist
+              })
+
+            })
+          } else {
+            that.setData({
+              hw_schedulelist: ""
+            })
+          }
+
+        })
+      }
+    })
+
+
+  },
+  jkleague_schedulelist: function () { //课程服务团课服务查询列表
+    var that = this;
+    wx.getStorage({
+      key: 'gymId',
+      success: function (res) {
+
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+        var day = now.getDate();
+        var formatDate = year + '-' + month + '-' + day;
+        var val = {
+          courseType: 3,
+          gymId: res.data.gymId,
+          scheduleDate: formatDate
+        }
+        $.Requests(api.league_schedulelist.url, val).then((res) => {
+
+          console.log("jk团课列表查询", val)
+          console.log("jk团课列表查询", res)
+          if (res.data.length != 0) {
+
+
+            var jk_schedulelist = res.data;
+            console.log("jk_schedulelist", jk_schedulelist)
+            jk_schedulelist.forEach(function (item, index, arrar) {
+              arrar[index] = {
+                name: item.course.courseName,
+                id: item.id,
+
+                icon: item.course.icon,
+                price: item.price,
+                zzprice: item.price * 0.9,
+                zxprice: item.price * 0.8,
+                appointmentNumb: item.appointmentNumb,
+                contain: item.course.contain,
+                scheduleDate: item.scheduleDate
+              }
+              that.setData({
+                jk_schedulelist: jk_schedulelist
+              })
+
+            })
+          } else {
+            that.setData({
+              jk_schedulelist: ""
+            })
+          }
+
+        })
+      }
+    })
+
+
+  },
   tk_schedulelist: function(e) { //点击课程服务团课服务查询列表
     var that =this;
     var now = new Date();
@@ -589,6 +706,7 @@ Page({
       scheduleDate: formatDate
     })
     var val = {
+      courseType: 1,
       gymId: 1,
       scheduleDate: formatDate
     }
@@ -620,6 +738,100 @@ Page({
         tk_schedulelist:""
       })
     }
+    })
+  },
+  hw_schedulelist: function (e) { //点击课程服务团课服务查询列表
+    var that = this;
+    var now = new Date();
+    var year = now.getFullYear();
+
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var formatDate = year + '-' + month + '-' + e.target.dataset.id;
+    this.setData({
+      scheduleDate: formatDate
+    })
+    var val = {
+      courseType: 2,
+      gymId: 1,
+      scheduleDate: formatDate
+    }
+    $.Requests(api.league_schedulelist.url, val).then((res) => {
+      console.log("是否执行点击hw", val)
+      console.log("是否执行点击hw", res)
+      if (res.data.length != 0) {
+
+
+        var hw_schedulelist = res.data;
+        console.log("hw_schedulelist", hw_schedulelist)
+        hw_schedulelist.forEach(function (item, index, arrar) {
+          arrar[index] = {
+            name: item.course.courseName,
+            id: item.id,
+            icon: item.course.icon,
+            price: item.price,
+            zzprice: item.price * 0.9,
+            zxprice: item.price * 0.8,
+            appointmentNumb: item.appointmentNumb,
+            contain: item.course.contain,
+            scheduleDate: item.scheduleDate
+          }
+          that.setData({
+            hw_schedulelist: hw_schedulelist
+          })
+
+        })
+      } else {
+        that.setData({
+          hw_schedulelist: ""
+        })
+      }
+    })
+  },
+  jk_schedulelist: function (e) { //点击课程服务团课服务查询列表
+    var that = this;
+    var now = new Date();
+    var year = now.getFullYear();
+
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var formatDate = year + '-' + month + '-' + e.target.dataset.id;
+    this.setData({
+      scheduleDate: formatDate
+    })
+    var val = {
+      courseType: 3,
+      gymId: 1,
+      scheduleDate: formatDate
+    }
+    $.Requests(api.league_schedulelist.url, val).then((res) => {
+      console.log("是否执行点击jk", val)
+      console.log("是否执行点击jk", res)
+      if (res.data.length != 0) {
+
+
+        var jk_schedulelist = res.data;
+        console.log("jk_schedulelist", jk_schedulelist)
+        jk_schedulelist.forEach(function (item, index, arrar) {
+          arrar[index] = {
+            name: item.course.courseName,
+            id: item.id,
+            icon: item.course.icon,
+            price: item.price,
+            zzprice: item.price * 0.9,
+            zxprice: item.price * 0.8,
+            appointmentNumb: item.appointmentNumb,
+            contain: item.course.contain,
+            scheduleDate: item.scheduleDate
+          }
+          that.setData({
+            jk_schedulelist: jk_schedulelist
+          })
+
+        })
+      } else {
+        that.setData({
+          jk_schedulelist: ""
+        })
+      }
     })
   },
   coach_schedulelist: function() { //课程服务私课服务查询列表val
@@ -656,6 +868,8 @@ Page({
               id: item.id,
               icon: item.course.icon,
               price: item.price,
+              zzprice: item.price * 0.9,
+              zxprice: item.price * 0.8,
               appointmentNumb: item.appointmentNumb,
               contain: item.course.contain,
               scheduleDate: item.scheduleDate
@@ -675,7 +889,35 @@ Page({
       }
     })
   },
-  sk_schedulelist: function(e) { //点击课程服务私课服务查询列表
+  member: function () { //会员卡查询
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        var val = {
+          memberId: res.data.memberId,
+
+        }
+        $.Requests(api.member.url, val).then((res) => {
+          console.log("会员卡查询", val)
+          console.log("会员卡查询", res)
+          if (res.data.length == 0) {
+
+          
+          } else {
+            that.setData({
+              vip: res.data[0].vip
+            })
+          }
+
+        })
+
+      },
+    
+    })
+   
+  },
+  sk_schedulelist: function (e) { //点击sk
   var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -699,6 +941,8 @@ Page({
           id: item.id,
           icon: item.course.icon,
           price: item.price,
+          zzprice: item.price * 0.9,
+          zxprice: item.price * 0.8,
           appointmentNumb: item.appointmentNumb,
           contain: item.course.contain,
           scheduleDate: item.scheduleDate
@@ -735,7 +979,8 @@ Page({
     }
     that.tk_schedulelist(e);
     that.sk_schedulelist(e);
-
+    that.hw_schedulelist(e);
+    that.jk_schedulelist(e);
   },
   onPageScroll: function(e) { //上滑监听
 
@@ -925,6 +1170,25 @@ Page({
     wx.navigateTo({
       url: '../approach/approach'
     })
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+     var that =this;
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      that.league_schedulelist();
+      that.coach_schedulelist();
+      that.ptitemlist();
+      that.classification();
+      that.hwleague_schedulelist(); //课程服务团课服务查询列表
+      that.jkleague_schedulelist(); //课程服务团课服务查询列表
+      that.member();
+  
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1500);
   },
   login: function() { //登陆页面
     wx.navigateTo({

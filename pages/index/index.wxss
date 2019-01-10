@@ -1,6 +1,7 @@
 /**index.wxss**/
 page{
-  height: 100%
+  height: 100%;
+  background-color: #282B30
 }
 .index_pad{
   padding: 40rpx 0 0rpx 0
@@ -67,7 +68,7 @@ align-items:center;
 }
 .index_lefttext{
   font-size: 40rpx;
-  color: #FFFFFFFF;
+  color: #fff;
   margin-right:14rpx;
   font-weight: bold
 }

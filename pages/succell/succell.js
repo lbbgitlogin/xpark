@@ -41,9 +41,26 @@ Page({
 
 
 
-    } else {
+    } else if (options.cardnum == 1){
+      setTimeout(function () {
+
+        wx.switchTab({
+
+          url: '../main/main' ,
+          success: function (e) {
+            var page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            page.onLoad();
+          }
+        })
+
+      }, 3000)
+
+    }
+    
+     else {
       setTimeout(function() {
-debugger
+
         wx.navigateTo({
 
           url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId ,

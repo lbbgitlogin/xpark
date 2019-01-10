@@ -248,6 +248,7 @@ Page({
       })
       }
       let now = new Date(`${scheduleDate} ${times}:00`).getTime()
+     
       if (coachstart.getTime() < now && coachend.getTime() > now || coachstart.getTime() === now) {
         canSelect = false
       } else {

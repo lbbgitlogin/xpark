@@ -16,6 +16,7 @@ Page({
     sta: '',
     qlid: '',
     jindu:0,
+    vip: '',
     chooseindex:-1,
     couponlength:"",
     shopdetails:'',
@@ -32,6 +33,7 @@ Page({
     id:"",
     couponid: "",
     coachId: "",
+    memberFitnessId: "",
     shopid: "",
     gymdetails:"",
     itemno: "",
@@ -56,6 +58,7 @@ Page({
      console.log("详情页",options)
 
     var that = this;
+    that.member();
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -166,6 +169,34 @@ Page({
 
     })
   },
+  member: function () { //会员卡查询
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        var val = {
+          memberId: res.data.memberId,
+
+        }
+        $.Requests(api.member.url, val).then((res) => {
+          console.log("会员卡查询", val)
+          console.log("会员卡查询", res)
+          if (res.data.length == 0) {
+
+
+          } else {
+            that.setData({
+              vip: res.data[0].vip
+            })
+          }
+
+        })
+
+      },
+
+    })
+
+  },
   coach_course: function () {//私课详情
     var that = this;
     var val = {
@@ -188,7 +219,7 @@ Page({
     }
    
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      
+         console.log("111",res)
       
       that.setData({
         tkgymdetails: res.data,
@@ -316,11 +347,14 @@ console.log("团课或者私教判断是否能购买",val)
           
           if(res.data != ''){
                 that.setData({
-                  appointment:true
+                  appointment:true,
+                  memberFitnessId: res.data[0].id,
+                  orderNo: res.data[0].orderNo,
                 })
           }else{
             that.setData({
-              appointment:false
+              appointment:false,
+           
             })
           }
           // this.setData({
@@ -352,7 +386,10 @@ console.log("团课或者私教判断是否能购买",val)
       that.setData({
         gymdetails:res.data,
         jindu: res.data.appointmentNumb / res.data.fitness.contain,
-        qlid:res.data.id
+        qlid:res.data.id,
+        price:res.data.price,
+        address: res.data.gym.address,
+        areaId: res.data.areaId
       })
       // this.setData({
 
@@ -365,10 +402,11 @@ console.log("团课或者私教判断是否能购买",val)
   },
   appointment:function(){
   
-  
+   var that = this;
+ 
       wx.navigateTo({
 
-        url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId,
+        url: '../appointmenttime/appointmenttime?id=' + that.data.qlid  + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
       })
 
 

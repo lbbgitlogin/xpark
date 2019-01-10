@@ -2,7 +2,7 @@
 <view class='index_pad'  style='{{ishidden?"position:fixed":""}}'>
   <view class='index_first'>
     <view class='index_box'>
-      <view bindtap='choose' class='index_lefttext'>X·PARK运动基地</view>
+      <view class='index_lefttext'>X·PARK运动基地</view>
     
     </view>
     <view bindtap='Approach' class='index_box_sh' style="justify-content: flex-end;width:49%;">
@@ -132,7 +132,8 @@
         <!-- <view class='title_sm'>{{item.fitness.introduce}}</view> -->
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
-          <view style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥25)</view>
+          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
           <!-- <view class='time_shop'>
             <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
             <view class='tatils_color'>11-15 当日有效</view>
@@ -183,7 +184,83 @@
           </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
-           <view style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥25)</view>
+             <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+         
+
+        </view>
+      </view>
+      <view>
+        <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{item.appointmentNumb<item.contain}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+
+          预约
+        </view>
+        <view wx:else class='buy_but' style='border:1rpx solid #555555'>
+          已结束
+        </view>
+      </view>
+
+    </view>
+
+     <view class='list_show'>
+      <view class='show_box bj_color '></view>
+      <view class='show_text'>户外</view>
+    </view>
+    <view wx:for="{{hw_schedulelist}}" class='shop_details'>
+      <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+      <view class='title_shop'>
+        <view class='title_name'>{{item.name}}</view>
+        <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
+        <!-- <view class='title_sm'>{{item.course.buyNotes}}</view> -->
+         <view class='time_shop'>
+
+            <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
+
+            <view class='tatils_color'>{{item.scheduleDate}}</view>
+          </view>
+        <view class='shop_mon font-colormode'>
+          <view style='font-weight:bold'>￥{{item.price}}</view>
+             <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+         
+
+        </view>
+      </view>
+      <view>
+        <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{item.appointmentNumb<item.contain}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+
+          预约
+        </view>
+        <view wx:else class='buy_but' style='border:1rpx solid #555555'>
+          已结束
+        </view>
+      </view>
+
+    </view>
+
+
+      <view class='list_show'>
+      <view class='show_box bj_color '></view>
+      <view class='show_text'>健康理论</view>
+    </view>
+    <view wx:for="{{jk_schedulelist}}" class='shop_details'>
+      <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+      <view class='title_shop'>
+        <view class='title_name'>{{item.name}}</view>
+        <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
+        <!-- <view class='title_sm'>{{item.course.buyNotes}}</view> -->
+         <view class='time_shop'>
+
+            <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
+
+            <view class='tatils_color'>{{item.scheduleDate}}</view>
+          </view>
+        <view class='shop_mon font-colormode'>
+          <view style='font-weight:bold'>￥{{item.price}}</view>
+            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
          
 
         </view>
@@ -214,10 +291,11 @@
           <!-- <html-view class='title_sm' innerText='{{items.course.introduce}}'></html-view> -->
           <!-- <view class='title_sm'>{{items.course.introduce}}</view> -->
 
-          <view class='sj_shop_mon font-colormode'>
-            <label class='sj_mon' style='font-weight:bold'>{{item.price}}</label>
+          <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
+            <label class='sj_mon' style='font-weight:bold'>￥{{item.price}}</label>
             /课时起
-
+   <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
 
           </view>
         </view>
@@ -244,7 +322,13 @@
         <view class='title_name'>{{items.fullName}}</view>
         <!-- <html-view class='title_sm' innerText='{{items.despict}}'></html-view> -->
         <!-- <view class='title_sm'>{{items.despict}}</view> -->
-        <view style='font-weight:bold' class='shop_mon font-colormode'>￥{{items.price}}</view>
+        <view style='font-weight:bold' class='shop_mon font-colormode'>
+        ￥{{items.price}}
+          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{items.price*0.9}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{items.price*0.8}})</view>
+        
+        </view>
+         
       </view>
       <view data-id='{{items.id}}' data-type='3' bindtap='selfdetails' wx:if="{{items.stock > 0}}" class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
         购买

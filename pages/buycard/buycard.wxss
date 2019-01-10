@@ -1,0 +1,340 @@
+/* pages/confirmationbuy/confirmationbuy.wxss */
+/* pages/confirmationOrder/confirmationOrder.wxss */
+page{
+  background: #282B30
+}
+.order{
+  width: 100%;
+  text-align: center;
+  line-height: 108rpx;
+  height: 108rpx;
+  font-size: 32rpx
+}
+.hidden_box{
+  background-color:#000;
+position:fixed;
+height:100%;
+width:100%;
+opacity:0.6;
+z-index:1000;
+top:0;
+left:0;
+
+}
+.order_list{
+  padding: 40rpx 0 150rpx  0;
+  width: 100%;
+  margin: 0 auto;
+  background: #282B30;
+  box-sizing: border-box
+}
+.order_title{
+  font-size: 40rpx;
+  color: #fff;
+  width:92%;
+   margin:0 auto;
+
+}
+.appointment_datails{
+width:100%;
+margin:0 auto;
+padding:36rpx 28rpx 36rpx 28rpx;
+display:flex;
+border-bottom:1rpx solid #1B1E23;
+box-sizing:border-box;
+
+}
+.datails_imghead{
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 132rpx;
+  margin:0 24rpx 0 0;
+
+}
+.datails_title{
+  font-size: 32rpx;
+  color: #fff;
+  flex: 1
+}
+.order_mon{
+  color:#FFFFFF;
+font-size:28rpx;
+margin-bottom:17rpx;
+
+}
+.num_order{
+  color:#666;
+font-size:26rpx;
+text-align:right;
+
+}
+.order_datails{
+  padding-top:8rpx;
+box-sizing:border-box;
+
+}
+.list_booking{
+  width: 100%;
+  height: 115rpx;
+  margin: 0 auto;
+  border-bottom:1rpx solid #1B1E23;
+  display: flex;
+  align-items: center;
+  padding:0 28rpx;
+box-sizing:border-box;
+
+}
+.order_name{
+  font-size: 32rpx;
+  color: #fff;
+flex: 1
+}
+.order_smallname{
+  color: #CCCCCC;
+  font-size: 26rpx;
+}
+.tv_img{
+  width: 40rpx;
+  height: 40rpx
+}
+.remarks{
+  width:100%;
+height:188rpx;
+margin:0 auto;
+border-bottom:1rpx solid #F2F2F2;
+padding:36rpx 28rpx 0 28rpx;
+box-sizing:border-box;
+
+}
+.erweima{
+    width:100%;
+height:416rpx;
+margin:0 auto;
+border-bottom:1rpx solid #F2F2F2;
+padding:36rpx 28rpx 0 28rpx;
+box-sizing:border-box;
+}
+.order_remarks{
+color:#666;
+font-size:26rpx;
+line-height:98rpx;
+
+}
+.erweima_name{
+  display: flex;
+   align-items: center;
+}
+.name_first{
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 24rpx
+}
+.name_thrid{
+  font-size: 26rpx;
+  color: #666
+}
+.pic_ewm{
+  width: 264rpx;
+  height: 264rpx;
+  margin: 40rpx auto 36rpx auto;
+  background: red
+}
+.but_order{
+  width: 92%;
+  margin: 36rpx auto 72rpx auto;
+height: 98rpx;
+background: #fff;
+border-radius: 8rpx;
+font-size: 36rpx;
+color: #333;
+text-align: center;
+line-height: 98rpx
+}
+.input_box_input_input{
+  background: #EBECEE;
+  margin: 36rpx auto 0 auto;
+  width: 694rpx;
+  height: 160rpx;
+  padding:20rpx 28rpx 20rpx 28rpx;
+box-sizing:border-box;
+  color: #999999
+}
+.order_next{
+  width: 100%;
+  height: 118rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  position:fixed;
+  bottom: 0;
+  border-radius: 0;
+  line-height: 118rpx
+}
+.list_booking_buy{
+    width: 100%;
+  height: 115rpx;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+box-sizing:border-box;
+}
+.confirmationbuy_cou{
+  font-size: 26rpx;
+  color: #999
+}
+.confirmationbuy_buy{
+      width: 100%;
+  height: 212rpx;
+  margin: 0 auto;
+  border-bottom:1rpx solid #1B1E23;
+  padding:60rpx 28rpx 0 28rpx;
+
+box-sizing:border-box;
+}
+.wallet{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 24rpx
+}
+.wx_min{
+  width: 40rpx;
+  height: 40rpx;
+   margin-right: 24rpx
+}
+.confirmationbuy{
+ width:100%;
+height:115rpx;
+margin:0 auto;
+border-bottom:1rpx solid #F2F2F2;
+display:flex;
+align-items:center;
+padding:0 28rpx;
+box-sizing:border-box;
+
+}
+.coupon{
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  height: 624rpx;
+  background: #EBECEE;
+  z-index: 10000
+}
+.coupon_boxheand{
+  width: 100%;
+  height:124rpx;
+  background: #282B30;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  padding-left: 26rpx;
+  box-sizing: border-box;
+  line-height: 124rpx
+}
+.bj_coupon{
+  width: 694rpx;
+  height: 208rpx;
+   background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;
+   background-size: 100% 100%;
+   margin: 0 auto 24rpx auto
+}
+.coupon_list{
+  padding: 24rpx 0 0 0
+}
+.coupon_left{
+  width: 190rpx;
+float:left;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+
+}
+.coupon_right{
+  width: 502rpx;
+  float: left;
+  display:flex;
+align-items:center;
+padding-top:42rpx;
+padding-left:24rpx;
+box-sizing:border-box;
+
+}
+.coupon_mon{
+  font-size: 28rpx;
+   line-height:169rpx;
+
+}
+.coupon_maxmon{
+  font-size: 96rpx;
+  line-height:217rpx;
+margin-left: 15rpx;
+font-weight: bold
+}
+.coupon_choose{
+  width: 60rpx;
+  height: 60rpx;
+}
+.coupon_right_mon{
+  font-size: 22rpx;
+  color: #666;
+margin-right: 100rpx
+}
+.coupon_right_name{
+  font-size: 30rpx;
+  color: #E27D00
+
+}
+.choose_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.coupon_next{
+  width: 100%;
+  height: 118rpx;
+  text-align: center;
+  line-height: 118rpx;
+  color: #fff;
+  font-size: 36rpx;
+  position:fixed;
+bottom:0;
+
+}
+.hidden_box{
+  background-color:#000;
+position:fixed;
+height:100%;
+width:100%;
+opacity:0.6;
+z-index:1000;
+top:0;
+left:0;
+
+}
+.buy{
+  width: 100%;
+  height: 118rpx;
+  background: #36393F;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -2rpx 50rpx #282B30
+}
+.buy_left{
+  flex: 1;
+  font-weight: bold;
+  font-size: 40rpx;
+height: 100%;
+line-height: 118rpx;
+padding-left: 28rpx;
+box-sizing: border-box
+}
+.buy_right{
+   flex: 1;
+  font-size: 36rpx;
+  color: #fff;
+  height: 100%;
+  text-align: center;
+  line-height: 118rpx;
+  border-radius: 0
+}

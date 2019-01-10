@@ -1,18 +1,42 @@
 // pages/main/main.js
+var $ = require('../../utils/util.js');
+var api = require('../../api/selfdails.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    memberId:"",
+    membershow: false,
+    vip: "",
+    viptime: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        that.setData({
+          memberId: res.data.memberId
+        })
+        that.member()
+      },
+      fail: function (res) {
+        $.alert("请先登录")
+        setTimeout(function () {
+
+          wx.navigateTo({
+            url: '../land/land',
+          })
+
+        }, 2000) 
+      },
+    })
   },
   datails:function(){
     wx.navigateTo({
@@ -50,6 +74,30 @@ Page({
    */
   onUnload: function () {
     
+  },
+  member:function(){
+     var that = this;
+    var val = {
+      memberId: that.data.memberId,
+    
+    }
+    $.Requests(api.member.url, val).then((res) => {
+      console.log("会员卡查询", val)
+      console.log("会员卡查询", res)
+      if (res.data.length == 0){
+
+        that.setData({
+          membershow: false
+        })
+      }else{
+        that.setData({
+          membershow: true,
+          vip:res.data[0].vip,
+          viptime: res.data[0].vipEndTime
+        })
+      }
+      
+    })
   },
 
   /**
