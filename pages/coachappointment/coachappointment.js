@@ -154,10 +154,17 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
+<<<<<<< HEAD
             console.log("options", options)
             if (options.ifsj != 1){
               let data = JSON.parse(options.data)
               let { memberCourseId, scheduleDate } = data
+=======
+            
+            let data = JSON.parse(options.data)
+            
+            let { memberCourseId, scheduleDate } = data
+>>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
 
               that.setData({
                 sta: options.sta,
@@ -207,11 +214,11 @@ Page({
   drawTable: function () {
     let _this = this
     const data = this.data.sjdata // 接口数据
-    console.log(data)
+    
     let { businessEndTime, businessStartTime } = data.coachSchedule
     var type = wx.getSystemInfoSync().system;
-    console.log("type", type)
-    console.log("type", type.indexOf("iOS"))
+    
+    
     if (type.indexOf("iOS") == 0) {
       var scheduleDate = '2018/12/12'
     } else {
@@ -227,7 +234,7 @@ Page({
     const coachend = new Date(`${scheduleDate} ${businessEndTime}`) // 下班时间
     const TimeNumbers = menEnd - menStart
     const timeItemLenght = (TimeNumbers / (timeLength * 60 * 1000)).toFixed()
-    console.log(menStart)
+    
     let group = []
     let uptime = menStart.getTime()
     let Hours = null
@@ -274,7 +281,7 @@ Page({
     _this.setData({
       yuyueList: group
     })
-    console.log(group)
+    
 
   },
   add: function (item) {
@@ -296,7 +303,7 @@ Page({
           }
           newdata[index - 1].falg = true
         }
-        console.log(newdata[index].flag, newdata)
+        
 
         this.setData({
           yuyueList: newdata
@@ -305,7 +312,7 @@ Page({
       this.setData({
         timenext: time
       })
-      console.log("this.data.time", item)
+      
 
       return;
   },
@@ -352,8 +359,8 @@ Page({
   }
     $.Requests(api.coach_appointment.url, val).then((res) => {
 
-    console.log("私教预约", val)
-      console.log("私教预约", res)
+    
+      
       that.setData({
       sjdata: res.data,
       // gymName: res.data.groundAppointments[0].gymName,

@@ -34,12 +34,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log("wxopenid", app.globalData.wxopenid)
+    
     wx.getStorage({
 
       key: 'gymId',
       success: function (res) {
-        console.log(res)
+        
         that.setData({
           gymId: res.data.gymId
 
@@ -73,9 +73,9 @@ Page({
           mobile: this.data.phone,
         }
         var thisobj = this;
-        console.log("验证码val", val)
+        
         $.Requests(api.send.url, val).then((res) => {
-          console.log("验证码返回：", res)
+          
           if (res.status == 0) {
             var inter = setInterval(function () {
 
@@ -102,7 +102,7 @@ Page({
           //       content: '上条短信发送未超过2分钟请耐心等待',
           //       success: function (res) {
           //         // if (res.confirm) {
-          //         //   console.log('用户点击确定')
+          //         //   
           //         // }
           //       }
           //     })
@@ -128,7 +128,7 @@ Page({
 
     var that = this;
     if (e.detail.userInfo != null) { //用户点击允许授权
-      console.log("www", e)
+      
       that.setData({
         icon: e.detail.rawData.avatarUrl,
         gender: e.detail.rawData.gender,
@@ -140,7 +140,7 @@ Page({
     }
   },
   formSubmit: function (e) {//注册   
-    console.log("注册点击：", e)
+    
 
     // if (this.data.userAccount == this.data.passWord) {
     //   setTimeout(function () {
@@ -183,10 +183,10 @@ Page({
       openID: app.globalData.wxopenid,
 
     }
-    console.log("注册val:", val)
+    
     var thisobj = this;
     $.Requests_json(api.login.url, val).then((res) => {
-      console.log("注册：", res)
+      
       if (res.data != null) {
         var obj = {
           icon: res.data.icon,
@@ -218,7 +218,7 @@ Page({
                   data: res.data[0].vip,
                   success: function (res) {
                     // success
-                    console.log('添加成功');
+                    
                   },
                   fail: function () {
                     // fail

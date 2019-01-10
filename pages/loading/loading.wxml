@@ -1,0 +1,8 @@
+<view binderror="homeAdsError" class='home-ads bj_color'>
+  <view class='ligin_box'>
+    <image class='login_banner' src='../../img/login_bannerxp.png'></image>
+  </view>
+
+  <view class='location'>定位中…</view>
+  <view bindtap='closeloding' class='conut-down'>{{countNum}}s</view>
+</view>

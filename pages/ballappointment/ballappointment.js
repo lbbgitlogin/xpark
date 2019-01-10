@@ -129,9 +129,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options)
+    
     var that= this;
-    console.log("groundball",options)
+    
     that.setData({
       areaId: options.areaId,
       address: options.address,
@@ -162,8 +162,8 @@ Page({
       areaId: that.data.areaId
     }
     $.Requests(api.groundball.url, val).then((res) => {
-      console.log("qiuleiyuyue", val)
-      console.log("qiuleiyuyue", res)
+      
+      
       that.setData({
         roundName: res.data,
         groundId: res.data[0].id,
@@ -185,10 +185,10 @@ Page({
 
   },
   ballright:function(e){
-    // console.log("e",e)
+    // 
     let arrIndex = this.data.arrIndex;
     const roundName = this.data.roundName;
-    console.log(arrIndex, roundName)
+    
 
   
     if(arrIndex==roundName.length-1){
@@ -204,7 +204,7 @@ Page({
       arrIndex: arrIndex
 
     })
-    console.log(arrIndex)
+    
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -222,8 +222,8 @@ Page({
     }
     $.Requests(api.appointment.url, val).then((res) => {
       let _this = this
-      console.log("qiuleiyuyue11", val)
-      console.log("qiuleiyuyue11", res)
+      
+      
       _this.setData({
         data: res.data,
         // gymName: res.data.groundAppointments[0].gymName,
@@ -236,10 +236,10 @@ Page({
   ballleft: function () {
     var that = this;
 
-    // console.log("e",e)
+    // 
     let arrIndex = this.data.arrIndex;
     const roundName = this.data.roundName;
-    console.log(arrIndex)
+    
     if (arrIndex ==0) {
       return
     } else {
@@ -252,7 +252,7 @@ Page({
     that.setData({
       arrIndex: arrIndex
     })
-    console.log(arrIndex)
+    
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -270,8 +270,8 @@ Page({
     }
     $.Requests(api.appointment.url, val).then((res) => {
       let _this = this
-      console.log("qiuleiyuyue11", val)
-      console.log("qiuleiyuyue11", res)
+      
+      
       _this.setData({
         data: res.data,
         // gymName: res.data.groundAppointments[0].gymName,
@@ -286,20 +286,20 @@ Page({
   drawTable: function () {
     let _this = this
     const data = this.data.data // 接口数据
-    console.log("ooo",data)
+    
     let { businessEndTime, businessStartTime } = data.groundRegular
     var type = wx.getSystemInfoSync().system;
-    console.log("type", type)
-    console.log("type", type.indexOf("iOS"))
+    
+    
    
     if (type.indexOf("iOS") == 0) {
       var scheduleDate = '2018/12/12'
     } else {
       var scheduleDate = '2018-12-12'
     }
-    console.log("scheduleDate:", scheduleDate)
+    
     const { dailyStart, dailyEnd } = data.gym
-    console.log("dailyStart:", dailyStart)
+    
     const  timeLength  = 60 // 课程时长
     const coachAppointments = data.groundAppointments // 预约信息
     const menStart = new Date(`${scheduleDate} ${dailyStart}`) // 门店上班时间
@@ -308,11 +308,11 @@ Page({
     const coachend = new Date(`${scheduleDate} ${businessEndTime}`) // 下班时间
     const TimeNumbers = menEnd - menStart
     const timeItemLenght = (TimeNumbers / (timeLength * 60 * 1000)).toFixed()
-    console.log("门店上班时间",menStart)
-    console.log("shijian", coachstart.getTime())
-    console.log("shijian11", coachend.getTime())
-    console.log("TimeNumbers", TimeNumbers)
-    console.log("timeItemLenght", timeItemLenght)
+    
+    
+    
+    
+    
     let group = []
     let uptime = menStart.getTime()
     let Hours = null
@@ -344,7 +344,7 @@ Page({
    
     
       let now = new Date(`${scheduleDate} ${times}:00`).getTime()
-      console.log("now",now)
+      
      
       if (coachstart.getTime() < now && coachend.getTime() > now || coachstart.getTime() === now ) {
 
@@ -362,11 +362,11 @@ Page({
     _this.setData({
       yuyueList: group
     })
-    console.log(group)
+    
 
   },
   add: function (item) {
-    console.log("item",item)
+    
  
     const { canSelect, time, index, falg } = item.currentTarget.dataset.item
 
@@ -383,7 +383,7 @@ Page({
           }
           newdata[index - 1].falg = true
         }
-        console.log(newdata[index].flag, newdata)
+        
 
         this.setData({
           yuyueList: newdata
@@ -392,7 +392,7 @@ Page({
       this.setData({
         timenext: time
       })
-      console.log("this.data.time", item)
+      
 
    return;
     // }else{

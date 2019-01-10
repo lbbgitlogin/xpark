@@ -54,8 +54,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+<<<<<<< HEAD
    
    console.log("options",options)
+=======
+    
+    
+>>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
     var that = this;
    
     if (options.orderType == 2) {
@@ -69,7 +74,7 @@ Page({
         sta: options.sta,
         bookingTime: options.bookingTime,
       })
-      console.log("that.data.scheduleDate", that.data.scheduleDate)
+      
 
     } else if (options.optionstype == 2){
          that.setData({
@@ -145,7 +150,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
 
@@ -175,8 +180,8 @@ Page({
     }
   
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("sk详情", val)
-      console.log("sk详情", res)
+      
+      
       that.setData({
         skgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain
@@ -187,8 +192,8 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val, val).then((res) => {
-      console.log("团课详情222", val)
-      console.log("团课详情222", res)
+      
+      
       var now = new Date();
       var year = now.getFullYear();
       var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -226,8 +231,8 @@ Page({
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      console.log("详情ye", val)
-      console.log("详情ye", res)
+      
+      
       that.setData({
         gymdetails: res.data,
         areaId: res.data.areaId,
@@ -273,6 +278,7 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
+<<<<<<< HEAD
       console.log(Formdata)
     var valteo={
       coachId: that.data.coachId,
@@ -282,6 +288,10 @@ Page({
       bookingDate:formatDate,
       memberId: that.data.memberId,
     }
+=======
+      
+
+>>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
 
 
       let val1 = {
@@ -295,8 +305,8 @@ Page({
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-        console.log("四脚预约", res)
-        console.log("四脚预约", data)
+        
+        
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.price,
@@ -320,8 +330,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-        console.log("预约val", val)
-        console.log("预约", res)
+        
+        
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -331,8 +341,8 @@ Page({
         }
 
 
-        console.log("", val)
-        console.log("yue", res)
+        
+        
         that.setData({
           yuenum: res.data
         })
@@ -353,8 +363,8 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            console.log("预约val", val)
-            console.log("预约", res)
+            
+            
             if (res.status == 0) {
               wx.navigateTo({
                 url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -364,8 +374,8 @@ Page({
             }
 
 
-            console.log("", val)
-            console.log("yue", res)
+            
+            
             that.setData({
               yuenum: res.data
             })
