@@ -154,17 +154,13 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
-<<<<<<< HEAD
+
             console.log("options", options)
             if (options.ifsj != 1){
               let data = JSON.parse(options.data)
               let { memberCourseId, scheduleDate } = data
-=======
-            
-            let data = JSON.parse(options.data)
-            
-            let { memberCourseId, scheduleDate } = data
->>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
+
+
 
               that.setData({
                 sta: options.sta,
