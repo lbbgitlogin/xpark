@@ -15,7 +15,7 @@ Page({
     
     if (options.sta == 1) {
    
-      setTimeout(function() {
+       var time=setTimeout(function() {
         let {
           scheduleDate,
           memberCourseId
@@ -35,7 +35,7 @@ Page({
     } else if (options.shoptype == 3) {
 
     } else if (options.cardnum == 1){
-      setTimeout(function () {
+      var time =setTimeout(function () {
 
         wx.switchTab({
 
@@ -54,7 +54,7 @@ Page({
     }
     
      else {
-      setTimeout(function() {
+      var time =setTimeout(function() {
 
         wx.navigateTo({
 

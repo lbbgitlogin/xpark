@@ -348,12 +348,12 @@ Page({
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
           
-          
+             console.log("团课预约",res)
 
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: `../confirmationOrder/confirmationOrder?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}`
+              url: `../confirmationOrder/confirmationOrder?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}`
             })
           }
 

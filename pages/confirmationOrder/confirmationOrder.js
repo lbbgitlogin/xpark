@@ -30,7 +30,7 @@ Page({
     numb: "1",
     memberFitnessId: "",
     textareavalue: "",
-    areaName: "",
+    areaName: "", 
     couponlenght: "",
     choose: false,
     orderNo: "",
@@ -120,7 +120,7 @@ Page({
             })
             if (options.optionstype == 2) {
               that.setData({
-                tk_id: options.coachcourseid
+                tk_id: options.coachcourseid || options.tk_id
               })
               that.surebuy()
             } else if (options.orderType == 2) {
@@ -196,8 +196,8 @@ Page({
   surebuy: function () {
     var that = this;
     var val = {}
-    $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val, val).then((res) => {
-
+    $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
+    console.log("tuanbke ",res)
 
       var now = new Date();
       var year = now.getFullYear();
@@ -242,7 +242,8 @@ Page({
         gymdetails: res.data,
         areaId: res.data.areaId,
         gymName: res.data.gym.gymName,
-        shopid: res.data.id
+        shopid: res.data.id,
+        address: res.data.gym.address,
       })
       // this.setData({
 
@@ -334,7 +335,7 @@ Page({
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
 
-
+  console.log("团课预约",res)
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -357,6 +358,7 @@ Page({
       
       let { time, day, memberFitnessId, groundId } = Formdata
       // return
+
       wx.getStorage({
         key: 'groundName',
         success: function (res) {

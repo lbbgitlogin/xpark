@@ -33,7 +33,7 @@
       预约时间
     </view>
     <view wx:if="{{orderType != 2}}" class='order_smallname'>
-     {{yuyueformdate||tkgymdetails.coachSchedule.scheduleDate}}
+     {{yuyueformdate||formatDate}}
     </view>
       <view wx:if="{{orderType == 2}}" class='order_smallname'>
      {{skgymdetails.coachSchedule.scheduleDate +skTime}}
