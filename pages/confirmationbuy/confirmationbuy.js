@@ -475,7 +475,7 @@ Page({
         console.log("自助健身",val)
           console.log("自助健身", res)
           if (res.data.success && that.data.itemNo != "SI-BALL") {
-           debugger
+         
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })
