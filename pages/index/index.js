@@ -63,7 +63,7 @@ Page({
     city: "", //市
     timenum: false,
     tbodyHeight: "",
-    homeAds: true,
+    // homeAds: true,
     tapindex: 1,
     categoryId: "",
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -76,7 +76,9 @@ Page({
   },
   queryDomHeight() {
     const DOM = wx.createSelectorQuery()
+    console.log(DOM);
     DOM.select('#mjltest').boundingClientRect((e) => {
+      console.log(e);
       let top = e.top
       this.setData({
         scrolltop: top
@@ -124,7 +126,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude,
         })
-        that.imageLoad();
+        // that.imageLoad();
         // that.queryMultipleNodes(); //获取id的高度需要在第一时间执行
 
         wx.getStorage({
@@ -141,7 +143,7 @@ Page({
       },
       fail: function (res) {
 
-        that.imageLoad();
+        // that.imageLoad();
         // that.queryMultipleNodes();
       }
     })
@@ -187,7 +189,7 @@ Page({
       sysW: res.windowHeight / 12, //更具屏幕宽度变化自动设置宽度
 
     })
-    wx.hideTabBar();
+    // wx.hideTabBar();
     var that = this;
 
 
@@ -828,7 +830,6 @@ Page({
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
 
-  console.log("sj",res)
 
           if (res.data.length != 0) {
 
@@ -1074,9 +1075,9 @@ Page({
         });
       } else {
         clearInterval(time);
-        that.setData({
-          homeAds: null
-        });
+        // that.setData({
+        //   homeAds: null
+        // });
         wx.showTabBar();
       }
     }, 1000);
