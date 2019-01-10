@@ -18,7 +18,7 @@ page{
 }
 .order_title{
   font-size: 40rpx;
-  color: #333;
+  color: #fff;
   width:92%;
    margin:0 auto;
 

@@ -66,19 +66,18 @@ page {
 }
 
 .leftBtn {
-  width: 12rpx;
-  height: 22rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .rightBtn {
-  width: 12rpx;
-  height: 22rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .bgr {
-  background: #46CC8F;
-  height: 40rpx;
-  width: 40rpx;
+  height: 60rpx;
+  width: 60rpx;
   border-radius: 50%;
   display: flex;
   justify-content: center;
