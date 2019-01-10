@@ -76,9 +76,9 @@ Page({
   },
   queryDomHeight() {
     const DOM = wx.createSelectorQuery()
-    console.log(DOM);
+    
     DOM.select('#mjltest').boundingClientRect((e) => {
-      console.log(e);
+      
       let top = e.top
       this.setData({
         scrolltop: top
@@ -146,6 +146,7 @@ Page({
         // that.imageLoad();
         // that.queryMultipleNodes();
       }
+      
     })
     that.classification();
     // that.fitnesslist(); //自助健身子分类查询

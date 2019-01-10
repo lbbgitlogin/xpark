@@ -294,7 +294,7 @@ Page({
     let months = date.getMonth() + 1
     let days = date.getDate()
     // day
-    console.log(years, months, days);
+    
     
 
     if (type.indexOf("iOS") == 0) {
@@ -308,13 +308,8 @@ Page({
     const coachAppointments = data.groundAppointments // 预约信息
     const menStart = new Date(`${scheduleDate} ${dailyStart}`) // 门店上班时间
     const menEnd = new Date(`${scheduleDate} ${dailyEnd}`) // 门店下班时间
-    const coachstart = new Date(`${scheduleDate} ${businessStartTime}`) // 上班时间
-    const coachend = new Date(`${scheduleDate} ${businessEndTime}`) // 下班时间
     const TimeNumbers = menEnd - menStart
     const timeItemLenght = (TimeNumbers / (timeLength * 60 * 1000)).toFixed()
-
-
-
 
 
     let group = []

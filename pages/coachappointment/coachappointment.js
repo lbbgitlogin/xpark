@@ -32,7 +32,7 @@ Page({
       sjdata: '',
       memberCourseId: 0,
       memberId: 0,
-     
+
       memberName: "string",
       mobile: "string",
       numb: 0,
@@ -43,7 +43,7 @@ Page({
       timeLength: 0
     },
     number: 1,
-    tk_id:"",
+    tk_id: "",
     gymId: "",
     sta: "",
     orderNo: "",
@@ -84,7 +84,7 @@ Page({
           id: 2,
           commonId: 0,
           gymId: 1,
-          data:"",
+          data: "",
           memberId: 13,
           memberName: "sunlight",
           mobile: "15770900652",
@@ -138,7 +138,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that =this;
+
+    var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
@@ -154,14 +155,9 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
-
-            console.log("options", options)
-            if (options.ifsj != 1){
-              let data = JSON.parse(options.data)
+            if (options.ifsj != 1) {
+              let data = options.data
               let { memberCourseId, scheduleDate } = data
-
-
-
               that.setData({
                 sta: options.sta,
                 fromData: {
@@ -174,19 +170,19 @@ Page({
                   gymId: that.data.gymId,
                 }
               })
-            }else{
+            } else {
               that.setData({
                 memberCourseId: options.memberCourseId,
                 tk_id: options.tk_id || options.coachcourseid,
               })
             }
-      
-            
+
+
             that.coach_appointment()
           }
         })
-      
-   
+
+
 
       },
     })
@@ -210,27 +206,31 @@ Page({
   drawTable: function () {
     let _this = this
     const data = this.data.sjdata // 接口数据
-    
+    console.log(this.data.formatDate);
     let { businessEndTime, businessStartTime } = data.coachSchedule
     var type = wx.getSystemInfoSync().system;
-    
-    
+    let date = new Date(this.data.formatDate)
+    let years = date.getFullYear()
+    let months = date.getMonth() + 1
+    let days = date.getDate()
+
     if (type.indexOf("iOS") == 0) {
-      var scheduleDate = '2018/12/12'
+      var scheduleDate = `${years}/${months}/${days}`
     } else {
-      var scheduleDate = '2018-12-12'
+      var scheduleDate = `${years}-${months}-${days}`
     }
-  
-    const { dailyStart, dailyEnd } = data.gym
-    const timeLength = 60 // 课程时长
-    const coachAppointments = data.groundAppointments // 预约信息
-    const menStart = new Date(`${scheduleDate} ${dailyStart}`) // 门店上班时间
-    const menEnd = new Date(`${scheduleDate} ${dailyEnd}`) // 门店下班时间
+
+    const { scheduleStart, scheduleEnd } = data.coachSchedule
+    const { timeLength } = data.course // 课程时长
+    const coachAppointments = data.coachAppointments // 预约信息
+    const menStart = new Date(`${scheduleDate} ${scheduleStart}`) // 门店上班时间
+    const menEnd = new Date(`${scheduleDate} ${scheduleEnd}`) // 门店下班时间
     const coachstart = new Date(`${scheduleDate} ${businessStartTime}`) // 上班时间
     const coachend = new Date(`${scheduleDate} ${businessEndTime}`) // 下班时间
     const TimeNumbers = menEnd - menStart
+
     const timeItemLenght = (TimeNumbers / (timeLength * 60 * 1000)).toFixed()
-    
+    // 
     let group = []
     let uptime = menStart.getTime()
     let Hours = null
@@ -238,6 +238,8 @@ Page({
     let falg = false
     let canSelect = false
     let times = null
+    let acticed = false
+
     for (let index = 0; index < timeItemLenght; index++) {
       Hours = new Date(uptime).getHours()
       Minutes = new Date(uptime).getMinutes()
@@ -250,34 +252,35 @@ Page({
       times = Hours + ':' + Minutes
       uptime = uptime + (timeLength * 60 * 1000)   // 每次递增增加时间
       if (coachAppointments != undefined) {
-      falg = coachAppointments.some(function (item, index, array) {
-        let now = new Date(`${scheduleDate} ${times}:00`).getTime()
-        let last = new Date(`${scheduleDate} ${item.appointmentTime}`).getTime()
-        if (last === now) {
-          return true
-        } else {
-          return false
-        }
-      })
+        falg = coachAppointments.some(function (item, index, array) {
+          let now = new Date(`${scheduleDate} ${times}:00`).getTime()
+          let last = new Date(`${scheduleDate} ${item.bookingTime}`).getTime()
+          if (last === now) {
+            return true
+          } else {
+            return false
+          }
+        })
       }
-      let now = new Date(`${scheduleDate} ${times}:00`).getTime()
-     
-      if (coachstart.getTime() < now && coachend.getTime() > now || coachstart.getTime() === now) {
-        canSelect = false
-      } else {
-        canSelect = true
-      }
+
+      let now = new Date().getTime()
+      // let now = 1547186186940
+      let time = new Date(`${scheduleDate} ${times}:00`).getTime()
+      time < now ? canSelect = false : canSelect = true
+
       group.push({
         time: times,
         falg,
         canSelect,
+        acticed,
         index: index + 1
       })
     }
+
     _this.setData({
       yuyueList: group
     })
-    
+
 
   },
   add: function (item) {
@@ -285,45 +288,51 @@ Page({
 
     const { canSelect, time, index } = item.currentTarget.dataset.item
 
- 
- 
-      if (canSelect) {
-        let newdata = this.data.yuyueList
-        if (newdata[index - 1].falg) {
-          newdata[index - 1].falg = false
+
+
+    if (canSelect) {
+      let newdata = this.data.yuyueList
+      if (newdata[index - 1].falg) {
+      } else {
+        if (newdata[index - 1].acticed) {
+          newdata[index - 1].acticed = false
+          this.setData({
+            timenext: ''
+          })
         } else {
-      
-          for (var i = 0; i < this.data.yuyueList.length; i++) {
-
-            newdata[i].falg = false
-          }
-          newdata[index - 1].falg = true
+          newdata.forEach(e => {
+            e.acticed = false
+          });
+          newdata[index - 1].acticed = true
+          this.setData({
+            timenext: time
+          })
         }
-        
-
-        this.setData({
-          yuyueList: newdata
-        })
       }
-      this.setData({
-        timenext: time
-      })
-      
 
-      return;
+
+      this.setData({
+        yuyueList: newdata
+      })
+    }
+
   },
 
 
   toNext: function () {
- 
-      var that = this;
-      let data = JSON.stringify(this.data.fromData)
-      wx.navigateTo({
-        url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
-    }) 
 
- 
-  }, 
+    var that = this;
+    let data = JSON.stringify(this.data.fromData)
+    if (this.data.timenext === '') {
+      $.alert('请选择时间')
+      return
+    }
+    wx.navigateTo({
+      url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
+    })
+
+
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -338,7 +347,7 @@ Page({
 
   },
   coach_appointment: function () {
-    var that =this;
+    var that = this;
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -347,23 +356,23 @@ Page({
     that.setData({
       formatDate: formatDate
     })
-  var val = {
-    coachId: that.data.coachId,
-    appointmentDate: formatDate,
-    gymId: that.data.gymId,
-    memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
-  }
+    var val = {
+      coachId: that.data.coachId,
+      appointmentDate: formatDate,
+      gymId: that.data.gymId,
+      memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
+    }
     $.Requests(api.coach_appointment.url, val).then((res) => {
 
-    
-      
+
+
       that.setData({
-      sjdata: res.data,
-      // gymName: res.data.groundAppointments[0].gymName,
-      // id: res.data.groundAppointments[0].id,
+        sjdata: res.data,
+        // gymName: res.data.groundAppointments[0].gymName,
+        // id: res.data.groundAppointments[0].id,
+      })
+      that.drawTable()
     })
-    that.drawTable()
-  })
   },
   /**
    * 生命周期函数--监听页面卸载

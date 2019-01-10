@@ -59,7 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log("options",options)
+     
 
     var that = this;
     that.member();
@@ -314,8 +314,8 @@ Page({
         }
     
         $.Requests(api.member_course.url, val).then((res) => {
-          console.log("res", val)
-console.log("res",res)
+          
+
                     
           if (res.data != '') {
             that.setData({
@@ -354,8 +354,8 @@ console.log("res",res)
           memberId: res.data.memberId,
         }
         $.Requests(api.member_fitness.url, val).then((res) => {
-          console.log("球场",res)
-          console.log("qiuchang",res)
+          
+          
           
           
           if(res.data != ''){

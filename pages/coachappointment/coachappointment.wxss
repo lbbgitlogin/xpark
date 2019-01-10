@@ -1,7 +1,9 @@
 /* pages/ballappointment/ballappointment.wxss */
-page{
+
+page {
   background: #282B30;
 }
+
 .ball-head {
   width: 100%;
   height: 420rpx;
@@ -15,7 +17,6 @@ page{
   padding-bottom: 36rpx;
   color: #fff;
 }
-
 
 .ball-title-left {
   font-size: 32rpx;
@@ -31,7 +32,7 @@ page{
   flex-wrap: wrap;
   overflow: hidden;
   border-radius: 10rpx;
-  border:1rpx solid #1B1E23
+  border: 1rpx solid #1B1E23
 }
 
 .ball-timeList-item {
@@ -51,7 +52,7 @@ page{
 }
 
 .cantSelect {
-  background: #EBECEE;
+  background: #202428;
 }
 
 .canSelect {
@@ -105,7 +106,11 @@ page{
   color: #fff;
   font-size: 36rpx;
   position: fixed;
-  bottom:0;
-width:100%;
+  bottom: 0;
+  width: 100%;
+}
 
+.appointment {
+  background: #46CC8F;
+  color: #fff;
 }

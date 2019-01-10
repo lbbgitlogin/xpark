@@ -54,7 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options", options)
+    
 
     var that = this;
 
@@ -183,9 +183,9 @@ Page({
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("opt私教预约ions",res)
-      console.log("私教预约", that.data.tk_id)
-      console.log("私教预约",val)
+      
+      
+      
 
       that.setData({
         skgymdetails: res.data,
@@ -286,7 +286,7 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      // console.log(Formdata)
+      // 
       var valteo = {
         coachId: that.data.coachId,
         coachcourseid: that.data.tk_id,
@@ -370,8 +370,8 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            console.log("res", res)
-            console.log("res", val)
+            
+            
 
             if (res.status == 0) {
               // wx.navigateTo({
