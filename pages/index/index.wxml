@@ -250,7 +250,7 @@
         </view>
         <view>
 
-          <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2'
+          <view data-coachCourseId='{{item.courseId}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2'
             data-sta='1' data-scheduleDate='{{scheduleDate}}' bindtap='tkselfdetails' style='border:1rpx solid #E27D00;color:#E27D00'
             class='buy_but'>
             预约
