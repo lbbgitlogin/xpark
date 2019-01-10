@@ -54,13 +54,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("options55", options)
-    console.log("options55", options.data)
+   
+   console.log("options",options)
     var that = this;
+   
     if (options.orderType == 2) {
       that.setData({
         formdata: options.data,
         orderType: options.orderType,
+       
         scheduleDate: JSON.parse(options.data).bookingDate,
         tk_id: JSON.parse(options.data).tk_id,
        
@@ -115,6 +117,12 @@ Page({
             if (options.optionstype == 2) {
               that.surebuy()
             } else if (options.orderType == 2) {
+              let { tk_id, coachId, memberCourseId } = options
+              that.setData({
+                tk_id: tk_id,
+                coachId: coachId,
+                memberCourseId: memberCourseId
+              })
               that.coach_course()
 
             } else {
@@ -165,7 +173,7 @@ Page({
     var val = {
       schduleDate: that.data.formatDate,
     }
-
+  
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
       console.log("sk详情", val)
       console.log("sk详情", res)
@@ -255,14 +263,25 @@ Page({
 
   },
   submitorder: function() {
-
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
+    var formatDate = year + '-' + month + '-' + day;
 
     var that = this;
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
       console.log(Formdata)
-
+    var valteo={
+      coachId: that.data.coachId,
+      coachcourseid: that.data.tk_id,
+      memberCourseId: that.data.memberCourseId,
+      gymId:1,
+      bookingDate:formatDate,
+      memberId: that.data.memberId,
+    }
 
 
       let val1 = {
@@ -270,7 +289,8 @@ Page({
         bookingTime: that.data.bookingTime + ':00'
       }
       let data = { ...Formdata,
-        ...val1
+        ...val1,
+        ...valteo
       }
 
 

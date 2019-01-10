@@ -14,6 +14,8 @@ Page({
     couponlist: '',
     hidden:2,
     sta: '',
+    coachId: '',
+    orderNo: '',
     qlid: '',
     jindu:0,
     vip: '',
@@ -36,6 +38,7 @@ Page({
     coachId: "",
     memberFitnessId: "",
     shopid: "",
+    memberCourseId: "",
     gymdetails:"",
     itemno: "",
     formatDate:"",
@@ -316,7 +319,11 @@ console.log("团课或者私教判断是否能购买",val)
           console.log("团课或者私教判断是否能购买",res)          
           if (res.data != '') {
             that.setData({
-              appointment: true
+              appointment: true,
+              coachId: res.data[0].coachId,
+              orderNo: res.data[0].orderNo,
+              memberCourseId: res.data[0].id,
+              
             })
           } else {
             that.setData({
@@ -355,6 +362,7 @@ console.log("团课或者私教判断是否能购买",val)
                   appointment:true,
                   memberFitnessId: res.data[0].id,
                   orderNo: res.data[0].orderNo,
+              
                 })
           }else{
             that.setData({
@@ -415,8 +423,10 @@ console.log("团课或者私教判断是否能购买",val)
         url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
       })
     } else if (that.data.optionstype ==2){
-
-
+    
+      wx.navigateTo({
+        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
+      })
       
     }
      
