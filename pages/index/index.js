@@ -1081,6 +1081,13 @@ Page({
       }
     }, 1000);
   },
+  closeloding:function(){
+    var that=this;
+    that.setData({
+      homeAds:null
+    })
+    wx.showTabBar();
+  },
   goHomeAds: function (e) { //开机login
     var that = this;
     this.setData({

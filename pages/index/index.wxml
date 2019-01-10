@@ -1,5 +1,5 @@
-<!-- <    wx:if="{{!homeAds}}"-->
-<view class='index_pad' style='{{ishidden?"position:fixed":""}}'>
+<!-- <   -->
+<view  wx:if="{{!homeAds}}" class='index_pad' style='{{ishidden?"position:fixed":""}}'>
   <view class='index_first'>
     <view class='index_box'>
       <view class='index_lefttext'>X·PARK运动基地</view>
@@ -312,7 +312,7 @@
   </view>
 
 </view>
-<!-- <view class='hidden_box' bindtap='textblock' wx:if="{{ishidden== true}}"></view>
+<view class='hidden_box' bindtap='textblock' wx:if="{{ishidden== true}}"></view>
 
 <view binderror="homeAdsError" class='home-ads bj_color' wx:if="{{homeAds}}">
   <view class='ligin_box'>
@@ -320,5 +320,5 @@
   </view>
 
   <view class='location'>定位中…</view>
-  <view class='conut-down'>{{countNum}}s</view>
-</view> -->
+  <view bindtap='closeloding' class='conut-down'>{{countNum}}s</view>
+</view>
