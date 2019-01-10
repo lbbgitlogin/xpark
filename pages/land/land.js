@@ -2,6 +2,7 @@
 
 var app = getApp();
 var api = require('../../api/land.js');
+var userAPi = require('../../api/indexAPI.js');
 var $ = require('../../utils/util.js');
 Page({
 
@@ -12,20 +13,20 @@ Page({
     icon: "",
     openID: "",
     gender: "",
-    gymId:"",
+    gymId: "",
     mobile: "",
     memberName: "",
     memberId: "",
     btntext: "获取验证码",
     phone: "",
-    day:"",
+    day: "",
     cash: "",
     give: "",
-    landnum:1,
+    landnum: 1,
     sendTime: 60, //再次发送时间
     isSend: true, //是否可以再次发送
     truecode: "",//返回的验证码
-    code:"",//输入的验证码
+    code: "",//输入的验证码
   },
 
   /**
@@ -33,9 +34,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-        console.log("wxopenid", app.globalData.wxopenid)
+    console.log("wxopenid", app.globalData.wxopenid)
     wx.getStorage({
-    
+
       key: 'gymId',
       success: function (res) {
         console.log(res)
@@ -50,7 +51,7 @@ Page({
       backgroundColor: '#282B30', // 必写项
       frontColor: '#ffffff', // 必写项
     })
-                  },
+  },
   phone: function (e) {//输入手机号
     this.setData({
       phone: e.detail.value
@@ -61,7 +62,7 @@ Page({
       $.alert("请输入手机号");
     } else if (!(/^1\d{10}$/.test(this.data.phone))) {
       $.alert("手机号格式不正确");
-    }else {
+    } else {
       if (this.data.isSend) {
         this.setData({
           isSend: false
@@ -75,9 +76,9 @@ Page({
         console.log("验证码val", val)
         $.Requests(api.send.url, val).then((res) => {
           console.log("验证码返回：", res)
-          if (res.status == 0 ) {
+          if (res.status == 0) {
             var inter = setInterval(function () {
-           
+
               if (time > 0) {
                 thisobj.setData({
                   btntext: (time--) + "s",
@@ -127,12 +128,12 @@ Page({
 
     var that = this;
     if (e.detail.userInfo != null) { //用户点击允许授权
-     console.log("www",e)
-     that.setData({
-       icon: e.detail.rawData.avatarUrl,
-       gender: e.detail.rawData.gender,
-       memberName: e.detail.rawData.nickName,
-     })
+      console.log("www", e)
+      that.setData({
+        icon: e.detail.rawData.avatarUrl,
+        gender: e.detail.rawData.gender,
+        memberName: e.detail.rawData.nickName,
+      })
       that.formSubmit(e)
     } else {
 
@@ -180,13 +181,13 @@ Page({
       icon: e.detail.userInfo.avatarUrl,
       memberName: e.detail.userInfo.nickName,
       openID: app.globalData.wxopenid,
-      
+
     }
     console.log("注册val:", val)
     var thisobj = this;
     $.Requests_json(api.login.url, val).then((res) => {
       console.log("注册：", res)
-      if(res.data != null){
+      if (res.data != null) {
         var obj = {
           icon: res.data.icon,
           memberName: res.data.memberName,
@@ -195,16 +196,47 @@ Page({
           give: res.data.give,
           cash: res.data.cash,
           memberId: res.data.id,
-          day:res.data.day,
+          day: res.data.day,
           createTime: res.data.createTime
         }
         wx.setStorage({
           key: 'userinfo',
           data: obj,
         })
+        // var that = this;
+        wx.getStorage({
+          key: 'userinfo',
+          success: function (res) {
+            var val = {
+              memberId: res.data.memberId,
+
+            }
+            $.Requests(userAPi.member.url, val).then((res) => {
+              if (res.data.length > 0) {
+                wx.setStorage({
+                  key: 'vip',
+                  data: res.data[0].vip,
+                  success: function (res) {
+                    // success
+                    console.log('添加成功');
+                  },
+                  fail: function () {
+                    // fail
+                  },
+                  complete: function () {
+                    // complete
+                  }
+                })
+              }
+
+            })
+
+          },
+
+        })
         wx.switchTab({
-        
-          url: '../index/index' ,
+
+          url: '../index/index',
           success: function (e) {
             var page = getCurrentPages().pop();
             if (page == undefined || page == null) return;
@@ -237,48 +269,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

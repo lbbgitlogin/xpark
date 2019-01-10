@@ -53,7 +53,7 @@ Page({
     address: "",
     weekend: "",
     weekArr: "",
-    vip:"",
+    vip: "",
     sk_schedulelist: "",
     hasUserInfo: false,
     countNum: 5,
@@ -69,29 +69,21 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  queryMultipleNodes: function() {
-    var that = this;
-    setTimeout(function() {
-      let query = wx.createSelectorQuery()
-      query.select('#mjltest').boundingClientRect((rect) => {
-
-        let top = rect.top
-   console.log("top",top)
-        that.setData({
-          scrolltop: top
-        })
-
-      }).exec()
-
-
-    },6000)
+  queryDomHeight() {
+    const DOM = wx.createSelectorQuery()
+    DOM.select('#mjltest').boundingClientRect((e) => {
+      let top = e.top
+      this.setData({
+        scrolltop: top
+      })
+    }).exec()
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
 
 
     var that = this;
@@ -106,7 +98,7 @@ Page({
     })
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           hidden: false,
           balance: res.data.cash + res.data.give,
@@ -114,7 +106,7 @@ Page({
         })
 
       },
-      fail: function(res) {
+      fail: function (res) {
         that.setData({
           hidden: true
         })
@@ -126,14 +118,14 @@ Page({
     // that.getLocal(that.data.latitude, that.data.longitude);
     wx.getLocation({ //开机立即获取地理位置
       type: 'wgs84', //返回可以用于wx.openLocation的经纬度
-      success: function(res) {
+      success: function (res) {
 
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
         })
         that.imageLoad();
-        that.queryMultipleNodes(); //获取id的高度需要在第一时间执行
+        // that.queryMultipleNodes(); //获取id的高度需要在第一时间执行
 
         wx.getStorage({
           key: 'gymId',
@@ -142,17 +134,17 @@ Page({
 
 
           },
-          fail:function(){
+          fail: function () {
             // that.getLocal(that.data.latitude, that.data.longitude);
           }
         })
-       
+
 
       },
-      fail: function(res) {
+      fail: function (res) {
 
         that.imageLoad();
-        that.queryMultipleNodes();
+        // that.queryMultipleNodes();
       }
     })
     that.classification();
@@ -191,7 +183,7 @@ Page({
 
 
     var res = wx.getSystemInfoSync();
-    console.log("手机型号",res)
+
 
     this.setData({
       sysW: res.windowHeight / 12, //更具屏幕宽度变化自动设置宽度
@@ -228,13 +220,13 @@ Page({
       })
     }
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         var h = 750 * res.windowHeight / res.windowWidth
 
 
       }
     })
-    app.GetUserInfo(function() {
+    app.GetUserInfo(function () {
 
     });
   },
@@ -246,7 +238,7 @@ Page({
   //     }
   //   })
   // },
-  choosename: function(e) {
+  choosename: function (e) {
 
     wx.clearStorage();
     var that = this;
@@ -255,7 +247,7 @@ Page({
       ishidden: false,
       address: e.target.dataset.address,
       gymId: e.target.dataset.gymid,
-      hidden:true
+      hidden: true
     })
     var objlist = {
       gymId: e.target.dataset.gymid,
@@ -265,13 +257,13 @@ Page({
       key: 'gymId',
       data: objlist,
     })
-    setTimeout(function() {
+    setTimeout(function () {
 
       $.alert("请先登录")
 
     }, 1000) //延迟时间 这里是1秒
 
-    setTimeout(function() {
+    setTimeout(function () {
 
       wx.navigateTo({
         url: '../land/land',
@@ -284,7 +276,7 @@ Page({
     that.coach_schedulelist();
     that.ptitemlist();
   },
-  nearshop: function() {
+  nearshop: function () {
 
     var that = this;
     var val = {
@@ -296,10 +288,10 @@ Page({
     }
     $.Requests_json(api.nearshop.url, val).then((res) => {
 
-      console.log("附近门店", res)
+
       if (res.status == 0 && res.data == null) {
 
-        setTimeout(function() {
+        setTimeout(function () {
           that.setData({
             ishidden: true,
 
@@ -321,7 +313,7 @@ Page({
           gymId: res.data.id,
           gymName: res.data.gymName
         }
-      
+
         wx.setStorage({
           key: 'gymId',
           data: obj,
@@ -364,7 +356,7 @@ Page({
   //     }
   //   });
   // },
-  citychoose: function(e) {
+  citychoose: function (e) {
     this.setData({
       city: e.target.dataset.city
     })
@@ -374,8 +366,8 @@ Page({
 
     }
     $.Requests_json(api.province_city.url, val).then((res) => {
-      console.log("门店", val)
-      console.log("门店", res)
+
+
       this.setData({
         gymshoplist: res.data,
         cityTab: e.target.dataset.index
@@ -385,15 +377,15 @@ Page({
 
     })
   },
-  provincelist: function() { //门店列表
+  provincelist: function () { //门店列表
     // var val = {
     //   province: this.data.province,
     //   city: this.data.city,
 
     // }
     // $.Requests_json(api.province_city.url, val).then((res) => {
-    //   console.log("门店", val)
-    //   console.log("门店",res)
+    //   
+    //   
     //   this.setData({
     //     shoplist: res.data
     //   })
@@ -405,8 +397,8 @@ Page({
 
     }
     $.Requests(api.province.url, val).then((res) => {
-      console.log("省", val)
-      console.log("省", res)
+
+
       this.setData({
         shoplist: res.data
       })
@@ -415,7 +407,7 @@ Page({
 
     })
   },
-  provinceshow: function(e) {
+  provinceshow: function (e) {
     var that = this;
     that.setData({
       provincechoose: e.target.dataset.province,
@@ -423,13 +415,13 @@ Page({
       cityTab: -1,
       activeTab: e.target.dataset.index
     })
-    console.log("省", e)
+
     var val = {
       province: e.target.dataset.province
     }
     $.Requests(api.city.url, val).then((res) => {
-      console.log("市", val)
-      console.log("city", res)
+
+
       that.setData({
         citylist: res.data
       })
@@ -439,7 +431,7 @@ Page({
     })
 
   },
-  classification: function() { //自助健身产品查询
+  classification: function () { //自助健身产品查询
 
     var that = this;
     var val = {
@@ -448,19 +440,19 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-      console.log("场地服务", val)
-      console.log("场地服务", res)
-      if (res.data.content.length !=0){
+
+
+      if (res.data.content.length != 0) {
         var zzlist = res.data.content;
-        console.log("zzlist", zzlist)
+
         zzlist.forEach(function (item, index, arrar) {
           arrar[index] = {
-       
+
             icon: item.fitness.icon,
             fitnessName: item.fitnessName,
             price: item.price,
-            zzprice:item.price*0.9,
-            zxprice: item.price * 0.8,
+            zzprice: (item.price * 0.9).toFixed(2),
+            zxprice: (item.price * 0.8).toFixed(2),
             areaId: item.areaId,
             id: item.id,
             itemNo: item.fitness.itemNo
@@ -483,7 +475,7 @@ Page({
 
 
   },
-  fitnesslist: function() { //自助健身子分类产品查询
+  fitnesslist: function () { //自助健身子分类产品查询
     var val = {
       page: '11',
       size: '10',
@@ -495,20 +487,19 @@ Page({
 
     })
   },
-  ptitemlist: function() { //配套分类查询
+  ptitemlist: function () { //配套分类查询
+    console.log('打印数据');
     var that = this;
     wx.getStorage({
       key: 'gymId',
-      success: function(res) {
-  console.log("商品服务",res)
+      success: function (res) {
+        console.log('打印数据1');
         var val = {
           gymId: 1,
           itemNo: 'SI-GOODS'
         }
         $.Requests(api.ptitemlist.url, val).then((res) => {
-          console.log("配套服务查询", val)
-          console.log("配套服务查询", res)
-
+          console.log('打印数据2');
           that.setData({
             ptitemlist: res.data,
             ptitemlistid: res.data[0].id
@@ -517,14 +508,42 @@ Page({
             areaId: res.data[0].id
           }
           $.Requests(api.categorylist.url, val).then((res) => {
-
             //配套第一分类商品查询
-            console.log("配套第一分类商品查询", res)
-            that.setData({
+            console.log('打印数据3');
+            let data = res.data.content
+            wx.getStorage({
+              key: 'vip',
+              success: function (res) {
+                console.log('打印数据4');
+                data.forEach((item, index) => {
+                  if (item.goods.length > 0) {
+                    item.goods.map(item => {
+                      if (res.data === 1) {
+                        item.VipPrice = (item.price * 0.8).toFixed(2)
+                      } else {
+                        item.VipPrice = (item.price * 0.9).toFixed(2)
+                      }
+                    })
+                  }
+                })
+                that.setData({
+                  classifyClick: data
+                })
 
-              classifyClick: res.data.content
+                console.log(that.data.classifyClick, '数据');
+              },
+              fail: function () {
+                // fail
 
+                that.setData({
+                  classifyClick: data
+                })
+              },
+              complete: function () {
+                // complete
+              }
             })
+
           })
         })
       }
@@ -532,11 +551,11 @@ Page({
 
 
   },
-  league_schedulelist: function() { //课程服务团课服务查询列表
+  league_schedulelist: function () { //课程服务团课服务查询列表
     var that = this;
     wx.getStorage({
       key: 'gymId',
-      success: function(res) {
+      success: function (res) {
 
         var now = new Date();
         var year = now.getFullYear();
@@ -544,42 +563,42 @@ Page({
         var day = now.getDate();
         var formatDate = year + '-' + month + '-' + day;
         var val = {
-          courseType:1,
+          courseType: 1,
           gymId: res.data.gymId,
           scheduleDate: formatDate
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
 
-          console.log("团课列表查询", val)
-          console.log("团课列表查询", res)
-         if(res.data.length !=0){
 
 
-          var tk_schedulelist= res.data;
-          console.log("tk_schedulelist", tk_schedulelist)
-          tk_schedulelist.forEach(function(item,index,arrar){
-            arrar[index]={
-              name:item.course.courseName,
-              id: item.course.id,
-              icon: item.course.icon,
-              price: item.price,
-              zzprice: item.price * 0.9,
-              zxprice: item.price * 0.8,
-              appointmentNumb: item.appointmentNumb,
-              contain: item.course.contain,
-              scheduleDate: item.scheduleDate
-            }
-            that.setData({
-              tk_schedulelist: tk_schedulelist
+          if (res.data.length != 0) {
+
+
+            var tk_schedulelist = res.data;
+
+            tk_schedulelist.forEach(function (item, index, arrar) {
+              arrar[index] = {
+                name: item.course.courseName,
+                id: item.course.id,
+                icon: item.course.icon,
+                price: item.price,
+                zzprice: (item.price * 0.9).toFixed(2),
+                zxprice: (item.price * 0.8).toFixed(2),
+                appointmentNumb: item.appointmentNumb,
+                contain: item.course.contain,
+                scheduleDate: item.scheduleDate
+              }
+              that.setData({
+                tk_schedulelist: tk_schedulelist
+              })
+
             })
+          } else {
+            that.setData({
+              tk_schedulelist: ""
+            })
+          }
 
-          })
-         }else{
-           that.setData({
-             tk_schedulelist: ""
-                        })
-         }
-        
         })
       }
     })
@@ -604,21 +623,21 @@ Page({
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
 
-          console.log("hw团课列表查询", val)
-          console.log("hw团课列表查询", res)
+
+
           if (res.data.length != 0) {
 
 
             var hw_schedulelist = res.data;
-            console.log("hw_schedulelist", hw_schedulelist)
+
             hw_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
                 id: item.id,
                 icon: item.course.icon,
                 price: item.price,
-                zzprice: item.price * 0.9,
-                zxprice: item.price * 0.8,
+                zzprice: (item.price * 0.9).toFixed(2),
+                zxprice: (item.price * 0.8).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
@@ -658,13 +677,13 @@ Page({
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
 
-          console.log("jk团课列表查询", val)
-          console.log("jk团课列表查询", res)
+
+
           if (res.data.length != 0) {
 
 
             var jk_schedulelist = res.data;
-            console.log("jk_schedulelist", jk_schedulelist)
+
             jk_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
@@ -672,8 +691,8 @@ Page({
 
                 icon: item.course.icon,
                 price: item.price,
-                zzprice: item.price * 0.9,
-                zxprice: item.price * 0.8,
+                zzprice: (item.price * 0.9).toFixed(2),
+                zxprice: (item.price * 0.8).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
@@ -695,11 +714,11 @@ Page({
 
 
   },
-  tk_schedulelist: function(e) { //点击课程服务团课服务查询列表
-    var that =this;
+  tk_schedulelist: function (e) { //点击课程服务团课服务查询列表
+    var that = this;
     var now = new Date();
     var year = now.getFullYear();
-    
+
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
     var formatDate = year + '-' + month + '-' + e.target.dataset.id;
     this.setData({
@@ -711,33 +730,33 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-      console.log("是否执行点击团课", val)
-      console.log("是否执行点击团课",res)
-    if(res.data.length !=0){
 
-   
-      var tk_schedulelist = res.data;
-      console.log("tk_schedulelist", tk_schedulelist)
-      tk_schedulelist.forEach(function (item, index, arrar) {
-        arrar[index] = {
-          name: item.course.courseName,
-          id: item.course.id,
-          icon: item.course.icon,
-          price: item.price,
-          appointmentNumb: item.appointmentNumb,
-          contain: item.course.contain,
-          scheduleDate: item.scheduleDate
-        }
-        that.setData({
-          tk_schedulelist: tk_schedulelist
+
+      if (res.data.length != 0) {
+
+
+        var tk_schedulelist = res.data;
+
+        tk_schedulelist.forEach(function (item, index, arrar) {
+          arrar[index] = {
+            name: item.course.courseName,
+            id: item.course.id,
+            icon: item.course.icon,
+            price: item.price,
+            appointmentNumb: item.appointmentNumb,
+            contain: item.course.contain,
+            scheduleDate: item.scheduleDate
+          }
+          that.setData({
+            tk_schedulelist: tk_schedulelist
+          })
+
         })
-
-      })
-    }else{
-      that.setData({
-        tk_schedulelist:""
-      })
-    }
+      } else {
+        that.setData({
+          tk_schedulelist: ""
+        })
+      }
     })
   },
   hw_schedulelist: function (e) { //点击课程服务团课服务查询列表
@@ -756,21 +775,21 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-      console.log("是否执行点击hw", val)
-      console.log("是否执行点击hw", res)
+
+
       if (res.data.length != 0) {
 
 
         var hw_schedulelist = res.data;
-        console.log("hw_schedulelist", hw_schedulelist)
+
         hw_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
             id: item.id,
             icon: item.course.icon,
             price: item.price,
-            zzprice: item.price * 0.9,
-            zxprice: item.price * 0.8,
+            zzprice: (item.price * 0.9).toFixed(2),
+            zxprice: (item.price * 0.8).toFixed(2),
             appointmentNumb: item.appointmentNumb,
             contain: item.course.contain,
             scheduleDate: item.scheduleDate
@@ -803,21 +822,21 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-      console.log("是否执行点击jk", val)
-      console.log("是否执行点击jk", res)
+
+
       if (res.data.length != 0) {
 
 
         var jk_schedulelist = res.data;
-        console.log("jk_schedulelist", jk_schedulelist)
+
         jk_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
             id: item.id,
             icon: item.course.icon,
             price: item.price,
-            zzprice: item.price * 0.9,
-            zxprice: item.price * 0.8,
+            zzprice: (item.price * 0.9).toFixed(2),
+            zxprice: (item.price * 0.8).toFixed(2),
             appointmentNumb: item.appointmentNumb,
             contain: item.course.contain,
             scheduleDate: item.scheduleDate
@@ -834,12 +853,12 @@ Page({
       }
     })
   },
-  coach_schedulelist: function() { //课程服务私课服务查询列表val
+  coach_schedulelist: function () { //课程服务私课服务查询列表val
 
     var that = this;
     wx.getStorage({
       key: 'gymId',
-      success: function(res) {
+      success: function (res) {
 
         var now = new Date();
         var year = now.getFullYear();
@@ -855,33 +874,33 @@ Page({
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
 
-          console.log("私教", val)
-          console.log("私教", res)
-          if(res.data.length !=0){
 
-          
-          var sk_schedulelist = res.data[0].coachCourses;
-          console.log("sk_schedulelist", sk_schedulelist)
-          sk_schedulelist.forEach(function (item, index, arrar) {
-            arrar[index] = {
-              courseName: item.course.courseName,
-              id: item.id,
-              icon: item.course.icon,
-              price: item.price,
-              zzprice: item.price * 0.9,
-              zxprice: item.price * 0.8,
-              appointmentNumb: item.appointmentNumb,
-              contain: item.course.contain,
-              scheduleDate: item.scheduleDate
-            }
-            that.setData({
-              sk_schedulelist: sk_schedulelist
+
+          if (res.data.length != 0) {
+
+
+            var sk_schedulelist = res.data[0].coachCourses;
+
+            sk_schedulelist.forEach(function (item, index, arrar) {
+              arrar[index] = {
+                courseName: item.course.courseName,
+                id: item.id,
+                icon: item.course.icon,
+                price: item.price,
+                zzprice: (item.price * 0.9).toFixed(2),
+                zxprice: (item.price * 0.8).toFixed(2),
+                appointmentNumb: item.appointmentNumb,
+                contain: item.course.contain,
+                scheduleDate: item.scheduleDate
+              }
+              that.setData({
+                sk_schedulelist: sk_schedulelist
+              })
+
             })
-
-          })
-          }else{
+          } else {
             that.setData({
-              sk_schedulelist:""
+              sk_schedulelist: ""
             })
 
           }
@@ -899,11 +918,11 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          console.log("会员卡查询", val)
-          console.log("会员卡查询", res)
+
+
           if (res.data.length == 0) {
 
-          
+
           } else {
             that.setData({
               vip: res.data[0].vip
@@ -913,12 +932,12 @@ Page({
         })
 
       },
-    
+
     })
-   
+
   },
   sk_schedulelist: function (e) { //点击sk
-  var that = this;
+    var that = this;
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -930,37 +949,37 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.coach_schedulelist.url, val).then((res) => {
-      console.log("点击sk", val)
-     console.log("点击sk",res)
-     if(res.data.length !=0){
-      var sk_schedulelist = res.data[0].coachCourses;
-      console.log("sk_schedulelist", sk_schedulelist)
-      sk_schedulelist.forEach(function (item, index, arrar) {
-        arrar[index] = {
-          courseName: item.course.courseName,
-          id: item.id,
-          icon: item.course.icon,
-          price: item.price,
-          zzprice: item.price * 0.9,
-          zxprice: item.price * 0.8,
-          appointmentNumb: item.appointmentNumb,
-          contain: item.course.contain,
-          scheduleDate: item.scheduleDate
-        }
-        that.setData({
-          sk_schedulelist: sk_schedulelist
-        })
 
-      })
-     }else{
-       that.setData({
-         sk_schedulelist:""
-       })  
-     }
+
+      if (res.data.length != 0) {
+        var sk_schedulelist = res.data[0].coachCourses;
+
+        sk_schedulelist.forEach(function (item, index, arrar) {
+          arrar[index] = {
+            courseName: item.course.courseName,
+            id: item.id,
+            icon: item.course.icon,
+            price: item.price,
+            zzprice: (item.price * 0.9).toFixed(2),
+            zxprice: (item.price * 0.8).toFixed(2),
+            appointmentNumb: item.appointmentNumb,
+            contain: item.course.contain,
+            scheduleDate: item.scheduleDate
+          }
+          that.setData({
+            sk_schedulelist: sk_schedulelist
+          })
+
+        })
+      } else {
+        that.setData({
+          sk_schedulelist: ""
+        })
+      }
     })
   },
-  timeclick: function(e) {
-    console.log("时间选择",e)
+  timeclick: function (e) {
+
     var that = this;
 
     for (var childrenlist of that.data.datee) {
@@ -982,38 +1001,35 @@ Page({
     that.hw_schedulelist(e);
     that.jk_schedulelist(e);
   },
-  onPageScroll: function(e) { //上滑监听
+  onPageScroll: function (e) { //上滑监听
 
-
-
+    // 
     // this.setData({
     //   scrolltop: e.scrollTop
     // })
-    if (e.scrollTop >= this.data.scrolltop) {
-
-      this.setData({
-        shouldFixedTop: true,
-        scrootop: 1
-      });
-    } else {
-
+    if (e.scrollTop < this.data.scrolltop) {
       this.setData({
         shouldFixedTop: false,
-        scrootop: 2
+        // scrootop: 2
+      });
+    } else {
+      this.setData({
+        shouldFixedTop: true,
+        // scrootop: 1
       });
     }
   },
-  choose: function() {
+  choose: function () {
     this.setData({
       ishidden: true
     })
   },
-  textblock: function() {
+  textblock: function () {
     this.setData({
       ishidden: false
     })
   },
-  tkselfdetails: function(e) {
+  tkselfdetails: function (e) {
     var that = this;
 
 
@@ -1022,35 +1038,36 @@ Page({
     })
   },
   // 
-  selfdetails: function(e) {
+  selfdetails: function (e) {
 
 
     wx.navigateTo({
       url: '../selfdetails/selfdetails?areaid=' + e.target.dataset.areaid + "&type=" + e.target.dataset.type + "&itemNo=" + e.target.dataset.itemno + "&id=" + e.target.dataset.id + "&coachCourseId=" + e.target.dataset.coachCourseId,
     })
   },
-  btnselfdetails: function(e) {
+  btnselfdetails: function (e) {
 
 
     wx.navigateTo({
       url: '../selfdetails/selfdetails?areaid=' + e.currentTarget.dataset.areaid + "&type=" + e.currentTarget.dataset.type + "&itemNo=" + e.currentTarget.dataset.itemno + "&id=" + e.currentTarget.dataset.id + "&coachCourseId=" + e.currentTarget.dataset.coachCourseId,
     })
   },
-  previewImage: function(e) { //画廊
+  previewImage: function (e) { //画廊
 
     wx.previewImage({
       urls: this.data.imgalist // 需要预览的图片http链接列表
     })
   },
-  onReady: function() {
-
+  onReady: function () {
 
     var tbodyHeight = app.globalData.windowHeight - 90; //90为头部固定高度 
     this.setData({
       tbodyHeight: tbodyHeight.toFixed(0)
     })
+    this.queryDomHeight()
+
   },
-  mapNavigation: function(e) {
+  mapNavigation: function (e) {
 
     var addr = e.target.dataset.addr;
     var name = e.target.dataset.name;
@@ -1068,7 +1085,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-        console.log(res.data)
+
         var local = res.data.result.location;
         that.setData({
           latitude: local.lat,
@@ -1085,7 +1102,7 @@ Page({
 
     })
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
 
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -1093,9 +1110,9 @@ Page({
       hasUserInfo: true
     })
   },
-  imageLoad: function(e) { //首屏广告图片加载成功做处理
+  imageLoad: function (e) { //首屏广告图片加载成功做处理
     var that = this;
-    var time = setInterval(function() { //进行倒计时
+    var time = setInterval(function () { //进行倒计时
       if (that.data.countNum > 0) {
         that.setData({
           countNum: that.data.countNum - 1
@@ -1109,7 +1126,7 @@ Page({
       }
     }, 1000);
   },
-  goHomeAds: function(e) { //开机login
+  goHomeAds: function (e) { //开机login
     var that = this;
     this.setData({
       homeAds: null
@@ -1117,45 +1134,45 @@ Page({
     wx.showTabBar();
   },
 
-  homeAdsError: function(e) { //首页广告图片加载出错
+  homeAdsError: function (e) { //首页广告图片加载出错
     wx.showTabBar();
     that.setData({
       homeAds: null,
       countNum: 0 //用来倒计时
     });
   },
-  call: function(e) {
+  call: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone,
     })
   },
-  allOrders: function() { //自助健身
+  allOrders: function () { //自助健身
     this.setData({
       tapindex: 1,
       type: 1
     });
   },
-  toBePaid: function() { //课程服务
+  toBePaid: function () { //课程服务
     this.setData({
       tapindex: 2,
       type: 2
 
     });
   },
-  receiptOfGoods: function() { //配套服务
+  receiptOfGoods: function () { //配套服务
     this.setData({
       tapindex: 3,
       type: 3
     });
   },
 
-  classifyClick: function(e) { //配套服务子分类产品查询
+  classifyClick: function (e) { //配套服务子分类产品查询
 
     var val = {
       areaId: e.target.dataset.id
     }
     $.Requests(api.categorylist.url, val).then((res) => {
-      console.log("子分类", res)
+
 
       this.setData({
 
@@ -1166,14 +1183,14 @@ Page({
 
 
   },
-  Approach: function() { //扫码入场
+  Approach: function () { //扫码入场
     wx.navigateTo({
       url: '../approach/approach'
     })
   },
   //下拉刷新
   onPullDownRefresh: function () {
-     var that =this;
+    var that = this;
     wx.showNavigationBarLoading() //在标题栏中显示加载
 
     setTimeout(function () {
@@ -1186,11 +1203,11 @@ Page({
       that.hwleague_schedulelist(); //课程服务团课服务查询列表
       that.jkleague_schedulelist(); //课程服务团课服务查询列表
       that.member();
-  
+
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1500);
   },
-  login: function() { //登陆页面
+  login: function () { //登陆页面
     wx.navigateTo({
       url: '../land/land'
     })

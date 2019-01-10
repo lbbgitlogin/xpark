@@ -1,14 +1,14 @@
 <!--pages/guide/guide.wxml-->
 <view class='range-container'>
 <view class='ra-ca-bottom_tab'>
-    <block wx:for="{{bottomTab}}">
+    <block wx:key='id' wx:for="{{bottomTab}}">
       <view class='m-navbar-item {{activeTab == index ? "m-navbar-item-on" : ""}}' bindtap='rcbBottomTab' data-index='{{index}}' id="{{activeTab == index ? 'selected' : ''}}">{{item.heading}}</view>
     </block>
   </view>
 <view class='tiao'></view>
 <!--下面这一句是重点,这里是内容切换区域-->
  <swiper circular='true' bindchange='swiperChange' current='{{activeTab}}'>
-    <block wx:for="{{cardViewContent}}">
+    <block wx:key='id' wx:for="{{cardViewContent}}">
       <swiper-item>
         <view class='ra-co-cardview'>
           <view class='ra-ca-viewtitle'>
