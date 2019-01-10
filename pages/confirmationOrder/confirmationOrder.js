@@ -54,13 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-<<<<<<< HEAD
-   
-   console.log("options",options)
-=======
-    
-    
->>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
+
     var that = this;
    
     if (options.orderType == 2) {
@@ -278,21 +272,15 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-<<<<<<< HEAD
       console.log(Formdata)
-    var valteo={
-      coachId: that.data.coachId,
-      coachcourseid: that.data.tk_id,
-      memberCourseId: that.data.memberCourseId,
-      gymId:1,
-      bookingDate:formatDate,
-      memberId: that.data.memberId,
-    }
-=======
-      
-
->>>>>>> bdff3b55093f680dad101d561c6c6b9fa040cbc4
-
+      var valteo = {
+        coachId: that.data.coachId,
+        coachcourseid: that.data.tk_id,
+        memberCourseId: that.data.memberCourseId,
+        gymId: 1,
+        bookingDate: formatDate,
+        memberId: that.data.memberId,
+      }
 
       let val1 = {
         remark: that.data.textareavalue,
