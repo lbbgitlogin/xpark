@@ -42,7 +42,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
     
@@ -59,8 +59,8 @@ Page({
     var val = {
     }
     $.Requests(api.guide.url + '/' + that.data.gymId , val).then((res) => {
-      console.log("使用指南", val)
-      console.log("使用指南", res)
+      
+      
        that.setData({
          bottomTab: res.data,
          cardViewContent:res.data
@@ -80,8 +80,8 @@ Page({
     this.setData({
       activeTab: activeTabIndex
     })
-    //console.log(this.data.activeTab)
-    //console.log(e)
+    //
+    //
 
   },
   /**

@@ -47,7 +47,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
 
@@ -60,7 +60,7 @@ Page({
        redeemCode: that.data.code
      }
     $.Requests_json(api.exchange.url, val).then((res) => {
-      console.log("res",res)
+      
       if (res.status == 0){
         that.couponlist()
       }else{
@@ -70,8 +70,8 @@ Page({
           content: '兑换码错误，请仔细检查'
         });
       }
-      console.log("查询优惠券val", val)
-      console.log("查询优惠券列表", res)
+      
+      
       
       })
 
@@ -89,8 +89,8 @@ Page({
       gymId: that.data.gymId,
     }
     $.Requests(api.couponlist.url, val).then((res) => {
-      console.log("优惠券val", val)
-      console.log("优惠券列表", res)
+      
+      
       that.setData({
         couponlist:res.data
       })

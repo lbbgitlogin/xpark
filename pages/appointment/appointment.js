@@ -51,7 +51,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
   },
@@ -68,8 +68,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      console.log("我的预约未开始val", val)
-      console.log("我的预约未开始val", res)
+      
+      
       var that = this;
       if (res.data == null) {
         that.setData({
@@ -99,7 +99,7 @@ Page({
 
   },
   datalis: function(e) {
-    console.log("e", e)
+    
     wx.navigateTo({
       url: '../bookingoreder/bookingoreder?icon=' + e.target.dataset.icon + "&gymName=" + e.target.dataset.gymname + "&uesCode=" + e.target.dataset.uescode + "&bookingName=" + e.target.dataset.bookingname + "&type=" + e.target.dataset.type + "&price=" + e.target.dataset.price + "&address=" + e.target.dataset.address + "&dingdanid=" + e.target.dataset.dingdanid + "&orderno=" + e.target.dataset.orderno + "&remark=" + e.target.dataset.remark
     })
@@ -125,8 +125,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      console.log("我的预约已使用val", val)
-      console.log("我的预约已使用val", res)
+      
+      
       var that = this;
       if (res.data.content == '') {
         that.setData({
@@ -157,8 +157,8 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
-      console.log("我的预约已取消val", val)
-      console.log("我的预约已取消val", res)
+      
+      
       if (res.data.content.length == 0) {
         that.setData({
           type: 2

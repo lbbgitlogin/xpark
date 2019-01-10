@@ -40,7 +40,7 @@ App({
                       'content-type': 'application/json'
                     },
                     success: function (res) {
-                    console.log("appsss",res)
+                    
                       that.globalData.wxopenid = res.data.openid;
                     }
                   })

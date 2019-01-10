@@ -38,7 +38,7 @@ function Requests(url, data) { //接口方法为get时调用
          }
        },
        fail: function (err) {
-         console.log(err)
+         
          reject(err)
          wx.hideLoading()
          wx.showModal({
@@ -79,7 +79,7 @@ function Requestsput(url, data) { //接口方法为put时调用
         }
       },
       fail: function (err) {
-        console.log(err)
+        
         reject(err)
         wx.hideLoading()
         wx.showModal({
@@ -120,7 +120,7 @@ function Requests_json(url, data) { //接口方法为post时调用
       },
       fail: function (err) {
         wx.hideLoading()
-        console.log(err)
+        
         reject(err)
         wx.showModal({
           title: '提示',
@@ -132,7 +132,7 @@ function Requests_json(url, data) { //接口方法为post时调用
 }
 
 function alert(content, callback, duration) { //普通弹出框
-  console.log("content.length", content.length)
+  
   if (content.length <= 7) {
     wx.showToast({
       icon: "success",
@@ -192,7 +192,7 @@ function gopage(url, callback) { //保留当前页，跳转页面
     url: url,
     success: callback,
     fail: function (e) {
-      console.log("跳转失败：", e);
+      
     }
   })
 }

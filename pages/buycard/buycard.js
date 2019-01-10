@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-       console.log("options",options)
+       
        var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -87,8 +87,8 @@ Page({
 
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
-      console.log("购买", val)
-      console.log("购买", res)
+      
+      
       if (res.status == 0){
         wx.navigateTo({
           url: '../succell/succell?cardnum='+1,

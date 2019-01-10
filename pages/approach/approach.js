@@ -64,7 +64,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
 
@@ -75,8 +75,8 @@ Page({
       memberId: that.data.memberId,
     }
     $.Requests(api.qrCode.url, val).then((res) => {
-   console.log("开门吗",val)
-      console.log("开门吗", res)
+   
+      
       if (res.status == 0){
         var that = this;
         that.setData({

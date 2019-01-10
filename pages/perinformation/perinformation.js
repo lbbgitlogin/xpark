@@ -1,7 +1,7 @@
 // pages/perinformation/perinformation.js
 var app = getApp();
 var $ = require('../../utils/util.js');
-console.log("app", app)
+
 Page({
 
   /**
@@ -85,7 +85,7 @@ var that =this;
   },
   pickerClick: function(event) { //性别选择
 
-    console.log(event.detail.value);
+    
     this.setData({
       pickerIndex: event.detail.value,
       isCoupon: event.detail.value
@@ -93,14 +93,14 @@ var that =this;
   },
   pickerClickheight: function (event) { //身高选择
 
-    console.log(event.detail.value);
+    
     this.setData({
       pickerhe: event.detail.value
     });
   },
   pickerClickweight: function (event) { //体重选择
 
-    console.log(event.detail.value);
+    
     this.setData({
       pickerwe: event.detail.value
     });

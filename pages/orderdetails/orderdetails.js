@@ -24,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log("options",options)
+     
      var that =this;
     that.setData({
       goodsname: options.goodsname,
@@ -82,7 +82,7 @@ Page({
      }
     $.Requests_json(api.qxorder.url, val).then((res) => {
 
-      console.log("quxiaodengdan", res)
+      
       if (res.status == 0) {
         setTimeout(function () {
 

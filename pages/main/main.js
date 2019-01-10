@@ -85,8 +85,8 @@ Page({
 
     }
     $.Requests(api.member.url, val).then((res) => {
-      console.log("会员卡查询", val)
-      console.log("会员卡查询", res)
+      
+      
       if (res.data.length == 0) {
 
         that.setData({

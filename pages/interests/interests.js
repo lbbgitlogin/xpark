@@ -22,7 +22,7 @@ Page({
 
   },
   opencard: function(e) {
-    console.log("e",e)
+    
     wx.navigateTo({
       url: '../buycard/buycard?vipnum=' + e.currentTarget.dataset.vip,
     })
@@ -47,8 +47,8 @@ Page({
     this.setData({
       activeTab: activeTabIndex
     })
-    //console.log(this.data.activeTab)
-    //console.log(e)
+    //
+    //
 
   },
 

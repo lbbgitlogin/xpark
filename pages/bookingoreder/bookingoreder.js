@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("预约详情",options)
+    
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -77,7 +77,7 @@ Page({
           })
 
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
 
@@ -136,8 +136,8 @@ Page({
     var that =this;
      var val = {}
     $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
-        console.log("skxq",val)
-      console.log("skxq", res)
+        
+      
       if(res.status == 0){
         setTimeout(function () {
 

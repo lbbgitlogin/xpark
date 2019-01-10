@@ -69,7 +69,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
+    
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -177,7 +177,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    console.log(app.globalData.userInfo, '用户信息')
+    
   },
   showtime: function() {
     var that = this;
@@ -214,7 +214,7 @@ Page({
         weekend: weekend,
         daynewday: daynewday,
       })
-      console.log("日期",daynewday)
+      
     }
 
   },
