@@ -22,11 +22,12 @@
 </view>
 
 <view class='ball-timeList'>
-  <view bindtap="add" data-item='{{item}}'  class='ball-timeList-item {{ item.canSelect ? "canSelect" : "cantSelect"}} {{ item.falg ? "active" : ""}}' wx:for="{{yuyueList}}" wx:for-item="item" wx:key="index">
+  <view bindtap="add" data-item='{{item}}'  class='ball-timeList-item {{item.acticed ? "appointment" : ""}} {{ item.canSelect ? "canSelect" : "cantSelect"}} {{ item.falg ? "active" : ""}}' wx:for="{{yuyueList}}" wx:for-item="item" wx:key="index">
     <text>{{item.time}}</text>
-    <text wx:if="{{!item.canSelect}}">不可约</text>
-    <text wx:if="{{item.canSelect && !item.falg}}">可约</text>
+    <text wx:if="{{!item.canSelect && !item.falg}}">不可约</text>
+    <text wx:if="{{item.canSelect && !item.falg && !item.acticed}}">可约</text>
     <text wx:if="{{item.falg}}">已约</text>
+    <text wx:if="{{item.acticed}}">已选</text>
   </view>
 </view>
 <view bindtap='nextappiont' class='btn_anniu bj_color'>

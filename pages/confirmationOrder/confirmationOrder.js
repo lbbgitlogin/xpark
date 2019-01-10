@@ -30,7 +30,7 @@ Page({
     numb: "1",
     memberFitnessId: "",
     textareavalue: "",
-    areaName: "",
+    areaName: "", 
     couponlenght: "",
     choose: false,
     orderNo: "",
@@ -69,9 +69,15 @@ Page({
         sta: options.sta,
         bookingTime: options.bookingTime,
       })
-    } else if (options.optionstype == 2) {
+      
+
+    } else if (options.optionstype == 2){
+         that.setData({
+           tk_id: options.tk_id
+         })
+    } else if (options.type === '场馆') {
       that.setData({
-        tk_id: options.tk_id
+        formdata: options,
       })
     }
     wx.getStorage({
@@ -114,7 +120,7 @@ Page({
             })
             if (options.optionstype == 2) {
               that.setData({
-                tk_id: options.coachcourseid
+                tk_id: options.coachcourseid || options.tk_id
               })
               that.surebuy()
             } else if (options.orderType == 2) {
@@ -190,8 +196,8 @@ Page({
   surebuy: function () {
     var that = this;
     var val = {}
-    $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val, val).then((res) => {
-
+    $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
+    console.log("tuanbke ",res)
 
       var now = new Date();
       var year = now.getFullYear();
@@ -236,7 +242,8 @@ Page({
         gymdetails: res.data,
         areaId: res.data.areaId,
         gymName: res.data.gym.gymName,
-        shopid: res.data.id
+        shopid: res.data.id,
+        address: res.data.gym.address,
       })
       // this.setData({
 
@@ -274,10 +281,13 @@ Page({
     var formatDate = year + '-' + month + '-' + day;
 
     var that = this;
+    let Formdata = this.data.formdata
+    // 
+    // return
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      console.log(Formdata)
+      // console.log(Formdata)
       var valteo = {
         coachId: that.data.coachId,
         coachcourseid: that.data.tk_id,
@@ -325,7 +335,7 @@ Page({
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
 
-
+  console.log("团课预约",res)
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -344,17 +354,21 @@ Page({
       })
 
 
-    } else {
-     
+    } else if (Formdata.type === '场馆'){
+      
+      let { time, day, memberFitnessId, groundId } = Formdata
+      // return
+
       wx.getStorage({
         key: 'groundName',
         success: function (res) {
           var val = {
-            appointmentDate: that.data.formatDate,
-            memberFitnessId: that.data.memberFitnessId,
+            appointmentDate: day,
+            appointmentTime: time + ":00",
+            memberFitnessId: memberFitnessId,
             numb: 1,
-            groundName: res.data.groundName,
-            groundId: '' || that.data.groundId,
+            // groundName: res.data.groundName,
+            groundId: groundId,
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
@@ -362,9 +376,16 @@ Page({
             console.log("res", val)
 
             if (res.status == 0) {
-              wx.navigateTo({
-                url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
-              })
+              // wx.navigateTo({
+              //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
+              // })
+              $.alert("预约成功")
+              setTimeout(()=> {
+                wx.switchTab({
+                  url: '../index/index'
+                })
+              }, 500)
+              
             } else {
               $.alert("预约失败")
             }

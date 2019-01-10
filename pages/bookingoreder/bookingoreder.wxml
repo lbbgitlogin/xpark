@@ -44,7 +44,7 @@
       地点
     </view>
     <view class='order_smallname'>
-      {{address}}
+       上海市杨浦区军工路188号 
     </view>
   </view>
    <view class='list_booking'>
