@@ -409,11 +409,17 @@ Page({
   appointment:function(){
   
    var that = this;
- 
+    if (that.data.optionstype == 1){
       wx.navigateTo({
 
-        url: '../appointmenttime/appointmenttime?id=' + that.data.qlid  + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
+        url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
       })
+    } else if (that.data.optionstype ==2){
+
+
+      
+    }
+     
 
 
   },

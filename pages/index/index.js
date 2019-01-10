@@ -828,7 +828,7 @@ Page({
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
 
-
+  console.log("sj",res)
 
           if (res.data.length != 0) {
 
@@ -839,6 +839,7 @@ Page({
               arrar[index] = {
                 courseName: item.course.courseName,
                 id: item.id,
+                courseId: item.course.id,
                 icon: item.course.icon,
                 price: item.price,
                 zzprice: (item.price * 0.9).toFixed(2),
@@ -1079,6 +1080,13 @@ Page({
         wx.showTabBar();
       }
     }, 1000);
+  },
+  closeloding:function(){
+    var that=this;
+    that.setData({
+      homeAds:null
+    })
+    wx.showTabBar();
   },
   goHomeAds: function (e) { //开机login
     var that = this;
