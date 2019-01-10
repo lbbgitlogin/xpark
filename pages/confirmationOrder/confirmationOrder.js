@@ -73,6 +73,10 @@ Page({
          that.setData({
            tk_id: options.tk_id
          })
+    } else if (options.type === '场馆') {
+      that.setData({
+        formdata: options,
+      })
     }
     wx.getStorage({
       key: 'groundName',
@@ -258,12 +262,15 @@ Page({
 
 
     var that = this;
+    let Formdata = this.data.formdata
+    // 
+    // return
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
       
 
-
+      
 
       let val1 = {
         remark: that.data.textareavalue,
@@ -320,25 +327,36 @@ Page({
       })
 
 
-    } else {
+    } else if (Formdata.type === '场馆'){
+      
+      let { time, day, memberFitnessId, groundId } = Formdata
+      // return
       wx.getStorage({
         key: 'groundName',
         success: function (res) {
           var val = {
-            appointmentDate: that.data.formatDate,
-            memberFitnessId: that.data.memberFitnessId,
+            appointmentDate: day,
+            appointmentTime: time + ":00",
+            memberFitnessId: memberFitnessId,
             numb: 1,
-            groundName: res.data.groundName,
-            groundId: '' || that.data.groundId,
+            // groundName: res.data.groundName,
+            groundId: groundId,
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
             
             
             if (res.status == 0) {
-              wx.navigateTo({
-                url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
-              })
+              // wx.navigateTo({
+              //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
+              // })
+              $.alert("预约成功")
+              setTimeout(()=> {
+                wx.switchTab({
+                  url: '../index/index'
+                })
+              }, 500)
+              
             } else {
               $.alert("预约失败")
             }
