@@ -38,7 +38,7 @@ Page({
                 })
         
         }, 2000) //延迟时间 这里是1秒
-        console.log("huoqu11", res)
+        
       },
     })
    
@@ -57,17 +57,17 @@ Page({
           type: 2
         })
       }
-      console.log("门店订单列表全部val", val)
-      console.log("门店订单列表全部", res)
+      
+      
        that.setData({
          member_orderlist: res.data.content
         //  .map(item => {
         //    let datetiem = item.createTime;
-        //    console.log("date", datetiem)
+        //    
         //    const date = new Date(datetiem);
-        //    console.log("date", date)
+        //    
         //    const year = date.getFullYear();
-        //    console.log("year",year)
+        //    
         //    const month = date.getMonth() + 1;
         //    const day = date.getDate();
         //    const hours = date.getHours();
@@ -82,14 +82,14 @@ Page({
   },
   // aaa
   qxorder: function (e) {
-    console.log("取消订单",e)
+    
     var that = this;
     var val = {
       id: e.currentTarget.dataset.id
     }
     $.Requests_json(selfdailsapi.qxorder.url, val).then((res) => {
 
-      console.log("quxiaodengdan", res)
+      
       if (res.status == 0) {
         setTimeout(function () {
 
@@ -104,7 +104,7 @@ Page({
 
   },
   godetails:function(e){
-    console.log(e)
+    
     wx.navigateTo({
       url: '../orderdetails/orderdetails?orderstate=' + e.currentTarget.dataset.orderstate + "&orderno=" + e.currentTarget.dataset.orderno + "&gymname=" + e.currentTarget.dataset.gymname + "&psytype=" + e.currentTarget.dataset.psytype + "&price=" + e.currentTarget.dataset.price + "&goodsname=" + e.currentTarget.dataset.goodsname + "&createtime=" + e.currentTarget.dataset.createtime + "&num=" + e.currentTarget.dataset.num + "&discountmoney=" + e.currentTarget.dataset.discountmoney + "&id=" + e.currentTarget.dataset.id,  
     })
@@ -135,8 +135,8 @@ Page({
           type: 2
         })
       }
-      console.log("门店订单列表全部val", val)
-      console.log("门店订单列表全部", res)
+      
+      
       that.setData({
         member_orderlist: res.data.content
         // .map(item => {
@@ -172,8 +172,8 @@ Page({
           type: 2
         })
       }
-      console.log("门店订单列表全部val", val)
-      console.log("门店订单列表全部", res)
+      
+      
 
       that.setData({
         member_orderlist: res.data.content
@@ -209,8 +209,8 @@ Page({
           type: 2
         })
       }
-      console.log("门店订单列表全部val", val)
-      console.log("门店订单列表全部", res)
+      
+      
       that.setData({
         member_orderlist: res.data.content
         // .map(item => {

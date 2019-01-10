@@ -46,7 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("options", options)
+    
     var that = this;
 
     wx.getStorage({
@@ -133,8 +133,8 @@ Page({
           price:0
         })
       }
-      console.log("shop详情", val)
-      console.log("shop详情", res)
+      
+      
 
     })
   },
@@ -148,8 +148,8 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          console.log("会员卡查询", val)
-          console.log("会员卡查询", res)
+          
+          
           if (res.data.length == 0) {
 
 
@@ -170,8 +170,8 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("skxq", val)
-      console.log("skxq", res)
+      
+      
       let { price, areaId } = res.data
 
       var now = new Date();
@@ -192,7 +192,7 @@ Page({
           price: 0
         })
       }
-      console.log("价格", that.data.tkgymdetails)
+      
     })
   },
   coach_course: function() { //私课详情
@@ -202,8 +202,8 @@ Page({
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("私课", val)
-      console.log("私课", res)
+      
+      
 
       that.setData({
         tkgymdetails: res.data,
@@ -323,8 +323,8 @@ Page({
   },
   testSubmit: function(e) {
 
-    console.log(this)
-    console.log("muban ", e.detail.formId)
+    
+    
 
     var that = this;
     if (that.data.yuechoose) {
@@ -347,8 +347,8 @@ Page({
         }
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
-          console.log("团课预约", val)
-          console.log("团课预约", res)
+          
+          
 
           if (res.status == 0) {
 
@@ -384,8 +384,8 @@ Page({
 
 
         $.Requests_json(api.member_order.url, val).then((res) => {
-          console.log("私教预约", val)
-          console.log("私教预约", res)
+          
+          
 
 
           if (res.status == 0) {
@@ -418,17 +418,17 @@ Page({
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
 
-          console.log("sshop购买", val11)
-          console.log("shop购买", res)
-          console.log("openid", that.data.openid)
+          
+          
+          
           if (res.status == 0) {
 
             var val = {
               formId: e.detail.formId
             }
             $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
-              console.log("模板消息", val)
-              console.log("模板消息", res)
+              
+              
 
             })
 
@@ -472,8 +472,8 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-        console.log("自助健身",val)
-          console.log("自助健身", res)
+        
+          
           if (res.data.success && that.data.itemNo != "SI-BALL") {
          
             wx.navigateTo({

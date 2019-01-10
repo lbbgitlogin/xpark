@@ -56,7 +56,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log("详情页",options)
+     
 
     var that = this;
     that.member();
@@ -154,8 +154,8 @@ Page({
       that.setData({
         shopdetails:res.data
       })
-      console.log("shop详情", val)
-      console.log("shop详情", res)
+      
+      
 
     })
   },
@@ -170,7 +170,7 @@ Page({
            couponlength: res.data.length,
      couponlist:res.data
          })
-       console.log("可用优惠券查询",res)
+       
 
     })
   },
@@ -184,8 +184,8 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          console.log("会员卡查询", val)
-          console.log("会员卡查询", res)
+          
+          
           if (res.data.length == 0) {
 
 
@@ -209,8 +209,8 @@ Page({
     }
     
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-        console.log("sk详情",val)
-      console.log("sk详情",res)
+        
+      
       that.setData({
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
@@ -224,7 +224,7 @@ Page({
     }
    
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-         console.log("111",res)
+         
       
       that.setData({
         tkgymdetails: res.data,
@@ -311,9 +311,9 @@ Page({
         }
     
         $.Requests(api.member_course.url, val).then((res) => {
-console.log("团课或者私教判断是否能购买",val)
 
-          console.log("团课或者私教判断是否能购买",res)          
+
+                    
           if (res.data != '') {
             that.setData({
               appointment: true
@@ -347,8 +347,8 @@ console.log("团课或者私教判断是否能购买",val)
           memberId: res.data.memberId,
         }
         $.Requests(api.member_fitness.url, val).then((res) => {
-          console.log("ssss", val)
-          console.log("ssss",res)
+          
+          
           
           if(res.data != ''){
                 that.setData({
@@ -386,7 +386,7 @@ console.log("团课或者私教判断是否能购买",val)
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      console.log("球类详情页",res)
+      
       
       that.setData({
         gymdetails:res.data,
@@ -418,7 +418,7 @@ console.log("团课或者私教判断是否能购买",val)
 
   },
   choosecoupon:function(e){
-    console.log("e",e)
+    
     if(this.data.choose){
       this.setData({
         chooseindex: e.currentTarget.dataset.index,
