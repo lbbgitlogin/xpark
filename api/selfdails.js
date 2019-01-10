@@ -181,7 +181,7 @@ appointment_common: { //取消订单
     }
   },
   member: { //教练预约可预约时间
-    url: cf.config.configUrl + 'member/find/vip',
+    url: cf.config.configUrl + 'member/find/member/vip',
     get: {
 
     }
