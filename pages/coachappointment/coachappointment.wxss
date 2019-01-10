@@ -13,7 +13,7 @@ page{
   padding: 0 28rpx;
   padding-top: 44rpx;
   padding-bottom: 36rpx;
-  color: #333333;
+  color: #fff;
 }
 
 

@@ -1,6 +1,8 @@
 /* pages/coupon/coupon.wxss */
 page{
-  background: #EBECEE
+  background: #282B30;
+  height:100%;
+
 }
 .coupon_input{
   width: 100%;

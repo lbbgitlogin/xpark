@@ -148,7 +148,7 @@ form button{background-color: #fff;}
 .m-media-box-small-appmsg .weui-cells:before {display: none;}
 /*Panel end*/
 /*nvabar start*/
-.m-navbar {display: -webkit-box;display: -webkit-flex;display: flex;background-color: #282B30;box-shadow:0px 6rpx 12rpx 1rpx #282A30;}
+.m-navbar {display: -webkit-box;display: -webkit-flex;display: flex;background-color: #282B30;box-shadow:0px 6rpx 12rpx 1rpx #24272D;}
 .m-navbar:after {content: " ";position: absolute;left: 0;bottom: 0;right: 0;height: 1px;color: #CCCCCC;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);z-index: 3;}
 .m-navbar2 {display: -webkit-box;display: -webkit-flex;display: flex;background-color: #282B30;}
 .m-navbar2:after {content: " ";position: absolute;left: 0;bottom: 0;right: 0;height: 1px;color: #CCCCCC;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);z-index: 3;}

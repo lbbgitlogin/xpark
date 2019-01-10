@@ -41,8 +41,6 @@
 
   </view>
 </view>
-<view class='coupon_tiao'>
-</view>
 <view wx:if="{{couponlist.length == 0}}" class='null_box'>
 
   <view class='null_coupon'>

@@ -66,14 +66,14 @@
       <view class='left_box'>
         <view class='self_time'>
           <image style='height：20rpx' class='black_time' src='../../img/card_bj.png'></image>
-            <view wx:if="{{vip == 2}}" class='self_font'>
-          XPARK尊享卡价： {{gymdetails.price == 0?'0':gymdetails.price*0.8 || tkgymdetails.price*0.8 || shopdetails.price*0.8}}元
+          <view wx:if="{{vip == 2}}" class='self_font'>
+            XPARK尊享卡价： {{gymdetails.price == 0?'0':gymdetails.price*0.8 || tkgymdetails.price*0.8 || shopdetails.price*0.8}}元
           </view>
-            <view wx:if="{{vip == 1}}" class='self_font'>
-          XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
+          <view wx:if="{{vip == 1}}" class='self_font'>
+            XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
           </view>
-               <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
-          XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
+          <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
+            XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}元
           </view>
         </view>
       </view>
@@ -85,15 +85,15 @@
       <view class='yuyue_num'>
         {{gymdetails.appointmentNumb || tkgymdetails.appointmentNumb }}/{{gymdetails.fitness.contain || tkgymdetails.course.contain}}
       </view>
-    
+
     </view>
   </view>
-    <view wx:if="{{showMethod == 2 && sta != 1}}" class='yuyue_address'>
+  <view wx:if="{{showMethod == 2 && sta != 1}}" class='yuyue_address'>
     <view class='location_jiang'>
-    <image class='hw' src='../../img/hw.png'></image>
-     户外地址
-  </view>
-   
+      <image class='hw' src='../../img/hw.png'></image>
+      户外地址
+    </view>
+
     <view class='yuyue_address_tateils'>
 
       <view bindtap='mapNavigation' data-name='{{tkgymdetails.gymName}}' data-addr="{{tkgymdetails.address}}" style='flex:1'>
@@ -107,7 +107,7 @@
 
   </view>
   <view wx:if="{{showMethod == 2}}" class='location_jiang'>
-   <image class='xz' src='../../img/jlkc.png'></image>
+    <image class='xz' src='../../img/jlkc.png'></image>
     教练课程
   </view>
   <view wx:if="{{showMethod == 2}}" class='shop_details'>
@@ -125,31 +125,31 @@
 
 
 
-  
+
   <view class='location_jiang'>
-  <image  class='cpjs' src='../../img/cpjs.png'></image>
-     产品介绍
+    <image class='cpjs' src='../../img/cpjs.png'></image>
+    产品介绍
   </view>
 
 
   <view class='self_box shop_introduce' style='{{optionstype == 3?"padding:40rpx 0 80px 0 ":"padding:40rpx 0 40rpx 0;background:#282B30"}}'>
     <view class='introduce_title'>
-     
+
     </view>
     <html-view wx:if="{{gymdetails.fitness.introduce}}" class='introduce_sm' innerText='{{gymdetails.fitness.introduce}}'></html-view>
     <html-view wx:if="{{tkgymdetails.course.introduce}}" class='introduce_sm' innerText='{{tkgymdetails.course.introduce}}'></html-view>
-        <html-view wx:if="{{shopdetails.despict}}" class='introduce_sm' innerText='{{shopdetails.despict}}'></html-view>
+    <html-view wx:if="{{shopdetails.despict}}" class='introduce_sm' innerText='{{shopdetails.despict}}'></html-view>
     <!-- <view class='introduce_sm'>
       {{gymdetails.fitness.introduce ||   tkgymdetails.course.introduce}}
     </view> -->
   </view>
-  <view wx:if="{{optionstype != 3}}"  class='location_jiang'>
-  <image class='xz' src='../../img/xz.png'></image>
-      购买须知
+  <view wx:if="{{optionstype != 3}}" class='location_jiang'>
+    <image class='xz' src='../../img/xz.png'></image>
+    购买须知
   </view>
   <view wx:if="{{optionstype != 3}}" style='padding:0rpx 0 40rpx 0;background:#282B30' class='self_box shop_introduce'>
     <view style='margin-top:40rpx' class='introduce_smalltitle'>
-    <view class='name_tiao'></view>
+      <view class='name_tiao'></view>
       <view>有效期</view>
     </view>
     <view class='introduc_dian'>
@@ -160,7 +160,7 @@
 
     <view style='margin:80rpx 0 0 0' class='introduce_smalltitle'>
       <view class='name_tiao'></view>
-       <view>预约信息</view>
+      <view>预约信息</view>
     </view>
     <view style='margin-top:24rpx' class='introduc_dian'>
       <view class='validity_next'>
@@ -168,7 +168,7 @@
       </view>
     </view>
     <view style='margin:80rpx 0 0 0' class='introduce_smalltitle'>
-    <view class='name_tiao'></view>
+      <view class='name_tiao'></view>
       <view>使用人数</view>
     </view>
     <view style='margin-top:24rpx' class='introduc_dian'>
@@ -177,9 +177,9 @@
       </view>
     </view>
     <view class='introduce_smalltitle'>
-       <view class='name_tiao'></view>
+      <view class='name_tiao'></view>
       <view>适合人群</view>
-      
+
     </view>
     <view class='introduc_dian'>
       <view class='validity'>
@@ -187,9 +187,9 @@
       </view>
     </view>
     <view style='margin:80rpx 0 0 0' class='introduce_smalltitle'>
-         <view class='name_tiao'></view>
+      <view class='name_tiao'></view>
       <view>规则提示</view>
-    
+
     </view>
     <view style='margin-top:24rpx' class='introduc_dian'>
       <view class='validity_next'>
@@ -198,7 +198,7 @@
     </view>
   </view>
   <view wx:if="{{optionstype != 3 && gymdetails.fitness.useNotes || tkgymdetails.course.useNotes  }}" class='location_jiang'>
-   <image class='xz' src='../../img/sylc.png'></image>
+    <image class='xz' src='../../img/sylc.png'></image>
     <view class='introduce_title'>使用流程</view>
   </view>
   <view wx:if="{{optionstype != 3 && gymdetails.fitness.useNotes || tkgymdetails.course.useNotes }}" class='self_box shop_introduce' style='background:#282B30'>
@@ -239,10 +239,10 @@
     <view wx:if="{{vip!=1&&vip!=2}}" class='buy_left font-colormode'>
       实付： ¥{{gymdetails.price == 0?'0':gymdetails.price || tkgymdetails.price || shopdetails.price}}
     </view>
-      <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
+    <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
       实付： ¥{{gymdetails.price == 0?'0':gymdetails.price*0.9 || tkgymdetails.price*0.9 || shopdetails.price*0.9}}
     </view>
-      <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
+    <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
       实付： ¥{{gymdetails.price == 0?'0':gymdetails.price*0.8 || tkgymdetails.price*0.8 || shopdetails.price*0.8}}
     </view>
     <view wx:if="{{!appointment && couponlength != 0 }}" bindtap='buynow' class='buy_right bj_color'>
@@ -274,15 +274,26 @@
               </view>
             </view>
             <view class='coupon_right'>
-              <view class='coupon_right_mon'>
+              <view class='coupon_right_mon' style="flex: 1;">
                 <view class='coupon_right_name'>{{item.couponTag}}</view>
                 <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
                 <view>有效期：{{item.endTime}}</view>
               </view>
-              <view data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' bindtap='choosecoupon'>
+              <view wx:if="{{item.state == 1}}" data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
                 <image wx:if="{{chooseindex != index}}" class='choose_img' src='../../img/choose_false.png'></image>
                 <image wx:else class='choose_img' src='../../img/choose_true.png'></image>
               </view>
+              <view wx:if="{{item.state !=1 &&item.state !=2 }}" class='coupon_state font-colormode'>
+                <image class='coupon_img' src='../../img/coupon_expired.png'></image>
+
+
+              </view>
+              <view wx:if="{{item.state == 2}}" class='coupon_state font-colormode'>
+                <image class='coupon_img' src='../../img/coupon_used.png'></image>
+
+
+              </view>
+
 
             </view>
           </view>

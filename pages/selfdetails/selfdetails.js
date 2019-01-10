@@ -19,6 +19,7 @@ Page({
     vip: '',
     chooseindex:-1,
     couponlength:"",
+    itemNo: "",
     shopdetails:'',
     scheduleDate: '',
     optionstype: '',
@@ -108,12 +109,16 @@ Page({
             that.couponlist();
           }
         })
-        if(options.type == 1){
+        if (options.type == 1 && options.itemNo != "SI-FIT"){
           
           that.shoptedails(options);
           that.gymdetails()
-        } else if (options.type == 2 && options.sta != 1){
-          that.tkshoptedails(options);
+        } else if (options.type == 1 && options.itemNo == "SI-FIT"){
+          that.gymdetails()
+        }
+        
+         else if (options.type == 2 && options.sta != 1){
+      
           that.league_schedule();
           
         } else if (options.sta == 1 && options.type == 2  ){
@@ -239,7 +244,7 @@ Page({
       })
     }else{
       wx.navigateTo({
-        url: '../confirmationbuy/confirmationbuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype,
+        url: '../confirmationbuy/confirmationbuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype + "&couponid=" + that.data.couponid + "&itemno=" + that.data.itemno,
       })
     }
 
@@ -387,6 +392,7 @@ console.log("团课或者私教判断是否能购买",val)
         gymdetails:res.data,
         jindu: res.data.appointmentNumb / res.data.fitness.contain,
         qlid:res.data.id,
+        itemNo: res.data.fitness.itemNo,
         price:res.data.price,
         address: res.data.gym.address,
         areaId: res.data.areaId

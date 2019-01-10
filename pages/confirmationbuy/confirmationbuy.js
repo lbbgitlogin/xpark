@@ -11,6 +11,7 @@ Page({
     memberId: "",
     goodsId: "",
     areaId: "",
+    vip:"",
     tkareaId: "",
     price: "",
     coachId: "",
@@ -74,6 +75,7 @@ Page({
               shoptype: options.type
             })
             that.couponlist();
+            that.member();
             if (options.optionstype == 2 && options.sta != 1) {
               that.league_schedule()
             } else if (options.type == 3) {
@@ -86,7 +88,7 @@ Page({
             } else {
               that.gymdetails();
             }
-
+         
             that.yuenum()
           }
         })
@@ -126,12 +128,44 @@ Page({
         address: res.data.gym.address,
         goodsId: res.data.id,
       })
+      if (that.data.couponid != ""){
+        that.setData({
+          price:0
+        })
+      }
       console.log("shop详情", val)
       console.log("shop详情", res)
 
     })
   },
+  member: function () { //会员卡查询
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        var val = {
+          memberId: res.data.memberId,
 
+        }
+        $.Requests(api.member.url, val).then((res) => {
+          console.log("会员卡查询", val)
+          console.log("会员卡查询", res)
+          if (res.data.length == 0) {
+
+
+          } else {
+            that.setData({
+              vip: res.data[0].vip
+            })
+          }
+
+        })
+
+      },
+
+    })
+
+  },
   league_schedule: function() {
     var that = this;
     var val = {}
@@ -153,6 +187,11 @@ Page({
         jindu: res.data.appointmentNumb / res.data.course.contain,
         tkareaId: areaId
       })
+      if (that.data.couponid != "") {
+        that.setData({
+          price: 0
+        })
+      }
       console.log("价格", that.data.tkgymdetails)
     })
   },
@@ -245,6 +284,11 @@ Page({
         price: res.data.price
 
       })
+      if (that.data.couponid != "") {
+        that.setData({
+          price: 0
+        })
+      }
       // this.setData({
 
       //   classifyClick: res.data.content
@@ -289,7 +333,7 @@ Page({
 
         var val = {
           areaId: that.data.tkareaId,
-          couponEntityId: that.data.couponid || '',
+          couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
           memberId: that.data.memberId,
           memberMobile: that.data.mobile,
@@ -322,7 +366,7 @@ Page({
 
         var val = {
           areaId: that.data.areaId,
-          couponEntityId: "0", //未接
+          couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
           gymName: that.data.gymName,
           memberId: that.data.memberId,
@@ -357,9 +401,9 @@ Page({
 
       } else if (that.data.shoptype == 3) {
 
-        var val = {
+        var val11 = {
           areaId: that.data.areaId,
-          couponEntityId: "0", //未接
+          couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
           gymName: that.data.gymName,
           memberId: that.data.memberId,
@@ -372,13 +416,9 @@ Page({
           payType: "xj",
           remark: "",
         }
+        $.Requests_json(api.shopbuy.url, val11).then((res) => {
 
-
-
-
-        $.Requests_json(api.shopbuy.url, val).then((res) => {
-
-          console.log("sshop购买", val)
+          console.log("sshop购买", val11)
           console.log("shop购买", res)
           console.log("openid", that.data.openid)
           if (res.status == 0) {
@@ -418,7 +458,7 @@ Page({
 
         var val = {
           areaId: that.data.areaId,
-          couponEntityId: "0", //未接
+          couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
           gymName: that.data.gymName,
           memberId: that.data.memberId,
@@ -432,12 +472,12 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-
-    
+        console.log("自助健身",val)
+          console.log("自助健身", res)
           if (res.data.success && that.data.itemNo != "SI-BALL") {
-           
+           debugger
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address,
+              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })
           } else if (res.data.success && that.data.itemNo == "SI-BALL") {
 

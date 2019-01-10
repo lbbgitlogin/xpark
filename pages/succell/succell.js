@@ -34,13 +34,6 @@ Page({
 
     } else if (options.shoptype == 3) {
 
-
-
-
-
-
-
-
     } else if (options.cardnum == 1){
       setTimeout(function () {
 
@@ -56,11 +49,13 @@ Page({
 
       }, 3000)
 
+    } else if (options.itemNo == "SI-FIT"){
+      
     }
     
      else {
       setTimeout(function() {
-
+debugger
         wx.navigateTo({
 
           url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId ,
