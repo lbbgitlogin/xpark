@@ -33,65 +33,7 @@
     </view>
 
   </view>
-  <!--  <view class='fourth_index'>
-    <view class='fourth_box'>
-      <view class='fourth_up' bindtap='{{hidden?"login":""}}'>
-        <image wx:if="{{hidden}}" class='fourth_img' src='../../img/head.png'></image>
-        <open-data class='fourth_img' wx:else type="userAvatarUrl"></open-data>
-        <view class='fourth_centext'>
-          <view>
-            <view wx:if="{{hidden}}" class='off'>尚未登录</view>
-            <view wx:else class='off'>
-              <open-data type="userNickName"></open-data>
-            </view>
-            <view wx:if="{{!hidden}}" class='index_recharge'>
-              <view class='yue'>门店储值余额</view>
-              <view class='num'>{{balance}}</view>
-            </view>
-          </view>
 
-        </view>
-        <view wx:if="{{hidden}}" class='fourth_boxright m-cell-access'>
-          <image class='icon_zb' src='../../img/right_zb.png'></image>
-        </view>
-      </view>
-      <view class='fourth_down'>
-      <!-- ../recharge/recharge 
-        <navigator hover-class='none' class='flex_down' url="../recharge/recharge">
-          <view class="flex_center">
-            <image class='sever_img' src='../../img/recharge_service.png'></image>
-          </view>
-          <text class='sever_text'>充值服务</text>
-
-        </navigator>
-        <navigator hover-class='none' class='flex_down' url="../management/management">
-          <view class="">
-            <image class='sever_imgdd' src='../../img/stor_old.png'></image>
-          </view>
-          <text class='sever_text'>门店订单</text>
-
-        </navigator>
-        <navigator hover-class='none' class='flex_down' url="../coupon/coupon">
-          <view class="">
-            <image class='sever_imgyh' src='../../img/coupon.png'></image>
-          </view>
-          <text class='sever_text'>优惠券</text>
-
-        </navigator>
-        <navigator hover-class='none' class='flex_down' url="../guide/guide">
-          <view class="">
-            <image class='sever_imgzn' src='../../img/guid.png'></image>
-          </view>
-          <text class='sever_text'>使用指南
-          </text>
-        </navigator>
-
-
-
-      </view>
-    </view>
-
-  </view> -->
   <view class='bj_rg'></view>
   <view class='fifth'>
     <view class='fifth_title'>

@@ -148,12 +148,12 @@ Page({
       }
     })
     that.classification();
-    that.fitnesslist(); //自助健身子分类查询
-    that.ptitemlist(); //配套服务
-    that.league_schedulelist(); //课程服务团课服务查询列表
-    that.hwleague_schedulelist(); //课程服务团课服务查询列表
-    that.jkleague_schedulelist(); //课程服务团课服务查询列表
-    that.coach_schedulelist(); //课程服务私课服务查询列表
+    // that.fitnesslist(); //自助健身子分类查询
+    // that.ptitemlist(); //配套服务
+    // that.league_schedulelist(); //课程服务团课服务查询列表
+    // that.hwleague_schedulelist(); //课程服务团课服务查询列表
+    // that.jkleague_schedulelist(); //课程服务团课服务查询列表
+    // that.coach_schedulelist(); //课程服务私课服务查询列表
     that.member();
     var now = new Date();
     var year = now.getFullYear();
@@ -326,36 +326,6 @@ Page({
       }
     })
   },
-  // getLocal: function(latitude, longitude) {
-  //   let vm = this;
-  //   qqmapsdk = new QQMapWX({
-  //     key: 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ'
-  //   });
-
-  //   qqmapsdk.reverseGeocoder({
-  //     location: {
-  //       latitude: latitude,
-  //       longitude: longitude
-  //     },
-  //     success: function(res) {
-
-  //       let province = res.result.ad_info.province
-  //       let city = res.result.ad_info.city
-  //       vm.setData({
-  //         province: province,
-  //         city: city,
-  //       })
-  //       vm.nearshop();
-  //       vm.provincelist();
-  //     },
-  //     fail: function(res) {
-
-  //     },
-  //     complete: function(res) {
-  //       // 
-  //     }
-  //   });
-  // },
   citychoose: function (e) {
     this.setData({
       city: e.target.dataset.city
@@ -363,17 +333,12 @@ Page({
     var val = {
       province: this.data.provincechoose,
       city: e.target.dataset.city,
-
     }
     $.Requests_json(api.province_city.url, val).then((res) => {
-
-
       this.setData({
         gymshoplist: res.data,
         cityTab: e.target.dataset.index
       })
-
-
 
     })
   },
@@ -390,21 +355,14 @@ Page({
     //     shoplist: res.data
     //   })
 
-
-
     // })
     var val = {
 
     }
     $.Requests(api.province.url, val).then((res) => {
-
-
       this.setData({
         shoplist: res.data
       })
-
-
-
     })
   },
   provinceshow: function (e) {
@@ -465,10 +423,8 @@ Page({
       }
 
       // that.setData({
-
       //   zzlist: res.data.content
       // })
-
 
     })
 
@@ -488,18 +444,18 @@ Page({
     })
   },
   ptitemlist: function () { //配套分类查询
-    console.log('打印数据');
+    
     var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
-        console.log('打印数据1');
+        
         var val = {
           gymId: 1,
           itemNo: 'SI-GOODS'
         }
         $.Requests(api.ptitemlist.url, val).then((res) => {
-          console.log('打印数据2');
+          
           that.setData({
             ptitemlist: res.data,
             ptitemlistid: res.data[0].id
@@ -509,12 +465,12 @@ Page({
           }
           $.Requests(api.categorylist.url, val).then((res) => {
             //配套第一分类商品查询
-            console.log('打印数据3');
+            
             let data = res.data.content
             wx.getStorage({
               key: 'vip',
               success: function (res) {
-                console.log('打印数据4');
+                
                 data.forEach((item, index) => {
                   if (item.goods.length > 0) {
                     item.goods.map(item => {
@@ -530,7 +486,7 @@ Page({
                   classifyClick: data
                 })
 
-                console.log(that.data.classifyClick, '数据');
+                
               },
               fail: function () {
                 // fail
@@ -1151,19 +1107,24 @@ Page({
       tapindex: 1,
       type: 1
     });
+    this.classification();
   },
   toBePaid: function () { //课程服务
     this.setData({
       tapindex: 2,
       type: 2
-
     });
+    this.league_schedulelist(); //课程服务团课服务查询列表
+    this.hwleague_schedulelist(); //课程服务团课服务查询列表
+    this.jkleague_schedulelist(); //课程服务团课服务查询列表
+    this.coach_schedulelist(); //课程服务私课服务查询列表
   },
   receiptOfGoods: function () { //配套服务
     this.setData({
       tapindex: 3,
       type: 3
     });
+    this.ptitemlist()
   },
 
   classifyClick: function (e) { //配套服务子分类产品查询
