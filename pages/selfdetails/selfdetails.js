@@ -14,6 +14,8 @@ Page({
     couponlist: '',
     hidden:2,
     sta: '',
+    coachId: '',
+    orderNo: '',
     qlid: '',
     jindu:0,
     vip: '',
@@ -36,6 +38,7 @@ Page({
     coachId: "",
     memberFitnessId: "",
     shopid: "",
+    memberCourseId: "",
     gymdetails:"",
     itemno: "",
     formatDate:"",
@@ -56,7 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
+     console.log("options",options)
 
     var that = this;
     that.member();
@@ -118,7 +121,7 @@ Page({
         }
         
          else if (options.type == 2 && options.sta != 1){
-      
+          that.tkshoptedails(options);
           that.league_schedule();
           
         } else if (options.sta == 1 && options.type == 2  ){
@@ -311,12 +314,16 @@ Page({
         }
     
         $.Requests(api.member_course.url, val).then((res) => {
-
-
+          console.log("res", val)
+console.log("res",res)
                     
           if (res.data != '') {
             that.setData({
-              appointment: true
+              appointment: true,
+              coachId: res.data[0].coachId,
+              orderNo: res.data[0].orderNo,
+              memberCourseId: res.data[0].id,
+              
             })
           } else {
             that.setData({
@@ -347,7 +354,8 @@ Page({
           memberId: res.data.memberId,
         }
         $.Requests(api.member_fitness.url, val).then((res) => {
-          
+          console.log("球场",res)
+          console.log("qiuchang",res)
           
           
           if(res.data != ''){
@@ -355,6 +363,7 @@ Page({
                   appointment:true,
                   memberFitnessId: res.data[0].id,
                   orderNo: res.data[0].orderNo,
+              
                 })
           }else{
             that.setData({
@@ -414,10 +423,16 @@ Page({
 
         url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
       })
-    } else if (that.data.optionstype ==2){
-
-
+    } else if (that.data.optionstype ==2 && that.data.sta == 1){
+    
+      wx.navigateTo({
+        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
+      })
       
+    } else if (that.data.optionstype == 2 && that.data.sta != 1){
+      wx.navigateTo({
+        url: '../confirmationOrder/confirmationOrder?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&coachcourseid=" + that.data.coachCourseId + "&optionstype=" + that.data.optionstype,
+      })
     }
      
 

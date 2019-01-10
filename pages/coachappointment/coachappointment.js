@@ -12,7 +12,7 @@ Page({
       memberCourseId: '',
       memberId: '',
       gymId: '',
-      
+      coachcourseid: "",
       coachId: '',
       bookingDate: '',
       bookingTime: '',
@@ -32,6 +32,7 @@ Page({
       sjdata: '',
       memberCourseId: 0,
       memberId: 0,
+     
       memberName: "string",
       mobile: "string",
       numb: 0,
@@ -143,7 +144,8 @@ Page({
       success: function (res) {
         that.setData({
           gymId: res.data.gymId,
-          orderNo: options.orderNo
+          orderNo: options.orderNo,
+          coachcourseid: options.coachcourseid
         })
         wx.getStorage({
           key: 'userinfo',
@@ -152,23 +154,34 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
-            
-            let data = JSON.parse(options.data)
-            
-            let { memberCourseId, scheduleDate } = data
 
-            that.setData({
-              sta: options.sta,
-              fromData: {
-                memberCourseId,
-                bookingDate: scheduleDate,
-               
-                numb: 1,
-                tk_id: options.tk_id,
-                memberId: that.data.memberId,
-                gymId: that.data.gymId,
-              }
-            })
+            console.log("options", options)
+            if (options.ifsj != 1){
+              let data = JSON.parse(options.data)
+              let { memberCourseId, scheduleDate } = data
+
+
+
+              that.setData({
+                sta: options.sta,
+                fromData: {
+                  memberCourseId,
+                  bookingDate: scheduleDate,
+
+                  numb: 1,
+                  tk_id: options.tk_id || options.coachcourseid,
+                  memberId: that.data.memberId,
+                  gymId: that.data.gymId,
+                }
+              })
+            }else{
+              that.setData({
+                memberCourseId: options.memberCourseId,
+                tk_id: options.tk_id || options.coachcourseid,
+              })
+            }
+      
+            
             that.coach_appointment()
           }
         })
@@ -302,12 +315,14 @@ Page({
 
 
   toNext: function () {
-
-    var that =this;
-    let data = JSON.stringify(this.data.fromData)
-    wx.navigateTo({
-      url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + that.data.sta + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext
+ 
+      var that = this;
+      let data = JSON.stringify(this.data.fromData)
+      wx.navigateTo({
+        url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
     }) 
+
+ 
   }, 
   /**
    * 生命周期函数--监听页面显示
@@ -336,7 +351,7 @@ Page({
     coachId: that.data.coachId,
     appointmentDate: formatDate,
     gymId: that.data.gymId,
-    memberCourseId: that.data.fromData.memberCourseId
+    memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
   }
     $.Requests(api.coach_appointment.url, val).then((res) => {
 

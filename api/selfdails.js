@@ -8,7 +8,7 @@ module.exports = {
     url: cf.config.configUrl + 'coach_appointment/add',
   },
   gymdetails: { //门店订单
-    url: cf.config.configUrl + '/gym_fitness/find',
+    url: cf.config.configUrl + 'gym_fitness/find',
     get: {
      id:''
     }

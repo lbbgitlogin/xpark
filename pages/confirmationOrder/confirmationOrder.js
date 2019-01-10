@@ -53,17 +53,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    
-    
+  onLoad: function (options) {
+    console.log("options", options)
+
     var that = this;
+
     if (options.orderType == 2) {
       that.setData({
         formdata: options.data,
         orderType: options.orderType,
+
         scheduleDate: JSON.parse(options.data).bookingDate,
         tk_id: JSON.parse(options.data).tk_id,
-       
+
         sta: options.sta,
         bookingTime: options.bookingTime,
       })
@@ -90,7 +92,7 @@ Page({
 
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
@@ -105,7 +107,7 @@ Page({
         })
         wx.getStorage({
           key: 'gymId',
-          success: function(res) {
+          success: function (res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id,
@@ -117,11 +119,21 @@ Page({
               groundId: options.groundId,
             })
             if (options.optionstype == 2) {
+              that.setData({
+                tk_id: options.coachcourseid
+              })
               that.surebuy()
             } else if (options.orderType == 2) {
+              let { tk_id, coachId, memberCourseId } = options
+              that.setData({
+                tk_id: tk_id,
+                coachId: coachId,
+                memberCourseId: memberCourseId
+              })
               that.coach_course()
 
             } else {
+
               that.gymdetails();
             }
 
@@ -132,16 +144,16 @@ Page({
 
       },
 
-      fail: function(res) {
+      fail: function (res) {
         $.alert("请先登录")
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.navigateTo({
             url: '../land/land',
           })
 
         }, 2000) //延迟时间 这里是1秒
-        
+
       },
     })
 
@@ -161,30 +173,32 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
-  coach_course: function() { //私课详情
+  coach_course: function () { //私课详情
     var that = this;
     var val = {
       schduleDate: that.data.formatDate,
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
+      console.log("opt私教预约ions",res)
+      console.log("私教预约", that.data.tk_id)
+      console.log("私教预约",val)
+
       that.setData({
         skgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain
       })
     })
   },
-  surebuy: function() {
+  surebuy: function () {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val, val).then((res) => {
-      
-      
+
+
       var now = new Date();
       var year = now.getFullYear();
       var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -201,12 +215,12 @@ Page({
       })
     })
   },
-  textareavalue: function(e) { //输入手机号
+  textareavalue: function (e) { //输入手机号
     this.setData({
       textareavalue: e.detail.value
     });
   },
-  gymdetails: function() {
+  gymdetails: function () {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -222,8 +236,8 @@ Page({
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      
-      
+
+
       that.setData({
         gymdetails: res.data,
         areaId: res.data.areaId,
@@ -242,7 +256,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
   // formSubmit:function(){
@@ -255,11 +269,15 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
-  submitorder: function() {
-
+  submitorder: function () {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
+    var formatDate = year + '-' + month + '-' + day;
 
     var that = this;
     let Formdata = this.data.formdata
@@ -268,22 +286,30 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      
-
-      
+      // console.log(Formdata)
+      var valteo = {
+        coachId: that.data.coachId,
+        coachcourseid: that.data.tk_id,
+        memberCourseId: that.data.memberCourseId,
+        gymId: 1,
+        bookingDate: formatDate,
+        memberId: that.data.memberId,
+      }
 
       let val1 = {
         remark: that.data.textareavalue,
         bookingTime: that.data.bookingTime + ':00'
       }
-      let data = { ...Formdata,
-        ...val1
+      let data = {
+        ...Formdata,
+        ...val1,
+        ...valteo
       }
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-        
-        
+
+
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.price,
@@ -307,8 +333,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-        
-        
+
+
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -318,8 +344,8 @@ Page({
         }
 
 
-        
-        
+
+
         that.setData({
           yuenum: res.data
         })
@@ -344,8 +370,9 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            
-            
+            console.log("res", res)
+            console.log("res", val)
+
             if (res.status == 0) {
               // wx.navigateTo({
               //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
@@ -362,8 +389,8 @@ Page({
             }
 
 
-            
-            
+
+
             that.setData({
               yuenum: res.data
             })
@@ -371,8 +398,8 @@ Page({
           })
         }
       })
-    
-      
+
+
 
 
 
@@ -383,28 +410,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
