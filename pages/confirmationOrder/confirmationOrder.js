@@ -345,7 +345,7 @@ Page({
 
 
     } else {
-      debugger
+     
       wx.getStorage({
         key: 'groundName',
         success: function (res) {
