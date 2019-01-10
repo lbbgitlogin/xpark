@@ -6,7 +6,7 @@
 
 感谢您的购买，至“门店订单”查看“订单详情”</view>
 <view bindtap='my_appointment' class='but_succell bj_color'>
-我的预约
+ 立即预约({{timeshow}})
 </view>
 <view bindtap='backhome' style='color:#E27D00' class='but_succell'>
 返回首页

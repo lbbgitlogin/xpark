@@ -376,7 +376,7 @@ background-color:#fff;
 } */
 
 .scroll-view_H {
-  box-shadow: 0px 4rpx 5rpx 1rpx #24272D;
+  box-shadow: 0px 6rpx 12rpx 1rpx #24272D;
   display: flex;
   white-space: nowrap;
   height: 80rpx;

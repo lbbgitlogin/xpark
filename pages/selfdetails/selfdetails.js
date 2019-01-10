@@ -212,7 +212,7 @@ Page({
     }
     
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-        
+        console.log("tuanke",res)
       
       that.setData({
         tkgymdetails: res.data,
@@ -228,10 +228,26 @@ Page({
    
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
          
-      
+        console.log("resss",res)
+      let { courseName, gymName, address, price, appointmentNumb, id }=res.data;
+      let {coachName} = res.data.coach;
+      let {icon,introduce,useNotes,contain} = res.data.course;
+      console.log("introduce", introduce.length)
+     
       that.setData({
-        tkgymdetails: res.data,
-        jindu: res.data.appointmentNumb / res.data.course.contain
+        courseName: courseName,
+        appointmentNumb: appointmentNumb,
+        gymName: gymName,
+        address: address,
+        price: price,
+        appointmentNumb: appointmentNumb,
+        id: id,
+        contain: contain,
+        coachName: coachName,
+        icon: icon,
+        introduce: introduce,
+        useNotes: useNotes,
+   
       })
     })
   },
@@ -395,7 +411,7 @@ Page({
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      
+        console.log("res",res)
       
       that.setData({
         gymdetails:res.data,

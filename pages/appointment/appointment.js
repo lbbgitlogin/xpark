@@ -66,7 +66,7 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
-
+   console.log("res",res)
       var that = this;
       if (res.data == null) {
         that.setData({

@@ -870,6 +870,7 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: function (res) {
+        console.log(typeof res.data.memberId)
         var val = {
           memberId: res.data.memberId,
 

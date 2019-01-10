@@ -27,7 +27,7 @@
     </view>
     <view style="justify-content: flex-end;">
       <view class='third_firstimg'>
-        <image data-phone="{{mobile}}" catchtap="call" class='third_firstimg' src='../../img/phone.png'></image>
+        <image data-phone=" 021-3381 1039" catchtap="call" class='third_firstimg' src='../../img/phone.png'></image>
       </view>
 
     </view>

@@ -5,69 +5,91 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loadngtime: "",
+    timeshow: 3
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    var that = this;
+
     if (options.sta == 1) {
-   
-       var time=setTimeout(function() {
-        let {
-          scheduleDate,
-          memberCourseId
-        } = options
+      that.setData({
+      loadngtime: setInterval(function() {
+        if (that.data.timeshow > 0) {
+          that.setData({
+            timeshow: that.data.timeshow - 1
+          })
+          if (that.data.timeshow == 0) {
+            let {
+              scheduleDate,
+              memberCourseId
+            } = options
 
-        let data = JSON.stringify({
-          scheduleDate,
-          memberCourseId
-        })
-        wx.navigateTo({
-          url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo
-          // url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta ,
-        })
-
-      }, 3000)
-
-    } else if (options.shoptype == 3) {
-
-    } else if (options.cardnum == 1){
-      var time =setTimeout(function () {
-
-        wx.switchTab({
-
-          url: '../main/main' ,
-          success: function (e) {
-            var page = getCurrentPages().pop();
-            if (page == undefined || page == null) return;
-            page.onLoad();
+            let data = JSON.stringify({
+              scheduleDate,
+              memberCourseId
+            })
+            wx.navigateTo({
+              url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo
+            })
+            clearInterval(that.data.loadngtime)
           }
-        })
+        }
 
-      }, 3000)
-
-    } else if (options.itemNo == "SI-FIT"){
-
+      }, 1000)
+      })
     }
-    
-     else {
-      var time =setTimeout(function() {
+    else if (options.shoptype == 3) {
 
-        wx.navigateTo({
+    } else if (options.cardnum == 1) {
+      that.setData({
+      loadngtime: setInterval(function() {
+        if (that.data.timeshow > 0) {
+          that.setData({
+            timeshow: that.data.timeshow - 1
+          })
+          if (that.data.timeshow == 0) {
+            wx.switchTab({
 
-          url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId ,
-        })
+              url: '../main/main',
+              success: function(e) {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+                page.onLoad();
+              }
+            })
+            clearInterval(that.data.loadngtime)
+          }
+        }
 
-      }, 3000)
-
-
+      }, 1000)
+      })
     }
+    else if (options.itemNo == "SI-FIT") {
 
+    } else {
+      that.setData({
+      loadngtime: setInterval(function() {
+        if (that.data.timeshow > 0) {
+          that.setData({
+            timeshow: that.data.timeshow - 1
+          })
+          if (that.data.timeshow == 0) {
+            wx.navigateTo({
+
+              url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId,
+            })
+            clearInterval(that.data.loadngtime)
+          }
+        }
+
+      }, 1000)
+      })
+    }
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -90,6 +112,8 @@ Page({
     wx.switchTab({
       url: '../index/index',
     })
+    clearInterval(this.data.loadngtime)
+
   },
   /**
    * 生命周期函数--监听页面隐藏
