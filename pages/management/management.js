@@ -80,6 +80,7 @@ Page({
        })
     })
   },
+  // aaa
   qxorder: function (e) {
     console.log("取消订单",e)
     var that = this;
