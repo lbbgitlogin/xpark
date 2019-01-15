@@ -23,7 +23,7 @@
 }
 
 .bj_coupon {
-  padding: 0 28rpx;
+  padding: 0 24rpx;
   box-sizing: border-box;
   width: 694rpx;
   color: #fff;

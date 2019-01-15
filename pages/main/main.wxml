@@ -1,4 +1,4 @@
-  <view class='main_bj' style='{{membershow?"height:184rpx":"height:230rpx"}}'>
+  <view class='main_bj' style='height:230rpx'>
   
 
   <view class='appr_name' bindtap='myinformation'>
@@ -9,27 +9,28 @@
       <open-data wx:if="{{!membershow}}" type="userNickName"></open-data>
        <view wx:if="{{vip == 1&&membershow}}">X-PARK至尊卡</view>
        <view wx:if="{{vip == 2&&membershow}}">X-PARK尊享卡</view>
-       <view style="font-size: 25rpx;" wx:if="{{membershow}}">到期日期：{{viptime}}</view>
+     
     </view>
       <view  class=''>
           <image class='icon_zb' src='../../img/right_zb.png'></image>
         </view>
   </view>
-  <view class='bj_coupon' wx:if="{{!membershow}}">
-       <view style='margin-right:24rpx'>
+  <view class='bj_coupon'>
+       <view  wx:if="{{!membershow}}" style='margin-right:24rpx'>
        开通X-PARK运动专项特权
        </view>
-       <view bindtap='datails' class='show_wz' style='flex:1;'>
+       <view  wx:if="{{!membershow}}" bindtap='datails' class='show_wz' style='flex:1;'>
        查看特权
        </view>
-       <view  bindtap='datails' class='oprncard_btn'>
+       <view  wx:if="{{!membershow}}"  bindtap='datails' class='oprncard_btn'>
        开通
        </view>
+         <view style="font-size: 25rpx;" wx:if="{{membershow}}">会员到期时间：{{viptime}}</view>
   </view>
     
   </view>
 
-    <view class='infortmation_choose' style='{{membershow?"padding:0rpx 28rpx":"padding:50rpx 28rpx"}}'>
+    <view class='infortmation_choose' style='padding:50rpx 28rpx'>
     <navigator class='true_name'  hover-class='none' url="../management/management">
     <image class='guidbj' src='../../img/orderbj.png'></image>
       <view class='true_xm'>门店订单</view>

@@ -95,7 +95,7 @@ padding-bottom:24rpx;
   background: #202428
 }
 .datails_titleif{
-  font-size: 32rpx;
+  font-size: 26rpx;
   color: #CCCCCC;
 }
 .division{

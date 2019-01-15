@@ -27,7 +27,7 @@
     </view>
 
   </view>
-  <view style='background:#282B30' wx:if="{{type == 1  }}">
+  <view style='background:#202428' wx:if="{{type == 1  }}">
     <view class='fuwulist' wx:for='{{appointment}}' wx:key='id'>
       <view class='fuwulist_box'>
         <view class='fuwulist_box_heand'>
@@ -48,8 +48,23 @@
 
 
     </view>
-    <view class='tiao'>
+     <view wx:if="{{type == 1}}" class="m-loading-box" style="background: #282B30;">
+      <block wx:if="{{flag}}">
+        <view class="u-loadmore">
+          <lael class="u-loading"></lael>
+          <text class="u-loadmore-tips" style='color:#ccc'>正在加载</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="u-loadmore u-loadmore-line">
+          <text class="u-loadmore-tips">没有更多了</text>
+        </view>
+      </block>
     </view>
+
+
+
+
 
   </view>
 

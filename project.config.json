@@ -5,11 +5,12 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.3",
-	"appid": "wx08d766c6816e4873",
+	"appid": "wx77153765d45956c1",
 	"projectname": "xpark",
 	"condition": {
 		"search": {

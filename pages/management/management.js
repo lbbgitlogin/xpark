@@ -10,9 +10,11 @@ Page({
    */
   data: {
     tapindex: 1,
-    type: 1,
+    type: 2,
+    member_orderlist:[],
     memberId:"",
-    member_orderlist:""
+    page:1,
+    flag:true
   },
 
   /**
@@ -43,41 +45,100 @@ Page({
     })
    
   },
+  onReachBottom: function () { //滑动的底部加载下一页
+  
+   
+      var thisobj = this;
+      if(thisobj.data.flag){
+
+      
+      thisobj.setData({
+        page: thisobj.data.page + 1
+      })
+    if (thisobj.data.tapindex == 1){
+      thisobj.allorder()
+    }
+    if (thisobj.data.tapindex == 2) {
+      thisobj.tobeorder()
+    }
+    if (thisobj.data.tapindex == 3) {
+      thisobj.receorder()
+    }
+    if (thisobj.data.tapindex == 4) {
+      thisobj.closeorder()
+    }
+      }
+    
+    
+  },
   member_orderlist: function () { //门店订单列表全部
   var that = this;
     var val = {
       memberId: that.data.memberId,
       orderState: '',
-    
+      page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
+    console.log("fenye ",val)
 
-      if (res.data.content == '') {
-        this.setData({
+      console.log("fenye ", res)
+      if (!$.isNull(res.data.content) && res.status == 0){
+        that.setData({
+          type:1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      }else{
+        that.setData({
           type: 2
         })
       }
-      
-      
-       that.setData({
-         member_orderlist: res.data.content
-        //  .map(item => {
-        //    let datetiem = item.createTime;
-        //    
-        //    const date = new Date(datetiem);
-        //    
-        //    const year = date.getFullYear();
-        //    
-        //    const month = date.getMonth() + 1;
-        //    const day = date.getDate();
-        //    const hours = date.getHours();
-        //    const minutes = date.getMinutes();
-        //    const seccond = date.getSeconds();
-        //    item.createTime = year + "年" + month + "月" + day + "日 " + hours + "时" + minutes + "分" + seccond + "秒"
-        //    return item
-        //  })
-        
-       })
+     
+    })
+  },
+  allorder:function(){
+    var that =this;
+    var val = {
+      memberId: that.data.memberId,
+      orderState: '',
+      page: that.data.page
+    }
+    $.Requests(api.member_orderlist.url, val).then((res) => {
+      console.log("fenye ", val)
+
+      console.log("fenye ", res)
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
+          type: 2
+        })
+      }
+
     })
   },
   // aaa
@@ -113,7 +174,9 @@ Page({
   var that = this;
     this.setData({
       tapindex: 1,
-      type: 1
+      type: 1,
+      page:1,
+      member_orderlist: []
     });
     that.member_orderlist()
   },
@@ -121,112 +184,216 @@ Page({
   var that =this;
     that.setData({
       tapindex: 2,
-    
-
+      member_orderlist: [],
+      page:1
     });
     var val = {
       memberId: that.data.memberId,
       orderState: '0',
-   
+      page: 1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      if (res.data.content == ''){
-        this.setData({
-          type: 2
+      console.log("dai支付订单",res)
+      console.log("dai支付订单", val)
+     
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
+          type: 2,
+
         })
       }
-      
-      
-      that.setData({
-        member_orderlist: res.data.content
-        // .map(item => {
-        //   let datetiem = item.createTime;
-        //   const date = new Date(datetiem);
-        //   const year = date.getFullYear();
-        //   const month = date.getMonth() + 1;
-        //   const day = date.getDate();
-        //   const hours = date.getHours();
-        //   const minutes = date.getMinutes();
-        //   const seccond = date.getSeconds();
-        //   item.createTime = year + "年" + month + "月" + day + "日 " + hours + "时" + minutes + "分" + seccond + "秒"
-        //   return item
-        // })
+    })
+  },
+  tobeorder:function(){
+  var that =this;
+    var val = {
+      memberId: that.data.memberId,
+      orderState: '0',
+      page: that.data.page
+    }
+    $.Requests(api.member_orderlist.url, val).then((res) => {
+      console.log("dai支付订单", res)
+      console.log("dai支付订单", val)
+    
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
 
-      })
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
+          type: 2,
+
+        })
+      }
     })
   },
   receiptOfGoods: function (e) { //已支付
   var that = this;
     that.setData({
+      member_orderlist: [],
       tapindex: 3,
-      type: 3
+      type: 2,
+      page:1
     });
     var val = {
       memberId: that.data.memberId,
       orderState: '1',
-
+      page:1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      if (res.data.content == '') {
-        this.setData({
+      console.log("已支付",res)
+      console.log("已支付", val)
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
           type: 2
         })
       }
-      
-      
+    })
+  },
 
-      that.setData({
-        member_orderlist: res.data.content
-        // .map(item => {
-        //   let datetiem = item.createTime;
-        //   const date = new Date(datetiem);
-        //   const year = date.getFullYear();
-        //   const month = date.getMonth() + 1;
-        //   const day = date.getDate();
-        //   const hours = date.getHours();
-        //   const minutes = date.getMinutes();
-        //   const seccond = date.getSeconds();
-        //   item.createTime = year + "年" + month + "月" + day + "日 " + hours + "时" + minutes + "分" + seccond + "秒"
-        //   return item
-        // })
+  receorder:function(){
+    var that =this;
+    var val = {
+      memberId: that.data.memberId,
+      orderState: '1',
+      page: that.data.page
+    }
+    $.Requests(api.member_orderlist.url, val).then((res) => {
+      console.log("已支付",res)
+      console.log("已支付", val)
+      if (!$.isNull(res.data.content) && res.status == 0) {
 
-      })
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag:false ,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
+          type: 2
+        })
+      }
     })
   },
   closed: function (e) { //已关闭
   var that =this;
     that.setData({
+      member_orderlist: [],
       tapindex: 4,
-      type: 4    });
+      page:1,
+      type: 1    });
     var val = {
       memberId: that.data.memberId,
       orderState: '3',
-
+      page:1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      if (res.data.content == '') {
-        this.setData({
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
+
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
           type: 2
         })
       }
-      
-      
-      that.setData({
-        member_orderlist: res.data.content
-        // .map(item => {
-        //   let datetiem = item.createTime;
-        //   const date = new Date(datetiem);
-        //   const year = date.getFullYear();
-        //   const month = date.getMonth() + 1;
-        //   const day = date.getDate();
-        //   const hours = date.getHours();
-        //   const minutes = date.getMinutes();
-        //   const seccond = date.getSeconds();
-        //   item.createTime = year + "年" + month + "月" + day + "日 " + hours + "时" + minutes + "分" + seccond + "秒"
-        //   return item
-        // })
+    })
+  },
+  closeorder:function(){
+    var that = this;
+    var val = {
+      memberId: that.data.memberId,
+      orderState: '3',
+      page: that.data.page
+    }
+    $.Requests(api.member_orderlist.url, val).then((res) => {
+      if (!$.isNull(res.data.content) && res.status == 0) {
+        that.setData({
+          type: 1
+        })
+        if (res.data.content.length < 20) {
+          that.setData({
+            flag: false,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        } else {
 
-      })
+          that.setData({
+            flag: true,
+            member_orderlist: that.data.member_orderlist.concat(res.data.content)
+          })
+        }
+      } else {
+        that.setData({
+          type: 2
+        })
+      }
     })
   },
   /**
@@ -265,16 +432,10 @@ Page({
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
     
+
   }
 })

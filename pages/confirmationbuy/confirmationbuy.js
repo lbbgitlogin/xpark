@@ -353,7 +353,7 @@ Page({
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: `../confirmationOrder/confirmationOrder?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}`
+              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}`
             })
           }
 
@@ -472,7 +472,7 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-        
+          console.log("场地服务",res)
           
           if (res.data.success && that.data.itemNo != "SI-BALL") {
          

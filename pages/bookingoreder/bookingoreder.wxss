@@ -131,11 +131,11 @@ height:333rpx;
   width: 92%;
   margin: 36rpx auto 80rpx auto;
 height: 98rpx;
-background: #202428FF;
+background: #202428;
 border-radius: 8rpx;
 font-size: 36rpx;
-color: #E27D00FF;
+color: #E27D00;
 text-align: center;
 line-height: 98rpx;
-border:1rpx solid #E27D00FF
+border:1rpx solid #E27D00
 }

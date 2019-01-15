@@ -6,13 +6,15 @@ Page({
    */
   data: {
     loadngtime: "",
-    timeshow: 3
+    timeshow: 3,
+    itemno:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log("支付跳转",options)
     var that = this;
 
     if (options.sta == 1) {
@@ -33,7 +35,7 @@ Page({
               memberCourseId
             })
             wx.navigateTo({
-              url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo
+              url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo+ "&ifsj=" + 2
             })
             clearInterval(that.data.loadngtime)
           }
@@ -44,7 +46,26 @@ Page({
     }
     else if (options.shoptype == 3) {
 
-    } else if (options.cardnum == 1) {
+    } else if (options.optionstype == 2 ){
+      that.setData({
+        loadngtime: setInterval(function () {
+          if (that.data.timeshow > 0) {
+            that.setData({
+              timeshow: that.data.timeshow - 1
+            })
+            if (that.data.timeshow == 0) {
+      wx.navigateTo({
+        url: `../confirmationOrder/confirmationOrder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&price=${options.price}`
+      })
+          clearInterval(that.data.loadngtime)
+            }
+          }
+        }, 1000)
+      })
+    }
+    
+    
+    else if (options.cardnum == 1) {
       that.setData({
       loadngtime: setInterval(function() {
         if (that.data.timeshow > 0) {
@@ -69,7 +90,10 @@ Page({
       })
     }
     else if (options.itemNo == "SI-FIT") {
-
+     
+          that.setData({
+            itemno:0
+          })
     } else {
       that.setData({
       loadngtime: setInterval(function() {

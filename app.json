@@ -5,6 +5,7 @@
     "pages/coachappointment/coachappointment",
     "pages/ballappointment/ballappointment",
     "pages/logs/logs",
+    "pages/sjmationorder/sjmationorder",
     "pages/interests/interests",
     "pages/guide/guide",
     "pages/main/main",

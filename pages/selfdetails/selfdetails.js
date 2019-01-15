@@ -60,7 +60,7 @@ Page({
    */
   onLoad: function (options) {
      
-
+console.log("options",options)
     var that = this;
     that.member();
     var now = new Date();
@@ -169,6 +169,7 @@ Page({
       gymId: that.data.gymId,
     }
     $.Requests(apicou.couponlist.url, val).then((res) => {
+      console.log("优惠券",res)
          that.setData({
            couponlength: res.data.length,
      couponlist:res.data
@@ -212,8 +213,8 @@ Page({
     }
     
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-        console.log("tuanke",res)
-      
+        console.log("sike",res)
+      console.log("sike", that.data.tk_id)
       that.setData({
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
@@ -228,7 +229,7 @@ Page({
    
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
          
-        console.log("resss",res)
+        console.log("团课详情页",res)
       let { courseName, gymName, address, price, appointmentNumb, id }=res.data;
       let {coachName} = res.data.coach;
       let {icon,introduce,useNotes,contain} = res.data.course;
@@ -269,40 +270,30 @@ Page({
 
   },
   mapNavigation: function (e) {
-   
-    
-    var addr = e.target.dataset.addr;
-    var name = e.target.dataset.name;
+    var addr = e.currentTarget.dataset.addr;
+    var name = e.currentTarget.dataset.name;
+    var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
     var that = this;
-    // 使用 JavaScript SDK 获取目的地经纬度
-    // 实例化API核心类
     qqmapsdk = new QQMapWX({
-      key: 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ'
+      key: key // 必填
     });
-    qqmapsdk.search({
-      keyword: addr,
-      success: function (res) {
-        
-        var local = res.result.location;
-        that.setData({
-          latitude: local.lat,
-          longitude: local.lng
-        })
-      }
-    })
-    // 使用微信内置地图查看位置
     wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      type: 'gcj02',
       success: function (res) {
-        
-        wx.openLocation({
+        console.log(res.latitude);
+        console.log(res.longitude);
+        that.setData({
           latitude: res.latitude,
-          longitude: res.longitude,
-          scale: 18,//缩放比例范围5~18
-          name: name,
-          address: addr, //打开后显示的地址名称
+          longitude: res.longitude
         })
-      }
+        wx.openLocation({
+          latitude: that.data.latitude,
+          longitude: that.data.longitude,
+          scale: 18, //缩放比例范围5~18
+          name: name, //打开后显示的地址名称
+          address: addr
+        })
+      },
     })
   },
   tkshoptedails: function (options) {//团课或者私教判断是否能购买
@@ -330,7 +321,8 @@ Page({
         }
     
         $.Requests(api.member_course.url, val).then((res) => {
-          
+          console.log("私/团课或者私教判断是否能购买课",val)
+          console.log("私/团课或者私教判断是否能购买", res)
 
                     
           if (res.data != '') {

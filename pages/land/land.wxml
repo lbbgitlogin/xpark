@@ -18,6 +18,6 @@
     </view>
 
     <!-- <view bindtap='next_pag' class='buttonnext'>下一步</view> -->
-    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='buttonnext bj_color' formType="submit">登陆/注册</button>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='buttonnext bj_color' formType="submit">登录/注册</button>
  
 </view>

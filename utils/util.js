@@ -104,7 +104,8 @@ function Requests_json(url, data) { //接口方法为post时调用
       data: data,
       method: "POST",
       header: {
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8'
       },
       success: function (res) {
         hideloading();

@@ -101,7 +101,11 @@ Page({
   onReady: function () {
     
   },
- 
+  call: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone,
+    })
+  },
 
   draw() {
     var that = this;

@@ -1,4 +1,5 @@
 //app.js
+const mtjwxsdk = require('utils/mtj-wx-sdk.js');
 var $ = require('utils/util.js');
 // 接口文件js文件名
 var api = require('api/indexAPI.js');//登陆接口js文件
@@ -33,17 +34,13 @@ App({
                     code: datainfo.code,
 
                   }
-                  wx.request({
-                    url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx08d766c6816e4873&secret=f697c5cd29ffd7b21f7ad5afa4d7fee9&js_code=' + thatdata.code + '&grant_type=authorization_code',
-                    data: {},
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    success: function (res) {
-                    
-                      that.globalData.wxopenid = res.data.openid;
-                    }
+
+                  $.Requests(api.openid.url, thatdata).then((res) => {
+                    console.log("openid1", res)
+
+                 
                   })
+                  
                 }
               });
             }
@@ -51,21 +48,15 @@ App({
         } else {
           wx.login({
             success: function (datainfo) {
-              
+              console.log("code", datainfo)
               var thatdata = {
                 code: datainfo.code,
 
               }
-              wx.request({
-                url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx08d766c6816e4873&secret=f697c5cd29ffd7b21f7ad5afa4d7fee9&js_code=' + thatdata.code + '&grant_type=authorization_code',
-                data: {},
-                header: {
-                  'content-type': 'application/json'
-                },
-                success: function (res) {
-                  
-                  that.globalData.wxopenid = res.data.openid;
-                }
+              $.Requests(api.openid.url, thatdata).then((res) => {
+                console.log("openid1", res)
+
+              
               })
             }
           });

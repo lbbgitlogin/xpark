@@ -20,6 +20,7 @@ Page({
       remark: ''
     },
     optionsdata: null,
+    ifsj:"",
     form: {
       bookingDate: "2018-12-28",
       bookingTime: "",
@@ -138,13 +139,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+ console.log("options",options)
     var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
         that.setData({
           gymId: res.data.gymId,
+          ifsj:options.ifsj,
           orderNo: options.orderNo,
           coachcourseid: options.coachcourseid
         })
@@ -155,9 +157,10 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
+           
             if (options.ifsj != 1) {
-              let data = options.data
-              let { memberCourseId, scheduleDate } = data
+              // let data = options.data
+              let { memberCourseId, scheduleDate } = JSON.parse(options.data)
               that.setData({
                 sta: options.sta,
                 fromData: {
@@ -327,8 +330,9 @@ Page({
       $.alert('请选择时间')
       return
     }
+    
     wx.navigateTo({
-      url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
+      url: '../sjmationorder/sjmationorder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.coachId + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId+"&isfj="+that.data.isfj
     })
 
 
@@ -364,8 +368,8 @@ Page({
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
 
-
-
+console.log("res.",val)
+      console.log("res.", res)
       that.setData({
         sjdata: res.data,
         // gymName: res.data.groundAppointments[0].gymName,

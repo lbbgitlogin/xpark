@@ -30,6 +30,7 @@ Page({
     citylist: "",
     member_fitness: "",
     shoplist: "",
+    mytime: "",
     provincechoose: "",
     scrootop: "",
     gymName: "",
@@ -510,6 +511,15 @@ Page({
   },
   league_schedulelist: function () { //课程服务团课服务查询列表
     var that = this;
+    var dateTime = new Date();
+    var hourse = dateTime.getHours();  
+    var Minutes = dateTime.getMinutes(); 
+    var Seconds = dateTime.getSeconds(); 
+    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    that.setData({
+      mytime: mytime
+    })
+    console.log("mytime",mytime)
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
@@ -526,8 +536,7 @@ Page({
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
 
-
-
+   console.log("团课",res)
           if (res.data.length != 0) {
 
 
@@ -539,12 +548,18 @@ Page({
                 id: item.course.id,
                 icon: item.course.icon,
                 price: item.price,
+                buyEndTime: item.buyEndTime,
                 zzprice: (item.price * 0.9).toFixed(2),
                 zxprice: (item.price * 0.8).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
               }
+              let d = new Date()
+              let ft1 = d.setHours(item.buyEndTime.split(":")[0], item.buyEndTime.split(":")[1])
+              console.log("ft1",ft1)
+              let ft2 = d.setHours(mytime.split(":")[0], mytime.split(":")[1])
+              console.log("ft2", ft2)
               that.setData({
                 tk_schedulelist: tk_schedulelist
               })
@@ -564,6 +579,14 @@ Page({
   },
   hwleague_schedulelist: function () { //课程服务团课服务查询列表
     var that = this;
+    var dateTime = new Date();
+    var hourse = dateTime.getHours();
+    var Minutes = dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    that.setData({
+      mytime: mytime
+    })
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
@@ -580,7 +603,7 @@ Page({
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
 
-
+     console.log("户外",res)
 
           if (res.data.length != 0) {
 
@@ -593,6 +616,7 @@ Page({
                 id: item.id,
                 icon: item.course.icon,
                 price: item.price,
+                buyEndTime: item.buyEndTime,
                 zzprice: (item.price * 0.9).toFixed(2),
                 zxprice: (item.price * 0.8).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
@@ -618,6 +642,14 @@ Page({
   },
   jkleague_schedulelist: function () { //课程服务团课服务查询列表
     var that = this;
+    var dateTime = new Date();
+    var hourse = dateTime.getHours();
+    var Minutes = dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    that.setData({
+      mytime: mytime
+    })
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
@@ -648,6 +680,7 @@ Page({
 
                 icon: item.course.icon,
                 price: item.price,
+                buyEndTime: item.buyEndTime,
                 zzprice: (item.price * 0.9).toFixed(2),
                 zxprice: (item.price * 0.8).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
@@ -698,6 +731,7 @@ Page({
           arrar[index] = {
             name: item.course.courseName,
             id: item.course.id,
+            buyEndTime: item.buyEndTime,
             icon: item.course.icon,
             price: item.price,
             appointmentNumb: item.appointmentNumb,
@@ -718,6 +752,14 @@ Page({
   },
   hw_schedulelist: function (e) { //点击课程服务团课服务查询列表
     var that = this;
+    var dateTime = new Date();
+    var hourse = dateTime.getHours();
+    var Minutes = dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    that.setData({
+      mytime: mytime
+    })
     var now = new Date();
     var year = now.getFullYear();
 
@@ -745,6 +787,7 @@ Page({
             id: item.id,
             icon: item.course.icon,
             price: item.price,
+            buyEndTime: item.buyEndTime,
             zzprice: (item.price * 0.9).toFixed(2),
             zxprice: (item.price * 0.8).toFixed(2),
             appointmentNumb: item.appointmentNumb,
@@ -765,6 +808,14 @@ Page({
   },
   jk_schedulelist: function (e) { //点击课程服务团课服务查询列表
     var that = this;
+    var dateTime = new Date();
+    var hourse = dateTime.getHours();
+    var Minutes = dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    that.setData({
+      mytime: mytime
+    })
     var now = new Date();
     var year = now.getFullYear();
 
@@ -790,6 +841,7 @@ Page({
           arrar[index] = {
             name: item.course.courseName,
             id: item.id,
+            buyEndTime: item.buyEndTime,
             icon: item.course.icon,
             price: item.price,
             zzprice: (item.price * 0.9).toFixed(2),
@@ -830,8 +882,8 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
-
-
+console.log("sike详情",res)
+          console.log("sike详情", val)
           if (res.data.length != 0) {
 
 
@@ -907,6 +959,8 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.coach_schedulelist.url, val).then((res) => {
+      console.log("点击sijiao ",res)
+      console.log("点击sijiao ", val)
 
 
       if (res.data.length != 0) {
@@ -916,6 +970,7 @@ Page({
           arrar[index] = {
             courseName: item.course.courseName,
             id: item.id,
+            courseId: item.courseId,
             icon: item.course.icon,
             price: item.price,
             zzprice: (item.price * 0.9).toFixed(2),
@@ -990,9 +1045,16 @@ Page({
   tkselfdetails: function (e) {
     var that = this;
 
-
+  
     wx.navigateTo({
       url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate
+    })
+  },
+  skselfdetails: function (e) {
+    var that = this;
+
+    wx.navigateTo({
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.currentTarget.dataset.coachcourseid + "&type=" +  e.currentTarget.dataset.type + "&id=" +  e.currentTarget.dataset.id + "&sta=" +  e.currentTarget.dataset.sta + "&scheduledate=" +  e.currentTarget.dataset.scheduledate
     })
   },
   // 
@@ -1025,29 +1087,23 @@ Page({
     this.queryDomHeight()
 
   },
-  mapNavigation: function (e) {
+  mapNavigationlogo: function (e) {
 
-    var addr = e.target.dataset.addr;
-    var name = e.target.dataset.name;
+    var addr = e.currentTarget.dataset.addr;
+    var name = e.currentTarget.dataset.name;
     var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
     var that = this;
-    wx.request({
-      url: 'https://apis.map.qq.com/ws/geocoder/v1', // 仅为示例，并非真实的接口地址
-      data: {
-        address: '上海市' + '上海市' + addr,
-        key: key,
-
-      },
-
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success(res) {
-
-        var local = res.data.result.location;
+    qqmapsdk = new QQMapWX({
+      key: key // 必填
+    });
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res.latitude);
+        console.log(res.longitude);
         that.setData({
-          latitude: local.lat,
-          longitude: local.lng
+          latitude: res.latitude,
+          longitude: res.longitude
         })
         wx.openLocation({
           latitude: that.data.latitude,
@@ -1056,8 +1112,34 @@ Page({
           name: name, //打开后显示的地址名称
           address: addr
         })
-      }
-
+      },
+    })
+  },
+  mapNavigation: function (e) {
+    var addr = e.currentTarget.dataset.addr;
+    var name = e.currentTarget.dataset.name;
+    var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
+    var that = this;
+    qqmapsdk = new QQMapWX({
+      key: key // 必填
+    });
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res.latitude);
+        console.log(res.longitude);
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        wx.openLocation({
+          latitude: that.data.latitude,
+          longitude: that.data.longitude,
+          scale: 18, //缩放比例范围5~18
+          name: name, //打开后显示的地址名称
+          address: addr
+        })
+      },
     })
   },
   getUserInfo: function (e) {

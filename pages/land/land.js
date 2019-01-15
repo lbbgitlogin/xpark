@@ -186,7 +186,8 @@ Page({
     
     var thisobj = this;
     $.Requests_json(api.login.url, val).then((res) => {
-      
+         console.log("注册",res)
+         console.log("注册",val)
       if (res.data != null) {
         var obj = {
           icon: res.data.icon,

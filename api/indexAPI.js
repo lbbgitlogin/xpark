@@ -87,8 +87,14 @@ module.exports = {
 
     }
   },
-  member: { //教练预约可预约时间
+  member: { //查询会员卡
     url: cf.config.configUrl + 'member/find/member/vip',
+    get: {
+
+    }
+  },
+  openid: { //获取openijd
+    url: cf.config.configUrl + 'change/code/to/openid',
     get: {
 
     }

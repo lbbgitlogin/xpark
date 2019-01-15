@@ -10,7 +10,7 @@
           <view>¥199</view>
         </view>
         <view class='card_interes'>
-          全场7.5折，有效期1年
+          全场8折，有效期1年
         </view>
         <view class='give'>
           到店还可领X-PARK精美大礼包一份
@@ -27,7 +27,7 @@
           <view style='color:#fff'>¥399</view>
         </view>
         <view class='card_interes'>
-          全场8.5折，有效期1年
+          全场9折，有效期1年
         </view>
         <view class='give'>
           到店还可领X-PARK精美大礼包一份
@@ -60,8 +60,8 @@
 </view>
 
 <view class='bottom_box'>
-  <view wx:if="{{activeTab == 1}}" class='left_btn'>实付：¥399</view>
-  <view wx:else class='left_btn'>实付：¥199</view>
+  <view wx:if="{{activeTab == 1}}" class='left_btn'>¥399</view>
+  <view wx:else class='left_btn'>¥199</view>
 
   <view class='right_btn'  data-vip='2'  wx:if="{{activeTab == 1}}" bindtap='opencard'>立即开通</view>
    <view class='right_btn' data-vip='1'  wx:else bindtap='opencard'>立即开通</view>

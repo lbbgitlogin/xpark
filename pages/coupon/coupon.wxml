@@ -4,6 +4,7 @@
   </input>
   <view bindtap='exchange' class='btn_tetx font-colormode'>兑换</view>
 </view>
+<view class='coutiao'></view>
 <view wx:if="{{couponlist.length>0}}" class='coupon_list'>
   已领取{{couponlist.length}}张
 </view>

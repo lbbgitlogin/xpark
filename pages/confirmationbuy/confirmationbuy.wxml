@@ -101,7 +101,7 @@
 
 
      <form  class='buy_right bj_color' bindsubmit="testSubmit" report-submit="true">
-      <button class='buy_right bj_color' formType="submit">购买</button>
+      <button class='buy_right bj_color' formType="submit">去支付</button>
  </form>
     <!-- <view bindtap='buynow' class='buy_right bj_color'>
 购买

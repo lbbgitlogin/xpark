@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.getLocation()
+    this.getLocation()
   },
   getLocation() {
     let that = this
@@ -48,32 +48,38 @@ Page({
   },
   closeloding: function () {
     var that = this;
+    
     that.setData({
       homeAds: null
     })
     wx.switchTab({
       url: '../index/index'
     })
+    clearInterval(that.data.time)
     wx.showTabBar();
   },
   imageLoad: function (e) { //首屏广告图片加载成功做处理
     var that = this;
-    var time = setInterval(function () { //进行倒计时
-      if (that.data.countNum > 0) {
-        that.setData({
-          countNum: that.data.countNum - 1
-        });
-      } else {
-        clearInterval(time);
-        wx.switchTab({
-          url: '../index/index'
-        })
-        // that.setData({
-        //   homeAds: null
-        // });
-        // wx.showTabBar();
-      }
-    }, 1000);
+    that.setData({
+      time: setInterval(function () {
+        if (that.data.countNum > 0) {
+          that.setData({
+            countNum: that.data.countNum - 1
+          });
+        } else {
+          clearInterval(that.data.time);
+          that.setData({
+            homeAds: null
+          })
+          wx.switchTab({
+            url: '../index/index'
+          })
+          wx.showTabBar();
+        }
+      }, 1000)
+
+    })
+     
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -81,6 +87,7 @@ Page({
   onReady: function () {
 
   },
+  
 
   /**
    * 生命周期函数--监听页面显示

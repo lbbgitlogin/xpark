@@ -22,11 +22,11 @@ padding: 0rpx 0 0 0;
 box-sizing: border-box
 }
 .yuyue_address_tateils{
-  color: #666666;
+  color: #ccc;
   font-size: 26rpx;
   display: flex;
   align-items: center;
-  width:96%;
+  width:92%;
 margin:0 auto;
 height:140rpx;
 
@@ -45,6 +45,14 @@ border-radius:4rpx;
 
 
 
+}
+.selfsec_box{
+  width:96%;
+margin:0 auto;
+background:#202428;
+padding:40rpx 20rpx !important;
+box-sizing:border-box;
+border-radius:4rpx;
 }
 .self_name{
   width: 100%;
@@ -164,7 +172,7 @@ line-height:84rpx;
 .introduce_sm{
   margin-top: 24rpx;
   font-size: 26rpx;
-  color: #666
+  color: #ccc
 }
 .introduce_smalltitle{
   color: #E27D00;
@@ -176,7 +184,7 @@ line-height:84rpx;
 .validity{
   margin: 24rpx 0 0 0;
   font-size: 26rpx;
-  color: #666;
+  color: #ccc;
 
 }
 .introduc_dian{
@@ -195,7 +203,7 @@ color:#fff;
 }
 .validity_next{
   font-size:26rpx;
-color:#666;
+color:#ccc;
 
 }
 .list{
@@ -391,18 +399,17 @@ padding-bottom:40rpx;
 }
 .title_shop{
   flex: 1;
-  padding-left:24rpx;
 
 }
 .title_name{
-  color: #000;
+  color: #ccc;
   font-size: 32rpx;
 font-weight:bold;
 margin-bottom:16rpx;
 
 }
 .title_sm{
-  color: #6666;
+  color: #ccc ;
   font-size: 26rpx;
   width:470rpx
 }
@@ -437,7 +444,7 @@ margin-right:36rpx;
   align-items: center;
   font-size: 48rpx;
   padding-bottom: 40rpx;
-  border-bottom: 1rpx solid #F2F2F2;
+  border-bottom: 1rpx solid #3C4248;
 
 
 }

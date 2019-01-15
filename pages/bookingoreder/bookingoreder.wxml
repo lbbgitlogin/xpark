@@ -37,7 +37,7 @@
     <view class='order_smallname'>
        {{gymName}}
     </view>
-    <image class='tv_img' src='../../img/teleph.png'></image>
+    <image  data-phone=" 021-3381 1039" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
   </view>
    <view class='list_booking'>
     <view class='order_name'>
