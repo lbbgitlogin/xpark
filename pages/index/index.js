@@ -927,7 +927,6 @@ console.log("sike详情",res)
                 contain: item.coachCourses[0].course.contain,
                 // scheduleDate: item.coachCourses.scheduleDate
               }
-              debugger
               that.setData({
                 sk_schedulelist: sk_schedulelist
               })

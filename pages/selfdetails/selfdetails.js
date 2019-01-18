@@ -211,7 +211,6 @@ console.log("options",options)
     var val = {
       schduleDate: that.data.scheduleDate,
     }
-    debugger
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
         console.log("sike",res)
       console.log("sike", that.data.tk_id)
