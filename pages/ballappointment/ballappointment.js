@@ -269,6 +269,7 @@ Page({
       groundId: that.data.groundId,
     }
     $.Requests(api.appointment.url, val).then((res) => {
+      console.log("球数据",res)
       let _this = this
 
 

@@ -63,8 +63,9 @@ page {
 }
 
 .active {
-  background: #E27D00;
-  color: #fff;
+background:#202428;
+color:#ccc;
+
 }
 
 .leftBtn {

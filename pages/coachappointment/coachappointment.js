@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    appointmentDate:"",
     fromData: {
       memberCourseId: '',
       memberId: '',
@@ -139,7 +140,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- console.log("options",options)
+ console.log("私教时间选择",options)
     var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -163,6 +164,7 @@ Page({
               let { memberCourseId, scheduleDate } = JSON.parse(options.data)
               that.setData({
                 sta: options.sta,
+                appointmentDate: scheduleDate,
                 fromData: {
                   memberCourseId,
                   bookingDate: scheduleDate,
@@ -270,7 +272,7 @@ Page({
       // let now = 1547186186940
       let time = new Date(`${scheduleDate} ${times}:00`).getTime()
       time < now ? canSelect = false : canSelect = true
-
+     
       group.push({
         time: times,
         falg,
@@ -287,7 +289,7 @@ Page({
 
   },
   add: function (item) {
-
+  console.log("even",item)
 
     const { canSelect, time, index } = item.currentTarget.dataset.item
 
@@ -323,7 +325,7 @@ Page({
 
 
   toNext: function () {
-
+   
     var that = this;
     let data = JSON.stringify(this.data.fromData)
     if (this.data.timenext === '') {
@@ -332,7 +334,7 @@ Page({
     }
     
     wx.navigateTo({
-      url: '../sjmationorder/sjmationorder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.coachId + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId+"&isfj="+that.data.isfj
+      url: '../sjmationorder/sjmationorder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.fromData.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId+"&isfj="+that.data.isfj
     })
 
 
@@ -360,9 +362,10 @@ Page({
     that.setData({
       formatDate: formatDate
     })
+    
     var val = {
       coachId: that.data.coachId,
-      appointmentDate: formatDate,
+      appointmentDate: that.data.fromData.bookingDate,
       gymId: that.data.gymId,
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }

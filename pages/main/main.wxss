@@ -21,7 +21,14 @@
   font-size: 36rpx;
   flex: 1;
 }
+.viplogo{
+  width: 50rpx;
+  height: 42rpx;
+  position: absolute;
+  right:56rpx;
+top:92%;
 
+}
 .bj_coupon {
   padding: 0 24rpx;
   box-sizing: border-box;

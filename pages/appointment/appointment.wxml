@@ -16,15 +16,28 @@
 
 <view class='{{type == 2?"box_background":""}}'>
   <view class="m-navbar">
-    <view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="appointment">
-      未开始
-    </view>
-    <view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="toBePaid">
-      已使用
-    </view>
-    <view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}} " bindtap="receiptOfGoods">
-      已取消
-    </view>
+
+      <form style="flex: 1;" class="" bindsubmit="appointment" report-submit="true">
+      <button  class="butshow sendMsg m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+           未开始
+        </view>
+      </button>
+    </form>
+        <form style="flex: 1;" class="" bindsubmit="toBePaid" report-submit="true">
+      <button  class="butshow sendMsg m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+           已使用
+        </view>
+      </button>
+    </form>
+        <form style="flex: 1;" class="" bindsubmit="receiptOfGoods" report-submit="true">
+      <button  class="butshow sendMsg m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+           已取消
+        </view>
+      </button>
+    </form>
 
   </view>
   <view style='background:#202428' wx:if="{{type == 1  }}">
@@ -34,8 +47,12 @@
           <view class='fuwulist_box_heandleft'>{{item.gymName}}</view>
         </view>
       </view>
+
+
+
+
       <view class='appointment_datails' bindtap='datalis' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}'  data-uesCode='{{item.uesCode}}' data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
-        data-remark='{{item.remark}}' data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
+        data-remark='{{item.remark}}' data-bookingTime='{{item.bookingTime}}'  data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
         <view class='datails_imghead'>
           <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
         </view>

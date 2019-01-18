@@ -2,6 +2,7 @@
 
 var app = getApp();
 var api = require('../../api/land.js');
+var selapi = require('../../api/selfdails.js');
 var userAPi = require('../../api/indexAPI.js');
 var $ = require('../../utils/util.js');
 Page({
@@ -57,7 +58,18 @@ Page({
       phone: e.detail.value
     });
   },
-  sendmessage: function () { //获取验证码
+  testSubmit: function (e) { //获取验证码
+  console.log("eee",e)
+    var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     if ($.isNull(this.data.phone)) {
       $.alert("请输入手机号");
     } else if (!(/^1\d{10}$/.test(this.data.phone))) {
@@ -193,11 +205,11 @@ Page({
           icon: res.data.icon,
           memberName: res.data.memberName,
           mobile: res.data.mobile,
-          openID: res.data.openID,
           give: res.data.give,
           cash: res.data.cash,
           memberId: res.data.id,
           day: res.data.day,
+          openID: app.globalData.wxopenid,
           createTime: res.data.createTime
         }
         wx.setStorage({

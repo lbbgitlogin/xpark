@@ -4,7 +4,7 @@
     <text>{{sjdata.coachSchedule.coachName}}</text> 可约时间 
   </view>
   <view class='ball-title-right'>
-  {{formatDate}}
+  {{appointmentDate}}
   </view>
 </view>
 <view class='ball-timeList' style="background: #202428;">
@@ -12,7 +12,7 @@
     <text>{{item.time}}</text>
     <text wx:if="{{!item.canSelect && !item.falg}}">不可约</text>
     <text wx:if="{{item.canSelect && !item.falg && !item.acticed}}">可约</text>
-    <text wx:if="{{item.falg}}">已约</text>
+    <text wx:if="{{item.falg}}">不可约</text>
     <text wx:if="{{item.acticed}}">已选</text>
   </view>
 </view>

@@ -126,6 +126,7 @@ box-sizing:border-box;
 }
 .manage_mar{
   margin-bottom: 16rpx;
+  color: #fff
 }
 .order_pic{
   width: 146rpx;

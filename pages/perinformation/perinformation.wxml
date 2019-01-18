@@ -8,11 +8,11 @@
   <view class='infortmation_choose'>
     <view class='true_name'>
       <view class='true_xm'>真实姓名</view>
-      <input type='text' placeholder="请输入真实姓名" bindinput="userAccount" name="userAccount"></input>
+      <input type='text' value='{{memberName}}' placeholder="请输入真实姓名" bindinput="userAccount" name="memberName"></input>
     </view>
     <view class='true_name'>
       <label class='true_xm'>手机号</label>
-      <view class='pickershow' style="flex: 1;text-align: right;">
+      <view name="mobile" class='pickershow' style="flex: 1;text-align: right;">
          {{phone}}
       
       </view>
@@ -24,7 +24,7 @@
      <view class='true_name'>
       <label class='true_xm'>性别</label>
       <view style="flex: 1;text-align: right;">
-        <picker class='pickershow' bindchange="pickerClick" value='{{pickerIndex}}' range='{{pickerData}}'>{{pickerData[pickerIndex]}}</picker>
+        <picker name="gender" class='pickershow' bindchange="pickerClick" value='{{pickerIndex}}' range='{{pickerData}}'>{{pickerData[pickerIndex]}}</picker>
         
       </view>
   
@@ -33,13 +33,13 @@
     </view>
     <view class='true_name'>
       <view class='true_xm'>身份证号</view>
-      <input type='number' placeholder="请输入身份证号" bindinput="userAccount" name="userAccount"></input>
+      <input value='{{idCard == ""?"":idCard}}'  type='number' placeholder="请输入身份证号" bindinput="userAccount" name="idCard"></input>
     </view>
     <view class='true_name'>
       <label class='true_xm'>生日</label>
       <view style="flex: 1;text-align: right;">
 
-        <picker class='pickershow' mode="date" bindchange="bindDateChange">
+        <picker name='birth' class='pickershow' mode="date" bindchange="bindDateChange">
           {{StrBirthday}}
         </picker>
       </view>
@@ -50,7 +50,7 @@
     <view class='true_name'>
       <label class='true_xm'>身高</label>
       <view style="flex: 1;text-align: right;">
-        <picker class='pickershow' bindchange="pickerClickheight" value='{{pickerhe}}' range='{{pickerheight}}'>{{pickerheight[pickerhe]}}cm</picker>
+        <picker name='hight' class='pickershow' bindchange="pickerClickheight" value='{{pickerhe}}' range='{{pickerheight}}'>{{height||pickerheight[pickerhe]}}cm</picker>
 
       </view>
         
@@ -60,7 +60,7 @@
     <view class='true_name'>
       <label class='true_xm'>体重</label>
       <view style="flex: 1;text-align: right;">
-        <picker class='pickershow' bindchange="pickerClickweight" value='{{pickerwe}}' range='{{pickerweight}}'>{{pickerweight[pickerwe]}}kg</picker>
+        <picker name='wight' class='pickershow' bindchange="pickerClickweight" value='{{pickerwe}}' range='{{pickerweight}}'>{{weight||pickerweight[pickerwe]}}kg</picker>
 
       </view>
             <image class='icon_zb' src='../../img/right_zb.png'></image>
@@ -68,7 +68,7 @@
     </view>
   </view>
 
-  <button class='information bj_color'>
+  <button formType="submit" class='information bj_color'>
     保存
   </button>
 </form>

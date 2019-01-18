@@ -300,7 +300,7 @@ justify-content:center;
   float: left;
   display:flex;
 align-items:center;
-padding-top:51rpx;
+padding-top:48rpx;
 padding-left:24rpx;
 box-sizing:border-box;
 
@@ -327,7 +327,8 @@ font-weight: bold
 }
 .coupon_right_name{
   font-size: 30rpx;
-  color: #E27D00
+  color: #E27D00;
+  font-weight: bold
 
 }
 .choose_img{

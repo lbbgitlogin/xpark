@@ -1,6 +1,6 @@
 /* pages/coupon/coupon.wxss */
 page{
-  background: #282B30;
+  background: #202428;
   height:100%;
 
 }
@@ -35,7 +35,7 @@ box-sizing: border-box
   font-size: 32rpx
 }
 .coupon_list{
-  color: #333;
+  color: #ccc;
   font-size: 26rpx;
   margin: 32rpx 28rpx
 }
@@ -43,6 +43,13 @@ box-sizing: border-box
   width: 694rpx;
   height: 208rpx;
    background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;
+   background-size: 100% 100%;
+   margin: 0 auto 24rpx auto
+}
+.bj_couponsec{
+  width: 694rpx;
+  height: 208rpx;
+   background: url(http://zuul.snail.highlifes.com/common/image/20190117/6dcfe9df-c743-4ce4-87d4-866781745670.png) center no-repeat;
    background-size: 100% 100%;
    margin: 0 auto 24rpx auto
 }
@@ -87,7 +94,8 @@ color: #999
 }
 .coupon_right_name{
   font-size: 30rpx;
-  color: #333
+  color: #333;
+  font-weight: bold
 
 }
 .coupon_fal_name{

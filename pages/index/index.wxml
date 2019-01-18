@@ -5,11 +5,20 @@
       <view class='index_lefttext'>X·PARK运动基地</view>
 
     </view>
-    <view bindtap='Approach' class='index_box_sh' style="justify-content: flex-end;width:49%;">
+    <view class='index_box_sh' style="justify-content: flex-end;width:49%;">
       <view class='index_firstimg'>
         <image class='index_firstimg' src='../../img/erweima.png'></image>
       </view>
-      <view class='right_text'>入场</view>
+
+
+
+      <form class='message_box ' bindsubmit="Approach" report-submit="true">
+        <button style='padding-left:0;padding-right:0;background:#282B30;' class="sendMsg" formType="submit">
+          <view class='right_text'>入场</view>
+        </button>
+      </form>
+
+
 
     </view>
 
@@ -19,16 +28,23 @@
   </view>
   <view class='index_first'>
     <view class='index_box'>
-      <view  bindtap='mapNavigationlogo' data-addr="上海市杨浦区军工路188号" data-name="X·PARK运动基地" class='third_mar'>
+      <view bindtap='mapNavigationlogo' data-addr="上海市杨浦区军工路188号" data-name="X·PARK运动基地" class='third_mar'>
         <image class='third_img' src='../../img/Location.png'></image>
       </view>
       <view bindtap='mapNavigation' data-addr="上海市杨浦区军工路188号" data-name="X·PARK运动基地" class='third_lefttext'>上海市杨浦区军工路188号</view>
 
     </view>
     <view style="justify-content: flex-end;">
+
       <view class='third_firstimg'>
-        <image data-phone=" 021-3381 1039" catchtap="call" class='third_firstimg' src='../../img/phone.png'></image>
+        <form style="flex: 1;" data-phone="{{mobilephone}}" bindsubmit="call" report-submit="true">
+          <button class='butshow' formType="submit">
+            <image class='third_firstimg' src='../../img/phone.png'></image>
+          </button>
+        </form>
+
       </view>
+
 
     </view>
 
@@ -42,26 +58,42 @@
 
   </view>
   <view class="{{tapindex==1?'m-navbar':'m-navbar2'}} {{shouldFixedTop?'positop':''}}" id="mjltest">
-    <view class="m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" bindtap="allOrders">
-      场地服务
-    </view>
-    <view class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="toBePaid">
-      课程服务
-    </view>
-    <view class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}} " bindtap="receiptOfGoods">
-      商店服务
-    </view>
+    <form style="flex: 1;" class="" bindsubmit="allOrders" report-submit="true">
+      <button class="butshow sendMsg m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+          场地服务
+        </view>
+      </button>
+    </form>
+
+    <form style="flex: 1;" class="" bindsubmit="toBePaid" report-submit="true">
+      <button style='padding-left:0;padding-right:0;background:#282B30;line-height:40rpx;' class="sendMsg m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+          课程服务
+        </view>
+      </button>
+    </form>
+
+    <form style="flex: 1;" class="" bindsubmit="receiptOfGoods" report-submit="true">
+      <button style='padding-left:0;padding-right:0;background:#282B30;line-height:40rpx;' class="sendMsg m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" formType="submit">
+        <view bindtap="">
+          商店服务
+        </view>
+      </button>
+    </form>
+
+
 
 
   </view>
   <scroll-view wx:if="{{type == 3}}" class="scroll-view_H  {{shouldFixedTop?'posimar':''}}" scroll-x='true' style="width: 100%;background: #282B30;">
-    <block wx:for="{{ptitemlist}}" wx:key='id'>
+    <block wx:if="{{ptitemlist}}" wx:for="{{ptitemlist}}" wx:key='id'>
       <view data-id="{{item.id}}" data-index='{{index}}' bindtap="classifyClick" class="scroll-view-item_H {{shopindex== index ?'currentTab':''}}">
         {{item.areaName}}
       </view>
     </block>
   </scroll-view>
-  <view class='shop_list' style='margin:{{shouldFixedTop?"302rpx auto 0 auto":"20rpx auto 0rpx auto"}}' wx:if="{{type == 1}}">
+  <view wx:if="{{zzlistlength &&type == 1}}" class='shop_list' style='margin:{{shouldFixedTop?"302rpx auto 0 auto":"20rpx auto 0rpx auto"}}'>
     <block wx:for="{{zzlist}}" wx:key='id'>
       <view data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' bindtap='btnselfdetails' class='shop_details'>
         <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
@@ -80,12 +112,23 @@
 
           </view>
         </view>
-        <view data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' bindtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
+        <view wx:if="{{item.itemNo == 'SI-FIT' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' bindtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
           购买
+        </view>
+        <view wx:if="{{item.itemNo == 'SI-BALL' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' bindtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
+          预约
         </view>
 
       </view>
     </block>
+  </view>
+  <view wx:if="{{!zzlistlength &&type == 1}}" style="background: #282B30;margin-bottom: 218rpx;">
+    <view class='order_null'>
+      <image class='order_pic' src='../../img/management_null.png'></image>
+
+    </view>
+    <view class='order_nullfont'>暂无相关课程</view>
+
   </view>
   <view wx:if="{{type == 2}}">
     <view class='box2  {{shouldFixedTop?"posimarriweek":""}}' style='width:100%'>
@@ -104,9 +147,9 @@
       </block>
     </view>
   </view>
-  <view class='shop_list' wx:if="{{type == 2}}" style='margin:{{shouldFixedTop?"420rpx auto 38px auto":""}}'>
+  <view class='shop_list' wx:if="{{type == 2}}" style='margin:{{shouldFixedTop?"340rpx auto 38px auto":""}}'>
 
-    <view class='list_show'>
+    <view wx:if="{{tk_schedulelist}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>团课</view>
     </view>
@@ -132,7 +175,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -143,11 +186,11 @@
 
     </view>
 
-    <view class='list_show'>
+    <view wx:if="{{hw_schedulelist}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>户外</view>
     </view>
-    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='{{mytime<item.buyEndTime?"skselfdetails":""}}'  wx:for="{{hw_schedulelist}}" wx:key='id' class='shop_details'>
+    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='id' class='shop_details'>
       <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
@@ -169,7 +212,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails'  wx:if="{{mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -181,11 +224,11 @@
     </view>
 
 
-    <view class='list_show'>
+    <view wx:if="{{jk_schedulelist}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>健康理论</view>
     </view>
-    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2'  bindtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='id' class='shop_details'>
+    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='id' class='shop_details'>
       <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
@@ -207,7 +250,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails'  wx:if="{{mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -218,7 +261,7 @@
 
     </view>
 
-    <view class='list_show'>
+    <view wx:if="{{sk_schedulelist}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>私教</view>
     </view>
@@ -233,7 +276,7 @@
 
           <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
             <label class='sj_mon' style='font-weight:bold'>￥{{item.price}}</label>
-            /课时起
+            /起
             <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
             <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
 
@@ -248,10 +291,20 @@
         </view>
       </view>
     </view>
+    <view wx:if="{{!sk_schedulelist && !jk_schedulelist && !hw_schedulelist && !tk_schedulelist }}" style="background: #282B30;margin-bottom: 218rpx;">
+      <view class='order_null'>
+        <image class='order_pic' src='../../img/management_null.png'></image>
+
+      </view>
+      <view class='order_nullfont'>暂无相关课程</view>
+
+
+
+    </view>
 
   </view>
   <view wx:if="{{type == 3}}" style='margin-top:{{shouldFixedTop?"354rpx":""}}'>
-    <view class='shop_list' style='margin:0rpx auto 0rpx auto' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3}}">
+    <view class='shop_list' style='margin:0rpx auto 0rpx auto' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
       <view class='list_show'>
         <view class='show_box bj_color '></view>
         <view class='show_text'>{{item.categoryName}}</view>
@@ -277,6 +330,18 @@
           已售完
         </view>
       </view>
+
+    </view>
+
+  </view>
+  <view  wx:if="{{type == 3 && !classifyClick}}">
+    <view style="background: #282B30;margin-bottom: 218rpx;">
+      <view class='order_null'>
+        <image class='order_pic' src='../../img/management_null.png'></image>
+
+      </view>
+      <view class='order_nullfont'>暂无相关课程</view>
+
     </view>
   </view>
 </view>

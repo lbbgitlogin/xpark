@@ -1,18 +1,23 @@
 // pages/perinformation/perinformation.js
 var app = getApp();
 var $ = require('../../utils/util.js');
-
+var api = require('../../api/indexAPI.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pickerData: ["男", "女"],
+    pickerData: ["女", "男"],
     pickerweight: [],
     pickerheight: [],
     pickerIndex: 0,
+    memmbleid: "",
+    memberName: "",
+    idCard: "",
     pickerhe: 65,
+    height:"",
+    weight:"",
     pickerwe: 65,
     phone:"",
     StrBirthday: "请选择生日",
@@ -37,7 +42,9 @@ var that =this;
       success: function (res) {
         that.setData({
           phone: res.data.mobile,
+          memmbleid:res.data.memberId
         })
+        that.memberinformation()
       },
       fail:function(){
         $.alert("请先登录")
@@ -64,6 +71,25 @@ var that =this;
 
 
    },
+  memberinformation:function(){
+    var that = this;
+    var val={
+
+    }
+    $.Requests(api.memberinformation.url + '/' + that.data.memmbleid, val).then((res) => {
+      console.log("resss", res)
+      console.log("resss", val)
+      that.setData({
+        memberName: res.data.memberName,
+        idCard: res.data.idCard,
+        StrBirthday: res.data.birth,
+        pickerIndex:res.data.gender,
+        height: res.data.hight,
+        weight: res.data.wight
+      })
+
+    })
+  },
   pickerweig: function () {
     var pickerweight = [];
     for (var i = 35; i <= 200; i+= 0.5) {
@@ -83,6 +109,26 @@ var that =this;
   onReady: function() {
 
   },
+  formSubmit:function(e){
+    console.log("www",e)
+    var that = this;
+    var val = {
+      birth: e.detail.value.birth,
+      gender: e.detail.value.gender,
+      hight: that.data.pickerheight[that.data.pickerhe],
+      idCard: e.detail.value.idCard,
+      memberName: e.detail.value.memberName,
+      mobile: that.data.phone,
+      wight: that.data.pickerweight[that.data.pickerwe],
+    }
+    $.Requestsput(api.modify.url+'/'+ that.data.memmbleid, val).then((res) => {
+   console.log("res",res)
+      console.log("res", val)
+
+    })
+
+    
+  },
   pickerClick: function(event) { //性别选择
 
     
@@ -100,7 +146,6 @@ var that =this;
   },
   pickerClickweight: function (event) { //体重选择
 
-    
     this.setData({
       pickerwe: event.detail.value
     });

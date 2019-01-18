@@ -87,8 +87,20 @@ module.exports = {
 
     }
   },
+  xparkshop: { //获取门店信息
+    url: cf.config.configUrl + 'gym/find',
+    get: {
+    
+    }
+  },
   member: { //查询会员卡
     url: cf.config.configUrl + 'member/find/member/vip',
+    get: {
+
+    }
+  },
+  memberinformation: { //查询会员卡
+    url: cf.config.configUrl + 'member/find',
     get: {
 
     }
@@ -99,5 +111,11 @@ module.exports = {
 
     }
   },
+  modify: { //获取openijd
+    url: cf.config.configUrl + 'member/modify',
+    put: {
+
+    }
+  }
 
 }

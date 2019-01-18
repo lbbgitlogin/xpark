@@ -39,16 +39,17 @@ margin-right: 32rpx;
   font-size: 28rpx;
 }
 .infortmation_box{
-  padding: 0 28rpx;
+  padding:34rpx 28rpx;
   box-sizing: border-box;
   width: 100%;
   background: #202428FF;
-  height: 124rpx;
+  height: 156rpx;
+  line-height:52rpx;
+
 }
 .infortmation_box_name{
   font-size: 36rpx;
   color: #fff;
-  line-height:77rpx;
   font-weight: bold
 }
 .information_tatils{

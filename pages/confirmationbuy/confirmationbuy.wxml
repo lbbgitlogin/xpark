@@ -49,7 +49,7 @@
     </view>
 
   </view>
-  <view class='list_booking'>
+  <!-- <view class='list_booking'>
     <view bindtap='choosecoupon' class='order_name'>
       优惠券
     </view>
@@ -59,7 +59,7 @@
     <view style="margin-left: 8rpx;width:48rpx;height:48rpx" class=' m-cell-access'>
        <image class='icon_zb' src='../../img/right_zb.png'></image>
     </view>
-  </view>
+  </view> -->
   <!--购买保险 <view class='confirmationbuy_buy'>
     <view class='confirmationbuy_cou'>保险选购</view>
     <view class='list_booking_buy'>

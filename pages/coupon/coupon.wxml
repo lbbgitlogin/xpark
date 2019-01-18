@@ -9,18 +9,18 @@
   已领取{{couponlist.length}}张
 </view>
 
-<view wx:if="{{couponlist.length>0}}" wx:for="{{couponlist}}" class='bj_coupon'>
+<view wx:if="{{couponlist.length>0}}" wx:for="{{couponlist}}" class='{{item.state != 1?"bj_couponsec":"bj_coupon"}}'>
   <view class='coupon_left'>
-    <view class='coupon_mon {{item.state ==1?"font-colormode":""}}'>
+    <view style='color:{{item.state != 1?"#666":"#E27D00"}}' class='coupon_mon {{item.state ==1?"font-colormode":""}}'>
       ¥
     </view>
-    <view class='coupon_maxmon {{item.state ==1?"font-colormode":""}}'>
+    <view style='color:{{item.state != 1?"#666":"#E27D00"}}'  class='coupon_maxmon {{item.state ==1?"font-colormode":""}}'>
       {{item.discount}}
     </view>
   </view>
   <view class='coupon_right'>
-    <view style='color:{{item.state ==1?"#666":"#999"}}' class='coupon_right_mon'>
-      <view style='color:{{item.state ==1?"#666":"#999"}}' class='coupon_right_name'>{{item.couponName}}</view>
+    <view style='color:{{item.state ==1?"#666":"#666"}}' class='coupon_right_mon'>
+      <view style='color:{{item.state ==1?"#E27D00":"#666"}}' class='coupon_right_name'>{{item.couponName}}</view>
       <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
       <view>有效期：{{item.endTime}}</view>
     </view>

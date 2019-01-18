@@ -7,110 +7,111 @@ Page({
   data: {
     loadngtime: "",
     timeshow: 3,
-    itemno:""
+    itemno: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("支付跳转",options)
+    console.log("支付跳转", options)
     var that = this;
 
-    if (options.sta == 1) {
+    if (options.sta == 1) { //私教预约跳转
       that.setData({
-      loadngtime: setInterval(function() {
-        if (that.data.timeshow > 0) {
-          that.setData({
-            timeshow: that.data.timeshow - 1
-          })
-          if (that.data.timeshow == 0) {
-            let {
-              scheduleDate,
-              memberCourseId
-            } = options
-
-            let data = JSON.stringify({
-              scheduleDate,
-              memberCourseId
-            })
-            wx.navigateTo({
-              url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo+ "&ifsj=" + 2
-            })
-            clearInterval(that.data.loadngtime)
-          }
-        }
-
-      }, 1000)
-      })
-    }
-    else if (options.shoptype == 3) {
-
-    } else if (options.optionstype == 2 ){
-      that.setData({
-        loadngtime: setInterval(function () {
+        itemno: 1,
+        loadngtime: setInterval(function() {
           if (that.data.timeshow > 0) {
             that.setData({
               timeshow: that.data.timeshow - 1
             })
             if (that.data.timeshow == 0) {
-      wx.navigateTo({
-        url: `../confirmationOrder/confirmationOrder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&price=${options.price}`
+              let {
+                scheduleDate,
+                memberCourseId
+              } = options
+
+              let data = JSON.stringify({
+                scheduleDate,
+                memberCourseId
+              })
+              wx.navigateTo({
+                url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo + "&ifsj=" + 2
+              })
+              clearInterval(that.data.loadngtime)
+            }
+          }
+
+        }, 1000)
       })
-          clearInterval(that.data.loadngtime)
+    } else if (options.shoptype == 3) {  //商品购买跳转
+      that.setData({
+        itemno: 0
+      })
+    } else if (options.optionstype == 2) {//团课
+      that.setData({
+        itemno: 1,
+        loadngtime: setInterval(function() {
+          if (that.data.timeshow > 0) {
+            that.setData({
+              timeshow: that.data.timeshow - 1
+            })
+            if (that.data.timeshow == 0) {
+              wx.navigateTo({
+                url: `../confirmationOrder/confirmationOrder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&price=${options.price}`
+              })
+              clearInterval(that.data.loadngtime)
             }
           }
         }, 1000)
       })
-    }
-    
-    
-    else if (options.cardnum == 1) {
+    } else if (options.cardnum == 1) { // 购卡成功
       that.setData({
-      loadngtime: setInterval(function() {
-        if (that.data.timeshow > 0) {
-          that.setData({
-            timeshow: that.data.timeshow - 1
-          })
-          if (that.data.timeshow == 0) {
-            wx.switchTab({
-
-              url: '../main/main',
-              success: function(e) {
-                var page = getCurrentPages().pop();
-                if (page == undefined || page == null) return;
-                page.onLoad();
-              }
+        itemno: 1,
+        loadngtime: setInterval(function() {
+          if (that.data.timeshow > 0) {
+            that.setData({
+              timeshow: that.data.timeshow - 1,
             })
-            clearInterval(that.data.loadngtime)
-          }
-        }
+            if (that.data.timeshow == 0) {
+              wx.switchTab({
 
-      }, 1000)
+                url: '../main/main',
+                success: function(e) {
+                  var page = getCurrentPages().pop();
+                  if (page == undefined || page == null) return;
+                  page.onLoad();
+                }
+              })
+              clearInterval(that.data.loadngtime)
+            }
+          }
+
+        }, 1000)
       })
-    }
-    else if (options.itemNo == "SI-FIT") {
-     
-          that.setData({
-            itemno:0
-          })
-    } else {
+    } else if (options.itemNo == "SI-FIT") {
+
       that.setData({
-      loadngtime: setInterval(function() {
-        if (that.data.timeshow > 0) {
-          that.setData({
-            timeshow: that.data.timeshow - 1
-          })
-          if (that.data.timeshow == 0) {
-            wx.navigateTo({
-
-              url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId,
+        itemno: 0
+      })
+    } else {//球类跳转
+      that.setData({
+        itemno: 1,
+        loadngtime: setInterval(function() {
+          if (that.data.timeshow > 0) {
+            that.setData({
+              timeshow: that.data.timeshow - 1
             })
-            clearInterval(that.data.loadngtime)
-          }
-        }
+            if (that.data.timeshow == 0) {
+              wx.navigateTo({
 
-      }, 1000)
+                url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId,
+              })
+              clearInterval(that.data.loadngtime)
+            }
+          }
+
+        }, 1000)
       })
     }
   },

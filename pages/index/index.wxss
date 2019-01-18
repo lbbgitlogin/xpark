@@ -8,7 +8,9 @@ page {
 .index_pad {
   padding: 40rpx 0 0rpx 0
 }
-
+.butshow{
+  padding-left:0;padding-right:0;background:#282B30;line-height:40rpx
+}
 .index_box_sh {
   display: flex;
   align-items: center;
@@ -397,7 +399,7 @@ background-color:#fff;
   color: #999999;
   font-family: PingFangSC-Regular;
   border-radius: 32rpx;
-  background: #202428;
+  background: #2E3238;
   margin: 0 2rpx 0 28rpx;
   padding: 5rpx 32rpx;
 }
@@ -419,7 +421,7 @@ background-color:#fff;
 .shop_list {
   width: 92%;
   margin: 20rpx auto 90rpx auto;
-  /* padding-bottom: 80rpx */
+  padding-bottom: 1rpx
 }
 
 .list_show {
@@ -494,13 +496,15 @@ background-color:#fff;
 }
 
 .buy_but {
-  width: 132rpx;
+  width: 116rpx;
   height: 56rpx;
   border-radius: 29rpx;
   color: #555555;
   font-size: 26rpx;
   text-align: center;
-  line-height: 56rpx
+  line-height: 56rpx;
+  margin:50rpx 0;
+
 }
 
 .tatils_color {
@@ -725,4 +729,18 @@ background-color:#fff;
   text-align: center;
   color: #fff;
   font-size: 28rpx;
+}
+.order_nullfont{
+  font-size: 28rpx;
+  color: #666;
+  text-align: center
+}
+.order_pic{
+  width: 146rpx;
+  height: 192rpx;
+  margin-bottom: 26rpx
+}
+.order_null{
+  width: 146rpx;
+  margin: 177rpx auto 0rpx auto
 }

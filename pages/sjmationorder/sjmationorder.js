@@ -73,7 +73,8 @@ Page({
         that.setData({
           formatDate: formatDate,
           groundName: res.data.groundName,
-          tk_id: options.coachId
+          tk_id: options.tk_id,
+          yuyueformdate: options.day + options.time + ':00',
         })
         that.coach_course()
       }
@@ -89,7 +90,7 @@ Page({
           yuyueday: options.day || '',
           skTime: options.bookingTime + ':00' || '',
           yuyuetime: options.time + ':00' || '',
-          yuyueformdate: options.day + options.time + ':00',
+        
           optionstype: options.optionstype,
           // tk_id: JSON.parse(options.data).tk_id,
           memberCourseId: options.memberCourseId
@@ -103,12 +104,13 @@ Page({
               memberFitnessId: options.memberFitnessId,
               orderNo: options.orderNo,
               price: options.price,
-              tk_id: options.coachId,
+              tk_id: options.tk_id,
               address: options.address,
               groundName: options.groundName,
               groundId: options.groundId,
               bookingDate: JSON.parse(options.data).bookingDate,
               bookingTime: options.bookingTime,
+              yuyueformdate: JSON.parse(options.data).bookingDate + options.bookingTime + ':00',
               coachId: options.coachId,
               memberCourseId: JSON.parse(options.data).memberCourseId,
             })
@@ -155,10 +157,11 @@ Page({
   coach_course: function () { //私课详情
     var that = this;
     var val = {
-      schduleDate: that.data.formatDate,
+      schduleDate: that.data.bookingDate,
     }
+ 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-
+      console.log("私课详情", val)
       console.log("私课详情", res)
 
 
@@ -290,7 +293,7 @@ Page({
         console.log("sike", res)
         if (res.status == 0) {
           wx.navigateTo({
-            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.price,
+            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.appointmentCommon.price + "&bookingTime=" + res.data.appointmentCommon.bookingTime + "&type=" + res.data.state,
           })
         } else {
           $.alert("预约失败")

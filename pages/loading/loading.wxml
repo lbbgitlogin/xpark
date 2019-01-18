@@ -1,7 +1,10 @@
 <view binderror="homeAdsError" class='home-ads'>
   <view class='ligin_box'>
-    <image style='width:100%;height:100%' class='login_banner' src='http://zuul.snail.highlifes.com/common/image/20190115/67eb9833-e47f-40f7-b989-2579e92c1124.png'></image>
+    <!-- <image  mode='aspectFill' style='width:100%;height:100%' class='login_banner' src='http://zuul.snail.highlifes.com/common/image/20190117/ab5071a8-7d95-4080-b6ae-94a5032e53b4.png'></image> -->
+    <image class='login_sec' style='width:446rpx;height:76rpx;z-index:999' src='http://zuul.snail.highlifes.com/common/image/20190117/d283c12b-6cdd-4710-ab84-3a08ee487434.png'></image>
   </view>
+   
+  
 
   <view class='location'>定位中…</view>
   <view bindtap='closeloding' class='conut-down'>{{countNum}}s</view>

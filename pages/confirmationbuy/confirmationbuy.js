@@ -1,4 +1,5 @@
 // pages/confirmationbuy/confirmationbuy.js
+var app = getApp();
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
 var apicou = require('../../api/coupon.js');
@@ -46,7 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    console.log("确认",options)
     var that = this;
 
     wx.getStorage({
@@ -196,6 +197,7 @@ Page({
     })
   },
   coach_course: function() { //私课详情
+  
     var that = this;
     var val = {
       schduleDate: that.data.scheduleDate
@@ -327,6 +329,18 @@ Page({
     
 
     var that = this;
+
+    var vals = {
+      formId: e.detail.formId
+    }
+    console.log("formId", e.detail.formId)
+    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+  console.log("formid",res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     if (that.data.yuechoose) {
    
       if (that.data.optionstype == 2 && that.data.sta != 1) {
@@ -385,8 +399,8 @@ Page({
 
         $.Requests_json(api.member_order.url, val).then((res) => {
           
-          
-
+            console.log("11",res)
+          console.log("11", val)
 
           if (res.status == 0) {
   
@@ -423,14 +437,14 @@ Page({
           
           if (res.status == 0) {
 
-            var val = {
-              formId: e.detail.formId
-            }
-            $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
+            // var val = {
+            //   formId: e.detail.formId
+            // }
+            // $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
               
               
 
-            })
+            // })
 
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
@@ -473,9 +487,9 @@ Page({
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
           console.log("场地服务",res)
-          
+          console.log("场地服务", val)
           if (res.data.success && that.data.itemNo != "SI-BALL") {
-         
+       
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })

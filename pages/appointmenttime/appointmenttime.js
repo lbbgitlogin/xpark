@@ -206,14 +206,18 @@ Page({
 
       daytime[i] = year + "-" + month + "-" + date ;
       daynewday[i] = year+'-'+month + "-" + date ;
-      weekend[i] = str
-      
+      weekend[i] = str;
+      var timelist={};
+      timelist.time = daytime;
+      timelist.week = weekend;
     
       that.setData({
         daytime: daytime,
         weekend: weekend,
+        timelist: timelist,
         daynewday: daynewday,
       })
+      console.log("daytime", that.data.timelist)
       
     }
 

@@ -1,7 +1,7 @@
 /* pages/confirmationbuy/confirmationbuy.wxss */
 /* pages/confirmationOrder/confirmationOrder.wxss */
 page{
-  background: #fff
+  background: #282B30
 }
 .order{
   width: 100%;

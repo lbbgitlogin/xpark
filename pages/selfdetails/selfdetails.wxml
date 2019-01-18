@@ -1,5 +1,5 @@
 <!--pages/selfdetails/selfdetails.wxml-->
-<view style='{{hidden == 0?"position:fixed":""}}'>
+<view style='{{hidden == 0?"position:fixed":""}} padding-bottom:130rpx'>
 
   <view class='self_banner'>
     <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitness.icon ||tkgymdetails.course.icon ||shopdetails.gym.icon||icon}}'></image>
@@ -259,7 +259,7 @@
       预约
     </view>
       <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
-      购买
+      预约
     </view>
     <view wx:if="{{appointment}}" data-nullif='num' bindtap='appointment' class='buy_right bj_color'>
       预约

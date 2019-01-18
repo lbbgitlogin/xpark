@@ -1,5 +1,7 @@
 //index.js
 // 引入SDK核心类
+var app = getApp();
+var selapi = require('../../api/selfdails.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
 var qqmapsdk;
 //获取应用实例
@@ -7,6 +9,7 @@ var util = require("../../utils/util.js")
 var app = getApp()
 var $ = require('../../utils/util.js');
 var api = require('../../api/indexAPI.js');
+
 var time = 0;
 var touchDot = 0; //触摸时的原点
 var interval = "";
@@ -31,14 +34,17 @@ Page({
     member_fitness: "",
     shoplist: "",
     mytime: "",
+    zzlistlength:true,
     provincechoose: "",
     scrootop: "",
     gymName: "",
     ptitemlist: "",
     latitude: "",
+    mobilephone: "",
     ptitemlistid: "",
     longitude: "",
     activeTab: '',
+    timeclickif:false,
     scheduleDate: "",
     day: "",
     zzlist: "",
@@ -133,7 +139,7 @@ Page({
         wx.getStorage({
           key: 'gymId',
           success: function (res) {
-
+               that.xparkshop()
           },
           fail: function () {
             // that.getLocal(that.data.latitude, that.data.longitude);
@@ -176,8 +182,9 @@ Page({
     })
 
     let time = util.formatDate(new Date());
-    let date = util.getDates(7, time);
 
+    let date = util.getDates(7, time);
+ console.log("date",date)
 
     this.setData({
       datee: date
@@ -240,6 +247,15 @@ Page({
   //     }
   //   })
   // },
+  xparkshop:function(){
+    var val={}
+    $.Requests(api.xparkshop.url+'/'+1, val).then((res) => {
+      console.log("商店信息",res)
+      this.setData({
+        mobilephone: res.data.mobile
+      })
+    })
+  },
   choosename: function (e) {
 
     wx.clearStorage();
@@ -400,9 +416,13 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-
-
+console.log('球类',res)
+      console.log('球类', val)
+      
       if (res.data.content.length != 0) {
+        that.setData({
+          zzlistlength:true
+        })
         var zzlist = res.data.content;
 
         zzlist.forEach(function (item, index, arrar) {
@@ -421,6 +441,10 @@ Page({
             zzlist: zzlist
           })
 
+        })
+      }else{
+        that.setData({
+          zzlistlength:false
         })
       }
 
@@ -886,22 +910,24 @@ console.log("sike详情",res)
           console.log("sike详情", val)
           if (res.data.length != 0) {
 
-
-            var sk_schedulelist = res.data[0].coachCourses;
+          
+            var sk_schedulelist = res.data;
 
             sk_schedulelist.forEach(function (item, index, arrar) {
+              console.log("item",item)
               arrar[index] = {
-                courseName: item.course.courseName,
-                id: item.id,
-                courseId: item.course.id,
-                icon: item.course.icon,
-                price: item.price,
-                zzprice: (item.price * 0.9).toFixed(2),
-                zxprice: (item.price * 0.8).toFixed(2),
-                appointmentNumb: item.appointmentNumb,
-                contain: item.course.contain,
-                scheduleDate: item.scheduleDate
+                courseName: item.coachCourses[0].course.courseName,
+                id: item.coachCourses[0].id,
+                courseId: item.coachCourses[0].course.id,
+                  icon: item.icon,
+                price: item.coachCourses[0].price,
+                zzprice: (item.coachCourses[0].price * 0.9).toFixed(2),
+                zxprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+                // appointmentNumb: item.coachCourses.appointmentNumb,
+                contain: item.coachCourses[0].course.contain,
+                // scheduleDate: item.coachCourses.scheduleDate
               }
+              debugger
               that.setData({
                 sk_schedulelist: sk_schedulelist
               })
@@ -1001,6 +1027,7 @@ console.log("sike详情",res)
 
         // childrenlist.type = type
         that.setData({
+          timeclickif:true,
           day: childrenlist.time,
           weekend: childrenlist.week,
           datee: that.data.datee,
@@ -1189,18 +1216,51 @@ console.log("sike详情",res)
     });
   },
   call: function (e) {
+    console.log("www",e)
+    var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone,
     })
   },
-  allOrders: function () { //自助健身
+  allOrders: function (e) { //自助健身产地服务切换
+  console.log("e1",e)
+    var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     this.setData({
       tapindex: 1,
       type: 1
     });
     this.classification();
   },
-  toBePaid: function () { //课程服务
+  toBePaid: function (e) { //课程服务
+    var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
+    console.log("e1", e)
     this.setData({
       tapindex: 2,
       type: 2
@@ -1210,7 +1270,18 @@ console.log("sike详情",res)
     this.jkleague_schedulelist(); //课程服务团课服务查询列表
     this.coach_schedulelist(); //课程服务私课服务查询列表
   },
-  receiptOfGoods: function () { //配套服务
+  receiptOfGoods: function (e) { //商店服务
+    console.log("e1", e)
+    var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     this.setData({
       tapindex: 3,
       type: 3
@@ -1224,7 +1295,7 @@ console.log("sike详情",res)
       areaId: e.target.dataset.id
     }
     $.Requests(api.categorylist.url, val).then((res) => {
-
+      console.log("配套服务子分类产品查询",res)
 
       this.setData({
 
@@ -1235,7 +1306,18 @@ console.log("sike详情",res)
 
 
   },
-  Approach: function () { //扫码入场
+  Approach: function (e) { //扫码入场
+  console.log("wwww",e)
+     var vals = {
+      formId: e.detail.formId
+    }
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
+
+      console.log("formid", res)
+      console.log("formid", vals)
+      console.log("formid", app.globalData.wxopenid)
+
+    })
     wx.navigateTo({
       url: '../approach/approach'
     })

@@ -64,7 +64,7 @@ function Requestsput(url, data) { //接口方法为put时调用
       data: data,
       method: "put",
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
       success: function (res) {
         hideloading();

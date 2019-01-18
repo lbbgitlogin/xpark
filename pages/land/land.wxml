@@ -11,13 +11,17 @@
     </view>
     <view class="land_box_child" style='border-bottom:1rpx solid #D6D6D6;margin-top:38rpx;'>
       <input placeholder="请输入短信验证码" maxlength="6" bindfocus="dx_input"  type="number" bindinput="code" name="code" />
-      <view class='message_box bj_color'>
-          <text class="sendMsg" bindtap="sendmessage">{{btntext}}</text>
-      </view>
+      <!-- <view  bindtap="sendmessage" class='message_box bj_color'>
+          <text class="sendMsg">{{btntext}}</text>
+      </view> -->
+        <form class='message_box bj_color' bindsubmit="testSubmit" report-submit="true">
+      <button style='padding-left:0rpx;padding-right:0rpx'  class="sendMsg bj_color" formType="submit">{{btntext}}</button>
+ </form>
      
     </view>
 
     <!-- <view bindtap='next_pag' class='buttonnext'>下一步</view> -->
     <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='buttonnext bj_color' formType="submit">登录/注册</button>
+
  
 </view>

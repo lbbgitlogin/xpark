@@ -37,7 +37,14 @@ App({
 
                   $.Requests(api.openid.url, thatdata).then((res) => {
                     console.log("openid1", res)
-
+                    that.globalData.wxopenid = res.openid;
+                  //   var obj = {
+                  //     openID: res.openid,
+                  //   }
+                  //  wx.setStorage({
+                  //    key: 'userinfo',
+                  //    data: obj,
+                  //  })
                  
                   })
                   
@@ -55,7 +62,14 @@ App({
               }
               $.Requests(api.openid.url, thatdata).then((res) => {
                 console.log("openid1", res)
-
+                that.globalData.wxopenid = res.openid;
+                // var obj = {
+                //   openID: res.openid,
+                // }
+                // wx.setStorage({
+                //   key: 'userinfo',
+                //   data: obj,
+                // })
               
               })
             }

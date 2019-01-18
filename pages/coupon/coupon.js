@@ -89,7 +89,7 @@ Page({
       gymId: that.data.gymId,
     }
     $.Requests(api.couponlist.url, val).then((res) => {
-      
+        console.log("")
       
       that.setData({
         couponlist:res.data

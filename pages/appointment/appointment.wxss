@@ -9,6 +9,9 @@
   border-radius: 8rpx;
   line-height: 160rpx;
 }
+.butshow{
+  padding-left:0;padding-right:0;background:#282B30;line-height:40rpx
+}
 
 .appointment_box {
   display: flex;

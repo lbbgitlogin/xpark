@@ -1,12 +1,12 @@
 <!--pages/bookingoreder/bookingoreder.wxml-->
 
-<view wx:if="{{ordertype == 0}}" class='order font-colormode'>
+<view wx:if="{{ordertype == 1}}" class='order font-colormode'>
   未使用
 </view>
-<view wx:if="{{ordertype == 2}}" class='order font-colormode'>
+<view wx:if="{{ordertype == 0}}" class='order font-colormode'>
 已取消
 </view>
-<view wx:if="{{ordertype == 1}}" class='order font-colormode'>
+<view wx:if="{{ordertype == 2}}" class='order font-colormode'>
 已使用
 </view>
 <view class='order_list'>
@@ -37,7 +37,7 @@
     <view class='order_smallname'>
        {{gymName}}
     </view>
-    <image  data-phone=" 021-3381 1039" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
+    <image  data-phone="{{mobilephone}}" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
   </view>
    <view class='list_booking'>
     <view class='order_name'>
@@ -69,7 +69,7 @@
     {{remark}}
 </view>
   </view>
-    <view class='erweima' wx:if="{{ordertype == 0}}">
+    <view class='erweima' wx:if="{{ordertype == 1}}">
     <view class='erweima_name'>
       <view class='name_first'>预约核销码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>
@@ -82,6 +82,6 @@
       </view>
   </view>
 </view>
-<view  wx:if="{{ordertype == 0}}" class='but_order' bindtap='appointment_common'>
+<view  wx:if="{{ordertype == 1}}" class='but_order' bindtap='appointment_common'>
 取消预约
 </view>

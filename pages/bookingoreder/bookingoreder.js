@@ -2,6 +2,7 @@
 // pages/confirmationOrder/confirmationOrder.js
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
+var indexapi = require('../../api/indexAPI.js');
 var apicou = require('../../api/coupon.js');
 var QRCode = require('../../utils/weapp.qrcode.esm.js');
 import drawQrcode from '../../utils/weapp.qrcode.esm.js' 
@@ -19,6 +20,7 @@ Page({
     text:"",
     address: "",
     price: "",
+    mobilephone: "",
     ordertype:"",
     uesCode: "",
     gymName:"",
@@ -63,6 +65,7 @@ Page({
               price: options.price,
             })
             that.draw();
+            that.xparkshop();
           }
         })
 
@@ -90,7 +93,7 @@ Page({
     var day = now.getDate();
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
-      formatDate: formatDate,
+      formatDate: options.bookingTime || formatDate,
       id: options.id
     })
   },
@@ -137,12 +140,12 @@ Page({
     
   },
   appointment_common:function(){
- 
+
     var that =this;
      var val = {}
     $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
         
-      
+       console.log("取消订单",res)
       if(res.status == 0){
         setTimeout(function () {
 
@@ -173,6 +176,15 @@ Page({
    */
   onPullDownRefresh: function () {
     
+  },
+  xparkshop: function () {
+    var val = {}
+    $.Requests(indexapi.xparkshop.url + '/' + 1, val).then((res) => {
+      console.log("商店信息", res)
+      this.setData({
+        mobilephone: res.data.mobile
+      })
+    })
   },
 
   /**
