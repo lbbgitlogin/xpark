@@ -141,7 +141,7 @@
       <block wx:for='{{ datee }}' wx:key='id'>
 
         <view style='width: {{ sysW }}px;' class='index_time {{font==1?item>7?"font-color":"":font==2?item<7?"font-color":"":"" }}'>
-          <view data-id='{{item.time}}' bindtap='timeclick' class='{{ item.time == day ? "dateOn" : ""}}'>{{ item.time }}
+          <view data-id='{{item.time}}' data-week='{{item.week}}' data-year='{{item.yearDate}}' data-month='{{item.month}}' bindtap='timeclick' class='{{ item.time == day ? "dateOn" : ""}}'>{{ item.time }}
           </view>
         </view>
       </block>
@@ -175,7 +175,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-timeshow='{{day}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif == 1?'timeclickif == 1':'mytime<item.buyEndTime'}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -212,7 +212,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif == 1 || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -250,7 +250,7 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' bindtap='tkselfdetails' wx:if="{{timeclickif == 1 || mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>

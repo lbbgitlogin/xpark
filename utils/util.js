@@ -12,7 +12,25 @@ function parseJSON(str) {
     return undefined;
   }
 }
+function compareTime(startTime, endTime) {
 
+  //          var start_time=startTime.replace(/-|\s|:|\//g,'').replace(' ', ''); //用这个加强版也可以
+  var start_time = startTime.replace(/-|\s|:|\//g, '');
+  console.log("start_time", start_time)
+  var end_time = endTime.replace(/-|\s|:|\//g, '');
+  console.log("end_time", end_time)
+
+  if (start_time < end_time) { 
+    console.log("11111")
+    return true;
+    
+     }
+  else { 
+    
+    console.log("22222")
+    return false; }
+
+}
 function Requests(url, data) { //接口方法为get时调用
 
 
@@ -345,7 +363,9 @@ function dateLater(dates, later) {
   let yearDate = date.getFullYear();
   let month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
   let dayFormate = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  dateObj.yearDate = yearDate;
   dateObj.time = dayFormate;
+  dateObj.month = month;
   dateObj.week = show_day[day];
   return dateObj;
 }
@@ -356,6 +376,7 @@ module.exports = {
   parseJSON: parseJSON, //转json
   Requestsput: Requestsput, //转json
   Requests, //发起网络请求
+  compareTime,
   Requests_json, //发起网络请求
   alert: alert, //弹出框
   loading: loading, //数据加载

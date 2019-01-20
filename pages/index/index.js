@@ -44,7 +44,7 @@ Page({
     ptitemlistid: "",
     longitude: "",
     activeTab: '',
-    timeclickif:false,
+    timeclickif:0,
     scheduleDate: "",
     day: "",
     zzlist: "",
@@ -734,7 +734,7 @@ console.log('球类',res)
     var year = now.getFullYear();
 
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    var formatDate = year + '-' + month + '-' + e.target.dataset.id;
+    var formatDate = e.target.dataset.year + '-' + e.target.dataset.month + '-' + e.target.dataset.id;
     this.setData({
       scheduleDate: formatDate
     })
@@ -744,8 +744,8 @@ console.log('球类',res)
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-
-
+      console.log("点击团课",res)
+      console.log("点击团课", val)
       if (res.data.length != 0) {
 
 
@@ -788,7 +788,7 @@ console.log('球类',res)
     var year = now.getFullYear();
 
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    var formatDate = year + '-' + month + '-' + e.target.dataset.id;
+    var formatDate = e.target.dataset.year + '-' + e.target.dataset.month + '-' + e.target.dataset.id;
     this.setData({
       scheduleDate: formatDate
     })
@@ -798,8 +798,8 @@ console.log('球类',res)
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-
-
+console.log("户外查询点击",val)
+      console.log("户外查询点击", res)
       if (res.data.length != 0) {
 
 
@@ -844,7 +844,7 @@ console.log('球类',res)
     var year = now.getFullYear();
 
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    var formatDate = year + '-' + month + '-' + e.target.dataset.id;
+    var formatDate = e.target.dataset.year + '-' + e.target.dataset.month + '-' + e.target.dataset.id;
     this.setData({
       scheduleDate: formatDate
     })
@@ -854,8 +854,8 @@ console.log('球类',res)
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-
-
+     console.log("点击健康",val)
+      console.log("点击健康", res)
       if (res.data.length != 0) {
 
 
@@ -989,20 +989,23 @@ console.log("sike详情",res)
 
 
       if (res.data.length != 0) {
-        var sk_schedulelist = res.data[0].coachCourses;
+
+
+        var sk_schedulelist = res.data;
 
         sk_schedulelist.forEach(function (item, index, arrar) {
+          console.log("item", item)
           arrar[index] = {
-            courseName: item.course.courseName,
-            id: item.id,
-            courseId: item.courseId,
-            icon: item.course.icon,
-            price: item.price,
-            zzprice: (item.price * 0.9).toFixed(2),
-            zxprice: (item.price * 0.8).toFixed(2),
-            appointmentNumb: item.appointmentNumb,
-            contain: item.course.contain,
-            scheduleDate: item.scheduleDate
+            courseName: item.coachCourses[0].course.courseName,
+            id: item.coachCourses[0].id,
+            courseId: item.coachCourses[0].course.id,
+            icon: item.icon,
+            price: item.coachCourses[0].price,
+            zzprice: (item.coachCourses[0].price * 0.9).toFixed(2),
+            zxprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+            // appointmentNumb: item.coachCourses.appointmentNumb,
+            contain: item.coachCourses[0].course.contain,
+            // scheduleDate: item.coachCourses.scheduleDate
           }
           that.setData({
             sk_schedulelist: sk_schedulelist
@@ -1013,27 +1016,45 @@ console.log("sike详情",res)
         that.setData({
           sk_schedulelist: ""
         })
+
       }
     })
   },
   timeclick: function (e) {
-
+  console.log("www",e)
     var that = this;
-
-    for (var childrenlist of that.data.datee) {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
+    var formatDate = year + '-' + month + '-' + day;
+    var clicktime =   e.target.dataset.year + '-' + e.target.dataset.month + '-' + e.target.dataset.id;
       // var type = "true";
-      if (e.currentTarget.dataset.id == childrenlist.time) {
+    var start_time = formatDate.replace(/-|\s|:|\//g, '');
+    console.log("start_time", start_time)
+    var end_time = clicktime.replace(/-|\s|:|\//g, '');
+    console.log("end_time", end_time)
+    if (start_time < end_time) {
+      console.log("11111")
+      that.setData({
+        timeclickif:1,
+        day: e.currentTarget.dataset.id,
+        weekend: e.currentTarget.dataset.week,
+        datee: that.data.datee,
 
-        // childrenlist.type = type
-        that.setData({
-          timeclickif:true,
-          day: childrenlist.time,
-          weekend: childrenlist.week,
-          datee: that.data.datee,
+      })
 
-        })
-      }
+    }
+    else {
 
+      console.log("22222")
+      that.setData({
+        timeclickif: 2,
+        day: e.currentTarget.dataset.id,
+        weekend: e.currentTarget.dataset.week,
+        datee: that.data.datee,
+
+      })
     }
     that.tk_schedulelist(e);
     that.sk_schedulelist(e);
@@ -1073,7 +1094,7 @@ console.log("sike详情",res)
 
   
     wx.navigateTo({
-      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow
     })
   },
   skselfdetails: function (e) {

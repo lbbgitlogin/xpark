@@ -34,6 +34,8 @@ Page({
     appointment:false,//预约
     areaId:"",
     id:"",
+    timeshow: "",
+    formatDates: "",
     couponid: "",
     coachId: "",
     memberFitnessId: "",
@@ -68,23 +70,28 @@ console.log("options",options)
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
     var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
     var formatDate = year + '-' + month + '-' + day;
+   
     that.setData({
       formatDate: formatDate,
+     
       coachCourseId: options.coachCourseId,
       tk_id: options.id || '',
       shopid:options.id,
       optionstype:options.type,
+      timeshow: options.timeshow,
       sta:options.sta || '',
       shoptype: options.type,
       scheduleDate: options.scheduledate || ''
     })
+    var formatDates = year + '-' + month + '-' + options.timeshow;
     if (options.type == 1) {
     that.setData({
       showMethod:1
     })
     } else if (options.type == 2) {
       that.setData({
-        showMethod: 2
+        showMethod: 2,
+        formatDates: formatDates,
       })
     } else {
       that.setData({
@@ -425,7 +432,7 @@ console.log("options",options)
   appointment:function(){
   
    var that = this;
-    if (that.data.optionstype == 1){
+    if (that.data.optionstype == 1){//球类已购买 去预约页面预约
       wx.navigateTo({
 
         url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,

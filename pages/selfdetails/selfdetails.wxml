@@ -30,7 +30,7 @@
         <view wx:if="{{optionstype != 3}}" class='self_time'>
           <image class='black_time' src='../../img/black_time.png'></image>
           <view class='self_font'>
-            {{formatDate}} 当日有效
+            {{formatDates || formatDate}} 当日有效
           </view>
         </view>
         <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName ||gymName ||shopdetails.gym.gymName }}' data-addr="{{gymdetails.gym.address ||address ||shopdetails.gym.address}}">

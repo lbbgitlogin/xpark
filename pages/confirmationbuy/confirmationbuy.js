@@ -326,7 +326,7 @@ Page({
   testSubmit: function(e) {
 
     
-    
+  
 
     var that = this;
 
@@ -374,7 +374,7 @@ Page({
         })
 
 
-      } else if (that.data.optionstype == 2 && that.data.sta == 1) {
+      } else if (that.data.optionstype == 2 && that.data.sta == 1) { //私教购买去预约跳转
         var that = this;
 
 
@@ -465,11 +465,7 @@ Page({
 
 
 
-      } else {
-
-
-
-
+      } else {//球类预约跳转成功页面跳转预约页面
         var val = {
           areaId: that.data.areaId,
           couponEntityId: that.data.couponid || 0,
@@ -488,12 +484,12 @@ Page({
         $.Requests_json(api.balancepay.url, val).then((res) => {
           console.log("场地服务",res)
           console.log("场地服务", val)
-          if (res.data.success && that.data.itemNo != "SI-BALL") {
+          if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
        
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })
-          } else if (res.data.success && that.data.itemNo == "SI-BALL") {
+          } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
 
             wx.navigateTo({
               url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
