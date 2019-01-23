@@ -13,8 +13,8 @@ page {
   display: flex;
   justify-content: space-between;
   padding: 0 28rpx;
-  padding-top:40rpx;
-padding-bottom:50rpx;
+  padding-top: 44rpx;
+  padding-bottom: 36rpx;
   color: #FFFFFF;
 }
 
@@ -27,7 +27,7 @@ padding-bottom:50rpx;
 }
 
 .ball-timeList {
-  margin: 32rpx 28rpx;
+  margin: 40rpx 28rpx;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -37,7 +37,7 @@ padding-bottom:50rpx;
 
 .ball-timeList-item {
   width: 172rpx;
-  height: 120rpx;
+  height: 100rpx;
   border-right: 1rpx solid #1B1E23;
   border-bottom: 1rpx solid #1B1E23;
   display: flex;
@@ -45,8 +45,6 @@ padding-bottom:50rpx;
   flex-direction: column;
   align-items: center;
   font-size: 13px;
-  line-height:45rpx;
-
 }
 
 .ball-timeList-item:nth-of-type(4n) {
@@ -54,9 +52,7 @@ padding-bottom:50rpx;
 }
 
 .cantSelect {
-  background:#202428;
-color:#CCCCCC;
-
+  background: #202428;
 }
 
 .canSelect {
@@ -65,9 +61,8 @@ color:#CCCCCC;
 }
 
 .active {
-  background:#202428;
-color:#ccc;
-
+  background: #E27D00;
+  color: #fff;
 }
 
 .leftBtn {
@@ -113,6 +108,6 @@ color:#ccc;
 }
 
 .appointment {
-  background: #E27D00;
+  background: #46CC8F;
   color: #fff;
 }
