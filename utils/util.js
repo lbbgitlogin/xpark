@@ -33,38 +33,75 @@ function compareTime(startTime, endTime) {
 }
 function Requests(url, data) { //接口方法为get时调用
 
-
    return new Promise((resolv, reject) => {
      loading();
-     wx.request({
-       url: url,
-       data: data,
-       method: "get",
-       header: {
-         'Content-Type': 'application/x-www-form-urlencoded'
+     wx.getStorage({
+       key: 'userinfo',
+       success: function(res) {
+         wx.request({
+           url: url,
+           data: data,
+           method: "get",
+           header: {
+             'Content-Type': 'application/x-www-form-urlencoded',
+             'token': res.data.token
+           },
+           success: function (res) {
+             hideloading();
+             if (res.data == "服务器异常") {
+               wx.hideLoading()
+               wx.showModal({
+                 title: '提示',
+                 content: '网络错误或服务器繁忙!',
+               })
+             } else {
+               resolv(res.data)
+             }
+           },
+           fail: function (err) {
+
+             reject(err)
+             wx.hideLoading()
+             wx.showModal({
+               title: '提示',
+               content: '网络错误或服务器繁忙!',
+             })
+           }
+         })
        },
-       success: function (res) {
-         hideloading();
-         if (res.data == "服务器异常") {
-           wx.hideLoading()
-           wx.showModal({
-             title: '提示',
-             content: '网络错误或服务器繁忙!',
-           })
-         } else {
-           resolv(res.data)
-         }
-       },
-       fail: function (err) {
-         
-         reject(err)
-         wx.hideLoading()
-         wx.showModal({
-           title: '提示',
-           content: '网络错误或服务器繁忙!',
+       fail:function(){
+         wx.request({
+           url: url,
+           data: data,
+           method: "get",
+           header: {
+             'Content-Type': 'application/x-www-form-urlencoded'
+           },
+           success: function (res) {
+             hideloading();
+             if (res.data == "服务器异常") {
+               wx.hideLoading()
+               wx.showModal({
+                 title: '提示',
+                 content: '网络错误或服务器繁忙!',
+               })
+             } else {
+               resolv(res.data)
+             }
+           },
+           fail: function (err) {
+
+             reject(err)
+             wx.hideLoading()
+             wx.showModal({
+               title: '提示',
+               content: '网络错误或服务器繁忙!',
+             })
+           }
          })
        }
      })
+   
    })
 
 
@@ -77,35 +114,73 @@ function Requestsput(url, data) { //接口方法为put时调用
 
   return new Promise((resolv, reject) => {
     loading();
-    wx.request({
-      url: url,
-      data: data,
-      method: "put",
-      header: {
-        'Content-Type': 'application/json'
+    wx.getStorage({
+      key: 'userinfo',
+      success: function(res) {
+        wx.request({
+          url: url,
+          data: data,
+          method: "put",
+          header: {
+            'Content-Type': 'application/json',
+            'token': res.data.token
+          },
+          success: function (res) {
+            hideloading();
+            if (res.data == "服务器异常") {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: '网络错误或服务器繁忙!',
+              })
+            } else {
+              resolv(res.data)
+            }
+          },
+          fail: function (err) {
+
+            reject(err)
+            wx.hideLoading()
+            wx.showModal({
+              title: '提示',
+              content: '网络错误或服务器繁忙!',
+            })
+          }
+        })
       },
-      success: function (res) {
-        hideloading();
-        if (res.data == "服务器异常") {
+    fail:function(){
+      wx.request({
+        url: url,
+        data: data,
+        method: "put",
+        header: {
+          'Content-Type': 'application/json',
+        },
+        success: function (res) {
+          hideloading();
+          if (res.data == "服务器异常") {
+            wx.hideLoading()
+            wx.showModal({
+              title: '提示',
+              content: '网络错误或服务器繁忙!',
+            })
+          } else {
+            resolv(res.data)
+          }
+        },
+        fail: function (err) {
+
+          reject(err)
           wx.hideLoading()
           wx.showModal({
             title: '提示',
             content: '网络错误或服务器繁忙!',
           })
-        } else {
-          resolv(res.data)
         }
-      },
-      fail: function (err) {
-        
-        reject(err)
-        wx.hideLoading()
-        wx.showModal({
-          title: '提示',
-          content: '网络错误或服务器繁忙!',
-        })
-      }
+      })
+    }
     })
+  
   })
 
 
@@ -114,6 +189,82 @@ function Requestsput(url, data) { //接口方法为put时调用
 
 }
 function Requests_json(url, data) { //接口方法为post时调用
+
+  return new Promise((resolv, reject) => {
+    loading();
+    wx.getStorage({
+      key: 'userinfo',
+      success: function(res) {
+        wx.request({
+          url: url,
+          data: data,
+          method: "POST",
+          header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+            'token': res.data.token || ''
+          },
+          success: function (res) {
+            hideloading();
+            if (res.data == "服务器异常") {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: '网络错误或服务器繁忙!',
+              })
+            } else {
+              resolv(res.data)
+            }
+          },
+          fail: function (err) {
+            wx.hideLoading()
+
+            reject(err)
+            wx.showModal({
+              title: '提示',
+              content: '网络错误或服务器繁忙!',
+            })
+          }
+        })
+
+      },
+      fail:function(){
+        wx.request({
+          url: url,
+          data: data,
+          method: "POST",
+          header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          success: function (res) {
+            hideloading();
+            if (res.data == "服务器异常") {
+              wx.hideLoading()
+              wx.showModal({
+                title: '提示',
+                content: '网络错误或服务器繁忙!',
+              })
+            } else {
+              resolv(res.data)
+            }
+          },
+          fail: function (err) {
+            wx.hideLoading()
+
+            reject(err)
+            wx.showModal({
+              title: '提示',
+              content: '网络错误或服务器繁忙!',
+            })
+          }
+        })
+      }
+    })
+  
+  })
+}
+function Requests_jsonlogion(url, data) { //接口方法为post时调用
 
   return new Promise((resolv, reject) => {
     loading();
@@ -139,7 +290,7 @@ function Requests_json(url, data) { //接口方法为post时调用
       },
       fail: function (err) {
         wx.hideLoading()
-        
+
         reject(err)
         wx.showModal({
           title: '提示',
@@ -377,6 +528,7 @@ module.exports = {
   Requestsput: Requestsput, //转json
   Requests, //发起网络请求
   compareTime,
+  Requests_jsonlogion,//登陆专用接口不带tokein
   Requests_json, //发起网络请求
   alert: alert, //弹出框
   loading: loading, //数据加载

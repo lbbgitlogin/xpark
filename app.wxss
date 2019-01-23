@@ -204,9 +204,21 @@ form button{background-color: #fff;}
     align-content:space-between;padding-bottom: 40rpx}
 /*商品别表*/
 /*购物车加减按钮 start*/
-.u-cart-num{display:inline-block;border: 1rpx solid #d5d5d5;height: 56rpx;line-height: 54rpx;border-radius: 4rpx;box-sizing: border-box;margin-top: 15rpx;text-align: center;}
-.u-num-btn{float: left;width: 56rpx;}
-.u-cart-num input{float: left;width: 56rpx;height: 54rpx;border-left: 1rpx solid #d5d5d5;border-right: 1rpx solid #d5d5d5;font-size: 28rpx;}
+.u-cart-num{display:inline-block;
+height:50rpx;
+line-height:50rpx;
+border-radius:4rpx;
+box-sizing:border-box;
+margin-top:15rpx;
+text-align:center;
+}
+.u-num-btn{float:left;
+width:50rpx;
+height:50rpx;
+background:#444951;
+border-radius:50rpx;
+}
+.u-cart-num input{float: left;width: 56rpx;height: 54rpx;font-size: 28rpx;}
 /*购物车加减按钮 end*/
 /*公共界面属性 start*/
 .hide{display: none;}

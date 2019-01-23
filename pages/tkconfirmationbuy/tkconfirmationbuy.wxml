@@ -1,5 +1,5 @@
 <!--pages/confirmationbuy/confirmationbuy.wxml-->
-<view class='order_list'>
+<view class='order_list' style='padding:{{mjbox?"40rpx 0 250rpx 0":"40rpx 0 150rpx 0"}}'>
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
@@ -7,13 +7,13 @@
     </view>
     <view class='datails_title'>{{gymdetails.fitnessName ||tkgymdetails.course.courseName ||shopdetails.fullName}}</view>
     <view class='order_datails'>
-      <view wx:if="{{vip == 1}}" class='order_mon'>¥{{xparkprice|| price*0.9}}</view>
-      <view wx:if="{{vip == 2}}" class='order_mon'>¥{{twoprice|| price*0.8}}</view>
-      <view wx:if="{{vip !=1 && vip !=2}}" class='order_mon'>¥{{price}}</view>
+      <view class='order_mon'>¥{{price}}</view>
+
       <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
+      <view  wx:if="{{shoptype != 3}}"class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
-  <!-- <view class='list_booking '>
+  <view wx:if="{{mjbox}}" class='list_booking '>
     <view class='order_name '>
       数量
     </view>
@@ -24,7 +24,7 @@
               <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
             </view>
     </view>
-  </view> -->
+  </view>
   <view class='list_booking '>
     <view class='order_name '>
       门店
@@ -53,37 +53,34 @@
     <view class='confirmationbuy_cou '>优惠信息</view>
     <view class='list_booking_buy '>
       <view class='order_name '>
-        活动促销
+        促销满减
       </view>
-      <view class='order_smallname '>
+      <view wx:if="{{!mjbox}}" class='order_smallname '>
         无活动
+      </view>
+        <view wx:if="{{mjbox}}"  class='order_smallname '>
+         -￥{{discountMoney}}
       </view>
     </view>
 
   </view>
-  <view wx:if="{{category}}" class='list_booking '>
+  <view wx:if="{{conmoney}}" class='list_booking '>
     <view bindtap='choosecoupon ' class='order_name '>
       优惠券
     </view>
-    <view wx:if="{{category == 2 && vip == 1 }}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{yhxparkprice}}
+    <view wx:if="{{category == 1}}" bindtap='choosecoupon ' class='order_smallname '>
+      -￥{{conmoney}}
     </view>
-     <view wx:if="{{category == 2  && vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{yhtwoprice}}
-    </view>
-     <view wx:if="{{category == 2  && vip != 2 && vip != 1}}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{shopprice}}
-    </view>
-     <view wx:if="{{category != 2 }}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{conmoney}}
+      <view wx:if="{{category == 2}}"  bindtap='choosecoupon ' class='order_smallname '>
+      -￥{{shopprice}}
     </view>
   </view>
-    <view wx:if="{{vip}}" class='list_booking '>
+   <view wx:if="{{vip}}" class='list_booking '>
     <view  wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_name '>
-    尊享卡折扣
+      至尊卡折扣
     </view>
      <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_name '>
-   至尊卡折扣
+      尊享卡折扣
     </view>
     <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
       八折
@@ -120,15 +117,18 @@
 
   </view>
 </view>
+<view wx:if="{{mjbox}}" class='mj_box'>
+已购满{{fullNumb}}课时，立减{{discountMoney}}元
+</view>
   <view class='buy '>
-   <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{xparkprice-conmoney}}
+    <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
+     ￥{{price*buy_num-discountMoney-conmoney}}
     </view>
       <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{twoprice-conmoney}}
+     ￥{{price*buy_num-discountMoney-conmoney}}
     </view>
       <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{price-conmoney}}
+     ￥{{price*buy_num-discountMoney-conmoney}}
     </view>
 
 

@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    formdatask:"",
+    formdatask: "",
     formdata: null,
     bookingTime: "",
     groundName: "",
@@ -16,6 +16,7 @@ Page({
     yuyuetime: "",
     memberCourseId: "",
     groundId: "",
+    vip:"",
     sta: "",
     skgymdetails: "",
     leagueScheduleId: "",
@@ -26,12 +27,13 @@ Page({
     mobile: "",
     remark: "",
     gymId: "",
+    num: "",
     orderType: "",
     optionstype: "",
     numb: "1",
     memberFitnessId: "",
     textareavalue: "",
-    areaName: "", 
+    areaName: "",
     couponlenght: "",
     choose: false,
     orderNo: "",
@@ -56,12 +58,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options)
+    console.log("options", options)
 
     var that = this;
 
     if (options.orderType == 2 && options.isfj != "undefined") {
-   
+
       that.setData({
         formdatask: JSON.parse1(options.data),
         formdata: options.data,
@@ -75,10 +77,11 @@ Page({
       })
       that.coach_course()
 
-    } else if (options.optionstype == 2){
-         that.setData({
-           tk_id: options.tk_id
-         })
+    } else if (options.optionstype == 2) {
+      that.setData({
+        tk_id: options.tk_id,
+        num: options.buy_num
+      })
     } else if (options.type === '场馆') {
       that.setData({
         formdata: options,
@@ -128,9 +131,9 @@ Page({
                 tk_id: options.coachcourseid || options.tk_id
               })
               that.surebuy()
-              
+
             } else if (options.orderType == 2 && options.isfj == "undefined") {
-           
+
               let { tk_id, coachId, memberCourseId } = options
               that.setData({
                 tk_id: tk_id,
@@ -161,7 +164,7 @@ Page({
             url: '../land/land',
           })
 
-        }, 2000) //延迟时间 这里是1秒
+        }, 1000) //延迟时间 这里是1秒
 
       },
     })
@@ -192,10 +195,10 @@ Page({
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      console.log("私课详情",res)
-      
-      
+
+      console.log("私课详情", res)
+
+
 
       that.setData({
         skgymdetails: res.data,
@@ -203,11 +206,39 @@ Page({
       })
     })
   },
+  member: function () { //会员卡查询
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        var val = {
+          memberId: res.data.memberId,
+
+        }
+        $.Requests(api.member.url, val).then((res) => {
+          console.log("会员查询", res)
+
+          if (res.data.length == 0) {
+
+
+          } else {
+            that.setData({
+              vip: res.data[0].vip
+            })
+          }
+
+        })
+
+      },
+
+    })
+
+  },
   surebuy: function () {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    console.log("tuanbke ",res)
+      console.log("tuanbke ", res)
 
       var now = new Date();
       var year = now.getFullYear();
@@ -322,7 +353,7 @@ Page({
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-    console.log("sike",data)
+        console.log("sike", data)
 
         if (res.status == 0) {
           wx.navigateTo({
@@ -335,23 +366,23 @@ Page({
       })
 
     } else if (that.data.optionstype == 2 && that.data.sta != 1) {
- 
+
       var val = {
         memberCourseId: that.data.memberCourseId,
         orderNo: that.data.orderNo,
         memberId: that.data.memberId,
         bookingTime: that.data.startTime,
         bookingDate: that.data.tktime,
-        numb: "1",
+        numb: 1,
         remark: that.data.textareavalue,
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
         console.log("团课预约", val)
-  console.log("团课预约",res)
+        console.log("团课预约", res)
         if (res.status == 0) {
           wx.navigateTo({
-            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime,
+            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime + "&num=" + that.data.num,
           })
         } else {
           $.alert("预约失败")
@@ -367,8 +398,8 @@ Page({
       })
 
 
-    } else if (that.data.formdata.type === '场馆'){
-      
+    } else if (that.data.formdata.type === '场馆') {
+
       let { time, day, memberFitnessId, groundId } = that.data.formdata
       // return
 
@@ -386,19 +417,19 @@ Page({
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
             console.log("场馆", res)
-              console.log("场馆",val)
+            console.log("场馆", val)
 
             if (res.status == 0) {
               // wx.navigateTo({
               //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
               // })
               $.alert("预约成功")
-              setTimeout(()=> {
+              setTimeout(() => {
                 wx.switchTab({
                   url: '../index/index'
                 })
               }, 500)
-              
+
             } else {
               $.alert("预约失败")
             }

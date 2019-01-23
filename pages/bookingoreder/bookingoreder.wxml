@@ -4,16 +4,16 @@
   未使用
 </view>
 <view wx:if="{{ordertype == 0}}" class='order font-colormode'>
-已取消
+  已取消
 </view>
 <view wx:if="{{ordertype == 2}}" class='order font-colormode'>
-已使用
+  已使用
 </view>
 <view class='order_list'>
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
-         <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common/{{icon}}'></image>
+      <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common/{{icon}}'></image>
     </view>
     <view class='datails_title'>{{bookingName}}</view>
     <view class='order_datails'>
@@ -30,24 +30,24 @@
     </view>
     <image class='tv_img' src='../../img/tv.png'></image>
   </view> -->
- <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       门店
     </view>
     <view class='order_smallname'>
-       {{gymName}}
+      {{gymName}}
     </view>
-    <image  data-phone="{{mobilephone}}" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
+    <image data-phone="{{mobilephone}}" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       地点
     </view>
     <view class='order_smallname'>
-       上海市杨浦区军工路188号 
+      上海市杨浦区军工路188号
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       预约时间
     </view>
@@ -55,33 +55,30 @@
       {{formatDate}}
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       关联订单
     </view>
     <view class='order_smallname'>
-  {{orderNo}}
+      {{orderNo}}
     </view>
   </view>
   <view class='remarks'>
     <view class='order_name'>备注要求</view>
     <view class='order_remarks'>
-    {{remark}}
-</view>
+      {{remark}}
+    </view>
   </view>
-    <view class='erweima' wx:if="{{ordertype == 1}}">
+  <view class='erweima' wx:if="{{ordertype == 1}}">
     <view class='erweima_name'>
       <view class='name_first'>预约核销码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>
-    
-    
-    
     </view>
-     <view class='pic_ewm'>
-     <canvas class='pic_ewm' style="width: 168px; height:168px;" canvas-id="myQrcode"></canvas>
-      </view>
+    <view class='pic_ewm'>
+      <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
+    </view>
   </view>
 </view>
-<view  wx:if="{{ordertype == 1}}" class='but_order' bindtap='appointment_common'>
-取消预约
+<view wx:if="{{ordertype == 1}}" class='but_order' bindtap='appointment_common'>
+  取消预约
 </view>

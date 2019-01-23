@@ -37,6 +37,7 @@ Page({
     zzlistlength:true,
     provincechoose: "",
     scrootop: "",
+    swishop: "",
     gymName: "",
     ptitemlist: "",
     latitude: "",
@@ -252,6 +253,7 @@ Page({
     $.Requests(api.xparkshop.url+'/'+1, val).then((res) => {
       console.log("商店信息",res)
       this.setData({
+        swishop:res.data,
         mobilephone: res.data.mobile
       })
     })
@@ -431,8 +433,8 @@ console.log('球类',res)
             icon: item.fitness.icon,
             fitnessName: item.fitnessName,
             price: item.price,
-            zzprice: (item.price * 0.9).toFixed(2),
-            zxprice: (item.price * 0.8).toFixed(2),
+            zzprice: (item.price * 0.8).toFixed(2),
+            zxprice: (item.price * 0.9).toFixed(2),
             areaId: item.areaId,
             id: item.id,
             itemNo: item.fitness.itemNo
@@ -491,7 +493,7 @@ console.log('球类',res)
           }
           $.Requests(api.categorylist.url, val).then((res) => {
             //配套第一分类商品查询
-            
+            console.log("配套第一分类商品查询",res)
             let data = res.data.content
             wx.getStorage({
               key: 'vip',
@@ -500,10 +502,10 @@ console.log('球类',res)
                 data.forEach((item, index) => {
                   if (item.goods.length > 0) {
                     item.goods.map(item => {
-                      if (res.data === 1) {
-                        item.VipPrice = (item.price * 0.8).toFixed(2)
-                      } else {
+                      if (res.data == 1) {
                         item.VipPrice = (item.price * 0.9).toFixed(2)
+                      } else {
+                        item.VipPrice = (item.price * 0.8).toFixed(2)
                       }
                     })
                   }
@@ -573,8 +575,8 @@ console.log('球类',res)
                 icon: item.course.icon,
                 price: item.price,
                 buyEndTime: item.buyEndTime,
-                zzprice: (item.price * 0.9).toFixed(2),
-                zxprice: (item.price * 0.8).toFixed(2),
+                zzprice: (item.price * 0.8).toFixed(2),
+                zxprice: (item.price * 0.9).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
@@ -637,12 +639,12 @@ console.log('球类',res)
             hw_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
-                id: item.id,
+                id: item.course.id,
                 icon: item.course.icon,
                 price: item.price,
                 buyEndTime: item.buyEndTime,
-                zzprice: (item.price * 0.9).toFixed(2),
-                zxprice: (item.price * 0.8).toFixed(2),
+                zzprice: (item.price * 0.8).toFixed(2),
+                zxprice: (item.price * 0.9).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
@@ -700,13 +702,13 @@ console.log('球类',res)
             jk_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
-                id: item.id,
+                id: item.course.id,
 
                 icon: item.course.icon,
                 price: item.price,
                 buyEndTime: item.buyEndTime,
-                zzprice: (item.price * 0.9).toFixed(2),
-                zxprice: (item.price * 0.8).toFixed(2),
+                zzprice: (item.price * 0.8).toFixed(2),
+                zxprice: (item.price * 0.9).toFixed(2),
                 appointmentNumb: item.appointmentNumb,
                 contain: item.course.contain,
                 scheduleDate: item.scheduleDate
@@ -808,12 +810,12 @@ console.log("户外查询点击",val)
         hw_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
-            id: item.id,
+            id: item.course.id,
             icon: item.course.icon,
             price: item.price,
             buyEndTime: item.buyEndTime,
-            zzprice: (item.price * 0.9).toFixed(2),
-            zxprice: (item.price * 0.8).toFixed(2),
+            zzprice: (item.price * 0.8).toFixed(2),
+            zxprice: (item.price * 0.9).toFixed(2),
             appointmentNumb: item.appointmentNumb,
             contain: item.course.contain,
             scheduleDate: item.scheduleDate
@@ -864,12 +866,12 @@ console.log("户外查询点击",val)
         jk_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
-            id: item.id,
+            id: item.course.id,
             buyEndTime: item.buyEndTime,
             icon: item.course.icon,
             price: item.price,
-            zzprice: (item.price * 0.9).toFixed(2),
-            zxprice: (item.price * 0.8).toFixed(2),
+            zzprice: (item.price * 0.8).toFixed(2),
+            zxprice: (item.price * 0.9).toFixed(2),
             appointmentNumb: item.appointmentNumb,
             contain: item.course.contain,
             scheduleDate: item.scheduleDate
@@ -921,8 +923,8 @@ console.log("sike详情",res)
                 courseId: item.coachCourses[0].course.id,
                   icon: item.icon,
                 price: item.coachCourses[0].price,
-                zzprice: (item.coachCourses[0].price * 0.9).toFixed(2),
-                zxprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+                zzprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+                zxprice: (item.coachCourses[0].price * 0.9).toFixed(2),
                 // appointmentNumb: item.coachCourses.appointmentNumb,
                 contain: item.coachCourses[0].course.contain,
                 // scheduleDate: item.coachCourses.scheduleDate
@@ -1001,8 +1003,8 @@ console.log("sike详情",res)
             courseId: item.coachCourses[0].course.id,
             icon: item.icon,
             price: item.coachCourses[0].price,
-            zzprice: (item.coachCourses[0].price * 0.9).toFixed(2),
-            zxprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+            zzprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+            zxprice: (item.coachCourses[0].price * 0.9).toFixed(2),
             // appointmentNumb: item.coachCourses.appointmentNumb,
             contain: item.coachCourses[0].course.contain,
             // scheduleDate: item.coachCourses.scheduleDate
@@ -1094,7 +1096,7 @@ console.log("sike详情",res)
 
   
     wx.navigateTo({
-      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow + "&timechoose=" + e.target.dataset.timechoose
     })
   },
   skselfdetails: function (e) {
@@ -1106,11 +1108,20 @@ console.log("sike详情",res)
   },
   // 
   selfdetails: function (e) {
-
-
-    wx.navigateTo({
-      url: '../selfdetails/selfdetails?areaid=' + e.target.dataset.areaid + "&type=" + e.target.dataset.type + "&itemNo=" + e.target.dataset.itemno + "&id=" + e.target.dataset.id + "&coachCourseId=" + e.target.dataset.coachCourseId,
-    })
+  console.log("预约",e)
+    if (e.currentTarget.dataset.type == 3){
+      wx.navigateTo({
+     
+        url: '../shopdetails/shopdetails?id=' + e.target.dataset.id + "&type=" + e.target.dataset.type,
+      })
+    }
+    if (e.currentTarget.dataset.type == 1) {
+      wx.navigateTo({
+    
+        url: '../selfdetails/selfdetails?id=' + e.target.dataset.id + "&type=" + e.target.dataset.type,
+      })
+    }
+   
   },
   btnselfdetails: function (e) {
 
@@ -1326,6 +1337,11 @@ console.log("sike详情",res)
 
 
   },
+  ruchan:function(){
+    wx.navigateTo({
+      url: '../approach/approach'
+    })
+  },
   Approach: function (e) { //扫码入场
   console.log("wwww",e)
      var vals = {
@@ -1357,6 +1373,12 @@ console.log("sike详情",res)
       that.hwleague_schedulelist(); //课程服务团课服务查询列表
       that.jkleague_schedulelist(); //课程服务团课服务查询列表
       that.member();
+      var now = new Date();
+      var day = now.getDate();
+      that.setData({
+        shopindex:0,
+        day: day
+      })
 
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1500);

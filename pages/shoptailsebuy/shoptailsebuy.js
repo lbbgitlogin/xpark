@@ -11,13 +11,14 @@ Page({
   data: {
     memberId: "",
     buy_num: 1,
-    shopprice: "",
     goodsId: "",
+    discount: "",
+    category: "",
     maxnum: "",
     minnum: "",
     areaId: "",
-    clickshow:true,
-    vip:"",
+    clickshow: true,
+    vip: 0,
     tkareaId: "",
     price: "",
     coachId: "",
@@ -27,26 +28,26 @@ Page({
     sta: "",
     icon: "",
     gymId: "",
-    category: "",
     optionstype: "",
     numb: "1",
+    shopprice: "",
     xparkprice: "",
     twopric: "",
     couponlenght: "",
     choose: false,
-    discount: "",
     memberName: "",
     tk_id: "",
     shoptype: "",
     yuechoose: true,
     wxyuechoose: false,
     hidden: 1,
-    conmoney: "",
     gymName: "",
     address: "",
     id: "",
     openid: "",
     itemNo: "",
+    yhtwoprice: "",
+    yhxparkprice: "",
     shopid: "",
     yuenum: "",
     formatDate: "",
@@ -56,20 +57,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log("确认",options)
+  onLoad: function (options) {
+    console.log("确认", options)
     var that = this;
 
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
           tk_id: options.tk_id,
           couponid: options.couponid,
-          conmoney: options.conmoney,
+          discount: options.discount,
           category: options.category,
           coachId: options.coachId || '',
           scheduleDate: options.scheduleDate,
@@ -79,7 +80,7 @@ Page({
         })
         wx.getStorage({
           key: 'gymId',
-          success: function(res) {
+          success: function (res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id,
@@ -102,16 +103,16 @@ Page({
             } else {
               that.gymdetails();
             }
-         
+
             that.yuenum()
           }
         })
 
 
       },
-      fail: function(res) {
+      fail: function (res) {
         $.alert("请先登录")
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.navigateTo({
             url: '../land/land',
@@ -129,33 +130,33 @@ Page({
 
   },
   // 减号 1
-bindMinus: function (e) {
+  bindMinus: function (e) {
     if (this.data.buy_num > 1) {
       this.pay_num(this.data.buy_num - 1)
     }
-  if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-    this.setData({
-      clickshow:true
-    })
-  }
+    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
+      this.setData({
+        clickshow: true
+      })
+    }
   },
   // 加号 1
   bindPlus: function (e) {
     if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-    this.pay_num(this.data.buy_num + 1)
+      this.pay_num(this.data.buy_num + 1)
     }
   },
 
   pay_num: function (e) {
-    console.log("数量",e)
+    console.log("数量", e)
     var that = this;
     if (e > 0) {
       that.setData({
-        buy_num : e
+        buy_num: e
 
       })
-      
-    }else{
+
+    } else {
       that.setData({
         buy_num: 1
 
@@ -163,55 +164,61 @@ bindMinus: function (e) {
     }
     if (e.type == 'change') {
       //如果是input的change事件 buy_num 就赋值为用户手动输入的值
-      if (e.detail.value < 1){
+      if (e.detail.value < 1) {
         that.setData({
           buy_num: 1
         })
-      }else{
+      } else {
         that.setData({
           buy_num: e.detail.value
         })
       }
-     
+
     }
     console.log(that.data.buy_num, that.data.maxnum)
     if (Number(that.data.buy_num) < Number(that.data.maxnum)) {
       //判断用户输入的数量是否超过库存
-     
+
     } else {
-      
-    
+
+
       this.setData({
-        clickshow:false,
+        clickshow: false,
         buy_num: that.data.maxnum
       })
     }
 
   },
 
-  shopdetails: function() {
+  shopdetails: function () {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      console.log("商品",res)
-      let{price}= res.data
+      console.log("商品", res)
+      let { price } = res.data
       that.setData({
         shopdetails: res.data,
         gymName: res.data.gym.gymName,
         areaId: res.data.areaId,
+        shopprice:res.data.price,
+        price: price,
         xparkprice: (price*0.9).toFixed(2),
+        yhxparkprice: (price*0.9).toFixed(2),
         twoprice: (price*0.8).toFixed(2),
+        yhtwoprice: (price*0.8).toFixed(2),
         icon: res.data.gym.icon,
         address: res.data.gym.address,
         goodsId: res.data.id,
       })
-      if (that.data.couponid != ""){
+      if (that.data.category == 2) {
         that.setData({
-          price:0
+          price: 0,
+          xparkprice:0,
+          twoprice:0
         })
       }
-      
-      
+
+
 
     })
   },
@@ -225,8 +232,8 @@ bindMinus: function (e) {
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          
-          
+     
+
           if (res.data.length == 0) {
 
 
@@ -243,12 +250,12 @@ bindMinus: function (e) {
     })
 
   },
-  league_schedule: function() {
+  league_schedule: function () {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    console.log("团课",res)
-      
+      console.log("团课", res)
+
       let { price, areaId } = res.data
 
       var now = new Date();
@@ -266,24 +273,24 @@ bindMinus: function (e) {
         jindu: res.data.appointmentNumb / res.data.course.contain,
         tkareaId: areaId
       })
-      if (that.data.couponid != "") {
+      if (that.data.category == 2) {
         that.setData({
           price: 0
         })
       }
-      
+
     })
   },
-  coach_course: function() { //私课详情
-  
+  coach_course: function () { //私课详情
+
     var that = this;
     var val = {
       schduleDate: that.data.scheduleDate
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
+
+
 
       that.setData({
         tkgymdetails: res.data,
@@ -298,7 +305,7 @@ bindMinus: function (e) {
       })
     })
   },
-  yuenum: function() {
+  yuenum: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -314,7 +321,7 @@ bindMinus: function (e) {
     })
 
   },
-  couponlist: function() {
+  couponlist: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -329,12 +336,12 @@ bindMinus: function (e) {
 
     })
   },
-  closebuynow: function() {
+  closebuynow: function () {
     this.setData({
       hidden: 1
     })
   },
-  gymdetails: function() {
+  gymdetails: function () {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -351,28 +358,22 @@ bindMinus: function (e) {
 
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-  console.log("sss",res)
-    let{price}=res.data
+
+      let { price } = res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
         gymdetails: res.data,
         areaId: res.data.areaId,
         price: price,
-        shopprice:price,
         gymName: res.data.gym.gymName,
         shopid: res.data.id,
         address: res.data.gym.address,
-        xparkprice: (res.data.price * 0.9).toFixed(2),
-        yhxparkprice: (res.data.price * 0.9).toFixed(2),
-        twoprice: (res.data.price * 0.8).toFixed(2),
-        yhtwoprice: (res.data.price * 0.8).toFixed(2),
+        price: res.data.price
 
       })
       if (that.data.category == 2) {
         that.setData({
-          price: 0,
-          xparkprice: 0,
-          twoprice: 0
+          price: 0
         })
       }
       // this.setData({
@@ -384,14 +385,14 @@ bindMinus: function (e) {
 
 
   },
-  choosecoupon: function() {
+  choosecoupon: function () {
     this.setData({
       choose: true,
       hidden: 0
     })
 
   },
-  choosecouponbtn: function() {
+  choosecouponbtn: function () {
     if (this.data.choose) {
       this.setData({
         choose: false,
@@ -407,10 +408,10 @@ bindMinus: function (e) {
 
 
   },
-  testSubmit: function(e) {
+  testSubmit: function (e) {
 
-    
-  
+
+
 
     var that = this;
 
@@ -420,15 +421,15 @@ bindMinus: function (e) {
     console.log("formId", e.detail.formId)
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-  console.log("formid",res)
+      console.log("formid", res)
       console.log("formid", vals)
       console.log("formid", app.globalData.wxopenid)
 
     })
     if (that.data.yuechoose) {
-   
+
       if (that.data.optionstype == 2 && that.data.sta != 1) {
-       
+
         var val = {
           areaId: that.data.tkareaId,
           couponEntityId: that.data.couponid || 0,
@@ -445,8 +446,8 @@ bindMinus: function (e) {
         }
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
-          
-             console.log("团课预约",res)
+
+          console.log("团课预约", res)
 
           if (res.status == 0) {
 
@@ -482,14 +483,14 @@ bindMinus: function (e) {
 
 
         $.Requests_json(api.member_order.url, val).then((res) => {
-          
-            console.log("11",res)
+
+          console.log("11", res)
           console.log("11", val)
 
           if (res.status == 0) {
-  
+
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId, 
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
             })
           }
 
@@ -516,17 +517,17 @@ bindMinus: function (e) {
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
 
-          
-          
-          
+
+
+
           if (res.status == 0) {
 
             // var val = {
             //   formId: e.detail.formId
             // }
             // $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
-              
-              
+
+
 
             // })
 
@@ -566,10 +567,10 @@ bindMinus: function (e) {
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-          console.log("场地服务",res)
+          console.log("场地服务", res)
           console.log("场地服务", val)
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
-       
+
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })
@@ -591,7 +592,7 @@ bindMinus: function (e) {
     }
 
   },
-  yuechoose: function() {
+  yuechoose: function () {
 
     if (this.data.yuechoose) {
       this.setData({
@@ -605,7 +606,7 @@ bindMinus: function (e) {
     }
 
   },
-  wxyuechoose: function() {
+  wxyuechoose: function () {
 
     if (this.data.wxyuechoose) {
       this.setData({
@@ -622,49 +623,49 @@ bindMinus: function (e) {
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

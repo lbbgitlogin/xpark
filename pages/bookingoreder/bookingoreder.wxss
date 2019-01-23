@@ -97,7 +97,7 @@ box-sizing:border-box;
 }
 .erweima{
     width:100%;
-height:484rpx;
+height:520rpx;
 margin:0 auto; 
 border-bottom:1rpx solid #1B1E23;
 padding:36rpx 28rpx 0 28rpx;
@@ -123,9 +123,13 @@ line-height:98rpx;
   color: #CCC
 }
 .pic_ewm{
- width:296px;
-height:333rpx;
-  margin: 40rpx auto 36rpx auto;
+width:207px;
+height:361rpx;
+margin:44rpx auto 36rpx auto;
+background:#fff;
+padding:10rpx;
+box-sizing:border-box;
+
 }
 .but_order{
   width: 92%;

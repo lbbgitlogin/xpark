@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "html-view": "../../html-view/html-view"
+  }
+}

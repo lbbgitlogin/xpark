@@ -7,8 +7,8 @@
     </view>
     <view class="userName" style='{{membershow?"line-height: 53rpx;":"line-height: 0rpx;"}}'>
       <open-data wx:if="{{!membershow}}" type="userNickName"></open-data>
-       <view wx:if="{{vip == 1&&membershow}}">X-PARK至尊卡</view>
-       <view wx:if="{{vip == 2&&membershow}}">X-PARK尊享卡</view>
+       <view wx:if="{{vip == 1&&membershow}}">X-PARK尊享卡</view>
+       <view wx:if="{{vip == 2&&membershow}}">X-PARK至尊卡</view>
      
     </view>
       <view  class=''>

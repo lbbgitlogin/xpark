@@ -74,7 +74,7 @@ Page({
           formatDate: formatDate,
           groundName: res.data.groundName,
           tk_id: options.tk_id,
-          yuyueformdate: options.day + options.time + ':00',
+          yuyueformdate: options.day +''+  options.time + ':00',
         })
         that.coach_course()
       }
@@ -130,7 +130,7 @@ Page({
             url: '../land/land',
           })
 
-        }, 2000) //延迟时间 这里是1秒
+        }, 1000) //延迟时间 这里是1秒
 
       },
     })

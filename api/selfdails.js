@@ -192,6 +192,12 @@ appointment_common: { //取消订单
 
     }
   },
+  courseFullDiscount: { //maika
+    url: cf.config.configUrl + 'coach_course/courseFullDiscount/find',
+    get: {
+
+    }
+  }, 
   
 
 }

@@ -114,7 +114,15 @@
 ¥{{price}}
     </view>
   </view>
-
+  <view class='erweima' wx:if="{{ordertype == 'sp'}}">
+    <view class='erweima_name'>
+      <view class='name_first'>商品提货码</view>
+      <view class='name_thrid'>(使用服务前请核销）</view>
+    </view>
+    <view class='pic_ewm'>
+      <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
+    </view>
+  </view>
    </view>
      <view wx:if="{{orderstate == 0}}" class='but_manage'>
         <view bindtap='qxorder' class='close_manage'>取消订单</view>

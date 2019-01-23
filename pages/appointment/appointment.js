@@ -107,7 +107,7 @@ Page({
     })
   },
   appoint: function () {
-   
+    var that =this;
     var val = {
       memberId: that.data.memberId,
       state: '1',
@@ -197,7 +197,7 @@ Page({
             url: '../land/land',
           })
 
-        }, 2000) //延迟时间 这里是1秒
+        }, 1000) //延迟时间 这里是1秒
 
       },
     })

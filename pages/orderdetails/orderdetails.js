@@ -2,6 +2,9 @@
 var app = getApp()
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
+var QRCode = require('../../utils/weapp.qrcode.esm.js');
+import drawQrcode from '../../utils/weapp.qrcode.esm.js'
+var qrcode;
 Page({
 
   /**
@@ -10,6 +13,8 @@ Page({
   data: {
     goodsname: '',
     gymname: '',
+    usecode: '',
+    ordertype: '',
     orderno: '',
     orderstate: '',
     orderid: '',
@@ -24,10 +29,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
+      console.log("options",options)
      var that =this;
     that.setData({
       goodsname: options.goodsname,
+      ordertype: options.ordertype,
+      usecode: options.usecode,
       gymname: options.gymname,
       orderno: options.orderno,
       orderid:options.id,
@@ -39,6 +46,9 @@ Page({
       discountmoney: options.discountmoney,
       
     });
+    if (options.ordertype == 'sp'){
+      that.draw()
+    }
   },
 
   /**
@@ -53,6 +63,15 @@ Page({
    */
   onShow: function () {
     
+  },
+  draw() {
+    var that = this;
+    drawQrcode({
+      width: 168, //二维码宽高,宽高要与canvas标签宽高一致
+      height: 168,
+      canvasId: 'myQrcode',
+      text: that.data.usecode //二维码内容
+    })
   },
 
   /**

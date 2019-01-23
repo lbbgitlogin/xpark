@@ -244,13 +244,13 @@ color:#ccc;
   box-shadow: 0 -2rpx 50rpx #282B30
 }
 .buy_left{
+  flex: 1;
   font-weight: bold;
   font-size: 40rpx;
 height: 100%;
 line-height: 118rpx;
 padding-left: 28rpx;
-box-sizing: border-box;
-width: 42%
+box-sizing: border-box
 }
 .buy_right{
    flex: 1;

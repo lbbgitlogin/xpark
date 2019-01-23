@@ -124,7 +124,15 @@ var that =this;
     $.Requestsput(api.modify.url+'/'+ that.data.memmbleid, val).then((res) => {
    console.log("res",res)
       console.log("res", val)
-
+      if (res.status == 0){
+        setTimeout(() => {
+          wx.showModal({
+            title: '提示',
+            content: "保存成功",
+     
+          })
+        }, 500)
+      }
     })
 
     

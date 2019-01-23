@@ -17,6 +17,7 @@ Page({
     gymId: "",
     mobile: "",
     memberName: "",
+    token: "",
     memberId: "",
     btntext: "获取验证码",
     phone: "",
@@ -197,12 +198,13 @@ Page({
     }
     
     var thisobj = this;
-    $.Requests_json(api.login.url, val).then((res) => {
+    $.Requests_jsonlogion(api.login.url, val).then((res) => {
          console.log("注册",res)
          console.log("注册",val)
       if (res.data != null) {
         var obj = {
           icon: res.data.icon,
+          token: res.data.token,
           memberName: res.data.memberName,
           mobile: res.data.mobile,
           give: res.data.give,

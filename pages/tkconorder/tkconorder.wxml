@@ -8,7 +8,9 @@
     </view>
     <view class='datails_title'>{{gymdetails.fitnessName ||tkgymdetails.course.courseName||skgymdetails.course.courseName}}</view>
     <view class='order_datails'>
-      <view class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price || skgymdetails.price}}</view>
+      <view wx:if="{{vip == 1}}" class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price*0.9 || skgymdetails.price*0.9}}</view>
+         <view  wx:if="{{vip == 2}}" class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price*0.8 || skgymdetails.price*0.8}}</view>
+            <view wx:if="{{ vip != 1 && vip != 2}}" class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price || skgymdetails.price}}</view>
       <view class='num_order'>x1</view>
     </view>
   </view>

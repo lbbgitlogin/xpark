@@ -2,12 +2,10 @@
 <view style='{{hidden == 0?"position:fixed":""}} padding-bottom:130rpx'>
 
   <view class='self_banner'>
-     <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
-        <swiper-item wx:for="{{gymdetails.fitnessGalleries || tkgymdetails.courseGalleries ||icon ||shopdetails.gym.icon}}" wx:for-item="item">
-          <image class="slide-image" mode="aspectFill" src="http://zuul.snail.highlifes.com/common{{item.url || item}}" />
-        </swiper-item>
-      </swiper>
-    <!-- <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
+ 
+    
+    
+ <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image> 
   </view>
   <view class='self_box'>
     <view class='self_name {{shoptype != 3?"taif":""}}'>
@@ -72,13 +70,13 @@
         <view class='self_time'>
           <image style='height：20rpx' class='black_time' src='../../img/card_bj.png'></image>
           <view wx:if="{{vip == 2}}" class='self_font'>
-             XPARK至尊卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.8 || price*0.8 || shopdetails.price*0.8||tkgymdetails.price*0.8}}元
+            XPARK尊享卡价： {{twoprice}}元
           </view>
           <view wx:if="{{vip == 1}}" class='self_font'>
-            XPARK尊享卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || price*0.9 || shopdetails.price*0.9||tkgymdetails.price*0.9}}元
+            XPARK至尊卡价：{{xparkprice}}元
           </view>
           <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
-            XPARK尊享卡价：{{gymdetails.price == 0?'0':gymdetails.price*0.9 || price*0.9 || shopdetails.price*0.9||tkgymdetails.price*0.9}}元
+            XPARK至尊卡价：{{xparkprice}}元
           </view>
         </view>
       </view>
@@ -116,7 +114,7 @@
     教练课程
   </view>
   <view wx:if="{{showMethod == 2}}" class='shop_details'>
-    <image class='shop_img_sj' src='http://zuul.snail.highlifes.com/common{{jlicon|| icon ||tkgymdetails.course.icon }}'></image>
+    <image class='shop_img_sj' src='http://zuul.snail.highlifes.com/common{{icon ||tkgymdetails.course.icon }}'></image>
     <view class='title_shop'>
       <view class='title_name'>{{coachName|| coachName||tkgymdetails.coachSchedule.coachName}}</view>
       <view class='title_sm'>擅长：健美操课。获得证书：CPR认证；国家职业资格认证。</view>
@@ -246,10 +244,10 @@
       ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price ||tkgymdetails.price}}
     </view>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
-      ¥{{gymdetails.price == 0?'0':gymdetails.price*0.9 ||price*0.9 || shopdetails.price*0.9||tkgymdetails.price*0.9}}
+      ¥{{xparkprice}}
     </view>
     <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
-    ¥{{gymdetails.price == 0?'0':gymdetails.price*0.8 || price*0.8 || shopdetails.price*0.8||tkgymdetails.price*0.8}}
+    ¥{{twoprice}}
     </view>
     
     <view wx:if="{{!appointment && couponlength != 0&& showMethod !=2}}" bindtap='buynow' class='buy_right bj_color'>
@@ -264,7 +262,7 @@
       预约
     </view>
       <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
-      预约
+    购买
     </view>
     <view wx:if="{{appointment}}" data-nullif='num' bindtap='appointment' class='buy_right bj_color'>
       预约
@@ -294,7 +292,7 @@
                 <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
                 <view>有效期：{{item.endTime}}</view>
               </view>
-              <view wx:if="{{item.state == 1}}" data-category='{{item.category}}' data-conmoney='{{item.discount}}' data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
+              <view wx:if="{{item.state == 1}}" data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' data-discount='{{item.discount}}' data-category='{{item.category}}' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
                 <image wx:if="{{chooseindex != index}}" class='choose_img' src='../../img/choose_false.png'></image>
                 <image wx:else class='choose_img' src='../../img/choose_true.png'></image>
               </view>

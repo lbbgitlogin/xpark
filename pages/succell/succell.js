@@ -7,6 +7,7 @@ Page({
   data: {
     loadngtime: "",
     timeshow: 3,
+    ljyy:true,
     itemno: 0
   },
 
@@ -58,7 +59,7 @@ Page({
             })
             if (that.data.timeshow == 0) {
               wx.navigateTo({
-                url: `../confirmationOrder/confirmationOrder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&price=${options.price}`
+                url: `../tkconorder/tkconorder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&formatdates=${options.formatdates}&price=${options.price}&buy_num=${options.buy_num}`
               })
               clearInterval(that.data.loadngtime)
             }
@@ -92,7 +93,8 @@ Page({
     } else if (options.itemNo == "SI-FIT") {
 
       that.setData({
-        itemno: 0
+        itemno: 0,
+        ljyy:false
       })
     } else {//球类跳转
       that.setData({

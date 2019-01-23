@@ -18,6 +18,7 @@ Page({
     id:"",
     icon:"",
     text:"",
+    num: "",
     address: "",
     price: "",
     mobilephone: "",
@@ -43,7 +44,7 @@ Page({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
-
+          
         })
         
         wx.getStorage({
@@ -54,6 +55,7 @@ Page({
               id: options.id,
               memberFitnessId: options.memberFitnessId,
               icon: options.icon,
+              num:options.num,
               bookingName: options.bookingName,
               gymName: options.gymName,
               dingdanid: options.dingdanid,
@@ -80,7 +82,7 @@ Page({
             url: '../land/land',
           })
 
-        }, 2000) //延迟时间 这里是1秒
+        }, 1000) //延迟时间 这里是1秒
         
       },
     })
@@ -93,7 +95,7 @@ Page({
     var day = now.getDate();
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
-      formatDate: options.bookingTime || formatDate,
+      formatDate: options.bookingTime || options.bookingdate +' '+ options.bookingtime|| formatDate,
       id: options.id
     })
   },
@@ -144,7 +146,7 @@ Page({
     var that =this;
      var val = {}
     $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
-        
+      console.log("取消订单", that.data.dingdanid)
        console.log("取消订单",res)
       if(res.status == 0){
         setTimeout(function () {

@@ -5,6 +5,10 @@
     "pages/coachappointment/coachappointment",
     "pages/ballappointment/ballappointment",
     "pages/logs/logs",
+    "pages/shoptailsebuy/shoptailsebuy", 
+    "pages/tkconorder/tkconorder",
+    "pages/tkconfirmationbuy/tkconfirmationbuy",
+    "pages/shopdetails/shopdetails",
     "pages/sjmationorder/sjmationorder",
     "pages/interests/interests",
     "pages/guide/guide",
@@ -28,7 +32,6 @@
     "pages/orderdetails/orderdetails",
     "pages/recharge/recharge",
     "pages/buycard/buycard"
-    
   ],
   "permission": {
     "scope.userLocation": {
