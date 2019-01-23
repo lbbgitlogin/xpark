@@ -60,10 +60,11 @@ border-radius:4rpx;
 }
 .self_name{
   width: 100%;
-  height: 160rpx;
   display: flex;
   align-items: center;
- 
+ padding:20rpx 0;
+box-sizing:border-box;
+
 }
 .taif{
    border-bottom:1rpx solid #3C4248

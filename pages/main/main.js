@@ -1,6 +1,7 @@
 // pages/main/main.js
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
+var guideapi = require('../../api/guide.js');
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     memberId: "",
     membershow: false,
     vip: "",
+    gymId: "",
     viptime: ""
   },
 
@@ -17,7 +19,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getdata()
+     var that = this;
+    that.getdata()
+    wx.getStorage({
+      key: 'gymId',
+      success: function (res) {
+        that.setData({
+          gymId: res.data.gymId
+        })
+      }
+    })
   },
   datails: function () {
     wx.navigateTo({
@@ -44,6 +55,22 @@ Page({
 
         }, 2000)
       },
+    })
+  },
+  guide:function(){
+    var that = this;
+    var val = {
+    }
+    $.Requests(guideapi.guide.url + '/' + that.data.gymId, val).then((res) => {
+         if(res.data.length == 0){
+           $.alert("暂无内容！")
+                   }else{
+                     wx.navigateTo({
+                       url: '../guide/guide',
+                     })
+                   }
+      console.log("指南", res)
+     
     })
   },
   /**

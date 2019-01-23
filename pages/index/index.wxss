@@ -469,7 +469,7 @@ background-color:#fff;
 
 .title_shop {
   flex: 1;
-  padding-left: 24rpx;
+  padding-left: 20rpx;
   line-height: 50rpx;
   width: 1rpx
 }
@@ -478,6 +478,8 @@ background-color:#fff;
   color: #FFFFFF;
   font-size: 32rpx;
   font-weight: bold;
+  padding-left:9rpx;
+
 }
 
 .title_sm {

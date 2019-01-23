@@ -308,7 +308,7 @@
 
   </view>
   <view wx:if="{{type == 3}}" style='margin-top:{{shouldFixedTop?"102px":""}}'>
-    <view class='shop_list' style='margin:0rpx auto 0rpx auto;padding-bottom:29rpx;' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
+    <view class='shop_list' style='margin:0rpx auto 0rpx auto;' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
       <view class='list_show'>
         <view class='show_box bj_color '></view>
         <view class='show_text'>{{item.categoryName}}</view>

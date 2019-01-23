@@ -11,9 +11,9 @@
        <view wx:if="{{vip == 2&&membershow}}">X-PARK至尊卡</view>
      
     </view>
-      <view  class=''>
+      <!-- <view  class=''>
           <image class='icon_zb' src='../../img/right_zb.png'></image>
-        </view>
+        </view> -->
   </view>
   <view class='bj_coupon'>
        <view  wx:if="{{!membershow}}" style='margin-right:24rpx'>
@@ -45,9 +45,10 @@
             <image class='icon_zb' src='../../img/right_zb.png'></image>
      
     </navigator>
-    <navigator class='true_name' hover-class='none' url="../guide/guide">
+    <!-- hover-class='none' url="../guide/guide" -->
+    <view bindtap='guide' class='true_name' >
     <image class='guidbj' src='../../img/guidbj.png'></image>
       <view class='true_xm'>使用指南</view>
      <image class='icon_zb' src='../../img/right_zb.png'></image>
-    </navigator>
+    </view>
   </view> 

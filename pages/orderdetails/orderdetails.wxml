@@ -96,7 +96,7 @@
       付款方式
     </view>
     <view wx:if="{{psytype == 'xj'}}" class='order_smallname'>
-      余额
+      现金
     </view>
       <view wx:if="{{psytype == 'wx'}}" class='order_smallname'>
      微信支付

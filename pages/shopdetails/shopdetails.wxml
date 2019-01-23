@@ -1,11 +1,19 @@
 <!--pages/selfdetails/selfdetails.wxml-->
 <view style='{{hidden == 0?"position:fixed":""}} padding-bottom:130rpx'>
 
-  <view class='self_banner'>
- 
-    
-    
- <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image> 
+  <!-- <view class='self_banner'>
+
+
+
+    <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image>
+  </view> -->
+    <view class='self_banner'>
+     <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+        <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:for-item="item">
+          <image class="slide-image" mode="aspectFill" src="http://zuul.snail.highlifes.com/common{{item.url}}" />
+        </swiper-item>
+      </swiper>
+    <!-- <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
   </view>
   <view class='self_box'>
     <view class='self_name {{shoptype != 3?"taif":""}}'>
@@ -142,7 +150,7 @@
     <html-view wx:if="{{gymdetails.fitness.introduce}}" class='introduce_sm' innerText='{{gymdetails.fitness.introduce}}'></html-view>
     <html-view wx:if="{{introduce}}" class='introduce_sm' innerText='{{introduce}}'></html-view>
     <html-view wx:if="{{shopdetails.despict}}" class='introduce_sm' innerText='{{shopdetails.despict}}'></html-view>
-      <html-view wx:if="{{tkgymdetails.course.introduce}}" class='introduce_sm' innerText='{{tkgymdetails.course.introduce}}'></html-view>
+    <html-view wx:if="{{tkgymdetails.course.introduce}}" class='introduce_sm' innerText='{{tkgymdetails.course.introduce}}'></html-view>
     <!-- <view class='introduce_sm'>
       {{gymdetails.fitness.introduce ||   tkgymdetails.course.introduce}}
     </view> -->
@@ -247,22 +255,22 @@
       ¥{{xparkprice}}
     </view>
     <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
-    ¥{{twoprice}}
+      ¥{{twoprice}}
     </view>
-    
+
     <view wx:if="{{!appointment && couponlength != 0&& showMethod !=2}}" bindtap='buynow' class='buy_right bj_color'>
       购买
     </view>
-       
-      
-       <view wx:if="{{!appointment && couponlength != 0 && showMethod ==2 }}" bindtap='buynow' class='buy_right bj_color'>
+
+
+    <view wx:if="{{!appointment && couponlength != 0 && showMethod ==2 }}" bindtap='buynow' class='buy_right bj_color'>
       预约
     </view>
     <view wx:if="{{!appointment && couponlength == 0 && showMethod ==2 }}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
       预约
     </view>
-      <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
-    购买
+    <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
+      购买
     </view>
     <view wx:if="{{appointment}}" data-nullif='num' bindtap='appointment' class='buy_right bj_color'>
       预约
