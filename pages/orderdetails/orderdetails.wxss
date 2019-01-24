@@ -36,7 +36,6 @@ box-sizing:border-box;
   width: 132rpx;
   height: 132rpx;
   border-radius: 132rpx;
-  background: red;
   margin:0 24rpx 0 0;
 
 }

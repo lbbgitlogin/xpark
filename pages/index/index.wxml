@@ -24,7 +24,7 @@
 
   </view>
   <view class='index_sec'>
-         <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+      <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
         <swiper-item wx:for="{{swishop.gymGalleries}}"  wx:key='' wx:for-item="item">
           <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
         </swiper-item>
@@ -91,18 +91,19 @@
 
   </view>
   <scroll-view wx:if="{{type == 3}}" class="scroll-view_H  {{shouldFixedTop?'posimar':''}}" scroll-x='true' style="width: 100%;background: #282B30;">
-    <block wx:if="{{ptitemlist}}" wx:for="{{ptitemlist}}" wx:key=''>
+    <block wx:if="{{ptitemlist}}" wx:for="{{ptitemlist}}" wx:key='id'>
       <view data-id="{{item.id}}" data-index='{{index}}' bindtap="classifyClick" class="scroll-view-item_H {{shopindex== index ?'currentTab':''}}">
         {{item.areaName}}
       </view>
     </block>
   </scroll-view>
   <view wx:if="{{zzlistlength &&type == 1}}" class='shop_list' style='margin:{{shouldFixedTop?"150rpx auto 0 auto":"20rpx auto 0rpx auto"}}'>
-    <block wx:for="{{zzlist}}" wx:key=''>
+    <block wx:for="{{zzlist}}" wx:key='id'>
       <view data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' catchtap='btnselfdetails' class='shop_details'>
         <image class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.fitnessName}}</view>
+            <html-view class='title_sm' innerText='{{item.shortDesc}}'></html-view>
           <!-- <html-view class='title_sm' innerText='{{item.fitness.introduce}}'></html-view> -->
           <!-- <view class='title_sm'>{{item.fitness.introduce}}</view> -->
           <view class='shop_mon font-colormode'>
@@ -136,13 +137,13 @@
   </view>
   <view wx:if="{{type == 2}}">
     <view class='box2  {{shouldFixedTop?"posimarriweek":""}}' style='width:100%'>
-      <block wx:for='{{datee}}' wx:key='' wx:for-item="item">
+      <block wx:for='{{datee}}' wx:key='id' wx:for-item="item">
         <view class='{{ item.week ==  weekend ? "font-colormode" : ""}}' style='width: {{ sysW }}px; height: {{ sysW }}px; line-height: {{ sysW }}px;color:#999999;font-size:24rpx;flex:1'>{{ item.week }}</view>
       </block>
 
     </view>
     <view class='box1  {{shouldFixedTop?"posimarriqi":""}}' style='width:100%;height:75rpx'>
-      <block wx:for='{{ datee }}' wx:key=''>
+      <block wx:for='{{ datee }}' wx:key='id'>
 
         <view style='width: {{ sysW }}px;' class='index_time {{font==1?item>7?"font-color":"":font==2?item<7?"font-color":"":"" }}'>
           <view data-id='{{item.time}}' data-week='{{item.week}}' data-year='{{item.yearDate}}' data-month='{{item.month}}' bindtap='timeclick' class='{{ item.time == day ? "dateOn" : ""}}'>{{ item.time }}
@@ -167,7 +168,7 @@
 
           <image class='riqiicon' src='../../img/riqiimg.png'></image>
 
-          <view class='tatils_color'>{{item.scheduleDate}}</view>
+          <view class='tatils_color'>{{item.startTime}}-{{item.endtime}}</view>
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
@@ -204,7 +205,7 @@
 
           <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
 
-          <view class='tatils_color'>{{item.scheduleDate}}</view>
+          <view class='tatils_color'>{{item.startTime}}-{{item.endtime}}</view>
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
@@ -242,7 +243,7 @@
 
           <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
 
-          <view class='tatils_color'>{{item.scheduleDate}}</view>
+          <view class='tatils_color'>{{item.startTime}}-{{item.endtime}}</view>
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
@@ -269,13 +270,13 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>私教</view>
     </view>
-    <view wx:for="{{sk_schedulelist}}" wx:key='' wx:for-item="item">
+    <view wx:for="{{sk_schedulelist}}" wx:key='id' wx:for-item="item">
       <view data-coachCourseId='{{item.courseId}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails' class='shop_details'>
 
         <image class='shop_img_sj' src='{{imgurl}}{{item.icon}}'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.courseName}}</view>
-          <!-- <html-view class='title_sm' innerText='{{items.course.introduce}}'></html-view> -->
+          <html-view class='title_sm' innerText='{{item.shortDesc}}'></html-view>
           <!-- <view class='title_sm'>{{items.course.introduce}}</view> -->
 
           <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
@@ -308,7 +309,7 @@
 
   </view>
   <view wx:if="{{type == 3}}" style='margin-top:{{shouldFixedTop?"102px":""}}'>
-    <view class='shop_list' style='margin:0rpx auto 0rpx auto;' wx:key='' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
+    <view class='shop_list' style='margin:0rpx auto 0rpx auto;' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
       <view class='list_show'>
         <view class='show_box bj_color '></view>
         <view class='show_text'>{{item.categoryName}}</view>
@@ -353,17 +354,17 @@
 <view class='{{ishidden?"shoplistnext":"index_shoplist"}}'>
   <view class='region' style='height:100%'>
     <!-- <view class='diqu m-navbar-item1 m-navbar-item-on1'>上海市</view> -->
-    <view wx:key='' data-province='{{item}}' data-index='{{index}}' bindtap='provinceshow' wx:for="{{shoplist}}"  class='diqu m-navbar-item4 {{activeTab === index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
+    <view wx:key='id' data-province='{{item}}' data-index='{{index}}' bindtap='provinceshow' wx:for="{{shoplist}}" class='diqu m-navbar-item4 {{activeTab === index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
     <!-- <view class='diqu'>上海市</view> -->
   </view>
   <view class='regionlast' style='height:100%'>
     <!-- <view class='diqu m-navbar-item2 m-navbar-item-on2'>青浦区</view> -->
-    <view data-city='{{item}}' data-index='{{index}}' wx:key='' wx:for="{{citylist}}" bindtap='citychoose' class='diqu  m-navbar-item4 {{cityTab == index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
+    <view data-city='{{item}}' data-index='{{index}}' wx:key='id' wx:for="{{citylist}}" bindtap='citychoose' class='diqu  m-navbar-item4 {{cityTab == index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
 
   </view>
   <view class='regionnext' style='height:100%'>
     <!-- m-navbar-item3 m-navbar-item-on3 -->
-    <view wx:key='' wx:for="{{gymshoplist}}" bindtap='choosename' data-gymid='{{item.id}}' data-gymName='{{item.gymName}}' data-address='{{item.address}}' class='diqu '>{{item.gymName}}</view>
+    <view wx:key='id' wx:for="{{gymshoplist}}" bindtap='choosename' data-gymid='{{item.id}}' data-gymName='{{item.gymName}}' data-address='{{item.address}}' class='diqu '>{{item.gymName}}</view>
   </view>
 
 </view>

@@ -95,6 +95,7 @@ background: #EBECEE
   margin:0 24rpx 0 0;
 
 }
+
 .datails_title{
   font-size: 32rpx;
   color: #CCCCCC;

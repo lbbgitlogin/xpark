@@ -12,6 +12,9 @@
 <view class='order_list'>
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
+     <view class='datails_imghead'>
+          <image class='datails_imghead' src='{{imgurl}}{{img}}'></image>
+      </view>
     <!-- <view class='datails_imghead'></view> -->
     <view class='datails_title'>{{goodsname}}</view>
     <view class='order_datails'>
@@ -27,7 +30,7 @@
      {{orderno}}
     </view>
   </view>
- <view class='list_booking'>
+ <view wx:if="{{ordertype != 'sp'}}" class='list_booking'>
     <view class='order_name'>
       有效期
     </view>
@@ -40,7 +43,7 @@
       下单时间
     </view>
     <view class='order_smallname'>
-   {{createtime}}
+   {{createtimestr}}
     </view>
   </view>
    <view class='list_booking'>
@@ -51,14 +54,14 @@
       {{gymname}}
     </view>
   </view>
-   <view class='list_booking'>
+   <!-- <view class='list_booking'>
     <view class='order_name'>
       优惠券
     </view>
     <view class='order_smallname'>
       k1234567(免费使用券)
     </view>
-  </view>
+  </view> -->
    <view class='list_booking'>
     <view class='order_name'>
       活动促销

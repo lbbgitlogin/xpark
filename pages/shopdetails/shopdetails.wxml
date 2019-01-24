@@ -8,7 +8,7 @@
     <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image>
   </view> -->
     <view class='self_banner'>
-     <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+     <swiper style="height: 750rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
         <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:key='' wx:for-item="item">
           <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
         </swiper-item>

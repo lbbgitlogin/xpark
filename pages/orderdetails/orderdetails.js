@@ -1,5 +1,6 @@
 // pages/orderdetails/orderdetails.js
 var app = getApp()
+var CONFIG = require('../../config.js');
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
 var QRCode = require('../../utils/weapp.qrcode.esm.js');
@@ -11,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     goodsname: '',
     gymname: '',
     usecode: '',
@@ -18,11 +20,13 @@ Page({
     orderno: '',
     actualmoney: '',
     orderstate: '',
+    img: '',
     orderid: '',
     price: '',
     psytype: '',
     createtime: '',
     num: '',
+    createtimestr: '',
     discountmoney: '',
   },
 
@@ -30,9 +34,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      
+      console.log("options",options)
      var that =this;
     that.setData({
+      img:options.img,
       goodsname: options.goodsname,
       ordertype: options.ordertype,
       usecode: options.usecode,
@@ -40,6 +45,7 @@ Page({
       actualmoney: options.actualmoney,
       orderno: options.orderno,
       orderid:options.id,
+      createtimestr: options.createtimestr,
       orderstate: options.orderstate,
       price: options.price,
       psytype: options.psytype,

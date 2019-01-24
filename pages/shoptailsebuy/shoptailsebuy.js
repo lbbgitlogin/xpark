@@ -443,7 +443,7 @@ Page({
             numb: '1',
             goodsId: that.data.goodsId,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: ""
         }
 
@@ -477,7 +477,7 @@ Page({
             numb: that.data.numb,
             goodsId: that.data.tk_id,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
 
@@ -514,7 +514,7 @@ Page({
             numb: that.data.numb,
             goodsId: that.data.goodsId,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
@@ -565,7 +565,7 @@ Page({
             numb: that.data.numb,
             goodsId: that.data.shopid,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {

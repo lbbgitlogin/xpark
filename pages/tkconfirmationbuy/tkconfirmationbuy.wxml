@@ -10,7 +10,7 @@
       <view class='order_mon'>¥{{price}}</view>
 
       <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
-      <view  wx:if="{{shoptype != 3}}"class='num_order'>x{{buy_num}}</view>
+      <view wx:if="{{shoptype != 3}}" class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
   <view wx:if="{{mjbox}}" class='list_booking '>
@@ -18,11 +18,11 @@
       数量
     </view>
     <view class='order_smallname '>
-     <view class="u-cart-num" style="margin-top:21rpx">
-              <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
-              <input type="number" bindchange="pay_num" value="{{buy_num}}" />
-              <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
-            </view>
+      <view class="u-cart-num" style="margin-top:21rpx">
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
+        <input type="number" bindchange="pay_num" value="{{buy_num}}" />
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
+      </view>
     </view>
   </view>
   <view class='list_booking '>
@@ -30,7 +30,7 @@
       门店
     </view>
     <view class='order_smallname '>
-    {{gymdetails.gym.gymName || tkgymdetails.gymName||tkgymdetails.gym.gymName || shopdetails.gym.gymName}}
+      {{gymdetails.gym.gymName || tkgymdetails.gymName||tkgymdetails.gym.gymName || shopdetails.gym.gymName}}
     </view>
   </view>
   <view wx:if="{{shoptype != 3}}" class='list_booking '>
@@ -38,15 +38,15 @@
       地点
     </view>
     <view class='order_smallname '>
-       {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
+      {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
     </view>
   </view>
-  <view wx:if="{{shoptype != 3}}"  class='list_booking '>
+  <view wx:if="{{shoptype != 3}}" class='list_booking '>
     <view class='order_name '>
       购买时间
     </view>
     <view class='order_smallname '>
-     {{formatdates || formatDate ||scheduleDate}}
+      {{formatdates || formatDate ||scheduleDate}}
     </view>
   </view>
   <view class='confirmationbuy_buy '>
@@ -58,8 +58,8 @@
       <view wx:if="{{!mjbox}}" class='order_smallname '>
         无活动
       </view>
-        <view wx:if="{{mjbox}}"  class='order_smallname '>
-         -￥{{discountMoney}}
+      <view wx:if="{{mjbox}}" class='order_smallname '>
+        -￥{{discountMoney}}
       </view>
     </view>
 
@@ -71,21 +71,21 @@
     <view wx:if="{{category == 1}}" bindtap='choosecoupon ' class='order_smallname '>
       -￥{{conmoney}}
     </view>
-      <view wx:if="{{category == 2}}"  bindtap='choosecoupon ' class='order_smallname '>
+    <view wx:if="{{category == 2}}" bindtap='choosecoupon ' class='order_smallname '>
       -￥{{shopprice}}
     </view>
   </view>
-   <view wx:if="{{vip}}" class='list_booking '>
-    <view  wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_name '>
+  <view wx:if="{{vip}}" class='list_booking '>
+    <view wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_name '>
       至尊卡折扣
     </view>
-     <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_name '>
+    <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_name '>
       尊享卡折扣
     </view>
     <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
       八折
     </view>
-     <view wx:if="{{vip == 1}}"  bindtap='choosecoupon ' class='order_smallname '>
+    <view wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_smallname '>
       九折
     </view>
   </view>
@@ -107,7 +107,7 @@
     <view class='list_booking_buy '>
       <image class='wallet ' src='../../img/wx_min.png '></image>
       <view class='order_name '>
-       微信支付
+        微信支付
       </view>
       <view class='coupon_choose ' bindtap='yuechoose '>
         <image wx:if="{{yuechoose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
@@ -118,27 +118,27 @@
   </view>
 </view>
 <view wx:if="{{mjbox}}" class='mj_box'>
-已购满{{fullNumb}}课时，立减{{discountMoney}}元
+  已购满{{fullNumb}}课时，立减{{discountMoney}}元
 </view>
-  <view class='buy '>
-    <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{price*buy_num-discountMoney-conmoney}}
-    </view>
-      <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{price*buy_num-discountMoney-conmoney}}
-    </view>
-      <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{price*buy_num-discountMoney-conmoney}}
-    </view>
+<view class='buy '>
+  <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
+    ￥{{price*buy_num-discountMoney-conmoney}}
+  </view>
+  <view wx:if="{{vip == 2}}" class='buy_left font-colormode '>
+    ￥{{price*buy_num-discountMoney-conmoney}}
+  </view>
+  <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
+    ￥{{price*buy_num-discountMoney-conmoney}}
+  </view>
 
 
-     <form  class='buy_right bj_color ' bindsubmit="testSubmit" report-submit="true">
-      <button class='buy_right bj_color ' formType="submit">去支付</button>
- </form>
-    <!-- <view bindtap='buynow ' class='buy_right bj_color '>
+  <form class='buy_right bj_color ' bindsubmit="testSubmit" report-submit="true">
+    <button class='buy_right bj_color ' formType="submit">去支付</button>
+  </form>
+  <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买
     </view> -->
-  </view>
+</view>
 <view class="{{hidden==0?' ':'hide '}}">
   <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}} '>
     <view class='coupon_boxheand '>

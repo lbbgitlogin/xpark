@@ -442,7 +442,7 @@ bindMinus: function (e) {
             numb: '1',
             goodsId: that.data.goodsId,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: ""
         }
 
@@ -476,7 +476,7 @@ bindMinus: function (e) {
             numb: that.data.numb,
             goodsId: that.data.tk_id,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
 
@@ -513,7 +513,7 @@ bindMinus: function (e) {
             numb: that.data.numb,
             goodsId: that.data.goodsId,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
@@ -564,7 +564,7 @@ bindMinus: function (e) {
             numb: that.data.numb,
             goodsId: that.data.shopid,
           }],
-          payType: "xj",
+          payType: "wx",
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {

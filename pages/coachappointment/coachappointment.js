@@ -64,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(options);
     var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -284,7 +284,8 @@ Page({
     })
     var val = {
       coachId: that.data.coachId,
-      appointmentDate: formatDate,
+      // appointmentDate: formatDate,
+      appointmentDate: that.data.fromData.scheduleDate,
       gymId: that.data.gymId,
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }

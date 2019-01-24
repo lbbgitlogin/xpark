@@ -69,8 +69,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
-
+    console.log(options);
     var that = this;
     that.member();
     var now = new Date();
@@ -229,13 +228,13 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-        
+      console.log("sijiao ", res)
       
       that.setData({
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
         coachId: res.data.coachId,
-        icon:res.data.course.icon      })
+        icon:res.data.icon      })
     })
   },
   league_schedule: function () {
@@ -244,7 +243,7 @@ Page({
     }
    
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-
+    
         
       let { courseName, gymName, address, price, appointmentNumb, id }=res.data;
       let {coachName} = res.data.coach;
@@ -381,9 +380,9 @@ Page({
         }
         $.Requests(api.member_fitness.url, val).then((res) => {
           
+            console.log("判断",res)
           
-          
-          
+          console.log("判断", val)
           if(res.data != ''){
                 that.setData({
                   appointment:true,
@@ -452,7 +451,7 @@ Page({
     } else if (that.data.optionstype ==2 && that.data.sta == 1){
 
       wx.navigateTo({
-        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
+        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.scheduleDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
       })
       
     } else if (that.data.optionstype == 2 && that.data.sta != 1){

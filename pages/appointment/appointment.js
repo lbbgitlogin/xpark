@@ -58,7 +58,7 @@ Page({
         formId: e.detail.formId
       }
       $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
+    
         
         
         
@@ -81,7 +81,7 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
       
-      
+      console.log("www",res)
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({
