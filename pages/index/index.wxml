@@ -24,9 +24,9 @@
 
   </view>
   <view class='index_sec'>
-         <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
-        <swiper-item wx:for="{{swishop.gymGalleries}}" wx:for-item="item">
-          <image class="slide-image" mode="aspectFill" src="http://zuul.snail.highlifes.com/common{{item.url}}" />
+      <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+        <swiper-item wx:for="{{swishop.gymGalleries}}"  wx:key='' wx:for-item="item">
+          <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
         </swiper-item>
       </swiper>
   </view>
@@ -100,7 +100,7 @@
   <view wx:if="{{zzlistlength &&type == 1}}" class='shop_list' style='margin:{{shouldFixedTop?"150rpx auto 0 auto":"20rpx auto 0rpx auto"}}'>
     <block wx:for="{{zzlist}}" wx:key='id'>
       <view data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' catchtap='btnselfdetails' class='shop_details'>
-        <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+        <image class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.fitnessName}}</view>
           <!-- <html-view class='title_sm' innerText='{{item.fitness.introduce}}'></html-view> -->
@@ -157,8 +157,8 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>团课</view>
     </view>
-    <view wx:key='id' data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{tk_schedulelist}}" class='shop_details'>
-      <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+    <view wx:key='' data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{tk_schedulelist}}" class='shop_details'>
+      <image class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -194,8 +194,8 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>户外</view>
     </view>
-    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='id' class='shop_details'>
-      <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='' class='shop_details'>
+      <image class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -232,8 +232,8 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>健康理论</view>
     </view>
-    <view data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='id' class='shop_details'>
-      <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='' class='shop_details'>
+      <image class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -272,7 +272,7 @@
     <view wx:for="{{sk_schedulelist}}" wx:key='id' wx:for-item="item">
       <view data-coachCourseId='{{item.courseId}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails' class='shop_details'>
 
-        <image class='shop_img_sj' src='http://zuul.snail.highlifes.com/common{{item.icon}}'></image>
+        <image class='shop_img_sj' src='{{imgurl}}{{item.icon}}'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.courseName}}</view>
           <!-- <html-view class='title_sm' innerText='{{items.course.introduce}}'></html-view> -->
@@ -314,7 +314,7 @@
         <view class='show_text'>{{item.categoryName}}</view>
       </view>
       <view data-id='{{items.id}}' wx:key='id' data-type='3' catchtap='selfdetailss' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
-        <image class='shop_img' src='http://zuul.snail.highlifes.com/common{{items.goodsIcon}}'></image>
+        <image class='shop_img' src='{{imgurl}}{{items.goodsIcon}}'></image>
         <view class='title_shop'>
           <view class='title_name'>{{items.fullName}}</view>
           <!-- <html-view class='title_sm' innerText='{{items.despict}}'></html-view> -->

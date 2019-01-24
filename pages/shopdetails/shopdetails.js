@@ -4,12 +4,14 @@ var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
 var apicou = require('../../api/coupon.js');
 var qqmapsdk;
+var CONFIG = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     choose: false,
     couponlist: '',
     hidden: 2,
