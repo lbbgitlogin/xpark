@@ -3,7 +3,7 @@
   <view class='showtime'>可约期限</view>
 
 
-  <block wx:for="{{timelist.time}}" wx:for-item="item">
+  <block wx:for="{{timelist.time}}" wx:key='id'  wx:for-item="item">
     <view class='choose_time'>
     <view   class='font_week'>{{ item }}</view>
  

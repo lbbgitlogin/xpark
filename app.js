@@ -23,10 +23,8 @@ App({
       success: function (res) {
         
         if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({ //获取登录用户的信息
-            success: function (res) {//直接进行更新
-              
-              var wxinfo = $.parseJSON(res.rawData);
+         
+         
               wx.login({
                 success: function (datainfo) {
                   
@@ -49,8 +47,7 @@ App({
                   })
                   
                 }
-              });
-            }
+          
           });
         } else {
           wx.login({

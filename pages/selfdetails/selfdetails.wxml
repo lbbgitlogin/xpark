@@ -3,7 +3,7 @@
 
   <view class='self_banner'>
      <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
-        <swiper-item wx:for="{{gymdetails.fitnessGalleries || tkgymdetails.courseGalleries ||icon ||shopdetails.gym.icon}}" wx:for-item="item">
+        <swiper-item wx:for="{{gymdetails.fitnessGalleries || tkgymdetails.courseGalleries ||icon ||shopdetails.gym.icon}}" wx:key='' wx:for-item="item">
           <image class="slide-image" mode="aspectFill" src="http://zuul.snail.highlifes.com/common{{item.url || item}}" />
         </swiper-item>
       </swiper>
@@ -277,7 +277,7 @@
       您有免费使用券
     </view>
     <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
-      <block wx:for="{{couponlist}}">
+      <block wx:for="{{couponlist}}" wx:key=''>
         <view class='coupon_list'>
           <view class='bj_coupon'>
             <view class='coupon_left'>

@@ -571,7 +571,8 @@ Page({
             tk_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
-                id: item.course.id,
+                id: item.id,
+                courseidd: item.course.id,
                 icon: item.course.icon,
                 price: item.price,
                 buyEndTime: item.buyEndTime,
@@ -639,7 +640,8 @@ Page({
             hw_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
-                id: item.course.id,
+                id: item.id,
+                courseidd: item.course.id,
                 icon: item.course.icon,
                 price: item.price,
                 buyEndTime: item.buyEndTime,
@@ -702,7 +704,8 @@ Page({
             jk_schedulelist.forEach(function (item, index, arrar) {
               arrar[index] = {
                 name: item.course.courseName,
-                id: item.course.id,
+                id: item.id,
+                courseidd: item.course.id,
 
                 icon: item.course.icon,
                 price: item.price,
@@ -756,7 +759,8 @@ Page({
         tk_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
-            id: item.course.id,
+            id: item.id,
+            courseidd: item.course.id,
             buyEndTime: item.buyEndTime,
             icon: item.course.icon,
             price: item.price,
@@ -810,7 +814,8 @@ Page({
         hw_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
-            id: item.course.id,
+            id: item.id,
+            courseidd: item.course.id,
             icon: item.course.icon,
             price: item.price,
             buyEndTime: item.buyEndTime,
@@ -866,7 +871,8 @@ Page({
         jk_schedulelist.forEach(function (item, index, arrar) {
           arrar[index] = {
             name: item.course.courseName,
-            id: item.course.id,
+            id: item.id,
+            courseidd: item.course.id,
             buyEndTime: item.buyEndTime,
             icon: item.course.icon,
             price: item.price,

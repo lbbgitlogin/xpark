@@ -9,7 +9,7 @@
   已领取{{couponlist.length}}张
 </view>
 
-<view wx:if="{{couponlist.length>0}}" wx:for="{{couponlist}}" class='{{item.state != 1?"bj_couponsec":"bj_coupon"}}'>
+<view wx:if="{{couponlist.length>0}}" wx:for="{{couponlist}}" wx:key='' class='{{item.state != 1?"bj_couponsec":"bj_coupon"}}'>
   <view class='coupon_left'>
     <view style='color:{{item.state != 1?"#666":"#E27D00"}}' class='coupon_mon {{item.state ==1?"font-colormode":""}}'>
       ¥
