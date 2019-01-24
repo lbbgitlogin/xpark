@@ -1,7 +1,7 @@
 <!--pages/ballappointment/ballappointment.wxml-->
-<view class='ball-head'>
+<!-- <view class='ball-head'>
     <image  class='ball-head' src='../../img/banner_choosetime.png'></image>
-</view>
+</view> -->
 
 <view class='ball-title'>
   <view class='ball-title-left' bindtap="addnumber">
