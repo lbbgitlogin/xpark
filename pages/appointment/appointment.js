@@ -28,7 +28,7 @@ Page({
   //   wx.getStorage({
   //     key: 'userinfo',
   //     success: function (res) {
-  //       console.log("会员信息",res)
+  //       
   //       that.setData({
   //         memberId: res.data.memberId,
   //         time: res.data.createTime,
@@ -51,15 +51,15 @@ Page({
   // },
   appointment: function (e) {
     if(e != undefined){
-      console.log("www", e)
+      
       var vals = {
         formId: e.detail.formId
       }
       $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-        console.log("formid", res)
-        console.log("formid", vals)
-        console.log("formid", app.globalData.wxopenid)
+        
+        
+        
 
       })
     }
@@ -78,8 +78,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      console.log("weikaishi11", val)
-      console.log("weikaish111",res)
+      
+      
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({
@@ -116,8 +116,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      console.log("weikaishi22", val)
-      console.log("weikaishi222", res)
+      
+      
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({
@@ -181,7 +181,7 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: function (res) {
-        console.log("会员信息", res)
+        
         that.setData({
           memberId: res.data.memberId,
           time: res.data.createTime,
@@ -203,7 +203,7 @@ Page({
     })
   },
   datalis: function (e) {
-    console.log("re",e)
+    
     wx.navigateTo({
       url: '../bookingoreder/bookingoreder?icon=' + e.currentTarget.dataset.icon + "&gymName=" + e.currentTarget.dataset.gymname + "&uesCode=" + e.currentTarget.dataset.uescode + "&bookingName=" + e.currentTarget.dataset.bookingname + "&type=" + e.currentTarget.dataset.type + "&price=" + e.currentTarget.dataset.price + "&address=" + e.currentTarget.dataset.address + "&dingdanid=" + e.currentTarget.dataset.dingdanid + "&orderno=" + e.currentTarget.dataset.orderno + "&remark=" + e.currentTarget.dataset.remark + "&bookingTime=" + e.currentTarget.dataset.bookingtime
     })
@@ -220,9 +220,9 @@ Page({
     }
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-      console.log("formid", res)
-      console.log("formid", vals)
-      console.log("formid", app.globalData.wxopenid)
+      
+      
+      
 
     })
     var that = this;
@@ -313,9 +313,9 @@ Page({
     }
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-      console.log("formid", res)
-      console.log("formid", vals)
-      console.log("formid", app.globalData.wxopenid)
+      
+      
+      
 
     })
     var that = this;

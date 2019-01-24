@@ -77,8 +77,8 @@ var that =this;
 
     }
     $.Requests(api.memberinformation.url + '/' + that.data.memmbleid, val).then((res) => {
-      console.log("resss", res)
-      console.log("resss", val)
+      
+      
       that.setData({
         memberName: res.data.memberName,
         idCard: res.data.idCard,
@@ -110,7 +110,7 @@ var that =this;
 
   },
   formSubmit:function(e){
-    console.log("www",e)
+    
     var that = this;
     var val = {
       birth: e.detail.value.birth,
@@ -122,8 +122,8 @@ var that =this;
       wight: that.data.pickerweight[that.data.pickerwe],
     }
     $.Requestsput(api.modify.url+'/'+ that.data.memmbleid, val).then((res) => {
-   console.log("res",res)
-      console.log("res", val)
+   
+      
       if (res.status == 0){
         setTimeout(() => {
           wx.showModal({

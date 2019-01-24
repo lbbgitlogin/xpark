@@ -69,7 +69,7 @@ Page({
                        url: '../guide/guide',
                      })
                    }
-      console.log("指南", res)
+      
      
     })
   },

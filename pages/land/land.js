@@ -60,15 +60,15 @@ Page({
     });
   },
   testSubmit: function (e) { //获取验证码
-  console.log("eee",e)
+  
     var vals = {
       formId: e.detail.formId
     }
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-      console.log("formid", res)
-      console.log("formid", vals)
-      console.log("formid", app.globalData.wxopenid)
+      
+      
+      
 
     })
     if ($.isNull(this.data.phone)) {
@@ -199,8 +199,8 @@ Page({
     
     var thisobj = this;
     $.Requests_jsonlogion(api.login.url, val).then((res) => {
-         console.log("注册",res)
-         console.log("注册",val)
+         
+         
       if (res.data != null) {
         var obj = {
           icon: res.data.icon,

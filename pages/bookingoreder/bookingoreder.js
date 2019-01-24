@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options)
+    
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -146,8 +146,8 @@ Page({
     var that =this;
      var val = {}
     $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
-      console.log("取消订单", that.data.dingdanid)
-       console.log("取消订单",res)
+      
+       
       if(res.status == 0){
         setTimeout(function () {
 
@@ -182,7 +182,7 @@ Page({
   xparkshop: function () {
     var val = {}
     $.Requests(indexapi.xparkshop.url + '/' + 1, val).then((res) => {
-      console.log("商店信息", res)
+      
       this.setData({
         mobilephone: res.data.mobile
       })

@@ -56,7 +56,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options)
+    
 
     var that = this;
 
@@ -193,7 +193,7 @@ Page({
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
       
-      console.log("私课详情",res)
+      
       
       
 
@@ -207,7 +207,7 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    console.log("tuanbke ",res)
+    
 
       var now = new Date();
       var year = now.getFullYear();
@@ -298,7 +298,7 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      console.log("Formdata", Formdata)
+      
       // 
       var valteo = {
         coachId: that.data.coachId,
@@ -322,7 +322,7 @@ Page({
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-    console.log("sike",data)
+    
 
         if (res.status == 0) {
           wx.navigateTo({
@@ -347,8 +347,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-        console.log("团课预约", val)
-  console.log("团课预约",res)
+        
+  
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime,
@@ -385,8 +385,8 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            console.log("场馆", res)
-              console.log("场馆",val)
+            
+              
 
             if (res.status == 0) {
               // wx.navigateTo({

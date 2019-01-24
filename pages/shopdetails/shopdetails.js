@@ -68,7 +68,7 @@ Page({
    */
   onLoad: function (options) {
 
-    console.log("options", options)
+    
     var that = this;
     that.member();
     var now = new Date();
@@ -167,7 +167,7 @@ Page({
     var val = {
     }
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      console.log("商品", res)
+      
     
       that.setData({
         shopdetails: res.data,
@@ -186,7 +186,7 @@ Page({
       gymId: that.data.gymId,
     }
     $.Requests(apicou.couponlist.url, val).then((res) => {
-      console.log("优惠券", res)
+      
       that.setData({
         couponlength: res.data.length,
         couponlist: res.data
@@ -229,8 +229,8 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("sike", res)
-      console.log("sike", that.data.tk_id)
+      
+      
       that.setData({
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
@@ -245,12 +245,12 @@ Page({
 
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
 
-      console.log("团课详情页", res)
+      
       let { courseName, gymName, address, price, appointmentNumb, id } = res.data;
       let { coachName } = res.data.coach;
       let { introduce, useNotes, contain } = res.data.course;
       let { courseGalleries } = res.data;
-      console.log("introduce", introduce.length)
+      
 
       that.setData({
         courseName: courseName,
@@ -304,8 +304,8 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(res.latitude);
-        console.log(res.longitude);
+        
+        
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude
@@ -345,8 +345,8 @@ Page({
         }
 
         $.Requests(api.member_course.url, val).then((res) => {
-          console.log("私/团课或者私教判断是否能购买课", val)
-          console.log("私/团课或者私教判断是否能购买", res)
+          
+          
 
 
           if (res.data != '') {
@@ -427,7 +427,7 @@ Page({
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      console.log("res", res)
+      
 
       that.setData({
         gymdetails: res.data,

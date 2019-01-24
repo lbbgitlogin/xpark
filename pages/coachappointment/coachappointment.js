@@ -64,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options, '为什么没有id')
+    
     var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -132,7 +132,7 @@ Page({
   drawTable: function () {
     let _this = this
     const data = this.data.sjdata // 接口数据
-    console.log(this.data.formatDate);
+    
     let { businessEndTime, businessStartTime } = data.coachSchedule
     var type = wx.getSystemInfoSync().system;
     let date = new Date(this.data.formatDate)
@@ -289,7 +289,7 @@ Page({
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
-   console.log("sj预约",res)
+   
 
 
       that.setData({

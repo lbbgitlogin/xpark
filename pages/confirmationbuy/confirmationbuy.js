@@ -57,7 +57,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("确认",options)
+    
     var that = this;
 
     wx.getStorage({
@@ -147,7 +147,7 @@ bindMinus: function (e) {
   },
 
   pay_num: function (e) {
-    console.log("数量",e)
+    
     var that = this;
     if (e > 0) {
       that.setData({
@@ -174,7 +174,7 @@ bindMinus: function (e) {
       }
      
     }
-    console.log(that.data.buy_num, that.data.maxnum)
+    
     if (Number(that.data.buy_num) < Number(that.data.maxnum)) {
       //判断用户输入的数量是否超过库存
      
@@ -193,7 +193,7 @@ bindMinus: function (e) {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      console.log("商品",res)
+      
       let{price}= res.data
       that.setData({
         shopdetails: res.data,
@@ -247,7 +247,7 @@ bindMinus: function (e) {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    console.log("团课",res)
+    
       
       let { price, areaId } = res.data
 
@@ -351,7 +351,7 @@ bindMinus: function (e) {
 
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-  console.log("sss",res)
+  
     let{price}=res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
@@ -417,12 +417,12 @@ bindMinus: function (e) {
     var vals = {
       formId: e.detail.formId
     }
-    console.log("formId", e.detail.formId)
+    
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-  console.log("formid",res)
-      console.log("formid", vals)
-      console.log("formid", app.globalData.wxopenid)
+  
+      
+      
 
     })
     if (that.data.yuechoose) {
@@ -446,7 +446,7 @@ bindMinus: function (e) {
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
           
-             console.log("团课预约",res)
+             
 
           if (res.status == 0) {
 
@@ -483,8 +483,8 @@ bindMinus: function (e) {
 
         $.Requests_json(api.member_order.url, val).then((res) => {
           
-            console.log("11",res)
-          console.log("11", val)
+            
+          
 
           if (res.status == 0) {
   
@@ -566,8 +566,8 @@ bindMinus: function (e) {
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-          console.log("场地服务",res)
-          console.log("场地服务", val)
+          
+          
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
        
             wx.navigateTo({

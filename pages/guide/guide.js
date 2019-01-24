@@ -60,7 +60,7 @@ Page({
     }
     $.Requests(api.guide.url + '/' + that.data.gymId , val).then((res) => {
       
-          console.log("指南",res)
+          
        that.setData({
          bottomTab: res.data,
          cardViewContent:res.data

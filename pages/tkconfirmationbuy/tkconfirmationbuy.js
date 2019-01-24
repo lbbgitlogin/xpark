@@ -68,7 +68,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("确认", options)
+    
     var that = this;
 
     wx.getStorage({
@@ -158,11 +158,11 @@ Page({
     }
   },
   // change: debounce(function (e) {
-  //   console.log(e)
-  //   console.log(this)
+  //   
+  //   
   // })
   pay_num: debounce(function (e) {
-    console.log("数量", e)
+    
     var that = this;
     if (e > 0) {
       that.setData({
@@ -190,7 +190,7 @@ Page({
       }
 
     }
-    console.log(that.data.buy_num, that.data.maxnum)
+    
     if (Number(that.data.buy_num) < Number(that.data.maxnum)) {
       //判断用户输入的数量是否超过库存
 
@@ -214,7 +214,7 @@ Page({
       numb: that.data.buy_num
     }
     $.Requests(api.courseFullDiscount.url, val).then((res) => {
-         console.log("满减",res)
+         
       if(res.data  == null){
         that.setData({
           mjbox:false
@@ -226,9 +226,9 @@ Page({
           fullNumb: res.data.fullNumb
         })
       }
-      console.log("满键",res)
+      
 
-      console.log("满键", val)
+      
 
     })
 
@@ -268,7 +268,7 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-        console.log("会员查询",res)
+        
 
           if (res.data.length == 0) {
 
@@ -291,7 +291,7 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("团课", res)
+      
 
       let { price, areaId } = res.data
 
@@ -363,7 +363,7 @@ Page({
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
 
 
-  console.log("私课",res)
+  
       if (that.data.vip == 1) {
         that.setData({
           tkgymdetails: res.data,
@@ -446,7 +446,7 @@ Page({
     }
     $.Requests(apicou.couponlist.url, val).then((res) => {
 
-    console.log("优惠券",res)
+    
       that.setData({
         couponlenght: res.data.length
       })
@@ -535,12 +535,12 @@ Page({
     var vals = {
       formId: e.detail.formId
     }
-    console.log("formId", e.detail.formId)
+    
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-      console.log("formid", res)
-      console.log("formid", vals)
-      console.log("formid", app.globalData.wxopenid)
+      
+      
+      
 
     })
     if (that.data.yuechoose) {
@@ -564,7 +564,7 @@ Page({
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
 
-          console.log("团课预约", res)
+          
 
           if (res.status == 0) {
 
@@ -602,8 +602,8 @@ Page({
 
         $.Requests_json(api.member_order.url, val).then((res) => {
 
-          console.log("11", res)
-          console.log("11", val)
+          
+          
 
           if (res.status == 0) {
 
@@ -685,8 +685,8 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-          console.log("场地服务", res)
-          console.log("场地服务", val)
+          
+          
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
 
             wx.navigateTo({

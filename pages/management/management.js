@@ -79,9 +79,9 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-    console.log("fenye ",val)
+    
 
-      console.log("fenye ", res)
+      
       if (!$.isNull(res.data.content) && res.status == 0){
         that.setData({
           type:1
@@ -114,9 +114,9 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("fenye ", val)
+      
 
-      console.log("fenye ", res)
+      
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
           type: 1
@@ -194,8 +194,8 @@ Page({
       page: 1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("dai支付订单",res)
-      console.log("dai支付订单", val)
+      
+      
      
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
@@ -229,8 +229,8 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("dai支付订单", res)
-      console.log("dai支付订单", val)
+      
+      
     
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
@@ -270,8 +270,8 @@ Page({
       page:1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("已支付",res)
-      console.log("已支付", val)
+      
+      
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
           type: 1
@@ -304,8 +304,8 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("已支付",res)
-      console.log("已支付", val)
+      
+      
       if (!$.isNull(res.data.content) && res.status == 0) {
 
         that.setData({

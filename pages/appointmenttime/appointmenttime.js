@@ -217,7 +217,7 @@ Page({
         timelist: timelist,
         daynewday: daynewday,
       })
-      console.log("daytime", that.data.timelist)
+      
       
     }
 

@@ -16,18 +16,18 @@ function compareTime(startTime, endTime) {
 
   //          var start_time=startTime.replace(/-|\s|:|\//g,'').replace(' ', ''); //用这个加强版也可以
   var start_time = startTime.replace(/-|\s|:|\//g, '');
-  console.log("start_time", start_time)
+  
   var end_time = endTime.replace(/-|\s|:|\//g, '');
-  console.log("end_time", end_time)
+  
 
   if (start_time < end_time) { 
-    console.log("11111")
+    
     return true;
     
      }
   else { 
     
-    console.log("22222")
+    
     return false; }
 
 }

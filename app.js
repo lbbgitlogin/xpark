@@ -36,7 +36,7 @@ App({
                   }
 
                   $.Requests(api.openid.url, thatdata).then((res) => {
-                    console.log("openid1", res)
+                    
                     that.globalData.wxopenid = res.openid;
                   //   var obj = {
                   //     openID: res.openid,
@@ -55,13 +55,13 @@ App({
         } else {
           wx.login({
             success: function (datainfo) {
-              console.log("code", datainfo)
+              
               var thatdata = {
                 code: datainfo.code,
 
               }
               $.Requests(api.openid.url, thatdata).then((res) => {
-                console.log("openid1", res)
+                
                 that.globalData.wxopenid = res.openid;
                 // var obj = {
                 //   openID: res.openid,
