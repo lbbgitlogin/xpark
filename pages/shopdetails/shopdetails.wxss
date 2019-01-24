@@ -284,7 +284,7 @@ width: 42%
 .bj_coupon{
   width: 694rpx;
   height: 208rpx;
-   background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;
+
    background-size: 100% 100%;
    margin: 0 auto 24rpx auto
 }

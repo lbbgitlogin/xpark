@@ -279,7 +279,7 @@
     <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
       <block wx:for="{{couponlist}}" wx:key=''>
         <view class='coupon_list'>
-          <view class='bj_coupon'>
+          <view class='bj_coupon' style='background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
             <view class='coupon_left'>
               <view class='coupon_mon font-colormode'>
                 ¥

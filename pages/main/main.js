@@ -1,5 +1,6 @@
 // pages/main/main.js
 var $ = require('../../utils/util.js');
+var CONFIG = require('../../config.js');
 var api = require('../../api/selfdails.js');
 var guideapi = require('../../api/guide.js');
 Page({
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     memberId: "",
     membershow: false,
     vip: "",

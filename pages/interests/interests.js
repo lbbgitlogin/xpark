@@ -1,11 +1,12 @@
 // pages/interests/interests.js
+var CONFIG = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgurl: CONFIG.config.imgUrl,
   },
 
   /**

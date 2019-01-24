@@ -35,7 +35,7 @@ top:92%;
   width: 694rpx;
   color: #fff;
   height: 100rpx;
-  background: url(http://zuul.snail.highlifes.com/common/image/20190108/c625d40f-644d-4c26-b553-0df4ae1fffeb.png) center no-repeat;
+  
   background-size: 100% 100%;
   margin: 0 auto 24rpx auto;
   display: flex;
@@ -109,7 +109,7 @@ top:92%;
   color: #fff;
   position: relative;
   height: 230rpx;
-  background: url(http://zuul.snail.highlifes.com/common/image/20190108/f677ea46-9831-47e8-b6b1-437eef4a37a4.png) center no-repeat;
+
   background-size: 100% 100%;
   padding: 76rpx 0 0 0;
 }

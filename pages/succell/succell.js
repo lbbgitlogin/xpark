@@ -68,7 +68,7 @@ Page({
       })
     } else if (options.cardnum == 1) { // 购卡成功
       that.setData({
-        itemno: 1,
+        itemno: 3,
         loadngtime: setInterval(function() {
           if (that.data.timeshow > 0) {
             that.setData({

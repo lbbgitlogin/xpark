@@ -58,7 +58,7 @@ font-weight: bold;
   width: 660rpx;
   color: #fff;
   height: 320rpx;
-   background: url(http://zuul.snail.highlifes.com/common/image/20190108/c5a869ce-2914-4776-a535-c7281ed35625.png) center no-repeat;
+
    background-size: 100% 100%;
    margin: 0 auto 24rpx auto;
    font-size: 26rpx;
@@ -70,7 +70,7 @@ font-weight: bold;
   width: 680rpx;
   color: #fff;
   height: 320rpx;
-   background: url(http://zuul.snail.highlifes.com/common/image/20190108/3c659560-80cc-4090-938e-bbd75952e769.png) center no-repeat;
+ 
    background-size: 100% 100%;
    margin: 0 auto 24rpx auto;
    font-size: 26rpx;
