@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    appointmentDate:"",
     fromData: {
       memberCourseId: '',
       memberId: '',
@@ -21,7 +20,6 @@ Page({
       remark: ''
     },
     optionsdata: null,
-    ifsj:"",
     form: {
       bookingDate: "2018-12-28",
       bookingTime: "",
@@ -58,81 +56,7 @@ Page({
 
     ],
     timeList: {
-      ground: {
-        start: '08:00:00',
-        end: '22:00:00'
-      },
-      course: {
-        id: 1,
-        courseName: "瑜伽",
-        itemId: 2,
-        itemNo: "SI-FIT",
-        isSelf: 0,
-        category: 1,
-        label: 1,
-        contain: 1,
-        timeLength: 30,
-        orderWeight: 1,
-        isLive: 0,
-        isLineShow: 0,
-        icon: "/image/20181224/eb519330-fab1-40f2-8609-fa696ccb1a69.jpg",
-        introduce: "产品介绍",
-        buyNotes: "购买须知",
-        useNotes: "使用流程",
-        state: 1,
-      },
-      coachAppointments: [
-        {
-          id: 2,
-          commonId: 0,
-          gymId: 1,
-          data: "",
-          memberId: 13,
-          memberName: "sunlight",
-          mobile: "15770900652",
-          memberCourseId: 1,
-          courseName: "瑜伽",
-          timeLength: 60,
-          coachId: 1,
-          coachName: "张三",
-          bookingDate: "2018-12-31",
-          bookingTime: "11:00:00",
-          numb: 1,
-          operationId: 1,
-          operation: "11",
-          state: 0,
-          remark: "备注",
-        },
-        {
-          id: 2,
-          commonId: 0,
-          gymId: 1,
-          memberId: 13,
-          memberName: "sunlight",
-          mobile: "15770900652",
-          memberCourseId: 1,
-          courseName: "瑜伽",
-          timeLength: 60,
-          coachId: 1,
-          coachName: "张三",
-          bookingDate: "2018-12-31",
-          bookingTime: "12:00:00",
-          numb: 1,
-          operationId: 1,
-          operation: "11",
-          state: 0,
-          remark: "备注",
-        }
-      ],
-      coachSchedule: {
-        id: 3,
-        gymId: 1,
-        coachId: 1,
-        coachName: "张三",
-        scheduleDate: "2018-12-31",
-        scheduleStart: "09:00:00",
-        scheduleEnd: "15:00:00",
-      }
+      
     }
   },
 
@@ -140,14 +64,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- console.log("私教时间选择",options)
+    console.log(options, '为什么没有id')
     var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
         that.setData({
           gymId: res.data.gymId,
-          ifsj:options.ifsj,
           orderNo: options.orderNo,
           coachcourseid: options.coachcourseid
         })
@@ -158,13 +81,11 @@ Page({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
-           
             if (options.ifsj != 1) {
-              // let data = options.data
-              let { memberCourseId, scheduleDate } = JSON.parse(options.data)
+              let data = JSON.parse(options.data)
+              let { memberCourseId, scheduleDate } = data
               that.setData({
                 sta: options.sta,
-                appointmentDate: scheduleDate,
                 fromData: {
                   memberCourseId,
                   bookingDate: scheduleDate,
@@ -272,7 +193,7 @@ Page({
       // let now = 1547186186940
       let time = new Date(`${scheduleDate} ${times}:00`).getTime()
       time < now ? canSelect = false : canSelect = true
-     
+
       group.push({
         time: times,
         falg,
@@ -289,7 +210,7 @@ Page({
 
   },
   add: function (item) {
-  console.log("even",item)
+
 
     const { canSelect, time, index } = item.currentTarget.dataset.item
 
@@ -325,16 +246,15 @@ Page({
 
 
   toNext: function () {
-   
+
     var that = this;
     let data = JSON.stringify(this.data.fromData)
     if (this.data.timenext === '') {
       $.alert('请选择时间')
       return
     }
-    
     wx.navigateTo({
-      url: '../sjmationorder/sjmationorder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.fromData.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId+"&isfj="+that.data.isfj
+      url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
     })
 
 
@@ -362,17 +282,16 @@ Page({
     that.setData({
       formatDate: formatDate
     })
-    
     var val = {
       coachId: that.data.coachId,
-      appointmentDate: that.data.fromData.bookingDate,
+      appointmentDate: formatDate,
       gymId: that.data.gymId,
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
+   console.log("sj预约",res)
 
-console.log("res.",val)
-      console.log("res.", res)
+
       that.setData({
         sjdata: res.data,
         // gymName: res.data.groundAppointments[0].gymName,

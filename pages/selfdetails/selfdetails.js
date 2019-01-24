@@ -38,6 +38,7 @@ Page({
     appointment:false,//预约
     areaId:"",
     id:"",
+    courseid: "",
     conmoney: "",
     timeshow: "",
     formatDates: "",
@@ -82,6 +83,7 @@ console.log("options",options)
       coachCourseId: options.coachCourseId,
       tk_id: options.id || '',
       shopid:options.id,
+      courseid: options.courseid,
       optionstype:options.type,
       timeshow: options.timeshow,
       sta:options.sta || '',
@@ -327,7 +329,7 @@ console.log("options",options)
 
         }else{
           var val = {
-            courseId: that.data.coachCourseId,
+            courseId: that.data.courseid,
             courseType: '1',
             gymId: that.data.gymId,
             memberId: res.data.memberId,
@@ -446,7 +448,7 @@ console.log("options",options)
         url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
       })
     } else if (that.data.optionstype ==2 && that.data.sta == 1){
-    
+
       wx.navigateTo({
         url: '../coachappointment/coachappointment?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
       })

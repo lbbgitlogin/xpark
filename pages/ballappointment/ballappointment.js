@@ -269,7 +269,6 @@ Page({
       groundId: that.data.groundId,
     }
     $.Requests(api.appointment.url, val).then((res) => {
-      console.log("球数据",res)
       let _this = this
 
 
@@ -295,8 +294,8 @@ Page({
     let months = date.getMonth() + 1
     let days = date.getDate()
     // day
-    
-    
+
+
 
     if (type.indexOf("iOS") == 0) {
       var scheduleDate = `${years}/${months}/${days}`
@@ -367,7 +366,7 @@ Page({
           newdata[index - 1].acticed = false
           this.setData({
             timenext: ''
-          }) 
+          })
         } else {
           newdata.forEach(e => {
             e.acticed = false
@@ -375,14 +374,14 @@ Page({
           newdata[index - 1].acticed = true
           this.setData({
             timenext: time
-          }) 
+          })
         }
       }
       this.setData({
         yuyueList: newdata
       })
     }
-   
+
   },
   /**
    * 生命周期函数--监听页面显示

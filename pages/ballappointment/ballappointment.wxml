@@ -1,4 +1,8 @@
 <!--pages/ballappointment/ballappointment.wxml-->
+<view class='ball-head'>
+    <image  class='ball-head' src='../../img/banner_choosetime.png'></image>
+</view>
+
 <view class='ball-title'>
   <view class='ball-title-left' bindtap="addnumber">
     可约时间
@@ -22,7 +26,7 @@
     <text>{{item.time}}</text>
     <text wx:if="{{!item.canSelect && !item.falg}}">不可约</text>
     <text wx:if="{{item.canSelect && !item.falg && !item.acticed}}">可约</text>
-    <text wx:if="{{item.falg}}">不可约</text>
+    <text wx:if="{{item.falg}}">已约</text>
     <text wx:if="{{item.acticed}}">已选</text>
   </view>
 </view>

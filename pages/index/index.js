@@ -1096,7 +1096,7 @@ console.log("sike详情",res)
 
   
     wx.navigateTo({
-      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow + "&timechoose=" + e.target.dataset.timechoose
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow + "&timechoose=" + e.target.dataset.timechoose + "&courseid=" + e.target.dataset.courseid
     })
   },
   skselfdetails: function (e) {
@@ -1122,6 +1122,22 @@ console.log("sike详情",res)
       })
     }
    
+  },
+  selfdetailss: function (e) {
+    console.log("预约", e)
+    if (e.currentTarget.dataset.type == 3) {
+      wx.navigateTo({
+
+        url: '../shopdetails/shopdetails?id=' + e.currentTarget.dataset.id + "&type=" + e.currentTarget.dataset.type,
+      })
+    }
+    if (e.currentTarget.dataset.type == 1) {
+      wx.navigateTo({
+
+        url: '../selfdetails/selfdetails?id=' + e.target.dataset.id + "&type=" + e.target.dataset.type,
+      })
+    }
+
   },
   btnselfdetails: function (e) {
 
