@@ -67,8 +67,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
-
+    console.log(options);
     var that = this;
     that.member();
     var now = new Date();
@@ -450,7 +449,7 @@ Page({
     } else if (that.data.optionstype ==2 && that.data.sta == 1){
 
       wx.navigateTo({
-        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.formatDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
+        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.scheduleDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
       })
       
     } else if (that.data.optionstype == 2 && that.data.sta != 1){
