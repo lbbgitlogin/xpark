@@ -67,14 +67,14 @@
      无活动促销
     </view>
   </view>
-   <view class='list_booking'>
+   <!-- <view class='list_booking'>
     <view class='order_name'>
       保险金额
     </view>
     <view class='order_smallname'>
     ¥1
     </view>
-  </view>
+  </view> -->
    <view class='list_booking'>
     <view class='order_name'>
       商品总价
@@ -111,7 +111,7 @@
       实付款
     </view>
     <view class='order_smallname'>
-¥{{price}}
+¥{{actualmoney}}
     </view>
   </view>
   <view class='erweima' wx:if="{{ordertype == 'sp'}}">
