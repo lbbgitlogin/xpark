@@ -418,7 +418,6 @@ Page({
     $.Requests(api.classification.url, val).then((res) => {
 
 
-      console.log("自助健身",res)
       if (res.data.content.length != 0) {
         that.setData({
           zzlistlength: true
@@ -753,7 +752,7 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.league_schedulelist.url, val).then((res) => {
-      console.log("团课", res)
+     
 
       if (res.data.length != 0) {
 
@@ -927,7 +926,6 @@ Page({
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
 
-            console.log('sike ',res)
           if (res.data.length != 0) {
 
 
@@ -1127,7 +1125,7 @@ Page({
   },
   // 
   selfdetails: function(e) {
-    console.log("eeee",e)
+  
 
     if (e.currentTarget.dataset.type == 3) {
       wx.navigateTo({

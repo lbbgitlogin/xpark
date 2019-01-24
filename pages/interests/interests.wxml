@@ -4,7 +4,7 @@
 <swiper circular='true' bindchange='swiperChange' current='{{activeTab}}'>
   <swiper-item class="{{activeTab ==1?'card_choose':'choose_frist'}}">
     <view class='ra-co-cardview'>
-      <view class='card_frist' style='background: url({{imgurl}}/image/20190108/c5a869ce-2914-4776-a535-c7281ed35625.png) center no-repeat;'>
+      <view class='card_frist' style=''>
         <view class='frist_box'>
           <view style='flex:1'>X-PARK至尊卡</view>
           <view>¥299</view>
@@ -21,7 +21,7 @@
   </swiper-item>
   <swiper-item class="{{activeTab ==1?'choose_sec':'choose_frist'}}">
     <view class='ra-co-cardview'>
-      <view class='card_sec' style='  background: url({{imgurl}}/image/20190108/3c659560-80cc-4090-938e-bbd75952e769.png) center no-repeat;'>
+      <view class='card_sec' style='  '>
          <view class='frist_box'>
           <view style='flex:1;color:#fff'>X-PARK尊享卡</view>
           <view style='color:#fff'>¥199</view>

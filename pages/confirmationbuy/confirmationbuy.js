@@ -44,6 +44,7 @@ Page({
     wxyuechoose: false,
     hidden: 1,
     conmoney: "",
+    xsprice: "",
     gymName: "",
     address: "",
     id: "",
@@ -69,13 +70,13 @@ Page({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
-          tk_id: options.tk_id,
-          couponid: options.couponid,
-          conmoney: options.conmoney,
-          category: options.category,
+          tk_id: options.tk_id || '',
+          couponid: options.couponid || '',
+          conmoney: options.conmoney || '',
+          category: options.category || '',
           coachId: options.coachId || '',
-          scheduleDate: options.scheduleDate,
-          formatdates: options.formatdates,
+          scheduleDate: options.scheduleDate || '',
+          formatdates: options.formatdates || '',
           openid: res.data.openID
 
         })
@@ -84,11 +85,11 @@ Page({
           success: function(res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              shopid: options.id,
-              optionstype: options.optionstype,
-              sta: options.sta,
-              shoptype: options.type
+              id: options.id || '',
+              shopid: options.id || '',
+              optionstype: options.optionstype || '',
+              sta: options.sta || '',
+              shoptype: options.type || ''
             })
             that.couponlist();
             that.member();
@@ -360,6 +361,7 @@ bindMinus: function (e) {
         gymdetails: res.data,
         areaId: res.data.areaId,
         price: price,
+        xsprice: price,
         shopprice:price,
         gymName: res.data.gym.gymName,
         shopid: res.data.id,

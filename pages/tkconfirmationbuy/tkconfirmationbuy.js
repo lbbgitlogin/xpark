@@ -80,13 +80,13 @@ Page({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
-          tk_id: options.tk_id,
+          tk_id: options.tk_id || '',
           couponid: options.couponid || '',
           conmoney: options.conmoney || '',
           category: options.category || '',
           coachId: options.coachId || '',
-          scheduleDate: options.scheduleDate,
-          formatdates: options.formatdates,
+          scheduleDate: options.scheduleDate || '',
+          formatdates: options.formatdates || '',
           openid: res.data.openID
 
         })
@@ -95,11 +95,11 @@ Page({
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              shopid: options.id,
-              optionstype: options.optionstype,
-              sta: options.sta,
-              shoptype: options.type
+              id: options.id || '',
+              shopid: options.id || '',
+              optionstype: options.optionstype || '',
+              sta: options.sta || '',
+              shoptype: options.type || ''
             })
             that.couponlist();
             that.member();
@@ -293,7 +293,7 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-
+    console.log("a1",res)
 
       let { price, areaId } = res.data
 

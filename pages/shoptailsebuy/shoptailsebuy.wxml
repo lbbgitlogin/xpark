@@ -7,9 +7,8 @@
     </view>
     <view class='datails_title'>{{gymdetails.fitnessName ||tkgymdetails.course.courseName ||shopdetails.fullName}}</view>
     <view class='order_datails'>
-      <view wx:if="{{vip == 1}}" class='order_mon'>¥{{xparkprice|| price*0.9}}</view>
-      <view wx:if="{{vip == 2}}" class='order_mon'>¥{{twoprice|| price*0.8}}</view>
-      <view wx:if="{{vip !=1 && vip !=2}}" class='order_mon'>¥{{price}}</view>
+      <view class='order_mon'>¥{{shopprice}}</view>
+
       <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
     </view>
   </view>
@@ -142,7 +141,7 @@
 <view class="{{hidden==0?' ':'hide '}}">
   <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}} '>
     <view class='coupon_boxheand '>
-      您有免费使用券
+      您有抵用券
     </view>
     <view class='coupon_list '>
       <view class='bj_coupon ' style=' background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>

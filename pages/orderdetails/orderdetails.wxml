@@ -117,6 +117,15 @@
 ¥{{actualmoney}}
     </view>
   </view>
+     <view wx:if='{{orderstate == 3}}' class='list_booking'>
+    <view class='order_name'>
+      核销时间
+    </view>
+    <view class='order_smallname'>
+{{updatetimestr}}
+    </view>
+  </view>
+
   <view class='erweima' wx:if="{{ordertype == 'sp'}}">
     <view class='erweima_name'>
       <view class='name_first'>商品提货码</view>

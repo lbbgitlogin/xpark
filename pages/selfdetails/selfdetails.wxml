@@ -4,7 +4,8 @@
   <view class='self_banner'>
      <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
         <swiper-item wx:for="{{gymdetails.fitnessGalleries || tkgymdetails.courseGalleries ||icon ||shopdetails.gym.icon}}" wx:key='' wx:for-item="item">
-          <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url || item}}" />
+          <image wx:if="{{item.url || item}}" class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url || item}}" />
+           <image wx:else class="slide-image" mode="aspectFill" src="../../img/kc_chart.png" />
         </swiper-item>
       </swiper>
     <!-- <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
@@ -247,9 +248,11 @@
     </view>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
       ¥{{gymdetails.price == 0?'0':gymdetails.price*0.9 ||price*0.9 || shopdetails.price*0.9||tkgymdetails.price*0.9}}
+          <text class='m-info-delprice'> ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price ||tkgymdetails.price}}</text>
     </view>
     <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
     ¥{{gymdetails.price == 0?'0':gymdetails.price*0.8 || price*0.8 || shopdetails.price*0.8||tkgymdetails.price*0.8}}
+    <text class='m-info-delprice'> ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price ||tkgymdetails.price}}</text>
     </view>
     
     <view wx:if="{{!appointment && couponlength != 0&& showMethod !=2}}" bindtap='buynow' class='buy_right bj_color'>
@@ -272,14 +275,14 @@
   </view>
 </view>
 <view class="{{hidden==0?'':'hide'}}">
-  <view class='coupon {{hidden == 0?"bounceInUp animated":"bounceOutDown animated"}}'>
+  <view class='coupon {{hidden == 0?"bounceInUp animated":"bounceOutDown animated"}} {{couponlength == 1?"frist_coupon":"sec_coupon"}}'>
     <view class='coupon_boxheand'>
-      您有免费使用券
+      您有抵用券
     </view>
     <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
       <block wx:for="{{couponlist}}" wx:key=''>
         <view class='coupon_list'>
-          <view class='bj_coupon' style='background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
+          <view class='bj_coupon' style=''>
             <view class='coupon_left'>
               <view class='coupon_mon font-colormode'>
                 ¥

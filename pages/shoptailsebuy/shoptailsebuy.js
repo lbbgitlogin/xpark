@@ -70,13 +70,13 @@ Page({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
-          tk_id: options.tk_id,
-          couponid: options.couponid,
-          discount: options.discount,
-          category: options.category,
+          tk_id: options.tk_id || '',
+          couponid: options.couponid || '',
+          discount: options.discount || '',
+          category: options.category || '',
           coachId: options.coachId || '',
-          scheduleDate: options.scheduleDate,
-          formatdates: options.formatdates,
+          scheduleDate: options.scheduleDate || '',
+          formatdates: options.formatdates || '',
           openid: res.data.openID
 
         })
@@ -85,11 +85,11 @@ Page({
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              shopid: options.id,
-              optionstype: options.optionstype,
-              sta: options.sta,
-              shoptype: options.type
+              id: options.id || '',
+              shopid: options.id || '',
+              optionstype: options.optionstype || '',
+              sta: options.sta || '',
+              shoptype: options.type || ''
             })
             that.couponlist();
             that.member();
@@ -203,6 +203,7 @@ Page({
         gymName: res.data.gym.gymName,
         areaId: res.data.areaId,
         shopprice:res.data.price,
+        shopprice: price,
         price: price,
         xparkprice: (price*0.9).toFixed(2),
         yhxparkprice: (price*0.9).toFixed(2),
@@ -518,7 +519,6 @@ Page({
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
-
 
 
 

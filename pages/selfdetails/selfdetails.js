@@ -69,7 +69,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+
     var that = this;
     that.member();
     var now = new Date();
@@ -80,15 +80,15 @@ Page({
    
     that.setData({
       formatDate: formatDate,
-      timechoose: options.timechoose,
-      coachCourseId: options.coachCourseId,
+      timechoose: options.timechoose || '',
+      coachCourseId: options.coachCourseId || '',
       tk_id: options.id || '',
-      shopid:options.id,
-      courseid: options.courseid,
-      optionstype:options.type,
-      timeshow: options.timeshow,
+      shopid: options.id || '',
+      courseid: options.courseid || '',
+      optionstype: options.type || '',
+      timeshow: options.timeshow || '',
       sta:options.sta || '',
-      shoptype: options.type,
+      shoptype: options.type || '',
       scheduleDate: options.scheduledate || ''
     })
     var formatDates = options.timechoose;
@@ -113,9 +113,9 @@ Page({
         
 
         that.setData({
-          areaId: options.areaid,
-          itemno: options.itemNo,
-          id:options.id,
+          areaId: options.areaid || '',
+          itemno: options.itemNo || '',
+          id: options.id || '',
           memberId: res.data.memberId
         })
         wx.getStorage({
@@ -228,7 +228,7 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("sijiao ", res)
+      
       
       that.setData({
         tkgymdetails: res.data,
@@ -380,9 +380,7 @@ Page({
         }
         $.Requests(api.member_fitness.url, val).then((res) => {
           
-            console.log("判断",res)
           
-          console.log("判断", val)
           if(res.data != ''){
                 that.setData({
                   appointment:true,

@@ -80,8 +80,7 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      
-      console.log("www",res)
+   
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({
@@ -207,9 +206,9 @@ Page({
   datalis: function (e) {
     
     wx.navigateTo({
-      url: '../bookingoreder/bookingoreder?icon=' + e.currentTarget.dataset.icon + "&gymName=" + e.currentTarget.dataset.gymname + "&uesCode=" + e.currentTarget.dataset.uescode + "&bookingName=" + e.currentTarget.dataset.bookingname + "&type=" + e.currentTarget.dataset.type + "&price=" + e.currentTarget.dataset.price + "&address=" + e.currentTarget.dataset.address + "&dingdanid=" + e.currentTarget.dataset.dingdanid + "&orderno=" + e.currentTarget.dataset.orderno + "&remark=" + e.currentTarget.dataset.remark + "&bookingTime=" + e.currentTarget.dataset.bookingtime
+      url: '../bookingoreder/bookingoreder?icon=' + e.currentTarget.dataset.icon + "&gymName=" + e.currentTarget.dataset.gymname + "&uesCode=" + e.currentTarget.dataset.uescode + "&bookingName=" + e.currentTarget.dataset.bookingname + "&type=" + e.currentTarget.dataset.type + "&price=" + e.currentTarget.dataset.price + "&address=" + e.currentTarget.dataset.address + "&dingdanid=" + e.currentTarget.dataset.dingdanid + "&orderno=" + e.currentTarget.dataset.orderno + "&remark=" + e.currentTarget.dataset.remark + "&bookingTime=" + e.currentTarget.dataset.bookingtime + "&updatetimestr=" + e.currentTarget.dataset.updatetimestr + "&cancelprice=" + e.currentTarget.dataset.cancelprice
     })
-  },
+  }, 
   allOrders: function () { //未开始订单
     this.setData({
       tapindex: 1,
@@ -335,8 +334,7 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
-
-
+  
       if (res.data.content.length == 0) {
         that.setData({
           type: 2

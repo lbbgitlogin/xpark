@@ -34,6 +34,7 @@ function compareTime(startTime, endTime) {
 function Requests(url, data) { //接口方法为get时调用
 
    return new Promise((resolv, reject) => {
+
      loading();
      wx.getStorage({
        key: 'userinfo',
@@ -334,9 +335,9 @@ function loading(content, time, callback) { //数据加载
 }
 
 function hideloading() { //隐藏提示框
-  var time = setTimeout(function () {
+  // var time = setTimeout(function () {
     wx.hideLoading()
-  }, 500);
+  // }, 500);
 }
 
 function confirm(content, callback, isCancel) { //确认对话框

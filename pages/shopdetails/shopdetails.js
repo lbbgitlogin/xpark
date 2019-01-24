@@ -81,14 +81,14 @@ Page({
 
     that.setData({
       formatDate: formatDate,
-      timechoose: options.timechoose,
-      coachCourseId: options.coachCourseId,
+      timechoose: options.timechoose || '',
+      coachCourseId: options.coachCourseId || '',
       tk_id: options.id || '',
-      shopid: options.id,
-      optionstype: options.type,
-      timeshow: options.timeshow,
+      shopid: options.id || '',
+      optionstype: options.type || '',
+      timeshow: options.timeshow || '',
       sta: options.sta || '',
-      shoptype: options.type,
+      shoptype: options.type || '',
       scheduleDate: options.scheduledate || ''
     })
     var formatDates = options.timechoose;
@@ -113,9 +113,9 @@ Page({
 
 
         that.setData({
-          areaId: options.areaid,
-          itemno: options.itemNo,
-          id: options.id,
+          areaId: options.areaid || '',
+          itemno: options.itemNo || '',
+          id: options.id || '',
           memberId: res.data.memberId
         })
         wx.getStorage({

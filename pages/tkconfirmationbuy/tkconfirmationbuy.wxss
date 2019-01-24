@@ -5,7 +5,12 @@
 page {
   background: #282b30;
 }
-
+.frist_coupon{
+  height:520rpx
+}
+.sec_coupon{
+  height:755rpx
+}
 .order {
   width: 100%;
   text-align: center;
@@ -237,7 +242,6 @@ page {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 624rpx;
   background: #ebecee;
   z-index: 10000;
 }

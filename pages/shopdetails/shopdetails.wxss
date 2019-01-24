@@ -10,6 +10,12 @@ border-top:1rpx solid #3C4248;
 align-items:center;
 
 }
+.frist_coupon{
+  height:520rpx
+}
+.sec_coupon{
+  height:755rpx
+}
 .slide-image{
   width: 100%;
   height: 100%
@@ -250,13 +256,16 @@ height: 100%;
 line-height: 118rpx;
 padding-left: 28rpx;
 box-sizing: border-box;
-width: 42%
+width: 42%;
+display: flex;
+align-items: center
 }
+
+.m-info-delprice{color: #888;font-weight: 100;text-decoration:line-through;position: relative;font-size:28rpx;margin-left:20rpx;}
 .buy_right{
    flex: 1;
   font-size: 36rpx;
   color: #fff;
-  height: 100%;
   text-align: center;
   line-height: 118rpx;
 }
@@ -267,7 +276,6 @@ width: 42%
   position: fixed;
   bottom: 0;
   width:100%;
-  height: 624rpx;
   background: #EBECEE;
   z-index: 10000
 }
@@ -284,7 +292,7 @@ width: 42%
 .bj_coupon{
   width: 694rpx;
   height: 208rpx;
-
+background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;
    background-size: 100% 100%;
    margin: 0 auto 24rpx auto
 }

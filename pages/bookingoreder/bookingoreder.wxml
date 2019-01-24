@@ -63,6 +63,24 @@
       {{orderNo}}
     </view>
   </view>
+    <view wx:if="{{ordertype == 0}}" class='list_booking'>
+    <view class='order_name'>
+      取消时间
+    </view>
+    <view class='order_smallname'>
+      {{updatetimestr}}
+    </view>
+  </view>
+
+   <view wx:if="{{ordertype == 0}}" class='list_booking'>
+    <view class='order_name'>
+      手续费
+    </view>
+    <view class='order_smallname'>
+      ￥{{cancelprice}}
+    </view>
+  </view>
+  
   <view class='remarks'>
     <view class='order_name'>备注要求</view>
     <view class='order_remarks'>

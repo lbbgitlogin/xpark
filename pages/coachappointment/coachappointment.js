@@ -167,7 +167,6 @@ Page({
     } else {
       var scheduleDate = `${years}-${months}-${days}`
     }
-    console.log(scheduleDate);
     const { scheduleStart, scheduleEnd } = data.coachSchedule
     const { timeLength } = data.course // 课程时长
     const coachAppointments = data.coachAppointments // 预约信息
@@ -314,7 +313,6 @@ Page({
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
 
-console.log(res, '数据');
 
       that.setData({
         sjdata: res.data,

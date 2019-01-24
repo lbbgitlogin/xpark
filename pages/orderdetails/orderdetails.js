@@ -20,6 +20,7 @@ Page({
     orderno: '',
     actualmoney: '',
     orderstate: '',
+    updatetimestr: '',
     img: '',
     orderid: '',
     price: '',
@@ -34,13 +35,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log("options",options)
      var that =this;
     that.setData({
       img:options.img,
       goodsname: options.goodsname,
       ordertype: options.ordertype,
       usecode: options.usecode,
+      updatetimestr: options.updatetimestr ||'',
       gymname: options.gymname,
       actualmoney: options.actualmoney,
       orderno: options.orderno,

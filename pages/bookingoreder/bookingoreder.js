@@ -15,11 +15,14 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     imgurl: CONFIG.config.imgUrl,
     id:"",
     icon:"",
     text:"",
+    updatetimestr: "",
+    cancelprice: "",
     num: "",
     address: "",
     price: "",
@@ -37,7 +40,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -54,11 +56,13 @@ Page({
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              memberFitnessId: options.memberFitnessId,
+              id: options.id || '',
+              memberFitnessId: options.memberFitnessId ||'',
               icon: options.icon,
-              num:options.num,
+              num:options.num || '',
               bookingName: options.bookingName,
+              updatetimestr: options.updatetimestr,
+              cancelprice: options.cancelprice,
               gymName: options.gymName,
               dingdanid: options.dingdanid,
               orderNo: options.orderNo || options.orderno,
@@ -98,7 +102,7 @@ Page({
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
       formatDate: options.bookingTime || options.bookingdate +' '+ options.bookingtime|| formatDate,
-      id: options.id
+      id: options.id ||''
     })
   },
 
