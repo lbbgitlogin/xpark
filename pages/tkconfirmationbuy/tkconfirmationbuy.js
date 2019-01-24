@@ -70,7 +70,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    
     var that = this;
 
     wx.getStorage({
@@ -87,8 +87,8 @@ Page({
           coachId: options.coachId || '',
           scheduleDate: options.scheduleDate,
           formatdates: options.formatdates,
-          openid: res.data.openID
-
+          openid: res.data.openID,
+          coachCourseId: options.coachCourseId
         })
         wx.getStorage({
           key: 'gymId',
@@ -566,7 +566,7 @@ Page({
 
             wx.navigateTo({
 
-              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}`
+              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}&coachCourseId=${that.data.coachCourseId}`
             })
           }
 
@@ -604,7 +604,7 @@ Page({
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}&coachCourseId=${that.data.coachCourseId}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
             })
           }
 
@@ -646,7 +646,7 @@ Page({
             // })
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype + `&coachCourseId=${that.data.coachCourseId}`,
             })
           }
 
@@ -686,12 +686,12 @@ Page({
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
+              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo + `&coachCourseId=${that.data.coachCourseId}`,
             })
           } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
 
             wx.navigateTo({
-              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
+              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id +` &coachCourseId=${that.data.coachCourseId}`,
               // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
             })
           } else {

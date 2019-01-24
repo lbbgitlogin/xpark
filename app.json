@@ -31,7 +31,9 @@
     "pages/perinformation/perinformation",
     "pages/orderdetails/orderdetails",
     "pages/recharge/recharge",
-    "pages/buycard/buycard"
+    "pages/buycard/buycard",
+    "pages/appointmentComponent/coach/coach",
+    "pages/coachappointmentTimeList/coachappointmentTimeList"
   ],
   "permission": {
     "scope.userLocation": {

@@ -52,7 +52,8 @@ Page({
     shopid: "",
     yuenum: "",
     formatDate: "",
-    gymdetails: ""
+    gymdetails: "",
+    coachCourseId: ""
   },
 
   /**
@@ -76,8 +77,8 @@ Page({
           coachId: options.coachId || '',
           scheduleDate: options.scheduleDate,
           formatdates: options.formatdates,
-          openid: res.data.openID
-
+          openid: res.data.openID,
+          coachCourseId: options.coachCourseId
         })
         wx.getStorage({
           key: 'gymId',
@@ -412,21 +413,13 @@ bindMinus: function (e) {
   testSubmit: function(e) {
 
     
-  
-
     var that = this;
 
     var vals = {
       formId: e.detail.formId
     }
     
-    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
-  
-      
-      
-
-    })
+    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals])
     if (that.data.yuechoose) {
    
       if (that.data.optionstype == 2 && that.data.sta != 1) {
@@ -449,11 +442,10 @@ bindMinus: function (e) {
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
           
              
-
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}&formatdates=${that.data.formatdates}`
+              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}&formatdates=${that.data.formatdates}&coachcourseid=${that.data.coachCourseId}`
             })
           }
 

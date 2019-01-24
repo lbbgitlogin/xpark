@@ -65,7 +65,6 @@ Page({
    */
   onLoad: function (options) {
     
-    
     var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -78,7 +77,9 @@ Page({
         wx.getStorage({
           key: 'userinfo',
           success: function (res) {
-            let data = options
+            
+            let data = JSON.parse(options.data)
+            
             let { memberCourseId, scheduleDate } = data
             
             that.setData({
@@ -93,38 +94,10 @@ Page({
                 gymId: that.data.gymId,
               }
             })
-
-
             that.setData({
               memberId: res.data.memberId,
               coachId: options.coachId
             })
-
-            // if (options.ifsj != 1) {
-            //   let { memberCourseId, scheduleDate } = data
-            //   
-            //   that.setData({
-            //     sta: options.sta,
-            //     fromData: {
-            //       memberCourseId,
-            //       bookingDate: scheduleDate,
-            //       scheduleDate: scheduleDate,
-            //       numb: 1,
-            //       tk_id: options.tk_id || options.coachcourseid,
-            //       memberId: that.data.memberId,
-            //       gymId: that.data.gymId,
-            //     }
-            //   })
-            // } else {
-            //   
-            //   // let { memberCourseId, scheduleDate } = data
-            //   that.setData({
-            //     memberCourseId: options.memberCourseId,
-            //     tk_id: options.tk_id || options.coachcourseid,
-            //     coachCoures: data
-            //   })
-            // }
-
 
             that.coach_appointment()
           }
@@ -167,7 +140,7 @@ Page({
     } else {
       var scheduleDate = `${years}-${months}-${days}`
     }
-    console.log(scheduleDate);
+    
     const { scheduleStart, scheduleEnd } = data.coachSchedule
     const { timeLength } = data.course // 课程时长
     const coachAppointments = data.coachAppointments // 预约信息
@@ -268,16 +241,44 @@ Page({
 
 
   toNext: function () {
-
-    var that = this;
-    let data = JSON.stringify(this.data.fromData)
+    
+    let { bookingDate, memberCourseId, numb } = this.data.fromData
+    let { memberId, orderNo } = this.data
+    let { courseName, icon } = this.data.sjdata.course
+    let { address, gymName } = this.data.sjdata.gym
+    let bookingTime = this.data.timenext
+    let remark = ''
+    let data = Object.assign({
+      bookingDate,
+      memberCourseId,
+      numb,
+      memberId,
+      orderNo,
+      courseName,
+      icon,
+      address,
+      gymName,
+      bookingTime,
+      remark
+    })
+    let setdata = JSON.stringify(data)
     if (this.data.timenext === '') {
       $.alert('请选择时间')
       return
     }
     wx.navigateTo({
-      url: '../confirmationOrder/confirmationOrder' + `?data=${data}` + "&orderType=" + 2 + "&tk_id=" + that.data.tk_id + "&sta=" + 1 + "&orderNo=" + that.data.orderNo + "&bookingTime=" + that.data.timenext + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId
+      url: `../appointmentComponent/coach/coach?data=${setdata}`
     })
+
+    // '../confirmationOrder/confirmationOrder' 
+    // + `?data=${data}` + 
+    // "&orderType=" + 2 + 
+    // "&tk_id=" + that.data.tk_id + 
+    // "&sta=" + 1 + 
+    // "&orderNo=" + that.data.orderNo + 
+    // "&bookingTime=" + that.data.timenext + 
+    // "&coachId=" + that.data.coachId + 
+    // "&memberCourseId=" + that.data.memberCourseId
 
 
   },
@@ -313,9 +314,6 @@ Page({
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
-
-console.log(res, '数据');
-
       that.setData({
         sjdata: res.data,
         // gymName: res.data.groundAppointments[0].gymName,

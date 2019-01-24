@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
+    
     var that = this;
 
     if (options.sta == 1) { //私教预约跳转
@@ -36,10 +36,10 @@ Page({
                 scheduleDate,
                 memberCourseId
               })
-              wx.navigateTo({
-                url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo + "&ifsj=" + 2
-              })
               clearInterval(that.data.loadngtime)
+              wx.navigateTo({
+                url: `../coachappointment/coachappointment?data=${data}` + "&tk_id=" + options.tk_id + "&sta=" + options.sta + "&coachId=" + options.coachId + "&orderNo=" + options.orderNo + "&ifsj=" + 2 + '&coachcourseid=' + options.coachCourseId
+              })
             }
           }
 
@@ -58,10 +58,11 @@ Page({
               timeshow: that.data.timeshow - 1
             })
             if (that.data.timeshow == 0) {
+              clearInterval(that.data.loadngtime)
               wx.navigateTo({
                 url: `../tkconorder/tkconorder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&formatdates=${options.formatdates}&price=${options.price}&buy_num=${options.buy_num}`
               })
-              clearInterval(that.data.loadngtime)
+              
             }
           }
         }, 1000)
@@ -75,6 +76,7 @@ Page({
               timeshow: that.data.timeshow - 1,
             })
             if (that.data.timeshow == 0) {
+              clearInterval(that.data.loadngtime)
               wx.switchTab({
 
                 url: '../main/main',
@@ -84,7 +86,7 @@ Page({
                   page.onLoad();
                 }
               })
-              clearInterval(that.data.loadngtime)
+              
             }
           }
 
@@ -105,11 +107,12 @@ Page({
               timeshow: that.data.timeshow - 1
             })
             if (that.data.timeshow == 0) {
+              clearInterval(that.data.loadngtime)
               wx.navigateTo({
 
                 url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId,
               })
-              clearInterval(that.data.loadngtime)
+              
             }
           }
 
@@ -136,10 +139,11 @@ Page({
     })
   },
   backhome: function() {
+    clearInterval(this.data.loadngtime)
     wx.switchTab({
       url: '../index/index',
     })
-    clearInterval(this.data.loadngtime)
+    
 
   },
   /**

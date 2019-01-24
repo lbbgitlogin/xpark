@@ -59,13 +59,12 @@ Page({
    */
   onLoad: function (options) {
     
-
     var that = this;
 
-    if (options.orderType == 2 && options.isfj != "undefined") {
+    if (options.orderType === '2' && options.isfj != "undefined") {
    
       that.setData({
-        formdatask: JSON.parse1(options.data),
+        formdatask: JSON.parse(options.data),
         formdata: options.data,
         orderType: options.orderType,
 

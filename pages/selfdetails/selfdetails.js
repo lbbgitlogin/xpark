@@ -69,7 +69,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    
     var that = this;
     that.member();
     var now = new Date();
@@ -146,8 +146,6 @@ Page({
             that.shopdetails()
         }
 
-   
-      
       },
       fail: function (res) {
         $.alert("请先登录")
@@ -277,11 +275,11 @@ Page({
     if (that.data.optionstype == 2){
 
       wx.navigateTo({
-        url: '../tkconfirmationbuy/tkconfirmationbuy?tk_id=' + that.data.tk_id + "&optionstype=" + that.data.optionstype + "&sta=" + that.data.sta + "&scheduleDate=" + that.data.scheduleDate + "&coachId=" + that.data.coachId + "&formatdates=" + that.data.formatDates + "&conmoney=" + that.data.conmoney + "&couponid=" + that.data.couponid + "&category=" + that.data.category, 
+        url: '../tkconfirmationbuy/tkconfirmationbuy?tk_id=' + that.data.tk_id + "&optionstype=" + that.data.optionstype + "&sta=" + that.data.sta + "&scheduleDate=" + that.data.scheduleDate + "&coachId=" + that.data.coachId + "&formatdates=" + that.data.formatDates + "&conmoney=" + that.data.conmoney + "&couponid=" + that.data.couponid + "&category=" + that.data.category + "&coachCourseId=" + this.data.coachCourseId, 
       })
     }else{
       wx.navigateTo({
-        url: '../confirmationbuy/confirmationbuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype + "&couponid=" + that.data.couponid + "&itemno=" + that.data.itemno + "&category=" + that.data.category + "&conmoney=" + that.data.conmoney,
+        url: '../confirmationbuy/confirmationbuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype + "&couponid=" + that.data.couponid + "&itemno=" + that.data.itemno + "&category=" + that.data.category + "&conmoney=" + that.data.conmoney + "&coachcourseid=" + that.data.coachCourseId,
       })
     }
 
@@ -451,7 +449,7 @@ Page({
     } else if (that.data.optionstype ==2 && that.data.sta == 1){
 
       wx.navigateTo({
-        url: '../coachappointment/coachappointment?scheduleDate=' + that.data.scheduleDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
+        url: '../coachappointmentTimeList/coachappointmentTimeList?scheduleDate=' + that.data.scheduleDate + "&orderNo=" + that.data.orderNo + "&coachId=" + that.data.coachId + "&memberCourseId=" + that.data.memberCourseId + "&ifsj=" + 1 + "&coachcourseid=" + that.data.coachCourseId,
       })
       
     } else if (that.data.optionstype == 2 && that.data.sta != 1){
