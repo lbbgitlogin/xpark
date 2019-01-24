@@ -32,9 +32,7 @@
 
 
       <view bindtap='datalis' class='appointment_datails'>
-        <!-- <view class='datails_imghead'>
-          <image class='datails_imghead' src="http://zuul.snail.highlifes.com/common{{item.course.icon}}"></image>
-        </view> -->
+     
         <view class='datails_title'>
           <view class='manage_mar'>{{item.orderGoods[0].goodsName}}</view>
           <view class='manage_shopname'>{{item.gymName}}</view>

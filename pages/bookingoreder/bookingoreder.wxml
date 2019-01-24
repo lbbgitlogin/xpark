@@ -13,7 +13,7 @@
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
-      <image class='datails_imghead' src='http://zuul.snail.highlifes.com/common/{{icon}}'></image>
+      <image class='datails_imghead' src='{{imgurl}}{{icon}}'></image>
     </view>
     <view class='datails_title'>{{bookingName}}</view>
     <view class='order_datails'>

@@ -2,6 +2,7 @@
 var app = getApp();
 var $ = require('../../utils/util.js');
 var api = require('../../api/selfdails.js');
+var CONFIG = require('../../config.js');
 var apicou = require('../../api/coupon.js');
 Page({
 
@@ -9,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     memberId: "",
     buy_num: 1,
     shopprice: "",

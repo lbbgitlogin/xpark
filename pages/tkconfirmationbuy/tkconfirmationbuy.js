@@ -1,6 +1,7 @@
 // pages/confirmationbuy/confirmationbuy.js
 var app = getApp();
 var $ = require('../../utils/util.js');
+var CONFIG = require('../../config.js');
 var api = require('../../api/selfdails.js');
 var apicou = require('../../api/coupon.js');
 function debounce(func, wait = 400) {
@@ -18,6 +19,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     memberId: "",
     buy_num: 1,
     mjbox:false,

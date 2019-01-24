@@ -5,15 +5,15 @@
 
 
 
-    <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image>
+    <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image>
   </view> -->
     <view class='self_banner'>
      <swiper style="height: 420rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
         <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:key='' wx:for-item="item">
-          <image class="slide-image" mode="aspectFill" src="http://zuul.snail.highlifes.com/common{{item.url}}" />
+          <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
         </swiper-item>
       </swiper>
-    <!-- <image class='self_banner' src='http://zuul.snail.highlifes.com/common{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
+    <!-- <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
   </view>
   <view class='self_box'>
     <view class='self_name {{shoptype != 3?"taif":""}}'>
@@ -122,7 +122,7 @@
     教练课程
   </view>
   <view wx:if="{{showMethod == 2}}" class='shop_details'>
-    <image class='shop_img_sj' src='http://zuul.snail.highlifes.com/common{{icon ||tkgymdetails.course.icon }}'></image>
+    <image class='shop_img_sj' src='{{imgurl}}{{icon ||tkgymdetails.course.icon }}'></image>
     <view class='title_shop'>
       <view class='title_name'>{{coachName|| coachName||tkgymdetails.coachSchedule.coachName}}</view>
       <view class='title_sm'>擅长：健美操课。获得证书：CPR认证；国家职业资格认证。</view>

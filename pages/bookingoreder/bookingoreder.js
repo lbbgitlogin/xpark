@@ -1,6 +1,7 @@
 // pages/bookingoreder/bookingoreder.js
 // pages/confirmationOrder/confirmationOrder.js
 var $ = require('../../utils/util.js');
+var CONFIG = require('../../config.js');
 var api = require('../../api/selfdails.js');
 var indexapi = require('../../api/indexAPI.js');
 var apicou = require('../../api/coupon.js');
@@ -15,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     id:"",
     icon:"",
     text:"",

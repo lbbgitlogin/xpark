@@ -1,5 +1,6 @@
 // pages/confirmationOrder/confirmationOrder.js
 var $ = require('../../utils/util.js');
+var CONFIG = require('../../config.js');
 var api = require('../../api/selfdails.js');
 var apicou = require('../../api/coupon.js');
 Page({
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     formdatask: "",
     formdata: null,
     bookingTime: "",

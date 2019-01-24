@@ -1,6 +1,7 @@
 // pages/appointment/appointment.js
 var app = getApp();
 var selapi = require('../../api/selfdails.js');
+var CONFIG = require('../../config.js');
 var $ = require('../../utils/util.js');
 var api = require('../../api/appointment.js');
 Page({
@@ -9,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: CONFIG.config.imgUrl,
     tapindex: 1,
     type: 1,
     flag:'',
