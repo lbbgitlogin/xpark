@@ -13,7 +13,7 @@
       <view wx:if="{{shoptype != 3}}" class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
-  <view wx:if="{{mjbox}}" class='list_booking '>
+  <view  class='list_booking '>
     <view class='order_name '>
       数量
     </view>
@@ -37,8 +37,19 @@
     <view class='order_name '>
       地点
     </view>
-    <view class='order_smallname '>
+     <view wx:if="{{outdoorAddress}}" class='order_smallname '>
+      {{outdoorAddress}}
+    </view>
+    <view wx:else class='order_smallname '>
       {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
+    </view>
+  </view>
+    <view class='list_booking '>
+    <view class='order_name '>
+      教练
+    </view>
+    <view class='order_smallname '>
+      {{tkgymdetails.coach.coachName || tkgymdetails.coachSchedule.coachName}}
     </view>
   </view>
   <view wx:if="{{shoptype != 3}}" class='list_booking '>
@@ -51,15 +62,18 @@
   </view>
   <view class='confirmationbuy_buy '>
     <view class='confirmationbuy_cou '>优惠信息</view>
-    <view class='list_booking_buy '>
+    <view bindtap='allcourseFullDiscount' class='list_booking_buy '>
       <view class='order_name '>
         促销满减
       </view>
-      <view wx:if="{{!mjbox}}" class='order_smallname '>
+      <view wx:if="{{discountMoney == 0}}" class='order_smallname '>
         无活动
       </view>
-      <view wx:if="{{mjbox}}" class='order_smallname '>
+      <view wx:if="{{discountMoney != 0}}" class='order_smallname '>
         -￥{{discountMoney}}
+      </view>
+       <view bindtap='allcourseFullDiscount'  class=' m-cell-access' style="margin-top: 10rpx;margin-left: 6rpx;">
+        <image  class='icon_zb' src='../../img/right_zb.png'></image>
       </view>
     </view>
 
@@ -117,8 +131,25 @@
 
   </view>
 </view>
-<view wx:if="{{mjbox}}" class='mj_box'>
+<view wx:if="{{mjbox}}" class='mj_box {{mjbox?"bounceInUp animated":"bounceOutDown animated"}}'>
   已购满{{fullNumb}}课时，立减{{discountMoney}}元
+</view>
+<view class="{{mjhidden !=0?'':'hide'}}">
+  <view class='coupon {{mjhidden != 0?"bounceInUp animated":"bounceOutDown animated"}} {{couponlength == 1?"frist_coupon":"sec_coupon"}}'>
+    <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
+    <view class='cxmj_box'>促销满减</view>
+      <block wx:for="{{allcourseFullDiscount}}" wx:key=''>
+      <view class='cxmj_list'>
+  已购满{{item.fullNumb}}课时，立减{{item.discountMoney}}元
+</view>
+
+      </block>
+
+    </scroll-view>
+     <view bindtap='closenow' class='coupon_next bj_color '>
+      关闭
+    </view>
+  </view>
 </view>
 <view class='buy '>
   <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
@@ -132,8 +163,8 @@
   </view>
 
 
-  <form class='buy_right bj_color ' bindsubmit="testSubmit" report-submit="true">
-    <button class='buy_right bj_color ' formType="submit">去支付</button>
+  <form class='buy_right' bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
+    <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
   </form>
   <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买
@@ -173,4 +204,4 @@
     </view>
   </view>
 </view>
-<view bindtap='closebuynow ' wx:if="{{hidden == 0}}" class='hidden_box '></view>
+<view bindtap='closenow' wx:if="{{mjhidden != 0}}" class='hidden_box '></view>

@@ -10,7 +10,7 @@ page{
   font-size: 32rpx
 }
 .order_list{
-  padding:40rpx 0 150rpx  0;
+  padding: 40rpx 0 150rpx  0;
   width: 100%;
   margin: 0 auto;
   background: #282B30;

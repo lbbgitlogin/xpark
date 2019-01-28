@@ -58,28 +58,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-
     var that = this;
 
-    if (options.orderType == 2 && options.isfj != "undefined") {
+    if (options.orderType === '2' && options.isfj != "undefined") {
    
       that.setData({
-        formdatask: JSON.parse1(options.data),
-        formdata: options.data,
-        orderType: options.orderType,
+        formdatask: JSON.parse(options.data),
+        formdata: options.data || '',
+        orderType: options.orderType || '',
 
         scheduleDate: JSON.parse(options.data).bookingDate,
         tk_id: JSON.parse(options.data).tk_id,
 
-        sta: options.sta,
-        bookingTime: options.bookingTime,
+        sta: options.sta || '',
+        bookingTime: options.bookingTime || '',
       })
       that.coach_course()
 
     } else if (options.optionstype == 2){
          that.setData({
-           tk_id: options.tk_id
+           tk_id: options.tk_id || '',
          })
     } else if (options.type === '场馆') {
       that.setData({
@@ -106,24 +104,24 @@ Page({
           yuyueday: options.day || '',
           skTime: options.bookingTime + ':00' || '',
           yuyuetime: options.time + ':00' || '',
-          yuyueformdate: options.day + options.time + ':00',
-          tktime: options.formatdates,
-          optionstype: options.optionstype,
+          yuyueformdate: options.day + ' ' + options.time + ':00' || '',
+          tktime: options.formatdates || '',
+          optionstype: options.optionstype || '',
           // tk_id: JSON.parse(options.data).tk_id,
-          memberCourseId: options.memberCourseId
+          memberCourseId: options.memberCourseId || ''
         })
         wx.getStorage({
           key: 'gymId',
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              memberFitnessId: options.memberFitnessId,
-              orderNo: options.orderNo,
-              price: options.price,
+              id: options.id || '',
+              memberFitnessId: options.memberFitnessId || '',
+              orderNo: options.orderNo || '',
+              price: options.price || '',
               address: options.address,
-              groundName: options.groundName,
-              groundId: options.groundId,
+              groundName: options.groundName || '',
+              groundId: options.groundId || '',
             })
             if (options.optionstype == 2) {
               that.setData({
@@ -136,7 +134,7 @@ Page({
               let { tk_id, coachId, memberCourseId } = options
               that.setData({
                 tk_id: tk_id,
-                sta: options.sta,
+                sta: options.sta || '',
 
                 coachId: coachId,
                 memberCourseId: memberCourseId
@@ -177,7 +175,7 @@ Page({
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
       formatDate: formatDate,
-      id: options.id
+      id: options.id || ''
     })
   },
 

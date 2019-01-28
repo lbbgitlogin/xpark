@@ -7,7 +7,7 @@
   </view>
 <view class='tiao'></view>
 <!--下面这一句是重点,这里是内容切换区域-->
- <swiper circular='true' bindchange='swiperChange' current='{{activeTab}}'>
+ <swiper circular='true' style='height:{{clientHeight*2}}rpx' bindchange='swiperChange' current='{{activeTab}}'>
     <block wx:key='id' wx:for="{{cardViewContent}}">
       <swiper-item>
         <view class='ra-co-cardview'>
@@ -22,9 +22,7 @@
        </view>
        -->
           <!--singel line-->
-          <view class='ra-co-imgview'>
-            <image src='{{item.img}}' bindtap='previewImg'></image>
-          </view>
+     
         </view>
       </swiper-item>
     </block>

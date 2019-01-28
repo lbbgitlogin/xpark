@@ -13,6 +13,8 @@ Page({
     imgurl: CONFIG.config.imgUrl,
     memberId: "",
     buy_num: 1,
+    gopay: "去支付",
+    gosecpay: "支付中",
     goodsId: "",
     discount: "",
     category: "",
@@ -35,6 +37,7 @@ Page({
     shopprice: "",
     xparkprice: "",
     twopric: "",
+    buttonif:false,
     couponlenght: "",
     choose: false,
     memberName: "",
@@ -113,14 +116,14 @@ Page({
 
       },
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+     
+     
 
-          wx.navigateTo({
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 1000) //延迟时间 这里是1秒
+      
 
       },
     })
@@ -134,7 +137,7 @@ Page({
   // 减号 1
   bindMinus: function (e) {
     if (this.data.buy_num > 1) {
-      this.pay_num(this.data.buy_num - 1)
+      this.pay_num(Number(this.data.buy_num) - 1)
     }
     if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
       this.setData({
@@ -144,8 +147,8 @@ Page({
   },
   // 加号 1
   bindPlus: function (e) {
-    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-      this.pay_num(this.data.buy_num + 1)
+    if (Number(this.data.buy_num) >0) {
+      this.pay_num(Number(this.data.buy_num)+ 1)
     }
   },
 
@@ -177,18 +180,7 @@ Page({
       }
 
     }
-    
-    if (Number(that.data.buy_num) < Number(that.data.maxnum)) {
-      //判断用户输入的数量是否超过库存
-
-    } else {
-
-
-      this.setData({
-        clickshow: false,
-        buy_num: that.data.maxnum
-      })
-    }
+   
 
   },
 
@@ -205,10 +197,10 @@ Page({
         shopprice:res.data.price,
         shopprice: price,
         price: price,
-        xparkprice: (price*0.9).toFixed(2),
-        yhxparkprice: (price*0.9).toFixed(2),
-        twoprice: (price*0.8).toFixed(2),
-        yhtwoprice: (price*0.8).toFixed(2),
+        xparkprice: (price * 0.9).toFixed(2),
+        yhxparkprice: (price * 0.9).toFixed(2),
+        twoprice: (price * 0.8).toFixed(2),
+        yhtwoprice: (price * 0.8).toFixed(2),
         icon: res.data.gym.icon,
         address: res.data.gym.address,
         goodsId: res.data.id,
@@ -418,6 +410,16 @@ Page({
 
     var that = this;
 
+    that.setData({
+      buttonif: true
+    })
+    setTimeout(function () {
+
+      that.setData({
+        buttonif: false
+      })
+
+    }, 3000)
     var vals = {
       formId: e.detail.formId
     }
@@ -441,7 +443,7 @@ Page({
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: '1',
+            numb: that.data.buy_num,
             goodsId: that.data.goodsId,
           }],
           payType: "wx",
@@ -512,15 +514,14 @@ Page({
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: that.data.numb,
+            numb: that.data.buy_num,
             goodsId: that.data.goodsId,
           }],
           payType: "wx",
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
-
-
+    
 
           if (res.status == 0) {
 

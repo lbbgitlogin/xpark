@@ -20,12 +20,10 @@ Page({
       remark: ''
     },
     optionsdata: null,
-    price: '',
     form: {
       bookingDate: "2018-12-28",
       bookingTime: "",
       coachId: 0,
-      coachname: "",
       coachName: "string",
       commonId: 0,
       formatDate: "",
@@ -66,27 +64,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("死角u预约时间",options)
+    
+    
     var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
         that.setData({
           gymId: res.data.gymId,
-          orderNo: options.orderNo,
-          price:options.price,
-          coachcourseid: options.coachcourseid
+          orderNo: options.orderNo ||'',
+          price: options.price || '',
+          coachcourseid: options.coachcourseid || ''
         })
         wx.getStorage({
           key: 'userinfo',
           success: function (res) {
-            
-            let data = JSON.parse(options.data)
-            
+            let data = options
             let { memberCourseId, scheduleDate } = data
-            
             that.setData({
-              sta: options.sta,
+              sta: options.sta || '',
               fromData: {
                 memberCourseId,
                 bookingDate: scheduleDate,
@@ -97,17 +93,42 @@ Page({
                 gymId: that.data.gymId,
               }
             })
+
+
             that.setData({
               memberId: res.data.memberId,
-              coachId: options.coachId
+              coachId: options.coachId || ''
             })
+
+            // if (options.ifsj != 1) {
+            //   let { memberCourseId, scheduleDate } = data
+            //   
+            //   that.setData({
+            //     sta: options.sta,
+            //     fromData: {
+            //       memberCourseId,
+            //       bookingDate: scheduleDate,
+            //       scheduleDate: scheduleDate,
+            //       numb: 1,
+            //       tk_id: options.tk_id || options.coachcourseid,
+            //       memberId: that.data.memberId,
+            //       gymId: that.data.gymId,
+            //     }
+            //   })
+            // } else {
+            //   
+            //   // let { memberCourseId, scheduleDate } = data
+            //   that.setData({
+            //     memberCourseId: options.memberCourseId,
+            //     tk_id: options.tk_id || options.coachcourseid,
+            //     coachCoures: data
+            //   })
+            // }
+
 
             that.coach_appointment()
           }
         })
-
-
-
       },
     })
 
@@ -119,6 +140,7 @@ Page({
    */
   onReady: function () {
   },
+
   addnumber: function () {
     this.setData({
       number: this.data.number + 1
@@ -143,7 +165,6 @@ Page({
     } else {
       var scheduleDate = `${years}-${months}-${days}`
     }
-    
     const { scheduleStart, scheduleEnd } = data.coachSchedule
     const { timeLength } = data.course // 课程时长
     const coachAppointments = data.coachAppointments // 预约信息
@@ -248,15 +269,13 @@ Page({
     let { bookingDate, memberCourseId, numb } = this.data.fromData
     let { memberId, orderNo } = this.data
     let { courseName, icon } = this.data.sjdata.course
-    let { address, gymName } = this.data.sjdata.gym
+    let { coachName } = this.data.sjdata.coachSchedule
+    let { address, gymName} = this.data.sjdata.gym
     let bookingTime = this.data.timenext
-    let coachname = this.data.coachname
-    let price = this.data.price
     let remark = ''
     let data = Object.assign({
-      price,
-      coachname,
       bookingDate,
+      coachName,
       memberCourseId,
       numb,
       memberId,
@@ -274,9 +293,9 @@ Page({
       return
     }
     wx.navigateTo({
-      url: `../appointmentComponent/coach/coach?data=${setdata}`
+      url: `../appointmentComponent/coach/coach?data=${setdata}` + "&price=" + this.data.price
     })
-
+    
     // '../confirmationOrder/confirmationOrder' 
     // + `?data=${data}` + 
     // "&orderType=" + 2 + 
@@ -321,9 +340,9 @@ Page({
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
+ console.log("位置",res)
       that.setData({
         sjdata: res.data,
-        coachname:res.data.coachSchedule.coachName
         // gymName: res.data.groundAppointments[0].gymName,
         // id: res.data.groundAppointments[0].id,
       })

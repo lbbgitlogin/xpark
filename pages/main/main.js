@@ -48,14 +48,14 @@ Page({
         that.member()
       },
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+   
+      
 
-          wx.navigateTo({
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 2000)
+     
       },
     })
   },
@@ -114,8 +114,8 @@ Page({
 
     }
     $.Requests(api.member.url, val).then((res) => {
-      
-      
+        console.log("会员查询",res)
+      console.log("会员查询", val)
       if (res.data.length == 0) {
 
         that.setData({
@@ -125,7 +125,7 @@ Page({
         that.setData({
           membershow: true,
           vip: res.data[0].vip,
-          viptime: res.data[0].vipEndTime
+          viptime: res.data[0].vipEndTime.substring(0, res.data[0].vipEndTime.length - 10),
         })
       }
 

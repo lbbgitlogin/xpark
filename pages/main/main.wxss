@@ -109,7 +109,7 @@ top:92%;
   color: #fff;
   position: relative;
   height: 230rpx;
-
+background: url(http://zuul.snail.highlifes.com/common/image/20190108/f677ea46-9831-47e8-b6b1-437eef4a37a4.png) center no-repeat;
   background-size: 100% 100%;
   padding: 76rpx 0 0 0;
 }

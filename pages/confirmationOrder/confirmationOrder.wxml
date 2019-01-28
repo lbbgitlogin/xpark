@@ -25,7 +25,7 @@
       地点
     </view>
     <view class='order_smallname'>
-     {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address ||skgymdetails.gym.address}}
+     {{groundName||gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address ||skgymdetails.gym.address}}
     </view>
   </view>
    <view class='list_booking'>

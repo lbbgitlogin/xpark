@@ -13,6 +13,8 @@ Page({
     imgurl: CONFIG.config.imgUrl,
     memberId: "",
     buy_num: 1,
+    gopay: "去支付",
+    gosecpay: "支付中",
     shopprice: "",
     goodsId: "",
     maxnum: "",
@@ -34,6 +36,7 @@ Page({
     numb: "1",
     xparkprice: "",
     twopric: "",
+    fittype: "",
     couponlenght: "",
     choose: false,
     discount: "",
@@ -51,9 +54,11 @@ Page({
     openid: "",
     itemNo: "",
     shopid: "",
+    buttonif:false,
     yuenum: "",
     formatDate: "",
-    gymdetails: ""
+    gymdetails: "",
+    coachCourseId: ""
   },
 
   /**
@@ -75,9 +80,11 @@ Page({
           conmoney: options.conmoney || '',
           category: options.category || '',
           coachId: options.coachId || '',
+
           scheduleDate: options.scheduleDate || '',
           formatdates: options.formatdates || '',
-          openid: res.data.openID
+          openid: res.data.openID,
+          coachCourseId: options.coachCourseId || ''
 
         })
         wx.getStorage({
@@ -113,14 +120,14 @@ Page({
 
       },
       fail: function(res) {
-        $.alert("请先登录")
-        setTimeout(function() {
+    
 
-          wx.navigateTo({
+
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 1000) //延迟时间 这里是1秒
+      
 
       },
     })
@@ -132,33 +139,33 @@ Page({
 
   },
   // 减号 1
-bindMinus: function (e) {
+  bindMinus: function (e) {
     if (this.data.buy_num > 1) {
-      this.pay_num(this.data.buy_num - 1)
+      this.pay_num(Number(this.data.buy_num) - 1)
     }
-  if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-    this.setData({
-      clickshow:true
-    })
-  }
+    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
+      this.setData({
+        clickshow: true
+      })
+    }
   },
   // 加号 1
   bindPlus: function (e) {
-    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-    this.pay_num(this.data.buy_num + 1)
+    if (Number(this.data.buy_num) > 0) {
+      this.pay_num(Number(this.data.buy_num) + 1)
     }
   },
 
   pay_num: function (e) {
-    
+
     var that = this;
     if (e > 0) {
       that.setData({
-        buy_num : e
+        buy_num: e
 
       })
-      
-    }else{
+
+    } else {
       that.setData({
         buy_num: 1
 
@@ -166,29 +173,18 @@ bindMinus: function (e) {
     }
     if (e.type == 'change') {
       //如果是input的change事件 buy_num 就赋值为用户手动输入的值
-      if (e.detail.value < 1){
+      if (e.detail.value < 1) {
         that.setData({
           buy_num: 1
         })
-      }else{
+      } else {
         that.setData({
           buy_num: e.detail.value
         })
       }
-     
+
     }
-    
-    if (Number(that.data.buy_num) < Number(that.data.maxnum)) {
-      //判断用户输入的数量是否超过库存
-     
-    } else {
-      
-    
-      this.setData({
-        clickshow:false,
-        buy_num: that.data.maxnum
-      })
-    }
+
 
   },
 
@@ -354,11 +350,12 @@ bindMinus: function (e) {
 
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-  
+  console.log("zizhu",res)
     let{price}=res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
         gymdetails: res.data,
+        fittype: res.data.fitness.fitType,
         areaId: res.data.areaId,
         price: price,
         xsprice: price,
@@ -414,21 +411,23 @@ bindMinus: function (e) {
   testSubmit: function(e) {
 
     
-  
-
     var that = this;
 
+    that.setData({
+      buttonif: true
+    })
+    setTimeout(function () {
+
+      that.setData({
+        buttonif: false
+      })
+
+    }, 3000)
     var vals = {
       formId: e.detail.formId
     }
     
-    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
-  
-      
-      
-
-    })
+    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals])
     if (that.data.yuechoose) {
    
       if (that.data.optionstype == 2 && that.data.sta != 1) {
@@ -441,7 +440,7 @@ bindMinus: function (e) {
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: '1',
+            numb: that.data.buy_num,
             goodsId: that.data.goodsId,
           }],
           payType: "wx",
@@ -451,11 +450,10 @@ bindMinus: function (e) {
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
           
              
-
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}&formatdates=${that.data.formatdates}`
+              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price}&formatdates=${that.data.formatdates}&coachcourseid=${that.data.coachCourseId}`
             })
           }
 
@@ -475,7 +473,7 @@ bindMinus: function (e) {
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: that.data.numb,
+            numb: that.data.buy_num,
             goodsId: that.data.tk_id,
           }],
           payType: "wx",
@@ -512,7 +510,7 @@ bindMinus: function (e) {
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: that.data.numb,
+            numb: that.data.buy_num,
             goodsId: that.data.goodsId,
           }],
           payType: "wx",
@@ -563,7 +561,7 @@ bindMinus: function (e) {
           memberMobile: that.data.mobile,
           memberName: that.data.memberName,
           orderGoods: [{
-            numb: that.data.numb,
+            numb: that.data.buy_num,
             goodsId: that.data.shopid,
           }],
           payType: "wx",
@@ -580,7 +578,7 @@ bindMinus: function (e) {
           } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
 
             wx.navigateTo({
-              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
+              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id + "&shopname=" + that.data.gymdetails.fitnessName,
               // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
             })
           } else {

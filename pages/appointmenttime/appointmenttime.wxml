@@ -1,6 +1,6 @@
 <!--pages/appointmenttime/appointmenttime.wxml-->
 <view class='time_box'>
-  <view class='showtime'>可约期限</view>
+  <view class='showtime'>{{shopname}}的可约期限</view>
 
 
   <block wx:for="{{timelist.time}}" wx:key='id'  wx:for-item="item">

@@ -9,6 +9,7 @@ Page({
    */
   data: {
     gymId:"",
+    clientHeight: "",
     activeTab: 0,
   },
 
@@ -45,6 +46,13 @@ Page({
         
       },
     })
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          clientHeight: res.windowHeight
+        });
+      }
+    })
     
   },
 
@@ -59,7 +67,7 @@ Page({
     var val = {
     }
     $.Requests(api.guide.url + '/' + that.data.gymId , val).then((res) => {
-      
+    
           
        that.setData({
          bottomTab: res.data,

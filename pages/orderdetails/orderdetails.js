@@ -14,6 +14,7 @@ Page({
   data: {
     imgurl: CONFIG.config.imgUrl,
     goodsname: '',
+    invaliddatetime: '',
     gymname: '',
     usecode: '',
     ordertype: '',
@@ -41,6 +42,7 @@ Page({
       goodsname: options.goodsname,
       ordertype: options.ordertype,
       usecode: options.usecode,
+      invaliddatetime: options.invaliddatetime || '',
       updatetimestr: options.updatetimestr ||'',
       gymname: options.gymname,
       actualmoney: options.actualmoney,

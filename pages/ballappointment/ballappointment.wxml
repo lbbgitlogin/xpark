@@ -5,7 +5,7 @@
 
 <view class='ball-title'>
   <view class='ball-title-left' bindtap="addnumber">
-    可约时间
+    {{shopname}}的可约时间
   </view>
   <view class='ball-title-right'>
     {{day}} 

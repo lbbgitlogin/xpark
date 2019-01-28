@@ -51,8 +51,8 @@
 
 
 
-      <view class='appointment_datails' bindtap='datalis' data-cancelprice='{{item.cancelPrice}}' data-updatetimestr='{{item.updateTimeStr}}' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}'  data-uesCode='{{item.uesCode}}' data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
-        data-remark='{{item.remark}}' data-bookingTime='{{item.bookingTime}}'  data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
+      <view class='appointment_datails' data-outdoorAddress='{{item.outdoorAddress}}' data-coachname='{{item.coachAppointment.coachName}}' bindtap='datalis' data-cancelprice='{{item.cancelPrice}}' data-updatetimestr='{{item.updateTimeStr}}' data-groundname='{{item.groundName}}' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}'  data-uesCode='{{item.uesCode}}' data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
+        data-remark='{{item.remark}}' data-bookingTime='{{item.bookingTimeStr}}'  data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
         <view class='datails_imghead'>
           <image wx:if='{{item.icon}}' class='datails_imghead' src='{{imgurl}}{{item.icon}}'></image>
            <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
@@ -61,7 +61,7 @@
       </view>
 
       <view class='appointment_datails'>
-        <view class='datails_titleif'>预约时间：{{item.bookingTime}}</view>
+        <view class='datails_titleif'>预约时间：{{item.bookingTimeStr}}</view>
       </view>
 
 

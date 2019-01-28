@@ -10,7 +10,7 @@
       <view  class='order_mon'>¥{{xsprice}}</view>
       <!-- <view wx:if="{{vip == 2}}" class='order_mon'>¥{{twoprice|| price*0.8}}</view>
       <view wx:if="{{vip !=1 && vip !=2}}" class='order_mon'>¥{{price}}</view> -->
-      <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
+      <view  class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
   <!-- <view class='list_booking '>
@@ -23,6 +23,18 @@
               <input type="number" bindchange="pay_num" value="{{buy_num}}" />
               <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
             </view>
+    </view>
+  </view> -->
+    <!-- <view wx:if="{{fittype == 2}}"  class='list_booking '>
+    <view class='order_name '>
+      数量
+    </view>
+    <view class='order_smallname '>
+      <view class="u-cart-num" style="margin-top:21rpx">
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
+        <input type="number" bindchange="pay_num" value="{{buy_num}}" />
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
+      </view>
     </view>
   </view> -->
   <view class='list_booking '>
@@ -122,18 +134,19 @@
 </view>
   <view class='buy '>
    <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{xparkprice-conmoney}}
+     ￥{{xparkprice*buy_num-conmoney}}
     </view>
       <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{twoprice-conmoney}}
+     ￥{{twoprice*buy_num-conmoney}}
     </view>
       <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{price-conmoney}}
+     ￥{{price*buy_num-conmoney}}
     </view>
 
 
-     <form  class='buy_right bj_color ' bindsubmit="testSubmit" report-submit="true">
-      <button class='buy_right bj_color ' formType="submit">去支付</button>
+     <form  class='buy_right' bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
+      <button class='buy_right {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
+
  </form>
     <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买

@@ -198,6 +198,29 @@ appointment_common: { //取消订单
 
     }
   }, 
-  
+  allcourseFullDiscount: { //maika
+    url: cf.config.configUrl + 'coach_course/courseFullDiscount/find/all',
+    get: {
+
+    }
+  },
+  checkcoach: { //maika
+    url: cf.config.configUrl + 'coach_appointment/find/check/appointment',
+    get: {
+
+    }
+  }, 
+  checkleague: { //maika
+    url: cf.config.configUrl + 'league_appointment/check',
+    get: {
+
+    }
+  }, 
+  checkcancel: { //maika
+    url: cf.config.configUrl + 'appointment_common/cancel/state/check',
+    put: {
+
+    }
+  }, 
 
 }

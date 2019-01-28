@@ -13,6 +13,10 @@ align-items:center;
 .frist_coupon{
   height:520rpx
 }
+.bytt_if{
+  background: #444951;
+  color: #fff!important
+}
 .sec_coupon{
   height:755rpx
 }

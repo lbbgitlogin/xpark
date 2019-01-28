@@ -4,15 +4,7 @@ var $ = require('../../utils/util.js');
 var CONFIG = require('../../config.js');
 var api = require('../../api/selfdails.js');
 var apicou = require('../../api/coupon.js');
-function debounce(func, wait = 400) {
-  let timeout;
-  return function (event) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      func.call(this, event)
-    }, wait);
-  };
-}
+
 Page({
 
   /**
@@ -21,13 +13,20 @@ Page({
   data: {
     imgurl: CONFIG.config.imgUrl,
     memberId: "",
+    gopay:"去支付",
+    outdoorAddress: "",
+    gosecpay:"支付中",
     buy_num: 1,
     mjbox: false,
     coachCourseId: "",
     goodsId: "",
+    coachName: "",
     maxnum: "",
     minnum: "",
+    buttonif:false,
+    hidden:1,
     conmoney: "",
+    allcourseFullDiscount: "",
     areaId: "",
     clickshow: true,
     vip: "",
@@ -38,6 +37,7 @@ Page({
     coachId: "",
     category: "",
     mobile: "",
+    starttime: "",
     shopdetails: "",
     scheduleStart: "",
     sta: "",
@@ -54,7 +54,7 @@ Page({
     shoptype: "",
     yuechoose: true,
     wxyuechoose: false,
-    hidden: 1,
+    mjhidden: 0,
     gymName: "",
     address: "",
     id: "",
@@ -62,15 +62,17 @@ Page({
     itemNo: "",
     shopid: "",
     yuenum: "",
+    getMaxList:true,
     formatDate: "",
-    gymdetails: ""
+    gymdetails: "",
+    timelock: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    
     var that = this;
 
     wx.getStorage({
@@ -85,10 +87,10 @@ Page({
           conmoney: options.conmoney || '',
           category: options.category || '',
           coachId: options.coachId || '',
-          scheduleDate: options.scheduleDate || '',
-          formatdates: options.formatdates || '',
-          openid: res.data.openID
-
+          scheduleDate: options.scheduleDate,
+          formatdates: options.formatdates,
+          openid: res.data.openID,
+          coachCourseId: options.coachCourseId
         })
         wx.getStorage({
           key: 'gymId',
@@ -124,14 +126,14 @@ Page({
 
       },
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+      
+     
 
-          wx.navigateTo({
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 1000) //延迟时间 这里是1秒
+     
 
       },
     })
@@ -144,26 +146,62 @@ Page({
   },
   // 减号 1
   bindMinus: function (e) {
-    if (this.data.buy_num > 1) {
-      this.pay_num(this.data.buy_num - 1)
+    let numb = this.data.buy_num
+    let mini = Number(this.data.minnum)
+    if (numb <= mini ) {
+      return
     }
-    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-      this.setData({
-        clickshow: true
-      })
+    if(numb <= 0) {
+      return
     }
+    this.setData({
+      buy_num: this.data.buy_num - 1
+    })
+    this.clickif()
+    // if (this.data.buy_num > 1 && this.data.buy_num > Number(this.data.minnum)) {
+    //   this.pay_num(this.data.buy_num - 1)
+    // }
+    // if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
+    //   this.setData({
+    //     clickshow: true
+    //   })
+    // }
   },
   // 加号 1
   bindPlus: function (e) {
-    if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
-      this.pay_num(this.data.buy_num + 1)
+    let numb = this.data.buy_num
+    let maxnum = Number(this.data.maxnum)
+    if (numb >= maxnum) {
+      return
     }
+    this.setData({
+      buy_num: this.data.buy_num + 1
+    })
+    this.clickif()
+    // if (Number(this.data.buy_num) < Number(this.data.maxnum)) {
+    //   this.pay_num(this.data.buy_num + 1)
+    // }
+    
   },
   // change: debounce(function (e) {
   //   
   //   
   // })
-  pay_num: debounce(function (e) {
+  clickif:function(){
+   if(!this.data.timelock) {
+    
+     this.setData({
+         timelock: setTimeout(() => {
+           this.setData({
+             timelock: null
+           })
+           this.pay_num(this.data.buy_num)
+         }, 3000)
+     })
+     
+   }
+  },
+  pay_num:function (e) {
 
     var that = this;
     if (e > 0) {
@@ -204,19 +242,51 @@ Page({
         buy_num: that.data.maxnum
       })
     }
-    that.courseFullDiscount()
+    if (that.data.getMaxList){
+      that.courseFullDiscount()
+    }
+   
 
-  }),
+  },
+  closenow: function () {
+    this.setData({
+      mjhidden: 0
+    })
+  },
+  allcourseFullDiscount: function () {
+    var that = this;
+    var val = {
+      coachCourseId: that.data.coachCourseId || that.data.tk_id
+    }
+    $.Requests(api.allcourseFullDiscount.url, val).then((res) => {
+      if(res.data == 0){
+        that.setData({
+          mjhidden:0
+        })
+      }else{
+        that.setData({
+          mjhidden: 1,
+          allcourseFullDiscount: res.data
+        })
+      }
+          
+        console.log("全部满减",res)
+      console.log("全部满减", val)
+
+
+
+    })
+
+  },
 
   courseFullDiscount: function () {
-
     var that = this;
     var val = {
       coachCourseId: that.data.coachCourseId || that.data.tk_id,
       numb: that.data.buy_num
     }
     $.Requests(api.courseFullDiscount.url, val).then((res) => {
-
+     
       if (res.data == null) {
         that.setData({
           mjbox: false
@@ -227,6 +297,13 @@ Page({
           discountMoney: res.data.discountMoney,
           fullNumb: res.data.fullNumb
         })
+        setTimeout(function () {
+
+          that.setData({
+            mjbox: false
+          })
+
+        }, 3000)
       }
 
 
@@ -293,8 +370,8 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    console.log("a1",res)
-
+        
+      console.log("团课",res)
       let { price, areaId } = res.data
 
       var now = new Date();
@@ -302,13 +379,17 @@ Page({
       var month = now.getMonth() + 1;
       var day = now.getDate();
       var formatDate = year + '-' + month + '-' + day;
+   
       if (that.data.vip == 1) {
         that.setData({
           formatDate: formatDate,
           coachCourseId: res.data.coachCourseId,
           goodsId: res.data.id,
+          outdoorAddress: res.data.outdoorAddress,
           shopprice: res.data.price,
           maxnum: res.data.maxNumb,
+          buy_num: res.data.mixNumb,
+          starttime: res.data.startTime,
           minnum: res.data.mixNumb,
           tkgymdetails: res.data,
           price: price * 0.9 * that.data.buy_num,
@@ -322,7 +403,9 @@ Page({
           goodsId: res.data.id,
           coachCourseId: res.data.coachCourseId,
           maxnum: res.data.maxNumb,
+          outdoorAddress: res.data.outdoorAddress,
           minnum: res.data.mixNumb,
+          buy_num: res.data.mixNumb,
           shopprice: res.data.price,
           tkgymdetails: res.data,
           price: price * 0.8 * that.data.buy_num,
@@ -336,9 +419,12 @@ Page({
           goodsId: res.data.id,
           coachCourseId: res.data.coachCourseId,
           maxnum: res.data.maxNumb,
+          outdoorAddress: res.data.outdoorAddress,
           minnum: res.data.mixNumb,
+          buy_num: res.data.mixNumb,
           tkgymdetails: res.data,
           shopprice: price,
+          price: price*that.data.buy_num,
           jindu: res.data.appointmentNumb / res.data.course.contain,
           tkareaId: areaId
         })
@@ -364,7 +450,7 @@ Page({
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
 
-
+          console.log("死角",res)
 
       if (that.data.vip == 1) {
         that.setData({
@@ -374,7 +460,9 @@ Page({
           price: res.data.price * 0.9 * that.data.buy_num,
           maxnum: res.data.maxNumb,
           minnum: res.data.mixNumb,
+          buy_num: res.data.mixNumb,
           shopprice: res.data.price,
+          coachName:res.data.coachName,
           icon: res.data.course.icon,
           address: res.data.gym.address,
           goodsId: res.data.course.id,
@@ -387,10 +475,12 @@ Page({
           tkgymdetails: res.data,
           gymName: res.data.gym.gymName,
           areaId: res.data.areaId,
+          buy_num: res.data.mixNumb,
           price: res.data.price * 0.8 * that.data.buy_num,
           maxnum: res.data.maxNumb,
           shopprice: res.data.price,
           minnum: res.data.mixNumb,
+          buy_num: res.data.mixNumb,
           icon: res.data.course.icon,
           address: res.data.gym.address,
           goodsId: res.data.course.id,
@@ -406,6 +496,7 @@ Page({
           price: res.data.price * that.data.buy_num,
           maxnum: res.data.maxNumb,
           minnum: res.data.mixNumb,
+          buy_num: res.data.mixNumb,
           shopprice: res.data.price,
           icon: res.data.course.icon,
           address: res.data.gym.address,
@@ -529,11 +620,17 @@ Page({
 
   },
   testSubmit: function (e) {
-
-
-
-
     var that = this;
+    that.setData({
+      buttonif:true
+    })
+    setTimeout(function () {
+
+      that.setData({
+        buttonif: false
+      })
+
+    }, 3000)
 
     var vals = {
       formId: e.detail.formId
@@ -561,12 +658,11 @@ Page({
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
 
 
-
           if (res.status == 0) {
 
             wx.navigateTo({
 
-              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}`
+              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}&coachCourseId=${that.data.coachCourseId}&starttime=${that.data.tkgymdetails.startTime}`
             })
           }
 
@@ -604,7 +700,7 @@ Page({
           if (res.status == 0) {
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}&coachCourseId=${that.data.coachCourseId}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId + "&coachname=" + that.data.coachName,
             })
           }
 
@@ -646,7 +742,7 @@ Page({
             // })
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype + `&coachCourseId=${that.data.coachCourseId}`,
             })
           }
 
@@ -686,12 +782,12 @@ Page({
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
 
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
+              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo + `&coachCourseId=${that.data.coachCourseId}`,
             })
           } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
 
             wx.navigateTo({
-              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
+              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id +` &coachCourseId=${that.data.coachCourseId}`,
               // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
             })
           } else {

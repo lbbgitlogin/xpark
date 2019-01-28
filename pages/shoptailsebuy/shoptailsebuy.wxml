@@ -9,7 +9,7 @@
     <view class='order_datails'>
       <view class='order_mon'>¥{{shopprice}}</view>
 
-      <view wx:if="{{shoptype == 3}}" class='num_order'>x1</view>
+      <view wx:if="{{shoptype == 3}}" class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
   <!-- <view class='list_booking '>
@@ -24,10 +24,22 @@
             </view>
     </view>-->
   </view> 
+  <view  class='list_booking '>
+    <view class='order_name '>
+      数量
+    </view>
+    <view class='order_smallname '>
+      <view class="u-cart-num" style="margin-top:21rpx">
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
+        <input type="number" bindchange="pay_num" value="{{buy_num}}" />
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
+      </view>
+    </view>
+  </view>
   <view class='list_booking '>
     <view class='order_name '>
       门店
-    </view>
+         </view>
     <view class='order_smallname '>
     {{gymdetails.gym.gymName || tkgymdetails.gymName||tkgymdetails.gym.gymName || shopdetails.gym.gymName}}
     </view>
@@ -121,18 +133,18 @@
 </view>
   <view class='buy '>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{xparkprice-discount}}
+     ￥{{filters.toFix(xparkprice*buy_num-discount)}}
     </view>
       <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{twoprice-discount}}
+     ￥{{filters.toFix(twoprice*buy_num-discount)}}
     </view>
       <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{price-discount}}
+     ￥{{filters.toFix(price*buy_num-discount)}}
     </view>
 
 
-     <form  class='buy_right bj_color ' bindsubmit="testSubmit" report-submit="true">
-      <button class='buy_right bj_color ' formType="submit">去支付</button>
+     <form  class='buy_right '  bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
+      <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
  </form>
     <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买
@@ -173,3 +185,4 @@
   </view>
 </view>
 <view bindtap='closebuynow ' wx:if="{{hidden == 0}}" class='hidden_box '></view>
+<wxs module="filters" src="../../utils/tofix.wxs"></wxs>

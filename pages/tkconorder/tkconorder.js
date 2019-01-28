@@ -14,6 +14,7 @@ Page({
     formdata: null,
     bookingTime: "",
     groundName: "",
+    outdoorAddress: "",
     yuyueday: "",
     yuyuetime: "",
     memberCourseId: "",
@@ -23,6 +24,7 @@ Page({
     skgymdetails: "",
     leagueScheduleId: "",
     memberId: "",
+    tktimesec: "",
     areaId: "",
     tk_id: "",
     tkgymdetails: "",
@@ -60,29 +62,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-
+    console.log("预约确认",options)
     var that = this;
 
     if (options.orderType == 2 && options.isfj != "undefined") {
 
       that.setData({
         formdatask: JSON.parse1(options.data),
-        formdata: options.data,
-        orderType: options.orderType,
+        formdata: options.data||'',
+        orderType: options.orderType || '',
 
         scheduleDate: JSON.parse(options.data).bookingDate,
         tk_id: JSON.parse(options.data).tk_id,
 
-        sta: options.sta,
-        bookingTime: options.bookingTime,
+        sta: options.sta || '',
+        bookingTime: options.bookingTime || '',
       })
       that.coach_course()
 
     } else if (options.optionstype == 2) {
       that.setData({
-        tk_id: options.tk_id,
-        num: options.buy_num
+        tk_id: options.tk_id || '',
+        num: options.buy_num || ''
       })
     } else if (options.type === '场馆') {
       that.setData({
@@ -94,6 +95,7 @@ Page({
       success: function (res) {
         that.setData({
           groundName: res.data.groundName
+          
         })
 
       }
@@ -110,23 +112,24 @@ Page({
           skTime: options.bookingTime + ':00' || '',
           yuyuetime: options.time + ':00' || '',
           yuyueformdate: options.day + options.time + ':00',
-          tktime: options.formatdates,
-          optionstype: options.optionstype,
+          tktime: options.formatdates || '',
+          tktimesec: options.starttime || '',
+          optionstype: options.optionstype || '',
           // tk_id: JSON.parse(options.data).tk_id,
-          memberCourseId: options.memberCourseId
+          memberCourseId: options.memberCourseId || ''
         })
         wx.getStorage({
           key: 'gymId',
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
-              id: options.id,
-              memberFitnessId: options.memberFitnessId,
-              orderNo: options.orderNo,
-              price: options.price,
-              address: options.address,
-              groundName: options.groundName,
-              groundId: options.groundId,
+              id: options.id || '',
+              memberFitnessId: options.memberFitnessId || '',
+              orderNo: options.orderNo || '',
+              price: options.price || '',
+              address: options.address || '',
+              groundName: options.groundName || '',
+              groundId: options.groundId || '',
             })
             if (options.optionstype == 2) {
               that.setData({
@@ -139,8 +142,7 @@ Page({
               let { tk_id, coachId, memberCourseId } = options
               that.setData({
                 tk_id: tk_id,
-                sta: options.sta,
-
+                sta: options.sta || '',
                 coachId: coachId,
                 memberCourseId: memberCourseId
               })
@@ -180,7 +182,7 @@ Page({
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
       formatDate: formatDate,
-      id: options.id
+      id: options.id ||''
     })
   },
 
@@ -241,7 +243,7 @@ Page({
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
       
-
+  console.log("团控了01",res)
       var now = new Date();
       var year = now.getFullYear();
       var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -250,6 +252,7 @@ Page({
       that.setData({
         formatDate: formatDate,
         goodsId: res.data.id,
+        outdoorAddress: res.data.outdoorAddress,
         startTime: res.data.startTime,
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
@@ -358,9 +361,15 @@ Page({
         
 
         if (res.status == 0) {
-          wx.navigateTo({
-            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.price,
-          })
+          $.alert("预约成功")
+          setTimeout(() => {
+            wx.switchTab({
+              url: '../appointment/appointment'
+            })
+          }, 500)
+          // wx.navigateTo({
+          //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.price,
+          // })
         } else {
           $.alert("预约失败")
         }
@@ -380,12 +389,18 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-        
-        
+          console.log("团课预约",res)
+        console.log("团课预约", val)
         if (res.status == 0) {
-          wx.navigateTo({
-            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime + "&num=" + that.data.num,
-          })
+          // wx.navigateTo({
+          //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.tkgymdetails.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime + "&num=" + that.data.num,
+          // })
+          $.alert("预约成功")
+          setTimeout(() => {
+            wx.switchTab({
+              url: '../appointment/appointment'
+            })
+          }, 500)
         } else {
           $.alert("预约失败")
         }

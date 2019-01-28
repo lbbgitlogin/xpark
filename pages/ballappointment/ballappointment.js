@@ -8,6 +8,7 @@ Page({
    */
   data: {
     areaId: "",
+    shopname: "",
     address: "",
     id: "",
     arrIndex: -1,
@@ -129,18 +130,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
     var that = this;
 
     that.setData({
-      areaId: options.areaId,
-      address: options.address,
-      id: options.id,
-      memberFitnessId: options.memberFitnessId,
-      orderNo: options.orderNo,
-      orderNo: options.orderNo,
-      day: options.day,
-      price: options.price,
+      areaId: options.areaId ||'',
+      address: options.address || '',
+      shopname: options.shopname || '',
+      id: options.id || '',
+      memberFitnessId: options.memberFitnessId || '',
+      orderNo: options.orderNo || '',
+      orderNo: options.orderNo || '',
+      day: options.day || '',
+      price: options.price || '',
     })
 
     that.groundball()
@@ -425,7 +427,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '../confirmationOrder/confirmationOrder?time=' + that.data.timenext + "&gymName=" + that.data.gymName + "&groundName=" + that.data.groundName + "&areaId=" + that.data.areaId + "&address=" + that.data.address + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&day=" + that.data.day + "&price=" + that.data.price + "&groundId=" + that.data.groundId + "&type=场馆",
+      url: '../confirmationOrder/confirmationOrder?time=' + that.data.timenext + "&gymName=" + that.data.gymName + "&groundName=" + that.data.roundName[that.data.arrIndex].groundName + "&areaId=" + that.data.areaId + "&address=" + that.data.address + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&day=" + that.data.day + "&price=" + that.data.price + "&groundId=" + that.data.groundId + "&type=场馆",
     })
 
   },

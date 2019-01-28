@@ -13,7 +13,8 @@
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
      <view class='datails_imghead'>
-          <image class='datails_imghead' src='{{imgurl}}{{img}}'></image>
+          <image wx:if="{{img}}" class='datails_imghead' src='{{imgurl}}{{img}}'></image>
+          <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
       </view>
     <!-- <view class='datails_imghead'></view> -->
     <view class='datails_title'>{{goodsname}}</view>
@@ -30,12 +31,12 @@
      {{orderno}}
     </view>
   </view>
- <view wx:if="{{ordertype != 'sp'}}" class='list_booking'>
+ <view wx:if="{{invaliddatetime != 'undefined'}}" class='list_booking'>
     <view class='order_name'>
       有效期
     </view>
     <view class='order_smallname'>
-      2018-11-23
+    {{invaliddatetime}}
     </view>
   </view>
    <view class='list_booking'>
@@ -62,14 +63,14 @@
       k1234567(免费使用券)
     </view>
   </view> -->
-   <view class='list_booking'>
+   <!-- <view class='list_booking'>
     <view class='order_name'>
       活动促销
     </view>
     <view class='order_smallname'>
      无活动促销
     </view>
-  </view>
+  </view> -->
    <!-- <view class='list_booking'>
     <view class='order_name'>
       保险金额
@@ -126,7 +127,7 @@
     </view>
   </view>
 
-  <view class='erweima' wx:if="{{ordertype == 'sp'}}">
+  <view class='erweima' wx:if="{{ordertype == 'sp'&& orderstate != 3}}">
     <view class='erweima_name'>
       <view class='name_first'>商品提货码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>

@@ -2,7 +2,7 @@
 <view class='index_pad' style='{{ishidden?"position:fixed":""}}'>
   <view class='index_first'>
     <view class='index_box'>
-      <view class='index_lefttext'>X·PARK运动基地</view>
+      <view class='index_lefttext'>{{swishop.gymName}}</view>
       
     </view>
     <view class='index_box_sh' style="justify-content: flex-end;width:49%;">
@@ -32,10 +32,10 @@
   </view>
   <view class='index_first'>
     <view class='index_box'>
-      <view bindtap='mapNavigationlogo' data-addr="上海市杨浦区军工路188号" data-name="X·PARK运动基地" class='third_mar'>
+      <view bindtap='mapNavigationlogo' data-addr="{{swishop.address}}" data-name="{{swishop.gymName}}" class='third_mar'>
         <image class='third_img' src='../../img/Location.png'></image>
       </view>
-      <view bindtap='mapNavigation' data-addr="上海市杨浦区军工路188号" data-name="X·PARK运动基地" class='third_lefttext'>上海市杨浦区军工路188号</view>
+      <view bindtap='mapNavigation' data-addr="{{swishop.address}}" data-name="{{swishop.gymName}}" class='third_lefttext'>{{swishop.address}}</view>
 
     </view>
     <view style="justify-content: flex-end;">
@@ -91,26 +91,26 @@
 
   </view>
   <scroll-view wx:if="{{type == 3}}" class="scroll-view_H  {{shouldFixedTop?'posimar':''}}" scroll-x='true' style="width: 100%;background: #282B30;">
-    <block wx:if="{{ptitemlist}}" wx:for="{{ptitemlist}}" wx:key='id'>
+    <block wx:if="{{ptitemlist}}" wx:for="{{ptitemlist}}" wx:key=''>
       <view data-id="{{item.id}}" data-index='{{index}}' bindtap="classifyClick" class="scroll-view-item_H {{shopindex== index ?'currentTab':''}}">
         {{item.areaName}}
       </view>
     </block>
   </scroll-view>
   <view wx:if="{{zzlistlength &&type == 1}}" class='shop_list' style='margin:{{shouldFixedTop?"150rpx auto 0 auto":"20rpx auto 0rpx auto"}}'>
-    <block wx:for="{{zzlist}}" wx:key='id'>
-      <view data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' catchtap='btnselfdetails' class='shop_details'>
-        <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
+    <block wx:for="{{zzlist}}" wx:key=''>
+      <view data-areaId='{{item.areaId}}' data-fittype='{{item.fitness.fitType}}' data-id='{{item.id}}' data-itemNo='{{item.fitness.itemNo}}' data-type='1' catchtap='btnselfdetails' class='shop_details'>
+        <image wx:if='{{item.fitness.icon}}' class='shop_img' src='{{imgurl}}{{item.fitness.icon}}'></image>
           <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.fitnessName}}</view>
-            <html-view class='title_sm' innerText='{{item.shortDesc}}'></html-view>
+            <html-view class='title_sm' innerText='{{item.fitness.shortDesc}}'></html-view>
           <!-- <html-view class='title_sm' innerText='{{item.fitness.introduce}}'></html-view> -->
           <!-- <view class='title_sm'>{{item.fitness.introduce}}</view> -->
           <view class='shop_mon font-colormode'>
             <view style='font-weight:bold'>￥{{item.price}}</view>
-            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
-            <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
+            <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
             <!-- <view class='time_shop'>
             <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
             <view class='tatils_color'>11-15 当日有效</view>
@@ -118,10 +118,10 @@
 
           </view>
         </view>
-        <view wx:if="{{item.itemNo == 'SI-FIT' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' catchtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
+        <view data-fittype='{{item.fitness.fitType}}' wx:if="{{item.fitness.itemNo == 'SI-FIT' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.fitness.itemNo}}' data-type='1' catchtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
           购买
         </view>
-        <view wx:if="{{item.itemNo == 'SI-BALL' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.itemNo}}' data-type='1' catchtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
+        <view data-fittype='{{item.fitness.fitType}}' wx:if="{{item.fitness.itemNo == 'SI-BALL' }}" data-areaId='{{item.areaId}}' data-id='{{item.id}}' data-itemNo='{{item.fitness.itemNo}}' data-type='1' catchtap='selfdetails' class='buy_but' style='border:1rpx solid #E27D00;color:#E27D00'>
           预约
         </view>
 
@@ -138,13 +138,13 @@
   </view>
   <view wx:if="{{type == 2}}">
     <view class='box2  {{shouldFixedTop?"posimarriweek":""}}' style='width:100%'>
-      <block wx:for='{{datee}}' wx:key='id' wx:for-item="item">
+      <block wx:for='{{datee}}' wx:key='' wx:for-item="item">
         <view class='{{ item.week ==  weekend ? "font-colormode" : ""}}' style='width: {{ sysW }}px; height: {{ sysW }}px; line-height: {{ sysW }}px;color:#999999;font-size:24rpx;flex:1'>{{ item.week }}</view>
       </block>
 
     </view>
     <view class='box1  {{shouldFixedTop?"posimarriqi":""}}' style='width:100%;height:75rpx'>
-      <block wx:for='{{ datee }}' wx:key='id'>
+      <block wx:for='{{ datee }}' wx:key=''>
 
         <view style='width: {{ sysW }}px;' class='index_time {{font==1?item>7?"font-color":"":font==2?item<7?"font-color":"":"" }}'>
           <view data-id='{{item.time}}' data-week='{{item.week}}' data-year='{{item.yearDate}}' data-month='{{item.month}}' bindtap='timeclick' class='{{ item.time == day ? "dateOn" : ""}}'>{{ item.time }}
@@ -153,13 +153,13 @@
       </block>
     </view>
   </view>
-  <view class='shop_list' wx:if="{{type == 2}}" style='margin:{{shouldFixedTop?"274rpx auto 38px auto":""}}'>
+  <view class='shop_list' wx:if="{{type == 2}}" style='margin:{{shouldFixedTop?"274rpx auto 2rpx auto":""}}'>
 
     <view wx:if="{{tk_schedulelist}}" class='list_show' style='padding-top:10rpx'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>团课</view>
     </view>
-    <view wx:key='' data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{tk_schedulelist}}" class='shop_details'>
+    <view wx:key='' data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"tkselfdetailstwo":""}}' data-areaId='' data-itemNo='' data-type='2'  wx:for="{{tk_schedulelist}}" class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
        <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
@@ -174,21 +174,21 @@
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
-          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zzprice}})</view>
-          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
 
 
         </view>
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}" data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails'style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
-        <view wx:else class='buy_but' style='border:1rpx solid #555555'>
+         <view    wx:else class='buy_but' style='border:1rpx solid #555555'>
           已结束
-        </view>
+        </view> 
       </view>
 
     </view>
@@ -197,7 +197,7 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>户外</view>
     </view>
-    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='' class='shop_details'>
+    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='' class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
         <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
@@ -212,8 +212,8 @@
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
-          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zzprice}})</view>
-          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
 
 
         </view>
@@ -236,7 +236,7 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>健康理论</view>
     </view>
-    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='' class='shop_details'>
+    <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='' class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
        <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
@@ -251,8 +251,8 @@
         </view>
         <view class='shop_mon font-colormode'>
           <view style='font-weight:bold'>￥{{item.price}}</view>
-          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zzprice}})</view>
-          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+          <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
 
 
         </view>
@@ -274,8 +274,8 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>私教</view>
     </view>
-    <view wx:for="{{sk_schedulelist}}" wx:key='id' wx:for-item="item">
-      <view data-coachCourseId='{{item.courseId}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails' class='shop_details'>
+    <view wx:for="{{sk_schedulelist}}" wx:key='' wx:for-item="item">
+      <view data-timechoose='{{scheduleDate}}' data-courseid='{{item.courseId}}'  data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails' class='shop_details'>
 
         <image wx:if='{{item.icon}}' class='shop_img_sj' src='{{imgurl}}{{item.icon}}'></image>
         <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
@@ -287,8 +287,8 @@
           <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
             <label class='sj_mon' style='font-weight:bold'>￥{{item.price}}</label>
             /起
-            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zzprice}})</view>
-            <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zxprice}})</view>
+            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
+            <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
 
           </view>
         </view>
@@ -314,12 +314,12 @@
 
   </view>
   <view wx:if="{{type == 3}}" style='margin-top:{{shouldFixedTop?"102px":""}}'>
-    <view class='shop_list' style='margin:0rpx auto 0rpx auto;' wx:key='id' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
+    <view class='shop_list' style='margin:0rpx auto 0rpx auto;' wx:key='' wx:for="{{classifyClick}}" wx:for-item="item" wx:if="{{type == 3 && classifyClick}}">
       <view class='list_show'>
         <view class='show_box bj_color '></view>
         <view class='show_text'>{{item.categoryName}}</view>
       </view>
-      <view data-id='{{items.id}}' wx:key='id' data-type='3' catchtap='selfdetailss' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
+      <view data-id='{{items.id}}' wx:key='' data-type='3' catchtap='selfdetailss' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
         <image wx:if='{{items.goodsIcon}}' class='shop_img' src='{{imgurl}}{{items.goodsIcon}}'></image>
            <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
         <view class='title_shop'>
@@ -345,6 +345,13 @@
     </view>
 
   </view>
+        <view wx:if='{{type == 3 &&classifyClick||type == 2 &&sk_schedulelist || type == 2 &&jk_schedulelist || type == 2 &&hw_schedulelist|| type == 2 &&tk_schedulelist ||type == 1 &&zzlistlength}}' class="m-loading-box" style="background: #282B30;">
+        <block>
+          <view class="u-loadmore u-loadmore-line">
+            <text class="u-loadmore-tips">没有更多了</text>
+          </view>
+        </block>
+      </view>
   <view  wx:if="{{type == 3 && !classifyClick}}">
     <view style="background: #282B30;margin-bottom: 218rpx;">
       <view class='order_null'>
@@ -355,27 +362,27 @@
 
     </view>
   </view>
-</view>
+</view>   
 
 <view class='{{ishidden?"shoplistnext":"index_shoplist"}}'>
   <view class='region' style='height:100%'>
     <!-- <view class='diqu m-navbar-item1 m-navbar-item-on1'>上海市</view> -->
-    <view wx:key='id' data-province='{{item}}' data-index='{{index}}' bindtap='provinceshow' wx:for="{{shoplist}}" class='diqu m-navbar-item4 {{activeTab === index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
+    <view wx:key='' data-province='{{item}}' data-index='{{index}}' bindtap='provinceshow' wx:for="{{shoplist}}" class='diqu m-navbar-item4 {{activeTab === index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
     <!-- <view class='diqu'>上海市</view> -->
   </view>
   <view class='regionlast' style='height:100%'>
     <!-- <view class='diqu m-navbar-item2 m-navbar-item-on2'>青浦区</view> -->
-    <view data-city='{{item}}' data-index='{{index}}' wx:key='id' wx:for="{{citylist}}" bindtap='citychoose' class='diqu  m-navbar-item4 {{cityTab == index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
+    <view data-city='{{item}}' data-index='{{index}}' wx:key='' wx:for="{{citylist}}" bindtap='citychoose' class='diqu  m-navbar-item4 {{cityTab == index ? "m-navbar-item-on4" : ""}}'>{{item}}</view>
 
   </view>
   <view class='regionnext' style='height:100%'>
     <!-- m-navbar-item3 m-navbar-item-on3 -->
-    <view wx:key='id' wx:for="{{gymshoplist}}" bindtap='choosename' data-gymid='{{item.id}}' data-gymName='{{item.gymName}}' data-address='{{item.address}}' class='diqu '>{{item.gymName}}</view>
+    <view wx:key='' wx:for="{{gymshoplist}}" bindtap='choosename' data-gymid='{{item.id}}' data-gymName='{{item.gymName}}' data-address='{{item.address}}' class='diqu '>{{item.gymName}}</view>
   </view>
 
 </view>
 <view class='hidden_box' bindtap='textblock' wx:if="{{ishidden== true}}"></view>
-
+<wxs module="filters" src="../../utils/tofix.wxs"></wxs>
 <!-- <view binderror="homeAdsError" class='home-ads bj_color' wx:if="{{homeAds}}">
   <view class='ligin_box'>
     <image class='login_banner' src='../../img/login_bannerxp.png'></image>

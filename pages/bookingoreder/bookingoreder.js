@@ -19,12 +19,15 @@ Page({
   data: {
     imgurl: CONFIG.config.imgUrl,
     id:"",
+    groundname: "",
     icon:"",
+    outdooraddress: "",
     text:"",
     updatetimestr: "",
     cancelprice: "",
     num: "",
     address: "",
+    coachname: "",
     price: "",
     mobilephone: "",
     ordertype:"",
@@ -35,11 +38,11 @@ Page({
     formatDate:"",
     gymdetails:""
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("options",options)
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -58,19 +61,22 @@ Page({
               gymId: res.data.gymId,
               id: options.id || '',
               memberFitnessId: options.memberFitnessId ||'',
-              icon: options.icon,
+              icon: options.icon || '',
+              outdooraddress: options.outdooraddress || '',
+              coachname: options.coachname || '',
+              groundname: options.groundname || '',
               num:options.num || '',
-              bookingName: options.bookingName,
-              updatetimestr: options.updatetimestr,
-              cancelprice: options.cancelprice,
-              gymName: options.gymName,
-              dingdanid: options.dingdanid,
-              orderNo: options.orderNo || options.orderno,
-              ordertype:options.type,
-              remark: options.remark,
-              uesCode: options.uesCode,
-              address: options.address,
-              price: options.price,
+              bookingName: options.bookingName || '',
+              updatetimestr: options.updatetimestr || '',
+              cancelprice: options.cancelprice || '',
+              gymName: options.gymName || '',
+              dingdanid: options.dingdanid || '',
+              orderNo: options.orderNo || options.orderno || '',
+              ordertype: options.type || '',
+              remark: options.remark || '',
+              uesCode: options.uesCode || '',
+              address: options.address || '',
+              price: options.price || '',
             })
             that.draw();
             that.xparkshop();
@@ -148,34 +154,99 @@ Page({
     
   },
   appointment_common:function(){
+  
+    var that = this;
+    that.checkcancel();
 
-    var that =this;
-     var val = {}
-    $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
-      
-       
-      if(res.status == 0){
-        setTimeout(function () {
+  
+
+  
+  },
+  checkcancel:function(){
+     var that = this;
+    var val = {}
+    $.Requestsput(api.checkcancel.url + '/' + that.data.dingdanid, val).then((res) => {
+      console.log("res", that.data.dingdanid)
+      console.log("res",res)
+      if(res.data == 0){
+        wx.showModal({
+          title: '提示',
+          content: '您确定要取消该课程吗？',
+          success(res) {
+            if (res.confirm) {
+              var val = {}
+              $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
 
 
-          $.alert("取消预约成功！")
+                if (res.status == 0) {
+                  setTimeout(function () {
 
-        }, 1000)
-        setTimeout(function () {
 
-          wx.switchTab({
+                    $.alert("取消预约成功！")
 
-            url: '../appointment/appointment',
-            success: function (e) {
-              var page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
-              page.onLoad();
-            } 
-          })
+                  }, 1000)
+                  setTimeout(function () {
 
-        }, 2000) 
+                    wx.switchTab({
+
+                      url: '../appointment/appointment',
+                      success: function (e) {
+                        var page = getCurrentPages().pop();
+                        if (page == undefined || page == null) return;
+                        page.onLoad();
+                      }
+                    })
+
+                  }, 2000)
+                }
+
+              })
+            } else if (res.cancel) {
+              return false;
+            }
+          }
+        })
+      }else{
+
+        wx.showModal({
+          title: '提示',
+          content: '将扣除'+res.data+'元手续费，是否取消？',
+          success(res) {
+            if (res.confirm) {
+              var val = {}
+              $.Requestsput(api.appointment_common.url + '/' + that.data.dingdanid, val).then((res) => {
+
+
+                if (res.status == 0) {
+                  setTimeout(function () {
+
+
+                    $.alert("取消预约成功！")
+
+                  }, 1000)
+                  setTimeout(function () {
+
+                    wx.switchTab({
+
+                      url: '../appointment/appointment',
+                      success: function (e) {
+                        var page = getCurrentPages().pop();
+                        if (page == undefined || page == null) return;
+                        page.onLoad();
+                      }
+                    })
+
+                  }, 2000)
+                }
+
+              })
+            } else if (res.cancel) {
+              return false;
+            }
+          }
+        })
       }
-      
+     
     })
   },
 

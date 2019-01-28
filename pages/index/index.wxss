@@ -429,7 +429,7 @@ background-color:#fff;
 
 .shop_list {
   width: 92%;
-  margin: 20rpx auto 90rpx auto;
+  margin: 20rpx auto 0rpx auto;
   padding-bottom: 1rpx
 }
 

@@ -10,6 +10,11 @@ page{
   height: 108rpx;
   font-size: 32rpx
 }
+.bytt_if{
+  background: #444951;
+  color: #ccc!important
+}
+
 .hidden_box{
   background-color:#000;
 position:fixed;

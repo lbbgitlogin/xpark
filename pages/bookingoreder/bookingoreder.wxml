@@ -39,14 +39,36 @@
     </view>
     <image data-phone="{{mobilephone}}" catchtap="call" class='tv_img' src='../../img/teleph.png'></image>
   </view>
-  <view class='list_booking'>
+  <view wx:if='{{ groundname !=  "undefined"}}' class='list_booking'>
     <view class='order_name'>
       地点
     </view>
     <view class='order_smallname'>
-      上海市杨浦区军工路188号
+      {{groundname}} 
     </view>
   </view>
+  
+   <view wx:if='{{groundname ==  "undefined"}}' class='list_booking'>
+    <view class='order_name'>
+      地点
+    </view>
+    <view wx:if="{{outdooraddress == 'undefined'}}" class='order_smallname'>
+      {{address}} 
+    </view>
+     <view wx:if="{{outdooraddress != 'undefined'}}" class='order_smallname'>
+      {{outdooraddress}}
+    </view>
+  </view>
+ <view wx:if="{{coachname != 'undefined'}}" class='list_booking'>
+    <view class='order_name'>
+      教练
+    </view>
+    <view class='order_smallname'>
+      {{coachname}}
+    </view>
+  </view>
+
+  
   <view class='list_booking'>
     <view class='order_name'>
       预约时间

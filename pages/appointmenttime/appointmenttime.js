@@ -30,6 +30,7 @@ Page({
     member_fitness: "",
     shoplist: "",
     scrootop: "",
+    shopname: "",
     ptitemlist: "",
     latitude: "",
     ptitemlistid: "",
@@ -68,32 +69,33 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    
+  onLoad: function (options) {
+
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           hidden: true,
           balance: res.data.cash + res.data.give,
-          address: options.address,
-          areaId: options.areaId,
-          id: options.id,
-          memberCourseId: options.memberCourseId,
-          orderNo: options.orderNo,
-          price: options.price,
-          memberFitnessId: options.memberFitnessId,
-          sta: options.sta
+          address: options.address || '',
+          shopname: options.shopname || '',
+          areaId: options.areaId || '',
+          id: options.id || '',
+          memberCourseId: options.memberCourseId || '',
+          orderNo: options.orderNo || '',
+          price: options.price || '',
+          memberFitnessId: options.memberFitnessId || '',
+          sta: options.sta || ''
         })
-        
+
         that.showtime();
       },
-      fail: function(res) {
+      fail: function (res) {
         that.setData({
           hidden: true
         })
-        
+
       },
     })
 
@@ -103,12 +105,12 @@ Page({
     var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
     var formatDate = year + '-' + month + '-' + day;
 
-    
+
 
     var day = now.getDate();
-    
+
     var weekend = '日一二三四五六'.charAt(new Date().getDay());
-    
+
     this.setData({
       day: day,
       weekend: weekend,
@@ -117,13 +119,13 @@ Page({
 
     let time = util.formatDate(new Date());
     let date = util.getDates(7, time);
-    
-    
+
+
     this.setData({
       datee: date,
-      areaId: options.areaId
+      areaId: options.areaId || ''
     })
-    
+
 
     var res = wx.getSystemInfoSync();
 
@@ -134,7 +136,7 @@ Page({
     wx.hideTabBar();
     var that = this;
 
-    
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -162,13 +164,13 @@ Page({
       })
     }
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         var h = 750 * res.windowHeight / res.windowWidth
-        
-        
+
+
       }
     })
-    app.GetUserInfo(function() {
+    app.GetUserInfo(function () {
 
     });
   },
@@ -176,10 +178,10 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    
+  onReady: function () {
+
   },
-  showtime: function() {
+  showtime: function () {
     var that = this;
     var now = new Date();
     var nowTime = now.getTime();
@@ -200,25 +202,25 @@ Page({
       var date = myDate.getDate() < 10 ? "0" + (myDate.getDate()) : myDate.getDate();
 
 
-      
-      var str = "星期" + "日一二三四五六".charAt(myDate.getDay());
-      
 
-      daytime[i] = year + "-" + month + "-" + date ;
-      daynewday[i] = year+'-'+month + "-" + date ;
+      var str = "星期" + "日一二三四五六".charAt(myDate.getDay());
+
+
+      daytime[i] = year + "-" + month + "-" + date;
+      daynewday[i] = year + '-' + month + "-" + date;
       weekend[i] = str;
-      var timelist={};
+      var timelist = {};
       timelist.time = daytime;
       timelist.week = weekend;
-    
+
       that.setData({
         daytime: daytime,
         weekend: weekend,
         timelist: timelist,
         daynewday: daynewday,
       })
-      
-      
+
+
     }
 
   },
@@ -226,17 +228,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
-  ballappointment: function(e) {
+  ballappointment: function (e) {
     var that = this;
 
     if (that.data.sta == 1) {
@@ -247,11 +249,11 @@ Page({
 
     } else {
 
-      
-      wx.navigateTo({
-        url: '../ballappointment/ballappointment?areaId=' + that.data.areaId + "&day=" + e.target.dataset.day + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address,
-      })
 
+      wx.navigateTo({
+        url: '../ballappointment/ballappointment?areaId=' + that.data.areaId + "&day=" + e.target.dataset.day + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&shopname=" + that.data.shopname,
+      })
+      
 
     }
 
@@ -262,28 +264,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -26,8 +26,20 @@
     <view class='order_name'>
       地点
     </view>
-    <view class='order_smallname'>
+     <view wx:if="{{outdoorAddress}}" class='order_smallname'>
+     {{outdoorAddress}}
+    </view>
+    
+    <view wx:else class='order_smallname'>
      {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address ||skgymdetails.gym.address}}
+    </view>
+  </view>
+    <view class='list_booking'>
+    <view class='order_name'>
+      教练
+    </view>
+    <view class='order_smallname'>
+     {{tkgymdetails.coach.coachName||skgymdetails.gym.address}}
     </view>
   </view>
    <view class='list_booking'>
@@ -35,10 +47,10 @@
       预约时间
     </view>
     <view wx:if="{{orderType != 2}}" class='order_smallname'>
-     {{tktime||yuyueformdate||formatDate}}
+     {{tktime||yuyueformdate||formatDate}} {{tktimesec}}
     </view>
       <view wx:if="{{orderType == 2}}" class='order_smallname'>
-     {{skgymdetails.coachSchedule.scheduleDate +skTime}}
+     {{skgymdetails.coachSchedule.scheduleDate +skTime}}  {{startTime}}
     </view>
     
 

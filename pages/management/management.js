@@ -22,31 +22,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-    var that=this;
-    wx.getStorage({
-      key: 'userinfo',
-      success: function (res) {
-        that.setData({
-           memberId: res.data.memberId
-         })
-        that.member_orderlist()
-      },
-      fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
-          
-                wx.navigateTo({
-                  url: '../land/land',
-                })
-        
-        }, 2000) //延迟时间 这里是1秒
-        
-      },
-    })
-   
-  },
   onReachBottom: function () { //滑动的底部加载下一页
   
    
@@ -81,8 +56,8 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-    
-
+      console.log("有效期",res)
+      console.log("有效期", val)
       
       if (!$.isNull(res.data.content) && res.status == 0){
         that.setData({
@@ -116,10 +91,10 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
+      console.log("分页", val)
+      console.log("分页",res)
       
-
-      
-      if (!$.isNull(res.data.content) && res.status == 0) {
+      if (res.data.content == 0) {
         that.setData({
           type: 1
         })
@@ -135,11 +110,7 @@ Page({
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
-      } else {
-        that.setData({
-          type: 2
-        })
-      }
+      } 
 
     })
   },
@@ -169,7 +140,7 @@ Page({
   godetails:function(e){
     
     wx.navigateTo({
-      url: '../orderdetails/orderdetails?orderstate=' + e.currentTarget.dataset.orderstate + "&orderno=" + e.currentTarget.dataset.orderno + "&gymname=" + e.currentTarget.dataset.gymname + "&psytype=" + e.currentTarget.dataset.psytype + "&price=" + e.currentTarget.dataset.price + "&goodsname=" + e.currentTarget.dataset.goodsname + "&createtime=" + e.currentTarget.dataset.createtime + "&num=" + e.currentTarget.dataset.num + "&discountmoney=" + e.currentTarget.dataset.discountmoney + "&id=" + e.currentTarget.dataset.id + "&ordertype=" + e.currentTarget.dataset.ordertype + "&usecode=" + e.currentTarget.dataset.usecode + "&actualmoney=" + e.currentTarget.dataset.actualmoney + "&createtimestr=" + e.currentTarget.dataset.createtimestr + "&img=" + e.currentTarget.dataset.img + "&updatetimestr=" + e.currentTarget.dataset.updatetimestr,  
+      url: '../orderdetails/orderdetails?orderstate=' + e.currentTarget.dataset.orderstate + "&orderno=" + e.currentTarget.dataset.orderno + "&gymname=" + e.currentTarget.dataset.gymname + "&psytype=" + e.currentTarget.dataset.psytype + "&price=" + e.currentTarget.dataset.price + "&goodsname=" + e.currentTarget.dataset.goodsname + "&createtime=" + e.currentTarget.dataset.createtime + "&num=" + e.currentTarget.dataset.num + "&discountmoney=" + e.currentTarget.dataset.discountmoney + "&id=" + e.currentTarget.dataset.id + "&ordertype=" + e.currentTarget.dataset.ordertype + "&usecode=" + e.currentTarget.dataset.usecode + "&actualmoney=" + e.currentTarget.dataset.actualmoney + "&createtimestr=" + e.currentTarget.dataset.createtimestr + "&img=" + e.currentTarget.dataset.img + "&updatetimestr=" + e.currentTarget.dataset.updatetimestr + "&invaliddatetime=" + e.currentTarget.dataset.invaliddatetime,  
       
     })
   },
@@ -234,7 +205,7 @@ Page({
       
       
     
-      if (!$.isNull(res.data.content) && res.status == 0) {
+      if (res.data.content == 0) {
         that.setData({
           type: 1
         })
@@ -250,11 +221,6 @@ Page({
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
-      } else {
-        that.setData({
-          type: 2,
-
-        })
       }
     })
   },
@@ -308,7 +274,7 @@ Page({
     $.Requests(api.member_orderlist.url, val).then((res) => {
       
       
-      if (!$.isNull(res.data.content) && res.status == 0) {
+      if (res.data.content == 0) {
 
         that.setData({
           type: 1
@@ -325,10 +291,6 @@ Page({
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
-      } else {
-        that.setData({
-          type: 2
-        })
       }
     })
   },
@@ -345,6 +307,7 @@ Page({
       page:1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
+  console.log("已关闭",res)
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
           type: 1
@@ -376,7 +339,7 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      if (!$.isNull(res.data.content) && res.status == 0) {
+      if (res.data.content == 0) {
         that.setData({
           type: 1
         })
@@ -392,24 +355,13 @@ Page({
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
-      } else {
-        that.setData({
-          type: 2
-        })
-      }
+      } 
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
     
   },
 

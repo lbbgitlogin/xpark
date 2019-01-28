@@ -49,7 +49,7 @@ Page({
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
     
     var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
-    var days = now.getDate()-1 < 10 ? "0" + (now.getDate()-1) : now.getDate()-1;
+    var days = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
     var formatDate = year + '年' + month + '月' + day + '日';
     var formatDates = years + '年' + month + '月' + days + '日';
     that.setData({
@@ -57,6 +57,16 @@ Page({
       formatDate: formatDate,
       formatDates: formatDates
     })
+    if(options.vipnum == 1){
+      wx.setNavigationBarTitle({
+        title: "立即开通尊享卡",
+      })
+    }
+    else{
+      wx.setNavigationBarTitle({
+        title: "立即开通至尊卡",
+      })
+    }
   },
 
   /**
@@ -87,8 +97,8 @@ Page({
 
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
-      
-      
+      console.log("cip", val)
+      console.log("cip",res)
       if (res.status == 0){
         wx.navigateTo({
           url: '../succell/succell?cardnum='+1,

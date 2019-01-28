@@ -51,6 +51,8 @@ Page({
     tk_schedulelist: "",
     gymId: "",
     balance: "",
+    latitudenum: "",
+    longitudenum: "",
     cityTab: -1,
     classifyClick: "",
     mobile: "",
@@ -132,13 +134,14 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude,
         })
+        that.xparkshop()
         // that.imageLoad();
         // that.queryMultipleNodes(); //获取id的高度需要在第一时间执行
 
         wx.getStorage({
           key: 'gymId',
           success: function(res) {
-            that.xparkshop()
+         
           },
           fail: function() {
             // that.getLocal(that.data.latitude, that.data.longitude);
@@ -238,6 +241,10 @@ Page({
 
     });
   },
+  onShow:function(){
+    var that =this;
+    that.member()
+  },
   // onHide:function(){
   //   wx.removeStorage({
   //     key: 'userinfo',
@@ -249,10 +256,12 @@ Page({
   xparkshop: function() {
     var val = {}
     $.Requests(api.xparkshop.url + '/' + 1, val).then((res) => {
-
+       console.log("商店信息",res)
       this.setData({
         swishop: res.data,
-        mobilephone: res.data.mobile
+        mobilephone: res.data.mobile,
+        latitudenum: res.data.latitude,
+        longitudenum: res.data.longitude
       })
     })
   },
@@ -416,32 +425,33 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-
+      console.log("zizhu jianshen",res)
 
       if (res.data.content.length != 0) {
         that.setData({
-          zzlistlength: true
+          zzlistlength: true,
+          zzlist: res.data.content
         })
-        var zzlist = res.data.content;
+        // var zzlist = res.data.content;
 
-        zzlist.forEach(function(item, index, arrar) {
-          arrar[index] = {
+        // zzlist.forEach(function(item, index, arrar) {
+        //   arrar[index] = {
 
-            icon: item.fitness.icon,
-            shortDesc: item.fitness.shortDesc,
-            fitnessName: item.fitnessName,
-            price: item.price,
-            zzprice: (item.price * 0.8).toFixed(2),
-            zxprice: (item.price * 0.9).toFixed(2),
-            areaId: item.areaId,
-            id: item.id,
-            itemNo: item.fitness.itemNo
-          }
-          that.setData({
-            zzlist: zzlist
-          })
+        //     icon: item.fitness.icon,
+        //     shortDesc: item.fitness.shortDesc,
+        //     fitnessName: item.fitnessName,
+        //     price: item.price,
+        //     zzprice: (item.price * 0.8).toFixed(2),
+        //     zxprice: (item.price * 0.9).toFixed(2),
+        //     areaId: item.areaId,
+        //     id: item.id,
+        //     itemNo: item.fitness.itemNo
+        //   }
+        //   that.setData({
+        //     zzlist: zzlist
+        //   })
 
-        })
+        // })
       } else {
         that.setData({
           zzlistlength: false
@@ -481,7 +491,6 @@ Page({
           itemNo: 'SI-GOODS'
         }
         $.Requests(api.ptitemlist.url, val).then((res) => {
-
           that.setData({
             ptitemlist: res.data,
             ptitemlistid: res.data[0].id
@@ -534,16 +543,18 @@ Page({
 
   },
   league_schedulelist: function() { //课程服务团课服务查询列表
+
     var that = this;
     var dateTime = new Date();
     var hourse = dateTime.getHours();  
-    var Minutes = dateTime.getMinutes(); 
-    var Seconds = dateTime.getSeconds(); 
+    var Minutes = dateTime.getMinutes().toString().length < 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes(); 
+    var Seconds =  dateTime.getSeconds().toString().length < 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();  
     var mytime = hourse + ':' + Minutes + ':' + Seconds;
     that.setData({
       mytime: mytime
     })
-
+    console.log("mytime", mytime)
+    console.log("mytime", dateTime.getSeconds().toString().length)
     wx.getStorage({
       key: 'gymId',
       success: function(res) {
@@ -559,7 +570,7 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
-
+  console.log("团课",res)
 
           if (res.data.length != 0) {
 
@@ -925,14 +936,14 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
-
+                
           if (res.data.length != 0) {
 
 
             var sk_schedulelist = res.data;
 
             sk_schedulelist.forEach(function(item, index, arrar) {
-
+                  
               arrar[index] = {
                 courseName: item.coachCourses[0].course.courseName,
                 id: item.coachCourses[0].id,
@@ -972,14 +983,18 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-
-
-          if (res.data.length == 0) {
+          
+        
+          if (res.data == null) {
 
 
           } else {
             that.setData({
               vip: res.data[0].vip
+            })
+            wx.setStorage({
+              key: 'vip',
+              data: that.data.vip,
             })
           }
 
@@ -1116,11 +1131,20 @@ Page({
       url: '../selfdetails/selfdetails?coachCourseId=' + e.target.dataset.coachcourseid + "&type=" + e.target.dataset.type + "&id=" + e.target.dataset.id + "&sta=" + e.target.dataset.sta + "&scheduledate=" + e.target.dataset.scheduledate + "&timeshow=" + e.target.dataset.timeshow + "&timechoose=" + e.target.dataset.timechoose + "&courseid=" + e.target.dataset.courseid 
     })
   },
+  tkselfdetailstwo: function (e) {
+    console.log("res",e)
+    var that = this;
+
+
+    wx.navigateTo({
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.currentTarget.dataset.coachcourseid + "&type=" + e.currentTarget.dataset.type + "&id=" + e.currentTarget.dataset.id + "&sta=" + e.currentTarget.dataset.sta + "&scheduledate=" + e.currentTarget.dataset.scheduledate + "&timeshow=" + e.currentTarget.dataset.timeshow + "&timechoose=" + e.currentTarget.dataset.timechoose + "&courseid=" + e.currentTarget.dataset.courseid
+    })
+  },
   skselfdetails: function(e) {
     var that = this;
 
     wx.navigateTo({
-      url: '../selfdetails/selfdetails?coachCourseId=' + e.currentTarget.dataset.coachcourseid + "&type=" + e.currentTarget.dataset.type + "&id=" + e.currentTarget.dataset.id + "&sta=" + e.currentTarget.dataset.sta + "&scheduledate=" + e.currentTarget.dataset.scheduledate
+      url: '../selfdetails/selfdetails?coachCourseId=' + e.currentTarget.dataset.coachcourseid + "&type=" + e.currentTarget.dataset.type + "&id=" + e.currentTarget.dataset.id + "&sta=" + e.currentTarget.dataset.sta + "&scheduledate=" + e.currentTarget.dataset.scheduledate + "&courseid=" + e.currentTarget.dataset.courseid + "&timechoose=" + e.currentTarget.dataset.timechoose
     })
   },
   // 
@@ -1136,7 +1160,7 @@ Page({
     if (e.currentTarget.dataset.type == 1) {
       wx.navigateTo({
 
-        url: '../selfdetails/selfdetails?id=' + e.target.dataset.id + "&type=" + e.target.dataset.type + "&areaid=" + e.target.dataset.areaid,
+        url: '../selfdetails/selfdetails?id=' + e.target.dataset.id + "&type=" + e.target.dataset.type + "&areaid=" + e.target.dataset.areaid + "&itemno=" + e.target.dataset.itemno + "&fittype=" + e.target.dataset.fittype,
       })
     }
 
@@ -1161,7 +1185,7 @@ Page({
 
 
     wx.navigateTo({
-      url: '../selfdetails/selfdetails?areaid=' + e.currentTarget.dataset.areaid + "&type=" + e.currentTarget.dataset.type + "&itemNo=" + e.currentTarget.dataset.itemno + "&id=" + e.currentTarget.dataset.id + "&coachCourseId=" + e.currentTarget.dataset.coachCourseId,
+      url: '../selfdetails/selfdetails?areaid=' + e.currentTarget.dataset.areaid + "&type=" + e.currentTarget.dataset.type + "&itemNo=" + e.currentTarget.dataset.itemno + "&id=" + e.currentTarget.dataset.id + "&coachCourseId=" + e.currentTarget.dataset.coachCourseId + "&fittype=" + e.currentTarget.dataset.fittype,
     })
   },
   previewImage: function(e) { //画廊
@@ -1183,7 +1207,7 @@ Page({
 
     var addr = e.currentTarget.dataset.addr;
     var name = e.currentTarget.dataset.name;
-    var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
+    var key = 'XPMBZ-J6ERW-EI4RO-OURT3-7JK5E-WFFZI';
     var that = this;
     qqmapsdk = new QQMapWX({
       key: key // 必填
@@ -1197,9 +1221,10 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
+        console.log(" that.data.latitudenum", that.data.latitudenum)
         wx.openLocation({
-          latitude: that.data.latitude,
-          longitude: that.data.longitude,
+          latitude: that.data.latitudenum,
+          longitude: that.data.longitudenum,
           scale: 18, //缩放比例范围5~18
           name: name, //打开后显示的地址名称
           address: addr
@@ -1224,9 +1249,10 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
+        console.log("that.data.latitudenum", that.data.latitudenum)
         wx.openLocation({
-          latitude: that.data.latitude,
-          longitude: that.data.longitude,
+          latitude: that.data.latitudenum,
+          longitude: that.data.longitudenum,
           scale: 18, //缩放比例范围5~18
           name: name, //打开后显示的地址名称
           address: addr
@@ -1325,9 +1351,13 @@ Page({
 
 
     })
-
+    var now = new Date();
+    var day = now.getDate();
     this.setData({
       tapindex: 2,
+      day: day,
+
+      timeclickif: 2,
       type: 2
     });
     this.league_schedulelist(); //课程服务团课服务查询列表
@@ -1355,17 +1385,46 @@ Page({
   },
 
   classifyClick: function(e) { //配套服务子分类产品查询
-
+  var that =this;
     var val = {
       areaId: e.target.dataset.id
     }
     $.Requests(api.categorylist.url, val).then((res) => {
 
 
-      this.setData({
+      let data = res.data.content
+      wx.getStorage({
+        key: 'vip',
+        success: function (res) {
 
-        classifyClick: res.data.content,
-        shopindex: e.target.dataset.index
+          data.forEach((item, index) => {
+            if (item.goods.length > 0) {
+              item.goods.map(item => {
+                if (res.data == 1) {
+                  item.VipPrice = (item.price * 0.9).toFixed(2)
+                } else {
+                  item.VipPrice = (item.price * 0.8).toFixed(2)
+                }
+              })
+            }
+          })
+          that.setData({
+            classifyClick: data,
+            shopindex: e.target.dataset.index
+          })
+
+
+        },
+        fail: function () {
+          // fail
+
+          that.setData({
+            classifyClick: data
+          })
+        },
+        complete: function () {
+          // complete
+        }
       })
     })
 
@@ -1411,7 +1470,8 @@ Page({
       var day = now.getDate();
       that.setData({
         shopindex: 0,
-        day: day
+        day: day,
+        timeclickif:2
       })
 
       wx.stopPullDownRefresh() //停止下拉刷新

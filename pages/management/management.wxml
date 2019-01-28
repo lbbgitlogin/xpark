@@ -17,7 +17,7 @@
   <!-- <view class='width_tiao'>
   </view> -->
   <view wx:if="{{type == 1}}" style="background: #202428;padding: 1rpx 0 0 0">
-    <view wx:for="{{member_orderlist}}" wx:key='' data-updatetimestr='{{item.updateTimeStr}}' data-img='{{item.orderGoods[0].icon}}' data-actualMoney='{{item.actualMoney}}' data-ordertype='{{item.orderType}}' data-createtimestr='{{item.createTimeStr}}' data-id='{{item.id}}' data-orderstate='{{item.orderState}}' data-orderno='{{item.orderNo}}' data-gymname='{{item.gymName}}' data-psytype='{{item.payType}}' data-usecode='{{item.useCode}}' data-price='{{item.orderGoods[0].price}}' data-goodsname='{{item.orderGoods[0].goodsName}}'
+    <view wx:for="{{member_orderlist}}" wx:key='' data-updatetimestr='{{item.updateTimeStr}}' data-img='{{item.orderGoods[0].icon}}' data-invaliddatetime='{{item.invalidDatetime}}' data-actualMoney='{{item.actualMoney}}' data-ordertype='{{item.orderType}}' data-createtimestr='{{item.createTimeStr}}' data-id='{{item.id}}' data-orderstate='{{item.orderState}}' data-orderno='{{item.orderNo}}' data-gymname='{{item.gymName}}' data-psytype='{{item.payType}}' data-usecode='{{item.useCode}}' data-price='{{item.orderGoods[0].price}}' data-goodsname='{{item.orderGoods[0].goodsName}}'
       data-createtime='{{item.createTime}}' data-num='{{item.orderGoods[0].numb}}' data-discountmoney='{{item.discountMoney}}' bindtap='godetails' class='fuwulist'>
 
 
@@ -26,12 +26,12 @@
           <view class='fuwulist_box_heandleft'>{{item.createTimeStr}}</view>
           <view wx:if="{{item.orderState == 1}}" class='fuwulist_box_heandright'>已支付</view>
           <view wx:if="{{item.orderState == 0}}" class='fuwulist_box_heandright'>待支付</view>
-          <view wx:if="{{item.orderState == 2}}" class='fuwulist_box_heandright'>已关闭</view>
+          <view wx:if="{{item.orderState == 3}}" class='fuwulist_box_heandright'>已关闭</view>
         </view>
       </view>
 
 
-      <view bindtap='datalis' class='appointment_datails'>
+      <view  class='appointment_datails'>
         <view class='datails_imghead'>
           <image wx:if='{{item.orderGoods[0].icon}}' class='datails_imghead' src='{{imgurl}}{{item.orderGoods[0].icon}}'></image>
           <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>

@@ -41,6 +41,7 @@ Page({
     showMethod: "",//详情展现方式
     appointment: false,//预约
     areaId: "",
+    endtime: "",
     id: "",
     timeshow: "",
     formatDates: "",
@@ -55,9 +56,26 @@ Page({
     memberId: "",
   },
   buynow: function () {
+var that =this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        that.setData({
+          memberId: res.data.memberId,
+          hidden: 0
+        })
+      },
+      fail: function (res) {
 
-    this.setData({
-      hidden: 0
+        // setTimeout(function () {
+
+        wx.navigateTo({
+          url: '../land/land',
+        })
+
+        //  }, 1000) 延迟时间 这里是1秒
+        return false;
+      }
     })
   },
   closebuynow: function () {
@@ -106,9 +124,9 @@ Page({
         showMethod: 3
       })
     }
-    wx.getStorage({
-      key: 'userinfo',
-      success: function (res) {
+    // wx.getStorage({
+    //   key: 'userinfo',
+    //   success: function (res) {
 
 
 
@@ -116,7 +134,7 @@ Page({
           areaId: options.areaid || '',
           itemno: options.itemNo || '',
           id: options.id || '',
-          memberId: res.data.memberId
+          // memberId: res.data.memberId
         })
         wx.getStorage({
           key: 'gymId',
@@ -148,19 +166,19 @@ Page({
 
 
 
-      },
-      fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+      // },
+      // fail: function (res) {
+      //   $.alert("请先登录")
+      //   setTimeout(function () {
 
-          wx.navigateTo({
-            url: '../land/land',
-          })
+      //     wx.navigateTo({
+      //       url: '../land/land',
+      //     })
 
-        }, 1000) //延迟时间 这里是1秒
+      //   }, 1000) //延迟时间 这里是1秒
 
-      },
-    })
+      // },
+    // })
 
 
   },
@@ -169,7 +187,7 @@ Page({
     var val = {
     }
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      
+    
     
       that.setData({
         shopdetails: res.data,
@@ -187,11 +205,16 @@ Page({
       memberId: that.data.memberId,
       gymId: that.data.gymId,
     }
-    $.Requests(apicou.couponlist.url, val).then((res) => {
-      
+    $.Requests(apicou.coupon_entity.url, val).then((res) => {
+      res.data.map(item => {
+        item.endTime = item.endTime.substring(0, item.endTime.length - 10)
+        return item;
+      })
       that.setData({
         couponlength: res.data.length,
-        couponlist: res.data
+        couponlist: res.data,
+        // endtime: res.data.endTime.substring(0, res.data.endTime.length - 10),
+
       })
 
 
@@ -275,7 +298,26 @@ Page({
 
 
     var that = this;
-   
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        that.setData({
+          memberId: res.data.memberId
+        })
+      },
+      fail: function (res) {
+
+        //  setTimeout(function () {
+
+        wx.navigateTo({
+          url: '../land/land',
+        })
+
+        //  }, 1000)延迟时间 这里是1秒
+        return false;
+      }
+
+    })
     if (that.data.optionstype == 2) {
 
       wx.navigateTo({

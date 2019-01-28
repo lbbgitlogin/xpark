@@ -56,14 +56,14 @@ Page({
 
       },
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+  
+    
 
-          wx.navigateTo({
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 1000) //延迟时间 这里是1秒
+
         
       },
     })

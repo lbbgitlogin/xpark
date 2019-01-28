@@ -10,8 +10,8 @@
     <view class='self_banner'>
      <swiper style="height: 750rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
         <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:key='' wx:for-item="item">
-          <image wx:if='{{item.url}}' class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
-           <image wx:else class="slide-image" mode="aspectFill" src="../../img/shop_chat.png" />
+          <image wx:if='{{item.length != 0}}' class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
+           <image wx:if='{{item.length == 0}}' class="slide-image" mode="aspectFill" src="../../img/shop_chat.png" />
         </swiper-item>
       </swiper>
     <!-- <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
@@ -301,7 +301,7 @@
               <view class='coupon_right_mon' style="flex: 1;">
                 <view class='coupon_right_name'>{{item.couponTag}}</view>
                 <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
-                <view>有效期：{{item.endTime}}</view>
+                <view>有效期：{{endtime}}</view>
               </view>
               <view wx:if="{{item.state == 1}}" data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' data-discount='{{item.discount}}' data-category='{{item.category}}' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
                 <image wx:if="{{chooseindex != index}}" class='choose_img' src='../../img/choose_false.png'></image>

@@ -1,0 +1,66 @@
+<!--pages/confirmationOrder/confirmationOrder.wxml-->
+
+<view class='order_list'>
+  <view class='order_title'>选择服务</view>
+  <view class='appointment_datails'>
+    <view class='datails_imghead'>
+      <image class='datails_imghead' src='{{imgurl}}{{htmlData.icon}}'></image>
+    </view>
+    <view class='datails_title'>{{htmlData.courseName}}</view>
+    <view class='order_datails'>
+      <view class='order_mon'>¥{{price}}</view>
+      <view class='num_order'>x1</view>
+    </view>
+  </view>
+  <view class='list_booking'>
+    <view class='order_name'>
+      门店
+    </view>
+    <view class='order_smallname'>
+      {{htmlData.gymName}}
+    </view>
+  </view>
+  <view class='list_booking'>
+    <view class='order_name'>
+      地点
+    </view>
+    <view class='order_smallname'>
+      {{htmlData.address}}
+    </view>
+  </view>
+   <view class='list_booking'>
+    <view class='order_name'>
+      教练
+    </view>
+    <view class='order_smallname'>
+      {{htmlData.coachname ||htmlData.coachName}}
+    </view>
+  </view>
+  <view class='list_booking'>
+    <view class='order_name'>
+      预约时间
+    </view>
+    <view class='order_smallname'>
+      {{htmlData.bookingDate}} {{htmlData.bookingTime}}
+    </view>
+  </view>
+  <view class='list_booking'>
+    <view class='order_name'>
+      关联订单
+    </view>
+    <view class='order_smallname'>
+      {{htmlData.orderNo}}
+    </view>
+  </view>
+  <view class='remarks'>
+    <view class='order_name'>备注要求</view>
+    <textarea class='input_box_input_input' placeholder="请填写备注信息" placeholder-style="color:#999;font-size:26rpx"
+      bindinput="textareavalue" fixed="true" style='background-colo:#fff' value="{{htmlData.remark}}" focus="{{focus}}"
+      bindblur='textareabind' show-confirm-bar="{{bar}}" cursor-spacing="60px" maxlength="150" />
+    </view>
+   
+</view>
+<form report-submit="true" bindsubmit="submitorder" >
+      
+<button  hover-class='none' formType="submit" class='order_next bj_color'>预约确认</button>
+    </form>
