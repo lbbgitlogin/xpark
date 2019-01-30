@@ -284,19 +284,9 @@ Page({
       key: 'gymId',
       data: objlist,
     })
-    setTimeout(function() {
-
-      $.alert("请先登录")
-
-    }, 1000) //延迟时间 这里是1秒
-
-    setTimeout(function() {
-
-      wx.navigateTo({
-        url: '../land/land',
-      })
-
-    }, 2000) //延迟时间 这里是1秒
+    wx.reLaunch({
+      url: '../land/land',
+    })
 
     that.classification();
     that.league_schedulelist();
@@ -706,7 +696,8 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
-
+          console.log("健康。", val)
+  console.log("健康。",res)
 
 
           if (res.data.length != 0) {
@@ -936,38 +927,42 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
-                
-          if (res.data.length != 0) {
+                console.log("私课",res)
+          console.log("私课", val)
+          that.setData({
+               sk_schedulelist:res.data
+             })
+          // if (res.data.length != 0) {
 
 
-            var sk_schedulelist = res.data;
+          //   var sk_schedulelist = res.data;
 
-            sk_schedulelist.forEach(function(item, index, arrar) {
+          //   sk_schedulelist.forEach(function(item, index, arrar) {
                   
-              arrar[index] = {
-                courseName: item.coachCourses[0].course.courseName,
-                id: item.coachCourses[0].id,
-                courseId: item.coachCourses[0].course.id,
-                shortDesc: item.coachCourses[0].course.shortDesc,
-                icon: item.coachCourses[0].course.icon,
-                price: item.coachCourses[0].price,
-                zzprice: (item.coachCourses[0].price * 0.8).toFixed(2),
-                zxprice: (item.coachCourses[0].price * 0.9).toFixed(2),
-                // appointmentNumb: item.coachCourses.appointmentNumb,
-                contain: item.coachCourses[0].course.contain,
-                // scheduleDate: item.coachCourses.scheduleDate
-              }
-              that.setData({
-                sk_schedulelist: sk_schedulelist
-              })
+          //     arrar[index] = {
+          //       courseName: item.coachCourses[0].course.courseName,
+          //       id: item.coachCourses[0].id,
+          //       courseId: item.coachCourses[0].course.id,
+          //       shortDesc: item.coachCourses[0].course.shortDesc,
+          //       icon: item.coachCourses[0].course.icon,
+          //       price: item.coachCourses[0].price,
+          //       zzprice: (item.coachCourses[0].price * 0.8).toFixed(2),
+          //       zxprice: (item.coachCourses[0].price * 0.9).toFixed(2),
+          //       // appointmentNumb: item.coachCourses.appointmentNumb,
+          //       contain: item.coachCourses[0].course.contain,
+          //       // scheduleDate: item.coachCourses.scheduleDate
+          //     }
+          //     that.setData({
+          //       sk_schedulelist: sk_schedulelist
+          //     })
 
-            })
-          } else {
-            that.setData({
-              sk_schedulelist: ""
-            })
+          //   })
+          // } else {
+          //   that.setData({
+          //     sk_schedulelist: ""
+          //   })
 
-          }
+          // }
         })
       }
     })
@@ -1018,41 +1013,9 @@ Page({
       scheduleDate: formatDate
     }
     $.Requests(api.coach_schedulelist.url, val).then((res) => {
-
-
-
-
-      if (res.data.length != 0) {
-
-
-        var sk_schedulelist = res.data;
-
-        sk_schedulelist.forEach(function(item, index, arrar) {
-
-          arrar[index] = {
-            courseName: item.coachCourses[0].course.courseName,
-            id: item.coachCourses[0].id,
-            courseId: item.coachCourses[0].course.id,
-            icon: item.coachCourses[0].course.icon,
-            shortDesc: item.coachCourses[0].course.shortDesc,
-            price: item.coachCourses[0].price,
-            zzprice: (item.coachCourses[0].price * 0.8).toFixed(2),
-            zxprice: (item.coachCourses[0].price * 0.9).toFixed(2),
-            // appointmentNumb: item.coachCourses.appointmentNumb,
-            contain: item.coachCourses[0].course.contain,
-            // scheduleDate: item.coachCourses.scheduleDate
-          }
-          that.setData({
-            sk_schedulelist: sk_schedulelist
-          })
-
-        })
-      } else {
-        that.setData({
-          sk_schedulelist: ""
-        })
-
-      }
+      that.setData({
+        sk_schedulelist: res.data
+      })
     })
   },
   timeclick: function(e) {
@@ -1312,11 +1275,6 @@ Page({
       formId: e.detail.formId
     }
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
-
-
-
-
     })
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone,
@@ -1370,13 +1328,7 @@ Page({
     var vals = {
       formId: e.detail.formId
     }
-    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
-
-
-
-
-    })
+    $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals])
     this.setData({
       tapindex: 3,
       type: 3
@@ -1385,18 +1337,21 @@ Page({
   },
 
   classifyClick: function(e) { //配套服务子分类产品查询
-  var that =this;
+    let index = e.target.dataset.index
+    console.log(index)
+    this.setData({
+      shopindex: index
+    })
+    var that =this;
     var val = {
       areaId: e.target.dataset.id
     }
     $.Requests(api.categorylist.url, val).then((res) => {
-
-
+      console.log("商品",res)
       let data = res.data.content
       wx.getStorage({
         key: 'vip',
         success: function (res) {
-
           data.forEach((item, index) => {
             if (item.goods.length > 0) {
               item.goods.map(item => {
@@ -1409,15 +1364,11 @@ Page({
             }
           })
           that.setData({
-            classifyClick: data,
-            shopindex: e.target.dataset.index
+            classifyClick: data
           })
-
-
         },
         fail: function () {
           // fail
-
           that.setData({
             classifyClick: data
           })
@@ -1478,8 +1429,8 @@ Page({
     }, 1500);
   },
   login: function() { //登陆页面
-    wx.navigateTo({
-      url: '../land/land'
+    wx.reLaunch({
+      url: '../land/land',
     })
   },
 })

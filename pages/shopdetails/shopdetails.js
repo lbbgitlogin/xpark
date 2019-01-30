@@ -88,7 +88,7 @@ var that =this;
    */
   onLoad: function (options) {
 
-    
+    console.log("shopid",options)
     var that = this;
     that.member();
     var now = new Date();
@@ -201,24 +201,36 @@ var that =this;
   },
   couponlist: function () {
     var that = this;
-    var val = {
-      memberId: that.data.memberId,
-      gymId: that.data.gymId,
-    }
-    $.Requests(apicou.coupon_entity.url, val).then((res) => {
-      res.data.map(item => {
-        item.endTime = item.endTime.substring(0, item.endTime.length - 10)
-        return item;
-      })
-      that.setData({
-        couponlength: res.data.length,
-        couponlist: res.data,
-        // endtime: res.data.endTime.substring(0, res.data.endTime.length - 10),
+    wx.getStorage({
+      key: 'userinfo',
+      success: function(res) {
+ 
+        var val = {
 
-      })
+          couponType: "s",
+          goodsId: that.data.shopid,
+          memberId: res.data.memberId,
+          gymId: that.data.gymId,
+        }
+        $.Requests(apicou.coupon_entity.url, val).then((res) => {
+          res.data.map(item => {
+            item.endTime = item.endTime.substring(0, item.endTime.length - 10)
+            return item;
+          })
+          that.setData({
+            couponlength: res.data.length,
+            couponlist: res.data,
+            // endtime: res.data.endTime.substring(0, res.data.endTime.length - 10),
 
+          })
+
+
+        })
+      },
 
     })
+
+
   },
   member: function () { //会员卡查询
     var that = this;
@@ -309,7 +321,7 @@ var that =this;
 
         //  setTimeout(function () {
 
-        wx.navigateTo({
+        wx.reLaunch({
           url: '../land/land',
         })
 

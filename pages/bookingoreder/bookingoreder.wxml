@@ -114,9 +114,9 @@
       <view class='name_first'>预约核销码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>
     </view>
-    <view class='pic_ewm'>
+    
       <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
-    </view>
+   
   </view>
 </view>
 <view wx:if="{{ordertype == 1}}" class='but_order' bindtap='appointment_common'>

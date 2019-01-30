@@ -122,15 +122,13 @@ line-height:98rpx;
   font-size: 26rpx;
   color: #CCC
 }
-.pic_ewm{
-width:207px;
-height:75%;
-margin:44rpx auto 36rpx auto;
-background:#fff;
-padding:10rpx;
-box-sizing:border-box;
 
+.pic_ewm{
+background:#fff;
+border: 20rpx solid #fff;
 }
+
+
 .but_order{
   width: 92%;
   margin: 36rpx auto 80rpx auto;

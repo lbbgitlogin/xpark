@@ -10,7 +10,7 @@ page{
   font-size: 32rpx
 }
 .order_list{
-  padding: 40rpx 0 130rpx  0;
+  padding: 40rpx 0 0rpx  0;
   width: 100%;
   margin: 0 auto;
   background: #282B30;
@@ -126,7 +126,7 @@ line-height:98rpx;
   width: 264rpx;
   height: 264rpx;
   margin: 40rpx auto 36rpx auto;
-  background: red
+
 }
 .but_order{
   width: 92%;
@@ -201,11 +201,6 @@ box-sizing:border-box;
   color: #CCC
 }
 .pic_ewm{
-width:207px;
-height:75%;
-margin:44rpx auto 36rpx auto;
 background:#fff;
-padding:10rpx;
-box-sizing:border-box;
-
+border: 20rpx solid #fff;
 }

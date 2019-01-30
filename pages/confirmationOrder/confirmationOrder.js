@@ -16,7 +16,9 @@ Page({
     groundName: "",
     yuyueday: "",
     yuyuetime: "",
+    focus:false,
     memberCourseId: "",
+    isShowText:true,
     groundId: "",
     sta: "",
     skgymdetails: "",
@@ -32,7 +34,7 @@ Page({
     optionstype: "",
     numb: "1",
     memberFitnessId: "",
-    textareavalue: "",
+    textareavalue: "请填写备注信息",
     areaName: "", 
     couponlenght: "",
     choose: false,
@@ -154,14 +156,9 @@ Page({
       },
 
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
-
-          wx.navigateTo({
-            url: '../land/land',
-          })
-
-        }, 2000) //延迟时间 这里是1秒
+        wx.reLaunch({
+          url: '../land/land',
+        })
 
       },
     })
@@ -230,6 +227,27 @@ Page({
       textareavalue: e.detail.value
     });
   },
+  onRemarkInput(event) {               //保存输入框填写内容
+    var value = event.detail.value;
+    this.setData({
+      textareavalue: value,
+    });
+  },
+  onShowText:function(){
+   
+    this.setData({
+      isShowText: true,
+      focus: false
+     
+    })
+  },
+    onShowTextare: function () {
+      this.setData({
+        isShowText: false,
+        focus: true
+      })
+  }
+,
   gymdetails: function () {
     var that = this;
     var now = new Date();

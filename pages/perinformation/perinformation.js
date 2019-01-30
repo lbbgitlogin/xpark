@@ -47,14 +47,9 @@ var that =this;
         that.memberinformation()
       },
       fail:function(){
-        $.alert("请先登录")
-        setTimeout(function () {
-
-          wx.navigateTo({
-            url: '../land/land',
-          })
-
-        }, 2000) //延迟时间 这里是1秒
+        wx.reLaunch({
+          url: '../land/land',
+        })
       }
     })
   },

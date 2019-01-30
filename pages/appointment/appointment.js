@@ -25,32 +25,33 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  // onLoad: function (options) {
-  //   var that = this;
-  //   wx.getStorage({
-  //     key: 'userinfo',
-  //     success: function (res) {
-  //       
-  //       that.setData({
-  //         memberId: res.data.memberId,
-  //         time: res.data.createTime,
-  //         runday: res.data.day
-  //       })
-  //       that.appointment()
-  //     },
-  //     fail: function (res) {
-  //       $.alert("请先登录")
-  //       setTimeout(function () {
+  onShow: function (options) {
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        
+        that.setData({
+          appointment:[],
+          memberId: res.data.memberId,
+          time: res.data.createTime,
+          runday: res.data.day
+        })
+        that.appointment()
+      },
+      fail: function (res) {
+      
+ 
 
-  //         wx.navigateTo({
-  //           url: '../land/land',
-  //         })
+          wx.reLaunch({
+            url: '../land/land',
+          })
 
-  //       }, 2000) //延迟时间 这里是1秒
 
-  //     },
-  //   })
-  // },
+
+      },
+    })
+  },
   appointment: function(e) {
     if (e != undefined) {
 
@@ -80,6 +81,7 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
+      console.log("weikaishi", val)
       console.log("weikaishi", res)
       var that = this;
       if (res.data.content.length == 0) {
@@ -179,34 +181,34 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    var that = this;
+  // onShow: function() {
+  //   var that = this;
 
-    wx.getStorage({
-      key: 'userinfo',
-      success: function(res) {
+  //   wx.getStorage({
+  //     key: 'userinfo',
+  //     success: function(res) {
 
-        that.setData({
-          appointment:[],
-          memberId: res.data.memberId,
-          time: res.data.createTime,
-          runday: res.data.day
-        })
-        that.appointment()
-      },
-      fail: function(res) {
-
-
-
-        wx.reLaunch({
-          url: '../land/land',
-        })
+  //       that.setData({
+  //         appointment:[],
+  //         memberId: res.data.memberId,
+  //         time: res.data.createTime,
+  //         runday: res.data.day
+  //       })
+  //       that.appointment()
+  //     },
+  //     fail: function(res) {
 
 
 
-      },
-    })
-  },
+  //       wx.reLaunch({
+  //         url: '../land/land',
+  //       })
+
+
+
+  //     },
+  //   })
+  // },
   datalis: function(e) {
 
     wx.navigateTo({

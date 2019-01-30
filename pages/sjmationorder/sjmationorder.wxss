@@ -9,6 +9,12 @@ page{
   height: 108rpx;
   font-size: 32rpx
 }
+.hide{
+  display: none;
+}
+.show{
+  display: block
+}
 .order_list{
   padding: 40rpx 0 0  0;
   width: 100%;
@@ -141,10 +147,23 @@ line-height: 98rpx
   background: #202428;
   margin: 36rpx auto 0 auto;
   width: 694rpx;
+  font-size:28rpx;
   height: 160rpx;
   padding:20rpx 28rpx 20rpx 28rpx;
 box-sizing:border-box;
   color: #999999
+}
+.textcls{
+ color:#999;
+width:95%;
+  font-size:28rpx;
+ min-height: 160rpx;
+background:#202428;
+margin:36rpx auto 0 auto;
+padding:20rpx;
+box-sizing:border-box;
+
+
 }
 .order_next{
   width: 100%;

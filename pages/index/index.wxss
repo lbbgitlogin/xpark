@@ -468,10 +468,15 @@ background-color:#fff;
 }
 
 .title_shop {
-  flex: 1;
-  padding-left: 20rpx;
-  line-height: 50rpx;
-  width: 1rpx
+flex:1;
+padding-left:20rpx;
+line-height:50rpx;
+width:1rpx;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+height:150rpx;
+
 }
 
 .title_name {

@@ -18,7 +18,19 @@ Page({
     page:1,
     flag:true
   },
+  onLoad: function (options) {
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
 
+        that.setData({
+          memberId: res.data.memberId,
+        })
+        that.member_orderlist()
+      },
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

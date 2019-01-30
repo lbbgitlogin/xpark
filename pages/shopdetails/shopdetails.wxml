@@ -1,5 +1,5 @@
 <!--pages/selfdetails/selfdetails.wxml-->
-<view style='{{hidden == 0?"position:fixed":""}} padding-bottom:130rpx'>
+<view style='{{hidden == 0?"position:fixed":""}}; padding-bottom:130rpx'>
 
   <!-- <view class='self_banner'>
 

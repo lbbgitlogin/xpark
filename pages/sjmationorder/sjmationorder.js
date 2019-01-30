@@ -29,6 +29,8 @@ Page({
     remark: "",
     gymId: "",
     orderType: "",
+    focus: false,
+    isShowText: true,
     optionstype: "",
     numb: "1",
     memberFitnessId: "",
@@ -125,14 +127,9 @@ Page({
       },
 
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
-
-          wx.navigateTo({
-            url: '../land/land',
-          })
-
-        }, 1000) //延迟时间 这里是1秒
+        wx.reLaunch({
+          url: '../land/land',
+        })
 
       },
     })
@@ -156,6 +153,21 @@ Page({
   onReady: function () {
 
   },
+  onShowText: function () {
+
+    this.setData({
+      isShowText: true,
+      focus: false
+
+    })
+  },
+  onShowTextare: function () {
+    this.setData({
+      isShowText: false,
+      focus: true
+    })
+  }
+  ,
   coach_course: function () { //私课详情
     var that = this;
     var val = {

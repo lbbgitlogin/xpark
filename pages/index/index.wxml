@@ -3,7 +3,7 @@
   <view class='index_first'>
     <view class='index_box'>
       <view class='index_lefttext'>{{swishop.gymName}}</view>
-      
+
     </view>
     <view class='index_box_sh' style="justify-content: flex-end;width:49%;">
       <view class='index_firstimg'>
@@ -24,11 +24,11 @@
 
   </view>
   <view class='index_sec'>
-      <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
-        <swiper-item wx:for="{{swishop.gymGalleries}}"  wx:key='' wx:for-item="item">
-          <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
-        </swiper-item>
-      </swiper>
+    <swiper style="height: 260rpx;width:100%" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+      <swiper-item wx:for="{{swishop.gymGalleries}}" wx:key='' wx:for-item="item">
+        <image class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
+      </swiper-item>
+    </swiper>
   </view>
   <view class='index_first'>
     <view class='index_box'>
@@ -101,10 +101,10 @@
     <block wx:for="{{zzlist}}" wx:key=''>
       <view data-areaId='{{item.areaId}}' data-fittype='{{item.fitness.fitType}}' data-id='{{item.id}}' data-itemNo='{{item.fitness.itemNo}}' data-type='1' catchtap='btnselfdetails' class='shop_details'>
         <image wx:if='{{item.fitness.icon}}' class='shop_img' src='{{imgurl}}{{item.fitness.icon}}'></image>
-          <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
+        <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.fitnessName}}</view>
-            <html-view class='title_sm' innerText='{{item.fitness.shortDesc}}'></html-view>
+          <html-view class='title_sm' innerText='{{item.fitness.shortDesc}}'></html-view>
           <!-- <html-view class='title_sm' innerText='{{item.fitness.introduce}}'></html-view> -->
           <!-- <view class='title_sm'>{{item.fitness.introduce}}</view> -->
           <view class='shop_mon font-colormode'>
@@ -159,9 +159,10 @@
       <view class='show_box bj_color '></view>
       <view class='show_text'>团课</view>
     </view>
-    <view wx:key='' data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"tkselfdetailstwo":""}}' data-areaId='' data-itemNo='' data-type='2'  wx:for="{{tk_schedulelist}}" class='shop_details'>
+    <view wx:key='' data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"tkselfdetailstwo":""}}' data-areaId='' data-itemNo='' data-type='2'
+      wx:for="{{tk_schedulelist}}" class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
-       <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
+      <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -182,13 +183,14 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}" data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails'style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-coachCourseId='{{item.id}}' data-timechoose='{{item.scheduleDate}}' data-timeshow='{{day}}' data-id='{{item.id}}' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}" data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails'
+          style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
-         <view    wx:else class='buy_but' style='border:1rpx solid #555555'>
+        <view wx:else class='buy_but' style='border:1rpx solid #555555'>
           已结束
-        </view> 
+        </view>
       </view>
 
     </view>
@@ -199,7 +201,7 @@
     </view>
     <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{hw_schedulelist}}" wx:key='' class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
-        <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
+      <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -220,7 +222,8 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-timeshow='{{day}}' data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId=''  data-timechoose='{{item.scheduleDate}}'  data-itemNo='' data-type='2' catchtap='tkselfdetails' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}" style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-timeshow='{{day}}' data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-timechoose='{{item.scheduleDate}}' data-itemNo='' data-type='2' catchtap='tkselfdetails' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}"
+          style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -238,7 +241,7 @@
     </view>
     <view data-coachCourseId='{{item.courseidd}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='{{timeclickif == 1||mytime<item.buyEndTime?"skselfdetails":""}}' wx:for="{{jk_schedulelist}}" wx:key='' class='shop_details'>
       <image wx:if='{{item.icon}}' class='shop_img' src='{{imgurl}}{{item.icon}}'></image>
-       <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
+      <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
       <view class='title_shop'>
         <view class='title_name'>{{item.name}}</view>
         <!-- <html-view class='title_sm' innerText='{{item.course.buyNotes}}'></html-view> -->
@@ -259,7 +262,8 @@
       </view>
       <view>
         <!-- <view class='font-colormode' style='font-size:24rpx;text-align:center;margin-bottom:6rpx;'>家庭直播</view> -->
-        <view data-timeshow='{{day}}'  data-timechoose='{{item.scheduleDate}}'  data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}"style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
+        <view data-timeshow='{{day}}' data-timechoose='{{item.scheduleDate}}' data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' catchtap='tkselfdetails' wx:if="{{timeclickif == 1?timeclickif == 1:mytime<item.buyEndTime}}"
+          style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
 
           预约
         </view>
@@ -275,31 +279,36 @@
       <view class='show_text'>私教</view>
     </view>
     <view wx:for="{{sk_schedulelist}}" wx:key='' wx:for-item="item">
-      <view data-timechoose='{{scheduleDate}}' data-courseid='{{item.courseId}}'  data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails' class='shop_details'>
+      <block wx:for="{{item.coachCourses}}" wx:key=''  wx:for-item="items">
 
-        <image wx:if='{{item.icon}}' class='shop_img_sj' src='{{imgurl}}{{item.icon}}'></image>
-        <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
-        <view class='title_shop'>
-          <view class='title_name'>{{item.courseName}}</view>
-          <html-view class='title_sm' innerText='{{item.shortDesc}}'></html-view>
-          <!-- <view class='title_sm'>{{items.course.introduce}}</view> -->
+        <view data-timechoose='{{scheduleDate}}' data-courseid='{{items.course.id}}' data-coachCourseId='{{items.id}}' data-id='{{items.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='skselfdetails'
+          class='shop_details'>
 
-          <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
-            <label class='sj_mon' style='font-weight:bold'>￥{{item.price}}</label>
-            /起
-            <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
-            <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
+          <image wx:if='{{items.course.icon}}' class='shop_img_sj' src='{{imgurl}}{{items.course.icon}}'></image>
+          <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
+          <view class='title_shop'>
+            <view class='title_name'>{{items.course.courseName}}</view>
+            <html-view class='title_sm' innerText='{{items.course.shortDesc}}'></html-view>
+            <!-- <view class='title_sm'>{{items.course.introduce}}</view> -->
+
+            <view class='sj_shop_mon font-colormode' style="display: flex;align-items: center;">
+              <label class='sj_mon' style='font-weight:bold'>￥{{items.price}}</label>
+              /起
+              <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(items.price*0.9)}})</view>
+              <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(items.price*0.8)}})</view>
+
+            </view>
+          </view>
+          <view>
+
+            <view data-timechoose='{{scheduleDate}}' data-courseid='{{items.course.id}}' data-coachCourseId='{{items.id}}' data-id='{{items.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='tkselfdetails' style='border:1rpx solid #E27D00;color:#E27D00'
+              class='buy_but'>
+              预约
+            </view>
 
           </view>
         </view>
-        <view>
-
-          <view  data-timechoose='{{scheduleDate}}' data-courseid='{{item.courseId}}'  data-coachCourseId='{{item.id}}' data-id='{{item.id}}' data-areaId='' data-itemNo='' data-type='2' data-sta='1' data-scheduleDate='{{scheduleDate}}' catchtap='tkselfdetails' style='border:1rpx solid #E27D00;color:#E27D00' class='buy_but'>
-            预约
-          </view>
-
-        </view>
-      </view>
+           </block>
     </view>
     <view wx:if="{{!sk_schedulelist && !jk_schedulelist && !hw_schedulelist && !tk_schedulelist }}" style="background: #282B30;margin-bottom: 218rpx;">
       <view class='order_null'>
@@ -321,9 +330,10 @@
       </view>
       <view data-id='{{items.id}}' wx:key='' data-type='3' catchtap='selfdetailss' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
         <image wx:if='{{items.goodsIcon}}' class='shop_img' src='{{imgurl}}{{items.goodsIcon}}'></image>
-           <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
+        <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
         <view class='title_shop'>
           <view class='title_name'>{{items.fullName}}</view>
+          <view class='tatils_color' style="margin-left: 3%;">单位：{{items.unit}}</view>
           <!-- <html-view class='title_sm' innerText='{{items.despict}}'></html-view> -->
           <!-- <view class='title_sm'>{{items.despict}}</view> -->
           <view style='font-weight:bold' class='shop_mon font-colormode'>
@@ -345,14 +355,14 @@
     </view>
 
   </view>
-        <view wx:if='{{type == 3 &&classifyClick||type == 2 &&sk_schedulelist || type == 2 &&jk_schedulelist || type == 2 &&hw_schedulelist|| type == 2 &&tk_schedulelist ||type == 1 &&zzlistlength}}' class="m-loading-box" style="background: #282B30;">
-        <block>
-          <view class="u-loadmore u-loadmore-line">
-            <text class="u-loadmore-tips">没有更多了</text>
-          </view>
-        </block>
+  <view wx:if='{{type == 3 &&classifyClick||type == 2 &&sk_schedulelist || type == 2 &&jk_schedulelist || type == 2 &&hw_schedulelist|| type == 2 &&tk_schedulelist ||type == 1 &&zzlistlength}}' class="m-loading-box" style="background: #282B30;">
+    <block>
+      <view class="u-loadmore u-loadmore-line">
+        <text class="u-loadmore-tips">没有更多了</text>
       </view>
-  <view  wx:if="{{type == 3 && !classifyClick}}">
+    </block>
+  </view>
+  <view wx:if="{{type == 3 && !classifyClick}}">
     <view style="background: #282B30;margin-bottom: 218rpx;">
       <view class='order_null'>
         <image class='order_pic' src='../../img/management_null.png'></image>
@@ -362,7 +372,7 @@
 
     </view>
   </view>
-</view>   
+</view>
 
 <view class='{{ishidden?"shoplistnext":"index_shoplist"}}'>
   <view class='region' style='height:100%'>

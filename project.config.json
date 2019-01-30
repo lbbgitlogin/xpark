@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 25,
+			"current": 26,
 			"list": [
 				{
 					"id": -1,
@@ -186,6 +186,12 @@
 					"id": -1,
 					"name": "chenggong",
 					"pathName": "pages/succell/succell",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "富文本",
+					"pathName": "pages/confirmationOrder/confirmationOrder",
 					"query": ""
 				}
 			]

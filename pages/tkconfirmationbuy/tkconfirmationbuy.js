@@ -636,6 +636,7 @@ Page({
       formId: e.detail.formId
     }
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals])
+
     if (that.data.yuechoose) {
 
       if (that.data.optionstype == 2 && that.data.sta != 1) {
@@ -656,7 +657,7 @@ Page({
         }
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
-
+        
 
           if (res.status == 0) {
 
@@ -693,7 +694,8 @@ Page({
 
 
         $.Requests_json(api.member_order.url, val).then((res) => {
-
+console.log("私课确认",res)
+          console.log("私课确认", val)
 
 
 

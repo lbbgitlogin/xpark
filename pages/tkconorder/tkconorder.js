@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    focus: false,
+    isShowText: true,
     imgurl: CONFIG.config.imgUrl,
     formdatask: "",
     formdata: null,
@@ -161,14 +163,14 @@ Page({
       },
 
       fail: function (res) {
-        $.alert("请先登录")
-        setTimeout(function () {
+        
+      
 
-          wx.navigateTo({
+        wx.reLaunch({
             url: '../land/land',
           })
 
-        }, 1000) //延迟时间 这里是1秒
+   
 
       },
     })
@@ -192,6 +194,27 @@ Page({
   onReady: function () {
 
   },
+  onRemarkInput(event) {               //保存输入框填写内容
+    var value = event.detail.value;
+    this.setData({
+      textareavalue: value,
+    });
+  },
+  onShowText: function () {
+
+    this.setData({
+      isShowText: true,
+      focus: false
+
+    })
+  },
+  onShowTextare: function () {
+    this.setData({
+      isShowText: false,
+      focus: true
+    })
+  }
+  ,
   coach_course: function () { //私课详情
     var that = this;
     var val = {
@@ -364,7 +387,12 @@ Page({
           $.alert("预约成功")
           setTimeout(() => {
             wx.switchTab({
-              url: '../appointment/appointment'
+              url: '../appointment/appointment',
+              success: function (e) {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+                page.onLoad();
+              }
             })
           }, 500)
           // wx.navigateTo({
@@ -398,7 +426,12 @@ Page({
           $.alert("预约成功")
           setTimeout(() => {
             wx.switchTab({
-              url: '../appointment/appointment'
+              url: '../appointment/appointment',
+              // success: function (e) {
+              //   var page = getCurrentPages().pop();
+              //   if (page == undefined || page == null) return;
+              //   page.onLoad();
+              // }
             })
           }, 500)
         } else {

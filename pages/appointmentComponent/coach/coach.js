@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    focus: false,
+    isShowText: false,
     price:"",
     textareavalue: "",
     imgurl: CONFIG.config.imgUrl,
@@ -49,9 +51,30 @@ console.log("options",options)
 
     this.setData({
       htmlData: data,
-      price: options.price
+      price: options.price || data.price
     })
   },
+  onRemarkInput(event) {               //保存输入框填写内容
+    var value = event.detail.value;
+    this.setData({
+      textareavalue: value,
+    });
+  },
+  onShowText: function () {
+
+    this.setData({
+      isShowText: true,
+      focus: false
+
+    })
+  },
+  onShowTextare: function () {
+    this.setData({
+      isShowText: false,
+      focus: true
+    })
+  }
+  ,
   submitorder: function () {
     let that = this
     let data = this.data.htmlData
@@ -73,7 +96,12 @@ console.log("options",options)
         $.alert("预约成功")
         setTimeout(() => {
           wx.switchTab({
-            url: '../../appointment/appointment'
+            url: '../../appointment/appointment',
+            // success: function (e) {
+            //   var page = getCurrentPages().pop();
+            //   if (page == undefined || page == null) return;
+            //   page.onLoad();
+            // }
           })
         }, 500)
       } else {

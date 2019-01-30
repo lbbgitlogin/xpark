@@ -17,7 +17,9 @@ Page({
     couponlist: '',
     xqgymName: '',
     xqaddress: '',
+    jlintroduce: '',
     xqlatitudenum: '',
+    gymshopid: '',
     xqlongitudenum: '',
     category: '',
     hidden: 2,
@@ -78,9 +80,9 @@ Page({
   
         // setTimeout(function () {
 
-          wx.navigateTo({
-            url: '../land/land',
-          })
+        wx.reLaunch({
+          url: '../land/land',
+        })
 
       //  }, 1000) 延迟时间 这里是1秒
         return false;
@@ -113,6 +115,7 @@ Page({
       coachCourseId: options.coachCourseId || '',
       tk_id: options.id || '',
       shopid: options.id || '',
+      gymshopid: options.id || '',
       courseid: options.courseid || '',
       optionstype: options.type || '',
       timeshow: options.timeshow || '',
@@ -234,11 +237,22 @@ Page({
       key: 'userinfo',
       success: function (res) {
       
-
-        var val = {
-          memberId: res.data.memberId,
-          gymId: that.data.gymId,
+        if (that.data.optionstype == 1){
+          var val = {
+            couponType: 'f',
+            goodsId: that.data.gymshopid,
+            memberId: res.data.memberId,
+            gymId: that.data.gymId,
+          }
+        } else if (that.data.optionstype == 2){
+          var val = {
+            couponType: 'c',
+            goodsId: that.data.tk_id,
+            memberId: res.data.memberId,
+            gymId: that.data.gymId,
+          }
         }
+     
         $.Requests(apicou.coupon_entity.url, val).then((res) => {
          
           res.data.map(item => {
@@ -298,7 +312,7 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-     
+      console.log("思科事444",res)
       that.setData({
         tkgymdetails: res.data,
         sikeprice: res.data.price,
@@ -379,11 +393,13 @@ Page({
         icon
       } = res.data.course;
       let {
-        courseGalleries
+        courseGalleries,
+       
       } = res.data;
 
 
       that.setData({
+        jlintroduce: res.data.introduce,
         courseName: courseName,
         appointmentNumb: appointmentNumb,
         gymName: gymName,
@@ -404,7 +420,7 @@ Page({
         icon: courseGalleries,
         introduce: introduce,
         useNotes: useNotes,
-        jlicon: res.data.course.icon
+        jlicon: res.data.coachIcon
 
       })
       that.tkshoptedails()
@@ -426,9 +442,9 @@ Page({
   
    //  setTimeout(function () {
 
-      wx.navigateTo({
-        url: '../land/land',
-      })
+         wx.reLaunch({
+           url: '../land/land',
+         })
 
    //  }, 1000)延迟时间 这里是1秒
          return false;
@@ -585,6 +601,7 @@ Page({
         gymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.fitness.contain,
         qlid: res.data.id,
+        gymshopid:res.data.id,
         itemNo: res.data.fitness.itemNo,
         price: res.data.price,
         address: res.data.gym.address,
@@ -614,7 +631,7 @@ Page({
 
         // setTimeout(function () {
 
-        wx.navigateTo({
+        wx.reLaunch({
           url: '../land/land',
         })
 
