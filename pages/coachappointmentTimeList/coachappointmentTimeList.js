@@ -340,7 +340,7 @@ Page({
       memberCourseId: that.data.fromData.memberCourseId || that.data.memberCourseId
     }
     $.Requests(api.coach_appointment.url, val).then((res) => {
- console.log("位置",res)
+ 
       that.setData({
         sjdata: res.data,
         // gymName: res.data.groundAppointments[0].gymName,

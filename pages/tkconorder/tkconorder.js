@@ -64,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("预约确认",options)
+    
     var that = this;
 
     if (options.orderType == 2 && options.isfj != "undefined") {
@@ -266,7 +266,7 @@ Page({
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
       
-  console.log("团控了01",res)
+  
       var now = new Date();
       var year = now.getFullYear();
       var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -417,8 +417,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-          console.log("团课预约",res)
-        console.log("团课预约", val)
+          
+        
         if (res.status == 0) {
           // wx.navigateTo({
           //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.tkgymdetails.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime + "&num=" + that.data.num,

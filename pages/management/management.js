@@ -68,8 +68,8 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("有效期",res)
-      console.log("有效期", val)
+      
+      
       
       if (!$.isNull(res.data.content) && res.status == 0){
         that.setData({
@@ -103,8 +103,8 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      console.log("分页", val)
-      console.log("分页",res)
+      
+      
       
       if (res.data.content == 0) {
         that.setData({
@@ -319,7 +319,7 @@ Page({
       page:1
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-  console.log("已关闭",res)
+  
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({
           type: 1

@@ -42,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options)
+    
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -161,8 +161,8 @@ Page({
      var that = this;
     var val = {}
     $.Requestsput(api.checkcancel.url + '/' + that.data.dingdanid, val).then((res) => {
-      console.log("res", that.data.dingdanid)
-      console.log("res",res)
+      
+      
       if(res.data == 0){
         wx.showModal({
           title: '提示',

@@ -43,7 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-console.log("options",options)
+
     // let data = JSON.parse(options.data)
     let a = options.data
     let data = JSON.parse(a)
@@ -88,7 +88,7 @@ console.log("options",options)
     }
 
     $.Requests_json(api.coach_app.url, datas).then(res => {
-      console.log("确认,", datas)
+      
       if (res.status == 0) {
         // wx.navigateTo({
         //   url: '../../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.htmlData.orderNo + "&remark=" + that.data.htmlData.remark + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.htmlData.address + "&price=" + res.data.appointmentCommon.price + "&type=" + 1 + "&bookingTime=" + res.data.appointmentCommon.bookingTime,

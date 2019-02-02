@@ -66,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("死角u预约时间",options)
+    
     var that = this;
     wx.getStorage({
       key: 'gymId',

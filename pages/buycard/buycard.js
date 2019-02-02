@@ -97,8 +97,8 @@ Page({
 
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
-      console.log("cip", val)
-      console.log("cip",res)
+      
+      
       if (res.status == 0){
         wx.navigateTo({
           url: '../succell/succell?cardnum='+1,

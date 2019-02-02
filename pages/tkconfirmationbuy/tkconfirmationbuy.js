@@ -270,8 +270,8 @@ Page({
         })
       }
           
-        console.log("全部满减",res)
-      console.log("全部满减", val)
+        
+      
 
 
 
@@ -371,7 +371,7 @@ Page({
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
         
-      console.log("团课",res)
+      
       let { price, areaId } = res.data
 
       var now = new Date();
@@ -450,7 +450,7 @@ Page({
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
 
-          console.log("死角",res)
+          
 
       if (that.data.vip == 1) {
         that.setData({
@@ -694,8 +694,8 @@ Page({
 
 
         $.Requests_json(api.member_order.url, val).then((res) => {
-console.log("私课确认",res)
-          console.log("私课确认", val)
+
+          
 
 
 

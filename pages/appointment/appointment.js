@@ -81,8 +81,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      console.log("weikaishi", val)
-      console.log("weikaishi", res)
+      
+      
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({

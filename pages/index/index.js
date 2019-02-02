@@ -256,7 +256,7 @@ Page({
   xparkshop: function() {
     var val = {}
     $.Requests(api.xparkshop.url + '/' + 1, val).then((res) => {
-       console.log("商店信息",res)
+       
       this.setData({
         swishop: res.data,
         mobilephone: res.data.mobile,
@@ -415,7 +415,7 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-      console.log("zizhu jianshen",res)
+      
 
       if (res.data.content.length != 0) {
         that.setData({
@@ -543,8 +543,8 @@ Page({
     that.setData({
       mytime: mytime
     })
-    console.log("mytime", mytime)
-    console.log("mytime", dateTime.getSeconds().toString().length)
+    
+    
     wx.getStorage({
       key: 'gymId',
       success: function(res) {
@@ -560,7 +560,7 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
-  console.log("团课",res)
+  
 
           if (res.data.length != 0) {
 
@@ -696,8 +696,8 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
-          console.log("健康。", val)
-  console.log("健康。",res)
+          
+  
 
 
           if (res.data.length != 0) {
@@ -927,8 +927,8 @@ Page({
           scheduleDate: formatDate
         }
         $.Requests(api.coach_schedulelist.url, val).then((res) => {
-                console.log("私课",res)
-          console.log("私课", val)
+                
+          
           that.setData({
                sk_schedulelist:res.data
              })
@@ -1095,7 +1095,7 @@ Page({
     })
   },
   tkselfdetailstwo: function (e) {
-    console.log("res",e)
+    
     var that = this;
 
 
@@ -1184,7 +1184,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
-        console.log(" that.data.latitudenum", that.data.latitudenum)
+        
         wx.openLocation({
           latitude: that.data.latitudenum,
           longitude: that.data.longitudenum,
@@ -1212,7 +1212,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
-        console.log("that.data.latitudenum", that.data.latitudenum)
+        
         wx.openLocation({
           latitude: that.data.latitudenum,
           longitude: that.data.longitudenum,
@@ -1338,7 +1338,7 @@ Page({
 
   classifyClick: function(e) { //配套服务子分类产品查询
     let index = e.target.dataset.index
-    console.log(index)
+    
     this.setData({
       shopindex: index
     })
@@ -1347,7 +1347,7 @@ Page({
       areaId: e.target.dataset.id
     }
     $.Requests(api.categorylist.url, val).then((res) => {
-      console.log("商品",res)
+      
       let data = res.data.content
       wx.getStorage({
         key: 'vip',

@@ -114,8 +114,8 @@ Page({
 
     }
     $.Requests(api.member.url, val).then((res) => {
-        console.log("会员查询",res)
-      console.log("会员查询", val)
+        
+      
       if (res.data.length == 0) {
 
         that.setData({

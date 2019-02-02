@@ -350,7 +350,7 @@ Page({
 
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-  console.log("zizhu",res)
+  
     let{price}=res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,

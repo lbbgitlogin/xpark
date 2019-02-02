@@ -88,7 +88,7 @@ var that =this;
    */
   onLoad: function (options) {
 
-    console.log("shopid",options)
+    
     var that = this;
     that.member();
     var now = new Date();

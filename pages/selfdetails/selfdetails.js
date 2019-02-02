@@ -99,7 +99,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("options",options)
+    
     var that = this;
     that.member();
     that.xparkshop();
@@ -199,7 +199,7 @@ Page({
       courseId: that.data.courseid,
     }
     $.Requests(api.checkcoach.url, val).then((res) => {
-    console.log("私课",res)
+    
       that.setData({
         checkcoach: res.status
       })
@@ -221,7 +221,7 @@ Page({
   xparkshop: function () {
     var val = {}
     $.Requests(apiindex.xparkshop.url + '/' + 1, val).then((res) => {
-      console.log("商店信息", res)
+      
       this.setData({
         xqgymName: res.data.gymName,
         xqaddress: res.data.address,
@@ -312,7 +312,7 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      console.log("思科事444",res)
+      
       that.setData({
         tkgymdetails: res.data,
         sikeprice: res.data.price,
@@ -342,8 +342,8 @@ Page({
 
         $.Requests(api.checkleague.url, val).then((res) => {
 
-          console.log("团课购买是否", res)
-          console.log("团课购买是否", val)
+          
+          
           if(res.data){
             that.setData({
               leagueif: true
@@ -368,7 +368,7 @@ Page({
 
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
       
-     console.log("团不可",res)
+     
       let {
         outdoorAddress,
         outdoorName,
@@ -468,7 +468,7 @@ Page({
 
   },
   mapNavigation: function(e) {
-    console.log("weizhi",e)
+    
     var addr = e.currentTarget.dataset.address;
     var name = e.currentTarget.dataset.name;
     var latitude = e.currentTarget.dataset.latitude;
@@ -518,8 +518,8 @@ Page({
         }
 
         $.Requests(api.member_course.url, val).then((res) => {
-    console.log("判断买",res)
-          console.log("判断买", val)
+    
+          
 
           if (res.data != '') {
             that.setData({
@@ -596,7 +596,7 @@ Page({
       appointmentDate: formatDate
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
-       console.log("自助健身",res)
+       
       that.setData({
         gymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.fitness.contain,

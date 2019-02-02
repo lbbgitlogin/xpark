@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-  console.log("zhifu",options)
+  
     if (options.sta == 1) { //私教预约跳转
       that.setData({
         itemno: 1,
