@@ -26,9 +26,11 @@ Page({
     formatDate: "", //今日日期
     scrolltop: "",
     ishidden: false,
+    ground_appointment: "",
     heightt: "",
     member_fitness: "",
     shoplist: "",
+    groundlength: "",
     scrootop: "",
     shopname: "",
     ptitemlist: "",
@@ -69,12 +71,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    console.log("optionsss", options)
 
     var that = this;
+
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           hidden: true,
           balance: res.data.cash + res.data.give,
@@ -90,8 +94,9 @@ Page({
         })
 
         that.showtime();
+
       },
-      fail: function (res) {
+      fail: function(res) {
         that.setData({
           hidden: true
         })
@@ -164,81 +169,106 @@ Page({
       })
     }
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         var h = 750 * res.windowHeight / res.windowWidth
 
 
       }
     })
-    app.GetUserInfo(function () {
+    app.GetUserInfo(function() {
 
     });
   },
+  ground_appointment: function() {
+    var that = this;
+    var val = {
+      areaId: that.data.areaId
+    }
+    $.Requests(api.ground_appointment.url, val).then((res) => {
 
+      console.log("可约场次", res)
+      that.setData({
+        groundlength: res.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
-  showtime: function () {
+  showtime: function() {
     var that = this;
-    var now = new Date();
-    var nowTime = now.getTime();
-    var oneDayTime = 24 * 60 * 60 * 1000;
-    var daytime = {};
-    var daynewday = {};
-    var weekend = {};
-    for (var i = 0; i < 7; i++) {
+    var val = {
+      areaId: that.data.areaId
+    }
+    $.Requests(api.ground_appointment.url, val).then((res) => {
 
-      //显示周一
-      var ShowTime = nowTime + i * oneDayTime;
-      //初始化日期时间
-      var myDate = new Date(ShowTime);
+      var now = new Date();
+      var nowTime = now.getTime();
+      var oneDayTime = 24 * 60 * 60 * 1000;
+      var daytime = {};
+      var daynewday = {};
+      var weekend = {};
 
+      for (var i = 0; i < 7; i++) {
 
-      var year = myDate.getFullYear();
-      var month = myDate.getMonth() + 1 < 10 ? "0" + (myDate.getMonth() + 1) : myDate.getMonth() + 1;
-      var date = myDate.getDate() < 10 ? "0" + (myDate.getDate()) : myDate.getDate();
-
-
-
-      var str = "星期" + "日一二三四五六".charAt(myDate.getDay());
+        //显示周一
+        var ShowTime = nowTime + i * oneDayTime;
+        //初始化日期时间
+        var myDate = new Date(ShowTime);
 
 
-      daytime[i] = year + "-" + month + "-" + date;
-      daynewday[i] = year + '-' + month + "-" + date;
-      weekend[i] = str;
-      var timelist = {};
-      timelist.time = daytime;
-      timelist.week = weekend;
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1 < 10 ? "0" + (myDate.getMonth() + 1) : myDate.getMonth() + 1;
+        var date = myDate.getDate() < 10 ? "0" + (myDate.getDate()) : myDate.getDate();
 
+        var str = "星期" + "日一二三四五六".charAt(myDate.getDay());
+
+        daytime[i] = {};
+        daytime[i].time = year + "-" + month + "-" + date;
+        daytime[i].des =res.data[i];
+        //场次数据在这加
+        daynewday[i] = year + '-' + month + "-" + date;
+        weekend[i] = str;
+        var timelist = {};
+        timelist.time = daytime;
+        timelist.week = weekend;
+        timelist.des = res.data
+      }
       that.setData({
         daytime: daytime,
         weekend: weekend,
         timelist: timelist,
         daynewday: daynewday,
       })
+      console.log("timelisssst", timelist)
+      console.log("可约场次", res)
+  //  that.setData({
+  //    ground_appointment:res.data
+  //  })
+      
+    })
 
-
-    }
-
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
-  ballappointment: function (e) {
+  ballappointment: function(e) {
+    console.log("daeee",e)
     var that = this;
 
     if (that.data.sta == 1) {
@@ -253,7 +283,7 @@ Page({
       wx.navigateTo({
         url: '../ballappointment/ballappointment?areaId=' + that.data.areaId + "&day=" + e.target.dataset.day + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&shopname=" + that.data.shopname,
       })
-      
+
 
     }
 
@@ -264,28 +294,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

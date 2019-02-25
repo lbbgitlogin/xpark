@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    countNum: 5
+    countNum: 3
   },
 
   /**

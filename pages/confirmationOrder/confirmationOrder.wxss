@@ -9,11 +9,28 @@ page{
   height: 108rpx;
   font-size: 32rpx
 }
+.header{
+  width: 730rpx;
+  height: 36rpx;
+  border-radius: 18rpx;
+  background: #171A1D;
+  margin:20rpx auto 0 auto;
+
+
+}
+
+  .bj_pic {
+    width: 93%;
+background-image: url('http://i2.bvimg.com/677757/6d754f13e833342e.png');
+background-size:100% 100%;
+margin:-17rpx auto 0 auto;
+
+}
 .order_list{
-  padding: 40rpx 0 0  0;
+  padding: 4rpx 0 40rpx 0;
   width: 100%;
   margin: 0 auto;
-  background: #282B30;
+  box-shadow: 0rpx 20rpx 50rpx -15rpx #2D3135  inset;
   box-sizing: border-box
 }
 .hide{
@@ -30,12 +47,13 @@ display: none
 
 }
 .appointment_datails{
-width:100%;
+width:94%;
 margin:0 auto;
-padding:36rpx 28rpx 36rpx 28rpx;
+padding:40rpx 0 36rpx 0;
 display:flex;
-border-bottom:1rpx solid #1B1E23;
+border-bottom:1rpx solid #5F6672;
 box-sizing:border-box;
+
 
 }
 .datails_imghead{
@@ -68,13 +86,12 @@ box-sizing:border-box;
 
 }
 .list_booking{
-  width: 100%;
+  width: 94%;
   height: 115rpx;
   margin: 0 auto;
-  border-bottom:1rpx solid #1B1E23;
+  border-bottom:1rpx solid #5F6672;
   display: flex;
   align-items: center;
-  padding:0 28rpx;
 box-sizing:border-box;
 
 }
@@ -144,23 +161,25 @@ text-align: center;
 line-height: 98rpx
 }
 .input_box_input_input{
-  background: #202428;
   margin: 36rpx auto 0 auto;
-  width: 694rpx;
+  width: 654rpx;
   font-size:28rpx;
-  height: 160rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #5F6672;
+  height: 130rpx;
   padding:20rpx 28rpx 20rpx 28rpx;
 box-sizing:border-box;
   color: #999999
 }
 .textcls{
  color:#999;
-width:95%;
+width:654rpx;
   font-size:28rpx;
- min-height: 160rpx;
-background:#202428;
+ min-height: 130rpx;
+ border: 1rpx solid #5F6672;
 margin:36rpx auto 0 auto;
 padding:20rpx;
+border-radius:8rpx;
 box-sizing:border-box;
 
 

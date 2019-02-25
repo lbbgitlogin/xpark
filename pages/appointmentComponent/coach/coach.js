@@ -10,7 +10,7 @@ Page({
    */
   data: {
     focus: false,
-    isShowText: false,
+    isShowText: true,
     price:"",
     textareavalue: "",
     imgurl: CONFIG.config.imgUrl,

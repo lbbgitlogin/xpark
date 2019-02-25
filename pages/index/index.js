@@ -176,7 +176,7 @@ Page({
     var day = now.getDate();
 
     var weekend = '日一二三四五六'.charAt(new Date().getDay());
-
+    console.log("weekend", weekend)
     this.setData({
       day: day,
       weekend: weekend,
@@ -263,6 +263,11 @@ Page({
         latitudenum: res.data.latitude,
         longitudenum: res.data.longitude
       })
+    })
+  },
+  datails: function () {
+    wx.navigateTo({
+      url: '../interests/interests?vip=' + this.data.vip,
     })
   },
   choosename: function(e) {
@@ -415,7 +420,7 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-      
+      console.log("自助剑圣",res)
 
       if (res.data.content.length != 0) {
         that.setData({
@@ -537,9 +542,14 @@ Page({
     var that = this;
     var dateTime = new Date();
     var hourse = dateTime.getHours();  
-    var Minutes = dateTime.getMinutes().toString().length < 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes(); 
-    var Seconds =  dateTime.getSeconds().toString().length < 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();  
-    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    var Minutes = dateTime.getMinutes().toString().length == 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes(); 
+    var Seconds =  dateTime.getSeconds().toString().length == 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();  
+    var mytime = hourse + ':' + Minutes;
+    console.log("mytime", Minutes)
+    console.log("mytime", Seconds)
+    console.log("mytime", dateTime.getMinutes().toString().length)
+    
+    console.log("mytime", mytime)
     that.setData({
       mytime: mytime
     })
@@ -561,7 +571,7 @@ Page({
         }
         $.Requests(api.league_schedulelist.url, val).then((res) => {
   
-
+          console.log("团课", res)
           if (res.data.length != 0) {
 
 
@@ -675,9 +685,9 @@ Page({
     var that = this;
     var dateTime = new Date();
     var hourse = dateTime.getHours();
-    var Minutes = dateTime.getMinutes();
-    var Seconds = dateTime.getSeconds();
-    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    var Minutes = dateTime.getMinutes().toString().length == 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds().toString().length == 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes;
     that.setData({
       mytime: mytime
     })
@@ -793,9 +803,9 @@ Page({
     var that = this;
     var dateTime = new Date();
     var hourse = dateTime.getHours();
-    var Minutes = dateTime.getMinutes();
-    var Seconds = dateTime.getSeconds();
-    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    var Minutes = dateTime.getMinutes().toString().length == 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds().toString().length == 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes;
     that.setData({
       mytime: mytime
     })
@@ -852,9 +862,9 @@ Page({
     var that = this;
     var dateTime = new Date();
     var hourse = dateTime.getHours();
-    var Minutes = dateTime.getMinutes();
-    var Seconds = dateTime.getSeconds();
-    var mytime = hourse + ':' + Minutes + ':' + Seconds;
+    var Minutes = dateTime.getMinutes().toString().length == 1 ? '0' + dateTime.getMinutes() : dateTime.getMinutes();
+    var Seconds = dateTime.getSeconds().toString().length == 1 ? '0' + dateTime.getSeconds() : dateTime.getSeconds();
+    var mytime = hourse + ':' + Minutes;
     that.setData({
       mytime: mytime
     })
@@ -978,9 +988,9 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          
+      
         
-          if (res.data == null) {
+          if (res.data == '' || res.data == null ) {
 
 
           } else {
@@ -1405,6 +1415,7 @@ Page({
   //下拉刷新
   onPullDownRefresh: function() {
     var that = this;
+    var weekend = '日一二三四五六'.charAt(new Date().getDay());
     wx.showNavigationBarLoading() //在标题栏中显示加载
 
     setTimeout(function() {
@@ -1422,6 +1433,7 @@ Page({
       that.setData({
         shopindex: 0,
         day: day,
+        weekend: weekend,
         timeclickif:2
       })
 

@@ -719,9 +719,9 @@ background-color:#fff;
 .login_banner {
   width: 750rpx;
   vertical-align: middle;
-  height: 1206rpx;
+
   margin: 0 auto;
-  display: bloc
+
 }
 
 .location {

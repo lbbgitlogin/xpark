@@ -155,7 +155,7 @@ box-sizing:border-box;
 }
 .textcls{
  color:#999;
-width:95%;
+width:694rpx;
   font-size:28rpx;
  min-height: 160rpx;
 background:#202428;

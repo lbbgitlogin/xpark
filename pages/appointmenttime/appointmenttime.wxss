@@ -26,7 +26,7 @@ align-items: center
 .font_week{
  font-size: 28rpx;
  color: #FFFFFF;
- flex:1;
+
  margin-right: 24rpx
 }
 .but_bj{

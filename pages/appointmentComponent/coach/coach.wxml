@@ -1,7 +1,7 @@
 <!--pages/confirmationOrder/confirmationOrder.wxml-->
-
+<view class='header'></view>
+ <view class='bj_pic'>
 <view class='order_list'>
-  <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
       <image class='datails_imghead' src='{{imgurl}}{{htmlData.icon}}'></image>
@@ -54,12 +54,13 @@
   </view>
   <view class='remarks'>
     <view class='order_name'>备注要求</view>
- <view class='order_name'>备注要求</view>
+ <!-- <view class='order_name'>备注要求</view> -->
   <textarea   class='input_box_input_input {{focus?"show":"hide"}}'  placeholder="" placeholder-style="color:#999;font-size:26rpx"  bindinput="textareavalue" fixed="true" bindblur='onShowText'  style='background-colo:#fff' value="{{textareavalue}}" focus="{{focus}}" 
         show-confirm-bar="{{bar}}" cursor-spacing="60px" maxlength="150"/>
   <view class='textcls {{focus?"hide":"show"}}' bindtap='onShowTextare' wx:if="{{isShowText}}">{{textareavalue}}</view>
     </view>
    
+</view>
 </view>
 <form report-submit="true" bindsubmit="submitorder" >
       

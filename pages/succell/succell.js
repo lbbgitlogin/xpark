@@ -7,16 +7,20 @@ Page({
   data: {
     loadngtime: "",
     timeshow: 3,
-    ljyy:true,
-    itemno: 0
+    id: '',
+    ljyy: true,
+    itemno: 0,
+    ifupload: false,
+    shoptype: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log("支付返回", options)
     var that = this;
-  
+
     if (options.sta == 1) { //私教预约跳转
       that.setData({
         itemno: 1,
@@ -44,11 +48,13 @@ Page({
 
         }, 1000)
       })
-    } else if (options.shoptype == 3) {  //商品购买跳转
+    } else if (options.shoptype == 3) { //商品购买跳转
       that.setData({
-        itemno: 0
+        itemno: 0,
+        shoptype: 3,
+        id: options.id
       })
-    } else if (options.optionstype == 2) {//团课
+    } else if (options.optionstype == 2) { //团课
       that.setData({
         itemno: 1,
         loadngtime: setInterval(function() {
@@ -61,7 +67,7 @@ Page({
               wx.navigateTo({
                 url: `../tkconorder/tkconorder?memberCourseId=${options.memberCourseId}&orderNo=${options.orderNo}&optionstype=${options.optionstype}&tk_id=${options.tk_id}&formatdates=${options.formatdates}&price=${options.price}&buy_num=${options.buy_num}&starttime=${options.starttime}`
               })
-              
+
             }
           }
         }, 1000)
@@ -85,7 +91,7 @@ Page({
                   page.onLoad();
                 }
               })
-              
+
             }
           }
 
@@ -95,9 +101,9 @@ Page({
 
       that.setData({
         itemno: 0,
-        ljyy:false
+        ljyy: false
       })
-    } else {//球类跳转
+    } else { //球类跳转
       that.setData({
         itemno: 1,
         loadngtime: setInterval(function() {
@@ -111,7 +117,7 @@ Page({
 
                 url: '../appointmenttime/appointmenttime?id=' + options.id + "&memberCourseId=" + options.memberCourseId + "&orderNo=" + options.orderNo + "&address=" + options.address + "&price=" + options.price + "&icon=" + options.gymName + "&icon=" + options.icon + "&sta=" + options.sta + "&areaId=" + options.areaId + "&memberFitnessId=" + options.memberFitnessId + "&shopname=" + options.shopname,
               })
-              
+
             }
           }
 
@@ -125,6 +131,18 @@ Page({
   onReady: function() {
 
   },
+  onUnload: function() {
+
+    if (this.data.ifupload == false) {
+      clearInterval(this.data.loadngtime)
+      wx.navigateBack({
+
+        delta: 1, //想要返回的层级
+
+      })
+    }
+
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -133,6 +151,9 @@ Page({
 
   },
   my_appointment: function() {
+    this.setData({
+      ifupload: true
+    })
     wx.switchTab({
       url: '../appointment/appointment',
     })
@@ -141,26 +162,22 @@ Page({
     clearInterval(this.data.loadngtime)
     wx.switchTab({
       url: '../index/index',
-      success: function (e) {
+      success: function(e) {
         var page = getCurrentPages().pop();
         if (page == undefined || page == null) return;
         page.onLoad();
-      } 
+      }
     })
-    
+    this.setData({
+      ifupload: true
+    })
+
 
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
 
   },
 

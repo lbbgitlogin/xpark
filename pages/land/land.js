@@ -1,5 +1,3 @@
-// pages/land/land.js
-
 var app = getApp();
 var api = require('../../api/land.js');
 var selapi = require('../../api/selfdails.js');
@@ -138,14 +136,14 @@ Page({
     }
   },
   onGotUserInfo: function (e) {
-
+  console.log("登陆授权",e)
     var that = this;
     if (e.detail.userInfo != null) { //用户点击允许授权
       
       that.setData({
-        icon: e.detail.rawData.avatarUrl,
-        gender: e.detail.rawData.gender,
-        memberName: e.detail.rawData.nickName,
+        icon: e.detail.userInfo.avatarUrl,
+        gender: e.detail.userInfo.gender,
+        memberName: e.detail.userInfo.nickName,
       })
       that.formSubmit(e)
     } else {
@@ -199,7 +197,6 @@ Page({
     
     var thisobj = this;
     $.Requests_jsonlogion(api.login.url, val).then((res) => {
-         
          
       if (res.data != null) {
         var obj = {

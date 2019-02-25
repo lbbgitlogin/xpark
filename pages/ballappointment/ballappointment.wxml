@@ -11,15 +11,21 @@
     {{day}} 
   </view>
 </view>
-<view class='ball-top'>
-  <view class="bgr">
+<!-- <view class='ball-top'> -->
+  <!-- <view class="bgr">
     <image bindtap='ballleft' class="leftBtn" src="../../img/left.png" />
-  </view>
-  <text class='ball-name'>{{roundName[arrIndex].groundName}}</text>
-  <view class="bgr">
+  </view> -->
+  <scroll-view class="scroll-view_H" scroll-x style="width: 100%;background: #282B30;padding: 0 15px;wxcs_style_padding: 0 28rpx;box-sizing: border-box;">
+<!--  -->
+ <view  bindtap="classifyClick" wx:for="{{roundName}}" wx:key="id" data-id="{{item.id}}" data-groundname="{{item.groundName}}" class="scroll-view-item_H {{groundId==item.id?'chosebox':''}}">
+{{item.groundName}}
+ </view>
+</scroll-view>
+  <!-- <text class='ball-name'>{{roundName[arrIndex].groundName}}</text> -->
+  <!-- <view class="bgr">
     <image  bindtap='ballright' class="rightBtn" src="../../img/right.png" />
-  </view>
-</view>
+  </view> -->
+<!-- </view> -->
 
 <view class='ball-timeList'>
   <view bindtap="add" data-item='{{item}}'  class='ball-timeList-item {{item.acticed ? "appointment" : ""}} {{ item.canSelect ? "canSelect" : "cantSelect"}} {{ item.falg ? "active" : ""}}' wx:for="{{yuyueList}}" wx:key='id' wx:for-item="item" wx:key="index">

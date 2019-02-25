@@ -9,6 +9,7 @@ Page({
   data: {
     areaId: "",
     shopname: "",
+    groundNames: "",
     address: "",
     id: "",
     arrIndex: -1,
@@ -22,8 +23,8 @@ Page({
     gymName: "",
     id: "",
     timenext: "",
-    groundName: "",
-    groundId: "",
+    groundname: "",
+    groundId: 0,
     form: {
       bookingDate: "2018-12-28",
       bookingTime: "",
@@ -130,7 +131,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+     console.log("options",options)
     var that = this;
 
     that.setData({
@@ -164,12 +165,12 @@ Page({
       areaId: that.data.areaId
     }
     $.Requests(api.groundball.url, val).then((res) => {
-
+    console.log("球场列表",res)
 
       that.setData({
         roundName: res.data,
         groundId: res.data[0].id,
-        // groundName: res.data[0].groundName,
+       groundNames: res.data[0].groundName,
         // groundId: res.data.groundId,
         // groundName: res.data.groundName
       })
@@ -181,53 +182,46 @@ Page({
         data: obj,
       })
       // 绘制表格
-      that.ballright()
+      that.classifyClick()
 
     })
 
   },
-  ballright: function (e) {
-    // 
-    let arrIndex = this.data.arrIndex;
-    const roundName = this.data.roundName;
+  classifyClick: function (e) {
+    var that =this;
+    console.log("场地选择",e)
 
-
-
-    if (arrIndex == roundName.length - 1) {
-      return
-    } else {
-      arrIndex++
-      var groundId = roundName[arrIndex].id;
-      this.setData({
-        groundId: groundId
+    if (e == undefined){
+      var val = {
+        areaId: that.data.areaId,
+        appointmentDate: that.data.day,
+        groundId:  that.data.groundId,
+      }
+      that.setData({
+        groundId: that.data.groundId,
+        groundname:that.data.groundNames
+      })
+    }else{
+      var val = {
+        areaId: that.data.areaId,
+        appointmentDate: that.data.day,
+        groundId: e.currentTarget.dataset.id ,
+      }
+      that.setData({
+        groundId: e.currentTarget.dataset.id,
+        groundname: e.currentTarget.dataset.groundname,
       })
     }
-    this.setData({
-      arrIndex: arrIndex
-
-    })
-
-    var that = this;
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
-
-
-    var formatDate = year + '-' + month + '-' + day;
-
-
-    var val = {
-      areaId: that.data.areaId,
-      appointmentDate: that.data.day,
-      groundId: that.data.groundId,
-    }
+    console.log("that.data.groundId", that.data.groundId)
     $.Requests(api.appointment.url, val).then((res) => {
+      console.log("222",res)
+      console.log("222", val)
       let _this = this
 
 
       _this.setData({
         data: res.data,
+
         // gymName: res.data.groundAppointments[0].gymName,
         // id: res.data.groundAppointments[0].id,
       })
@@ -237,32 +231,6 @@ Page({
   },
   ballleft: function () {
     var that = this;
-
-    // 
-    let arrIndex = this.data.arrIndex;
-    const roundName = this.data.roundName;
-
-    if (arrIndex == 0) {
-      return
-    } else {
-      arrIndex--
-      var groundId = roundName[arrIndex].id;
-      that.setData({
-        groundId: groundId
-      })
-    }
-    that.setData({
-      arrIndex: arrIndex
-    })
-
-    var that = this;
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
-
-
-    var formatDate = year + '-' + month + '-' + day;
 
 
     var val = {
@@ -427,7 +395,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '../confirmationOrder/confirmationOrder?time=' + that.data.timenext + "&gymName=" + that.data.gymName + "&groundName=" + that.data.roundName[that.data.arrIndex].groundName + "&areaId=" + that.data.areaId + "&address=" + that.data.address + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&day=" + that.data.day + "&price=" + that.data.price + "&groundId=" + that.data.groundId + "&type=场馆",
+      url: '../confirmationOrder/confirmationOrder?time=' + that.data.timenext + "&gymName=" + that.data.gymName + "&groundName=" + that.data.groundname + "&areaId=" + that.data.areaId + "&address=" + that.data.address + "&id=" + that.data.id + "&memberFitnessId=" + that.data.memberFitnessId + "&orderNo=" + that.data.orderNo + "&day=" + that.data.day + "&price=" + that.data.price + "&groundId=" + that.data.groundId + "&type=场馆",
     })
 
   },

@@ -27,7 +27,7 @@ Page({
     lenaueid: '',
     timechoose: '',
     sta: '',
-    leagueif:false,
+    leagueif: false,
     checkcoach: 0,
     jlicon: '',
     coachId: '',
@@ -56,7 +56,7 @@ Page({
     timeshow: "",
     formatDates: "",
     couponid: "",
-    pdcourseid:"",
+    pdcourseid: "",
     coachId: "",
     memberFitnessId: "",
     shopid: "",
@@ -67,28 +67,33 @@ Page({
     memberId: "",
   },
   buynow: function() {
-    var that=this;
+    var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           memberId: res.data.memberId,
           hidden: 0
         })
       },
-      fail: function (res) {
-  
-        // setTimeout(function () {
+      fail: function(res) {
+
+     setTimeout(function () {
 
         wx.reLaunch({
           url: '../land/land',
         })
 
-      //  }, 1000) 延迟时间 这里是1秒
+ }, 100) 
         return false;
       }
     })
-   
+
+  },
+  datails: function() {
+    wx.navigateTo({
+      url: '../interests/interests?vip=' + this.data.vip,
+    })
   },
   closebuynow: function() {
     this.setData({
@@ -99,7 +104,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    console.log("详情", options)
     var that = this;
     that.member();
     that.xparkshop();
@@ -166,7 +171,7 @@ Page({
     } else if (options.type == 1 && options.itemNo == "SI-FIT") {
       that.gymdetails()
     } else if (options.type == 2 && options.sta != 1) {
-     
+
       that.league_schedule();
     } else if (options.sta == 1 && options.type == 2) {
       that.coach_course();
@@ -199,7 +204,7 @@ Page({
       courseId: that.data.courseid,
     }
     $.Requests(api.checkcoach.url, val).then((res) => {
-    
+
       that.setData({
         checkcoach: res.status
       })
@@ -218,10 +223,10 @@ Page({
 
     })
   },
-  xparkshop: function () {
+  xparkshop: function() {
     var val = {}
     $.Requests(apiindex.xparkshop.url + '/' + 1, val).then((res) => {
-      
+
       this.setData({
         xqgymName: res.data.gymName,
         xqaddress: res.data.address,
@@ -235,16 +240,16 @@ Page({
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
-      
-        if (that.data.optionstype == 1){
+      success: function(res) {
+
+        if (that.data.optionstype == 1) {
           var val = {
             couponType: 'f',
             goodsId: that.data.gymshopid,
             memberId: res.data.memberId,
             gymId: that.data.gymId,
           }
-        } else if (that.data.optionstype == 2){
+        } else if (that.data.optionstype == 2) {
           var val = {
             couponType: 'c',
             goodsId: that.data.tk_id,
@@ -252,9 +257,9 @@ Page({
             gymId: that.data.gymId,
           }
         }
-     
+
         $.Requests(apicou.coupon_entity.url, val).then((res) => {
-         
+
           res.data.map(item => {
             item.endTime = item.endTime.substring(0, item.endTime.length - 10)
             return item;
@@ -268,15 +273,15 @@ Page({
 
 
         })
-         
 
 
-        
+
+
 
       },
 
     })
-    
+
   },
   member: function() { //会员卡查询
     var that = this;
@@ -289,8 +294,8 @@ Page({
         }
         $.Requests(api.member.url, val).then((res) => {
 
-         
-          if (res.data.length == 0) {
+
+          if (res.data == '' || res.data == null) {
 
 
           } else {
@@ -312,7 +317,7 @@ Page({
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
+
       that.setData({
         tkgymdetails: res.data,
         sikeprice: res.data.price,
@@ -320,20 +325,20 @@ Page({
         coachId: res.data.coachId,
         icon: res.data.icon,
         useNotes: res.data.course.useNotes,
-     
+
 
       })
       that.checkcoach();
-      
+
       that.tkshoptedails();
     })
-  
+
   },
-  checkleague:function(){
+  checkleague: function() {
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
 
         var val = {
           memberId: res.data.memberId,
@@ -342,14 +347,14 @@ Page({
 
         $.Requests(api.checkleague.url, val).then((res) => {
 
-          
-          
-          if(res.data){
+
+
+          if (res.data) {
             that.setData({
               leagueif: true
             })
-           
-          }else{
+
+          } else {
             that.setData({
               leagueif: false
             })
@@ -360,15 +365,15 @@ Page({
 
       }
     })
-   
+
   },
   league_schedule: function() {
     var that = this;
     var val = {}
 
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      
-     
+
+
       let {
         outdoorAddress,
         outdoorName,
@@ -394,7 +399,7 @@ Page({
       } = res.data.course;
       let {
         courseGalleries,
-       
+
       } = res.data;
 
 
@@ -424,34 +429,35 @@ Page({
 
       })
       that.tkshoptedails()
-       that.checkleague();
+      that.checkleague();
     })
-  
+
   },
   next_self: function(e) {
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
-           memberId: res.data.memberId
+          memberId: res.data.memberId
         })
       },
-       fail: function (res) {
-  
-   //  setTimeout(function () {
+      fail: function(res) {
 
-         wx.reLaunch({
-           url: '../land/land',
-         })
+      setTimeout(function () {
 
-   //  }, 1000)延迟时间 这里是1秒
-         return false;
-       }
-      
-   })
-  
+        wx.reLaunch({
+          url: '../land/land',
+        })
+
+      }, 100)
+      //延迟时间 这里是1秒
+        return false;
+      }
+
+    })
+
 
 
 
@@ -468,7 +474,7 @@ Page({
 
   },
   mapNavigation: function(e) {
-    
+     console.log("eee",e)
     var addr = e.currentTarget.dataset.address;
     var name = e.currentTarget.dataset.name;
     var latitude = e.currentTarget.dataset.latitude;
@@ -518,8 +524,8 @@ Page({
         }
 
         $.Requests(api.member_course.url, val).then((res) => {
-    
-          
+
+
 
           if (res.data != '') {
             that.setData({
@@ -596,12 +602,12 @@ Page({
       appointmentDate: formatDate
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
-       
+
       that.setData({
         gymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.fitness.contain,
         qlid: res.data.id,
-        gymshopid:res.data.id,
+        gymshopid: res.data.id,
         itemNo: res.data.fitness.itemNo,
         price: res.data.price,
         address: res.data.gym.address,
@@ -621,21 +627,21 @@ Page({
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           memberId: res.data.memberId,
-        
+
         })
       },
-      fail: function (res) {
+      fail: function(res) {
 
-        // setTimeout(function () {
+        setTimeout(function () {
 
         wx.reLaunch({
           url: '../land/land',
         })
 
-        //  }, 1000) 延迟时间 这里是1秒
+  }, 100) 
         return false;
       }
     })
@@ -686,7 +692,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.tkshoptedails()
   },
 
   /**
@@ -720,7 +726,29 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    console.log("分享",res)
+  
+    return {
+  
 
+      title: res.target.dataset.name,
+
+      path: 'pages/selfdetails/selfdetails?id=' + res.target.dataset.id + "&itemNo=" + res.target.dataset.itemno + "&type=" + res.target.dataset.type + "&sta=" + res.target.dataset.sta + "&coachCourseId=" + res.target.dataset.coachcourseid + "&timechoose=" + res.target.dataset.timechoose + "&timeshow=" + res.target.dataset.timeshow + "&courseid=" + res.target.dataset.courseid + "&scheduledate=" + res.target.dataset.scheduledate,
+      //分享成功后执行
+      
+      success: function(res) {
+
+        console.log("--------------转发成功--------------------")
+
+      },
+
+      fail: function(res) {
+
+        console.log("--------------转发失败--------------------")
+
+      }
+
+    }
   }
 })

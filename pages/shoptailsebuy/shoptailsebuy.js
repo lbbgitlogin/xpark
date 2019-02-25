@@ -37,7 +37,7 @@ Page({
     shopprice: "",
     xparkprice: "",
     twopric: "",
-    buttonif:false,
+    buttonif: false,
     couponlenght: "",
     choose: false,
     memberName: "",
@@ -62,13 +62,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+
     var that = this;
 
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
@@ -85,7 +85,7 @@ Page({
         })
         wx.getStorage({
           key: 'gymId',
-          success: function (res) {
+          success: function(res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id || '',
@@ -115,15 +115,15 @@ Page({
 
 
       },
-      fail: function (res) {
-     
-     
+      fail: function(res) {
+
+
 
         wx.reLaunch({
-            url: '../land/land',
-          })
+          url: '../land/land',
+        })
 
-      
+
 
       },
     })
@@ -135,7 +135,7 @@ Page({
 
   },
   // 减号 1
-  bindMinus: function (e) {
+  bindMinus: function(e) {
     if (this.data.buy_num > 1) {
       this.pay_num(Number(this.data.buy_num) - 1)
     }
@@ -146,14 +146,14 @@ Page({
     }
   },
   // 加号 1
-  bindPlus: function (e) {
-    if (Number(this.data.buy_num) >0) {
-      this.pay_num(Number(this.data.buy_num)+ 1)
+  bindPlus: function(e) {
+    if (Number(this.data.buy_num) > 0) {
+      this.pay_num(Number(this.data.buy_num) + 1)
     }
   },
 
-  pay_num: function (e) {
-    
+  pay_num: function(e) {
+
     var that = this;
     if (e > 0) {
       that.setData({
@@ -180,21 +180,23 @@ Page({
       }
 
     }
-   
+
 
   },
 
-  shopdetails: function () {
+  shopdetails: function() {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      
-      let { price } = res.data
+
+      let {
+        price
+      } = res.data
       that.setData({
         shopdetails: res.data,
         gymName: res.data.gym.gymName,
         areaId: res.data.areaId,
-        shopprice:res.data.price,
+        shopprice: res.data.price,
         shopprice: price,
         price: price,
         xparkprice: (price * 0.9).toFixed(2),
@@ -208,8 +210,8 @@ Page({
       if (that.data.category == 2) {
         that.setData({
           price: 0,
-          xparkprice:0,
-          twoprice:0
+          xparkprice: 0,
+          twoprice: 0
         })
       }
 
@@ -217,19 +219,19 @@ Page({
 
     })
   },
-  member: function () { //会员卡查询
+  member: function() { //会员卡查询
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         var val = {
           memberId: res.data.memberId,
 
         }
         $.Requests(api.member.url, val).then((res) => {
-     
 
-          if (res.data.length == 0) {
+
+          if (res.data == '' || res.data == null) {
 
 
           } else {
@@ -245,13 +247,16 @@ Page({
     })
 
   },
-  league_schedule: function () {
+  league_schedule: function() {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      
 
-      let { price, areaId } = res.data
+
+      let {
+        price,
+        areaId
+      } = res.data
 
       var now = new Date();
       var year = now.getFullYear();
@@ -276,7 +281,7 @@ Page({
 
     })
   },
-  coach_course: function () { //私课详情
+  coach_course: function() { //私课详情
 
     var that = this;
     var val = {
@@ -300,7 +305,7 @@ Page({
       })
     })
   },
-  yuenum: function () {
+  yuenum: function() {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -316,7 +321,7 @@ Page({
     })
 
   },
-  couponlist: function () {
+  couponlist: function() {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -331,12 +336,12 @@ Page({
 
     })
   },
-  closebuynow: function () {
+  closebuynow: function() {
     this.setData({
       hidden: 1
     })
   },
-  gymdetails: function () {
+  gymdetails: function() {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -354,7 +359,9 @@ Page({
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
 
-      let { price } = res.data
+      let {
+        price
+      } = res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
         gymdetails: res.data,
@@ -380,14 +387,14 @@ Page({
 
 
   },
-  choosecoupon: function () {
+  choosecoupon: function() {
     this.setData({
       choose: true,
       hidden: 0
     })
 
   },
-  choosecouponbtn: function () {
+  choosecouponbtn: function() {
     if (this.data.choose) {
       this.setData({
         choose: false,
@@ -403,7 +410,7 @@ Page({
 
 
   },
-  testSubmit: function (e) {
+  testSubmit: function(e) {
 
 
 
@@ -413,7 +420,7 @@ Page({
     that.setData({
       buttonif: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
 
       that.setData({
         buttonif: false
@@ -423,19 +430,14 @@ Page({
     var vals = {
       formId: e.detail.formId
     }
-    
+
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-
-      
-      
-      
-
     })
     if (that.data.yuechoose) {
 
       if (that.data.optionstype == 2 && that.data.sta != 1) {
 
-        var val = {
+        var val = { 
           areaId: that.data.tkareaId,
           couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
@@ -452,7 +454,7 @@ Page({
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
 
-          
+
 
           if (res.status == 0) {
 
@@ -489,8 +491,8 @@ Page({
 
         $.Requests_json(api.member_order.url, val).then((res) => {
 
-          
-          
+
+
 
           if (res.status == 0) {
 
@@ -504,7 +506,8 @@ Page({
 
 
       } else if (that.data.shoptype == 3) {
-
+       
+       
         var val11 = {
           areaId: that.data.areaId,
           couponEntityId: that.data.couponid || 0,
@@ -521,8 +524,28 @@ Page({
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
-    
+          console.log("支付成功", val11)
+        console.log("支付成功",res)
 
+          // wx.requestPayment({
+          //   'timeStamp': data.Info.timeStamp,
+          //   'nonceStr': data.Info.nonceStr,
+          //   'package': data.Info.package,
+          //   'signType': data.Info.signType,
+          //   'paySign': data.Info.paySign,
+          //   'success': function (res) {
+          //     that.returnUrl(val.OrderNum);
+          //   },
+          //   'fail': function (res) {
+          //     $.gotopage('../favorableorderdetail/favorableorderdetail?on=' + val.OrderNum);
+          //   },
+          //   'complete': function (res) {
+          //     if (res.errMsg == "requestPayment:cancel") {
+          //       $.gotopage('../favorableorderdetail/favorableorderdetail?on=' + val.OrderNum);
+          //       that.sendMessage(val.OrderNum, 1);
+          //     }
+          //   }
+          // })
           if (res.status == 0) {
 
             // var val = {
@@ -533,10 +556,13 @@ Page({
 
 
             // })
-
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+              url: '/pages/web-view/web-view?orderno=' + res.data.orderNo,
             })
+
+            // wx.navigateTo({
+            //   url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+            // })
           }
 
         })
@@ -553,7 +579,7 @@ Page({
 
 
 
-      } else {//球类预约跳转成功页面跳转预约页面
+      } else { //球类预约跳转成功页面跳转预约页面
         var val = {
           areaId: that.data.areaId,
           couponEntityId: that.data.couponid || 0,
@@ -570,14 +596,14 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-          
-          
-          if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
+
+
+          if (res.data.success && that.data.itemNo != "SI-BALL") { //场地自助购买跳转
 
             wx.navigateTo({
               url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
             })
-          } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
+          } else if (res.data.success && that.data.itemNo == "SI-BALL") { //球类跳转
 
             wx.navigateTo({
               url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id,
@@ -595,7 +621,7 @@ Page({
     }
 
   },
-  yuechoose: function () {
+  yuechoose: function() {
 
     if (this.data.yuechoose) {
       this.setData({
@@ -609,7 +635,7 @@ Page({
     }
 
   },
-  wxyuechoose: function () {
+  wxyuechoose: function() {
 
     if (this.data.wxyuechoose) {
       this.setData({
@@ -626,49 +652,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

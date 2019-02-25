@@ -24,7 +24,7 @@
       <!-- <view style='font-size:56rpx;color:#E7E7E7;margin-right:40rpx;'>
         |
       </view> -->
-      <button hover-class='none' open-type="share" style="background:#202428;margin-left: 28rpx;">
+      <button hover-class='none' data-id='{{id||tk_id}}' data-type='{{optionstype}}' data-name='{{gymdetails.fitnessName ||courseName ||shopdetails.fullName|| tkgymdetails.courseName}}' open-type="share" style="background:#202428;margin-left: 28rpx;">
         <image class='self_share' src='../../img/share.png'></image>
       </button>
     </view>
@@ -74,15 +74,15 @@
 
     </view>
 
-    <view class='loction_tims' style='border-bottom:1rpx solid #202428;padding:40rpx 0 30rpx 0'>
+    <view class='loction_tims' bindtap='datails' style='border-bottom:1rpx solid #202428;padding:40rpx 0 30rpx 0'>
       <view class='left_box'>
         <view class='self_time'>
           <image style='height：20rpx' class='black_time' src='../../img/card_bj.png'></image>
           <view wx:if="{{vip == 2}}" class='self_font'>
-            XPARK尊享卡价： {{twoprice}}元
+            XPARK至尊卡价：{{twoprice}}元
           </view>
           <view wx:if="{{vip == 1}}" class='self_font'>
-            XPARK至尊卡价：{{xparkprice}}元
+           XPARK尊享卡价：{{xparkprice}}元
           </view>
           <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
             XPARK至尊卡价：{{xparkprice}}元

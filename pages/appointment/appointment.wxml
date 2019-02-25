@@ -41,7 +41,7 @@
 
   </view>
   <view style='background:#202428' wx:if="{{type == 1  }}">
-    <view class='fuwulist' wx:for='{{appointment}}' wx:key='id'>
+    <view class='fuwulist' wx:for='{{appointment}}' wx:key=''>
       <view class='fuwulist_box'>
         <view class='fuwulist_box_heand'>
           <view class='fuwulist_box_heandleft'>{{item.gymName}}</view>

@@ -96,11 +96,9 @@ box-sizing:border-box;
 
 }
 .erweima{
-    width:100%;
-height:580rpx;
+      width:100%;
 margin:0 auto; 
-border-bottom:1rpx solid #1B1E23;
-padding:36rpx 28rpx 0 28rpx;
+padding:36rpx 28rpx 36rpx 28rpx;
 box-sizing:border-box;
 }
 .order_remarks{

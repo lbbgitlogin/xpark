@@ -24,6 +24,8 @@ Page({
     orderNo: '',
     qlid: '',
     jindu: 0,
+    latitudenum: '',
+    longitudenum: '',
     vip: '',
     chooseindex: -1,
     couponlength: "",
@@ -38,8 +40,8 @@ Page({
     coachCourseId: '',
     gymId: '',
     shoptype: '',
-    showMethod: "",//详情展现方式
-    appointment: false,//预约
+    showMethod: "", //详情展现方式
+    appointment: false, //预约
     areaId: "",
     endtime: "",
     id: "",
@@ -55,30 +57,30 @@ Page({
     formatDate: "",
     memberId: "",
   },
-  buynow: function () {
-var that =this;
+  buynow: function() {
+    var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           memberId: res.data.memberId,
           hidden: 0
         })
       },
-      fail: function (res) {
+      fail: function(res) {
 
-        // setTimeout(function () {
+        setTimeout(function() {
 
-        wx.navigateTo({
-          url: '../land/land',
-        })
+          wx.navigateTo({
+            url: '../land/land',
+          })
 
-        //  }, 1000) 延迟时间 这里是1秒
+        }, 100)
         return false;
       }
     })
   },
-  closebuynow: function () {
+  closebuynow: function() {
     this.setData({
       hidden: 1
     })
@@ -86,9 +88,9 @@ var that =this;
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
-    
+
     var that = this;
     that.member();
     var now = new Date();
@@ -130,81 +132,81 @@ var that =this;
 
 
 
+    that.setData({
+      areaId: options.areaid || '',
+      itemno: options.itemNo || '',
+      id: options.id || '',
+      // memberId: res.data.memberId
+    })
+    wx.getStorage({
+      key: 'gymId',
+      success: function(res) {
         that.setData({
-          areaId: options.areaid || '',
-          itemno: options.itemNo || '',
-          id: options.id || '',
-          // memberId: res.data.memberId
+          gymId: res.data.gymId
         })
-        wx.getStorage({
-          key: 'gymId',
-          success: function (res) {
-            that.setData({
-              gymId: res.data.gymId
-            })
-            that.couponlist();
-          }
-        })
-        if (options.type == 1 && options.itemNo != "SI-FIT") {
+        that.couponlist();
+      }
+    })
+    if (options.type == 1 && options.itemNo != "SI-FIT") {
 
-          that.shoptedails(options);
-          that.gymdetails()
-        } else if (options.type == 1 && options.itemNo == "SI-FIT") {
-          that.gymdetails()
-        }
+      that.shoptedails(options);
+      that.gymdetails()
+    } else if (options.type == 1 && options.itemNo == "SI-FIT") {
+      that.gymdetails()
+    } else if (options.type == 2 && options.sta != 1) {
+      that.tkshoptedails(options);
+      that.league_schedule();
 
-        else if (options.type == 2 && options.sta != 1) {
-          that.tkshoptedails(options);
-          that.league_schedule();
-
-        } else if (options.sta == 1 && options.type == 2) {
-          that.coach_course();
-          that.tkshoptedails(options);
-        } else if (options.type == 3) {
-          that.shopdetails()
-        }
+    } else if (options.sta == 1 && options.type == 2) {
+      that.coach_course();
+      that.tkshoptedails(options);
+    } else if (options.type == 3) {
+      that.shopdetails()
+    }
 
 
 
-      // },
-      // fail: function (res) {
-      //   $.alert("请先登录")
-      //   setTimeout(function () {
+    // },
+    // fail: function (res) {
+    //   $.alert("请先登录")
+    //   setTimeout(function () {
 
-      //     wx.navigateTo({
-      //       url: '../land/land',
-      //     })
+    //     wx.navigateTo({
+    //       url: '../land/land',
+    //     })
 
-      //   }, 1000) //延迟时间 这里是1秒
+    //   }, 1000) //延迟时间 这里是1秒
 
-      // },
+    // },
     // })
 
 
   },
-  shopdetails: function () {
+  shopdetails: function() {
     var that = this;
-    var val = {
-    }
+    var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-    
-    
+
+      console.log("商品", res)
       that.setData({
         shopdetails: res.data,
-        xparkprice: (res.data.price*0.9).toFixed(2),
-        twoprice: (res.data.price*0.8).toFixed(2)
+        xparkprice: (res.data.price * 0.9).toFixed(2),
+        twoprice: (res.data.price * 0.8).toFixed(2),
+        latitudenum: res.data.gym.latitude,
+        longitudenum: res.data.gym.longitude,
+         
       })
 
 
 
     })
   },
-  couponlist: function () {
+  couponlist: function() {
     var that = this;
     wx.getStorage({
       key: 'userinfo',
       success: function(res) {
- 
+
         var val = {
 
           couponType: "s",
@@ -232,19 +234,24 @@ var that =this;
 
 
   },
-  member: function () { //会员卡查询
+  datails: function() {
+    wx.navigateTo({
+      url: '../interests/interests?vip=' + this.data.vip,
+    })
+  },
+  member: function() { //会员卡查询
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         var val = {
           memberId: res.data.memberId,
 
         }
         $.Requests(api.member.url, val).then((res) => {
 
-
-          if (res.data.length == 0) {
+          console.log("会员卡", res)
+          if (res.data == '' || res.data == null) {
 
 
           } else {
@@ -260,14 +267,14 @@ var that =this;
     })
 
   },
-  coach_course: function () {//私课详情
+  coach_course: function() { //私课详情
     var that = this;
     var val = {
       schduleDate: that.data.scheduleDate,
     }
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
+
+
       that.setData({
         tkgymdetails: res.data,
         jindu: res.data.appointmentNumb / res.data.course.contain,
@@ -275,19 +282,33 @@ var that =this;
       })
     })
   },
-  league_schedule: function () {
+  league_schedule: function() {
     var that = this;
-    var val = {
-    }
+    var val = {}
 
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
 
-      
-      let { courseName, gymName, address, price, appointmentNumb, id } = res.data;
-      let { coachName } = res.data.coach;
-      let { introduce, useNotes, contain } = res.data.course;
-      let { courseGalleries } = res.data;
-      
+
+      let {
+        courseName,
+        gymName,
+        address,
+        price,
+        appointmentNumb,
+        id
+      } = res.data;
+      let {
+        coachName
+      } = res.data.coach;
+      let {
+        introduce,
+        useNotes,
+        contain
+      } = res.data.course;
+      let {
+        courseGalleries
+      } = res.data;
+
 
       that.setData({
         courseName: courseName,
@@ -306,26 +327,26 @@ var that =this;
       })
     })
   },
-  next_self: function (e) {
+  next_self: function(e) {
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           memberId: res.data.memberId
         })
       },
-      fail: function (res) {
+      fail: function(res) {
 
-        //  setTimeout(function () {
+        setTimeout(function() {
 
-        wx.reLaunch({
-          url: '../land/land',
-        })
+          wx.reLaunch({
+            url: '../land/land',
+          })
 
-        //  }, 1000)延迟时间 这里是1秒
+        }, 100)
         return false;
       }
 
@@ -335,21 +356,19 @@ var that =this;
       wx.navigateTo({
         url: '../confirmationbuy/confirmationbuy?tk_id=' + that.data.tk_id + "&optionstype=" + that.data.optionstype + "&sta=" + that.data.sta + "&scheduleDate=" + that.data.scheduleDate + "&coachId=" + that.data.coachId + "&formatdates=" + that.data.formatDates,
       })
-    } else if (that.data.optionstype == 3){
+    } else if (that.data.optionstype == 3) {
       wx.navigateTo({
         url: '../shoptailsebuy/shoptailsebuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype + "&couponid=" + that.data.couponid + "&itemno=" + that.data.itemno + "&discount=" + that.data.discount + "&category=" + that.data.category,
       })
-    }
-    
-    
-     else {
+    } else {
       wx.navigateTo({
         url: '../confirmationbuy/confirmationbuy?id=' + e.target.dataset.id + "&type=" + that.data.shoptype + "&couponid=" + that.data.couponid + "&itemno=" + that.data.itemno,
       })
     }
 
   },
-  mapNavigation: function (e) {
+  mapNavigation: function(e) {
+  
     var addr = e.currentTarget.dataset.addr;
     var name = e.currentTarget.dataset.name;
     var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
@@ -359,16 +378,10 @@ var that =this;
     });
     wx.getLocation({
       type: 'gcj02',
-      success: function (res) {
-        
-        
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
+      success: function(res) {
         wx.openLocation({
-          latitude: that.data.latitude,
-          longitude: that.data.longitude,
+          latitude: that.data.latitudenum,
+          longitude: that.data.longitudenum,
           scale: 18, //缩放比例范围5~18
           name: name, //打开后显示的地址名称
           address: addr
@@ -376,13 +389,13 @@ var that =this;
       },
     })
   },
-  tkshoptedails: function (options) {//团课或者私教判断是否能购买
+  tkshoptedails: function(options) { //团课或者私教判断是否能购买
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
         if (that.data.sta != 1) {
           var val = {
             courseId: that.data.coachCourseId,
@@ -401,8 +414,8 @@ var that =this;
         }
 
         $.Requests(api.member_course.url, val).then((res) => {
-          
-          
+
+
 
 
           if (res.data != '') {
@@ -429,13 +442,13 @@ var that =this;
 
 
   },
-  shoptedails: function (options) {
+  shoptedails: function(options) {
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function (res) {
+      success: function(res) {
 
         var val = {
           areaId: that.data.areaId,
@@ -470,7 +483,7 @@ var that =this;
 
 
   },
-  gymdetails: function () {
+  gymdetails: function() {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -483,7 +496,7 @@ var that =this;
     }
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-      
+
 
       that.setData({
         gymdetails: res.data,
@@ -503,10 +516,10 @@ var that =this;
 
 
   },
-  appointment: function () {
+  appointment: function() {
 
     var that = this;
-    if (that.data.optionstype == 1) {//球类已购买 去预约页面预约
+    if (that.data.optionstype == 1) { //球类已购买 去预约页面预约
       wx.navigateTo({
 
         url: '../appointmenttime/appointmenttime?id=' + that.data.qlid + "&orderNo=" + that.data.orderNo + "&address=" + that.data.address + "&price=" + that.data.price + "&areaId=" + that.data.areaId + "&memberFitnessId=" + that.data.memberFitnessId,
@@ -526,7 +539,7 @@ var that =this;
 
 
   },
-  choosecoupon: function (e) {
+  choosecoupon: function(e) {
 
     if (this.data.choose) {
       this.setData({
@@ -544,49 +557,71 @@ var that =this;
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function(res) {
+    console.log("分享", res)
 
+    return {
+
+
+      title: res.target.dataset.name,
+
+      path: 'pages/shopdetails/shopdetails?id=' + res.target.dataset.id + "&itemNo=" + res.target.dataset.itemno + "&type=" + res.target.dataset.type + "&sta=" + res.target.dataset.sta + "&coachCourseId=" + res.target.dataset.coachcourseid + "&timechoose=" + res.target.dataset.timechoose + "&timeshow=" + res.target.dataset.timeshow + "&courseid=" + res.target.dataset.courseid + "&scheduledate=" + res.target.dataset.scheduledate,
+      //分享成功后执行
+
+      success: function(res) {
+
+        console.log("--------------转发成功--------------------")
+
+      },
+
+      fail: function(res) {
+
+        console.log("--------------转发失败--------------------")
+
+      }
+
+    }
   }
 })

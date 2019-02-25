@@ -60,7 +60,7 @@
      {{formatdates || formatDate ||scheduleDate}}
     </view>
   </view>
-  <view class='confirmationbuy_buy '>
+  <view wx:if="{{category&&vip}}" class='confirmationbuy_buy '>
     <view class='confirmationbuy_cou '>优惠信息</view>
     <!-- <view class='list_booking_buy '>
       <view class='order_name '>
@@ -116,7 +116,9 @@
     </view>
 
   </view> -->
-  <view class='confirmationbuy_buy '>
+  
+</view>
+<view class='confirmationbuy_buy '>
     <view class='confirmationbuy_cou '>支付类型</view>
     <view class='list_booking_buy '>
       <image class='wallet ' src='../../img/wx_min.png '></image>
@@ -130,7 +132,6 @@
     </view>
 
   </view>
-</view>
   <view class='buy '>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
      ￥{{filters.toFix(xparkprice*buy_num-discount)}}

@@ -349,7 +349,7 @@ Page({
         $.Requests(api.member.url, val).then((res) => {
 
 
-          if (res.data.length == 0) {
+          if (res.data == '' || res.data == null) {
 
 
           } else {

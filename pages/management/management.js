@@ -180,7 +180,7 @@ Page({
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
       
-      
+      console.log("待支付",res)
      
       if (!$.isNull(res.data.content) && res.status == 0) {
         that.setData({

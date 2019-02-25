@@ -1,7 +1,7 @@
 <!--pages/confirmationOrder/confirmationOrder.wxml-->
-
+<view class='header'></view>
+ <view class='bj_pic'>
 <view class='order_list'>
-  <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
     <view class='datails_imghead'>
        <image class='datails_imghead' src='{{imgurl}}{{gymdetails.fitness.icon ||tkgymdetails.course.icon ||skgymdetails.course.icon}}'></image>
@@ -70,6 +70,7 @@
   <view class='textcls {{focus?"hide":"show"}}' bindtap='onShowTextare' wx:if="{{isShowText}}">{{textareavalue}}</view>
   </view>
    
+</view>
 </view>
 <form report-submit="true" bindsubmit="submitorder" >
       

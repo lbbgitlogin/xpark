@@ -7,13 +7,27 @@ Page({
    */
   data: {
     imgurl: CONFIG.config.imgUrl,
+    vipcardcolor:false,
+    zxvip:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+  console.log("cip",options)
+  if(options.vip  != ''){
+    if(options.vip == 1){
+        this.setData({
+          zxvip: true
+        })
+    }
+    if(options.vip == 2){
+      this.setData({
+        vipcardcolor:true
+      })
+    }
+  }
   },
 
   /**

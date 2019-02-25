@@ -34,7 +34,7 @@ Page({
     optionstype: "",
     numb: "1",
     memberFitnessId: "",
-    textareavalue: "请填写备注信息",
+    textareavalue: "",
     areaName: "", 
     couponlenght: "",
     choose: false,

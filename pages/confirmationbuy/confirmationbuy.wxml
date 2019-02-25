@@ -25,7 +25,7 @@
             </view>
     </view>
   </view> -->
-    <!-- <view wx:if="{{fittype == 2}}"  class='list_booking '>
+  <view wx:if="{{fittype == 2}}"  class='list_booking '>
     <view class='order_name '>
       数量
     </view>
@@ -36,7 +36,7 @@
         <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
       </view>
     </view>
-  </view> -->
+  </view> 
   <view class='list_booking '>
     <view class='order_name '>
       门店

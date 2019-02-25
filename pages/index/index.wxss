@@ -8,6 +8,54 @@ page {
 .index_pad {
   padding: 40rpx 0 0rpx 0
 }
+.bj_rg{
+  height: 20rpx
+}
+.buycard{
+  width: 100%;
+  margin: 0 auto;
+  background: #202428;
+  height: 88rpx
+}
+.bjcard{
+  width: 92%;
+  margin: 0 auto;
+  background: #444951;
+  height: 100%;
+  border-radius: 8rpx;
+  padding:  0 28rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+}
+.butcard_pic{
+  width: 38rpx;
+  height: 32rpx;
+
+}
+.text_cardfri{
+  color: #DBB278;
+  font-size: 28rpx;
+   margin-left: 14rpx
+}
+.text_box{
+  flex: 1
+}
+.font_button{
+  font-size: 22rpx;
+  color: #DBB278;
+}
+.text_cardsrc{
+  color: #DBB278;
+  font-size: 24rpx;
+  
+}
+.rightcard_pic{
+  width: 10rpx;
+  height: 16rpx;
+  margin-left: 10rpx
+}
 .slide-image{
 width:100%;
 height: 100%
