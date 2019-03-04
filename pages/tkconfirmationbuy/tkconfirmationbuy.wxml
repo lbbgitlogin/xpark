@@ -21,7 +21,7 @@
       <view class="u-cart-num" style="margin-top:21rpx">
         <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
         <input type="number" disabled='true' bindchange="pay_num" value="{{buy_num}}" />
-        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
+        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
       </view>
     </view>
   </view>

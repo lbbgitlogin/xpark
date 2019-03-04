@@ -29,7 +29,6 @@ Page({
     conmoney: "",
     allcourseFullDiscount: "",
     areaId: "",
-    clickshow: true,
     vip: "",
     discountMoney: "",
     fullNumb: "",
@@ -158,8 +157,7 @@ Page({
       return
     }
     this.setData({
-      buy_num: this.data.buy_num - 1,
-      clickshow: true
+      buy_num: this.data.buy_num - 1
     })
     this.clickif()
     // if (this.data.buy_num > 1 && this.data.buy_num > Number(this.data.minnum)) {
@@ -242,7 +240,6 @@ Page({
 
 
       this.setData({
-        clickshow: false,
         buy_num: that.data.maxnum
       })
     }
