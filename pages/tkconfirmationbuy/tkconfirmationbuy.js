@@ -151,13 +151,15 @@ Page({
     let numb = this.data.buy_num
     let mini = Number(this.data.minnum)
     if (numb <= mini) {
+    
       return
     }
     if (numb <= 0) {
       return
     }
     this.setData({
-      buy_num: this.data.buy_num - 1
+      buy_num: this.data.buy_num - 1,
+      clickshow: true
     })
     this.clickif()
     // if (this.data.buy_num > 1 && this.data.buy_num > Number(this.data.minnum)) {
