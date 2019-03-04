@@ -25,7 +25,7 @@
 .m-navbar-item.m-navbar-item-on::before {
   content: " ";
   position: absolute;
-  left: 40%;
+  left: 47%;
   bottom: 4rpx;
   right: 0;
   height: 6rpx;

@@ -5,6 +5,7 @@
     "pages/coachappointment/coachappointment",
     "pages/ballappointment/ballappointment",
     "pages/logs/logs",
+    "pages/web-view/web-view",
     "pages/shoptailsebuy/shoptailsebuy", 
     "pages/tkconorder/tkconorder",
     "pages/tkconfirmationbuy/tkconfirmationbuy",

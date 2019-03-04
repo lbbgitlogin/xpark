@@ -9,6 +9,7 @@ Page({
    */
   data: {
     gymId:"",
+    contentshow: "",
     clientHeight: "",
     activeTab: 0,
   },
@@ -43,6 +44,7 @@ Page({
     })
     wx.getSystemInfo({
       success: function (res) {
+        console.log("系统高度",res)
         that.setData({
           clientHeight: res.windowHeight
         });
@@ -59,22 +61,26 @@ Page({
   },
   guide:function(){
     var that = this;
-    var val = {
+    var val = { 
     }
     $.Requests(api.guide.url + '/' + that.data.gymId , val).then((res) => {
-    
-          
+       console.log("规则",res)
+      console.log("规则", val)
        that.setData({
          bottomTab: res.data,
-         cardViewContent:res.data
+         cardViewContent:res.data,
+         contentshow: res.data[that.data.activeTab].content.replace(/\<img/gi, '<img style="max-width:100%;height:auto" ')
        })
     })
+    
   },
   //点击切换
   rcbBottomTab: function (e) {
+    console.log("点击查看下表", e.target.dataset.index)
     this.setData({
       activeTab: e.target.dataset.index
     })
+    this.guide()
   },
 
   //滑动屏幕操作
@@ -91,7 +97,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+ 
   },
 
   /**

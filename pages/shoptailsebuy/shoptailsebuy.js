@@ -40,6 +40,7 @@ Page({
     buttonif: false,
     couponlenght: "",
     choose: false,
+    orderno: "",
     memberName: "",
     tk_id: "",
     shoptype: "",
@@ -500,14 +501,8 @@ Page({
               url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
             })
           }
-
         })
-
-
-
       } else if (that.data.shoptype == 3) {
-       
-       
         var val11 = {
           areaId: that.data.areaId,
           couponEntityId: that.data.couponid || 0,
@@ -526,59 +521,13 @@ Page({
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
           console.log("支付成功", val11)
         console.log("支付成功",res)
-
-          // wx.requestPayment({
-          //   'timeStamp': data.Info.timeStamp,
-          //   'nonceStr': data.Info.nonceStr,
-          //   'package': data.Info.package,
-          //   'signType': data.Info.signType,
-          //   'paySign': data.Info.paySign,
-          //   'success': function (res) {
-          //     that.returnUrl(val.OrderNum);
-          //   },
-          //   'fail': function (res) {
-          //     $.gotopage('../favorableorderdetail/favorableorderdetail?on=' + val.OrderNum);
-          //   },
-          //   'complete': function (res) {
-          //     if (res.errMsg == "requestPayment:cancel") {
-          //       $.gotopage('../favorableorderdetail/favorableorderdetail?on=' + val.OrderNum);
-          //       that.sendMessage(val.OrderNum, 1);
-          //     }
-          //   }
-          // })
           if (res.status == 0) {
-
-            // var val = {
-            //   formId: e.detail.formId
-            // }
-            // $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
-
-
-
-            // })
-            wx.navigateTo({
-              url: '/pages/web-view/web-view?orderno=' + res.data.orderNo,
+            that.setData({
+              orderno: res.data.orderNo
             })
-
-            // wx.navigateTo({
-            //   url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
-            // })
+            that.payindex();
           }
-
         })
-
-
-
-
-
-
-
-
-
-
-
-
-
       } else { //球类预约跳转成功页面跳转预约页面
         var val = {
           areaId: that.data.areaId,
@@ -621,6 +570,42 @@ Page({
     }
 
   },
+   payindex: function() {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    }
+
+    $.Requests_json(api.getlakala.url, val).then((res) => {
+      console.log("拉卡拉", api.getlakala.url)
+      console.log("拉卡拉", that.data.orderno)
+      console.log("拉卡拉sj原生", res)
+      var obj = JSON.parse(res.data.result);
+      console.log("拉卡拉数据解析", obj)
+      wx.requestPayment({
+        'timeStamp': obj.pay_info.timestamp,
+        'nonceStr': obj.pay_info.nonce_str,
+        'package': "prepay_id="+obj.pay_info.prepay_id,
+        'signType': obj.pay_info.sign_type,
+        'paySign': obj.pay_info.pay_sign,
+        'success': function (res) {
+          console.log("支付chenggong：", res);
+          setTimeout(function () {
+            that.secconds();
+          }, 2000)
+           wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id  + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+            })
+        },
+        'fail': function (res) {
+          console.log("支付失败：", res);
+          wx.navigateTo({
+            url: '../management/management',
+          })
+        }
+      })
+    })
+  },
   yuechoose: function() {
 
     if (this.data.yuechoose) {
@@ -648,6 +633,17 @@ Page({
       })
     }
 
+  },
+  secconds:function(){
+    var that = this;
+    var val={
+      orderNo: that.data.orderno
+    };
+    $.Requests(api.secconds.url, val).then((res) => {
+      console.log("支付回调===>>",res)  
+      console.log("支付回调===>>", that.data.orderno) 
+      console.log("支付回调===>>", api.secconds.url) 
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

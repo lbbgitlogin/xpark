@@ -69,7 +69,7 @@ Page({
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
       
-      
+       console.log("订单列表",res)
       
       if (!$.isNull(res.data.content) && res.status == 0){
         that.setData({
@@ -140,10 +140,18 @@ Page({
         setTimeout(function () {
 
 
-          $.alert("取消预约成功！")
+          $.alert("取消订单成功！")
 
-        }, 1000)
-      that.onLoad()
+        }, 500)
+        if (that.data.tapindex == 2){
+          that.toBePaid()
+        }else{
+          that.setData({
+            member_orderlist: [],
+          })
+          that.member_orderlist()
+        }
+       
       }
 
     })
@@ -388,7 +396,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    wx.switchTab({
+      url: '../main/main',
+    })
   },
 
   /**

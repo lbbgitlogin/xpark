@@ -13,6 +13,7 @@ Page({
   data: {
     imgurl: CONFIG.config.imgUrl,
     memberId: "",
+    mmcourseid:"",
     gopay:"去支付",
     outdoorAddress: "",
     gosecpay:"支付中",
@@ -50,6 +51,7 @@ Page({
     memberName: "",
     shopprice: "",
     tk_id: "",
+    orderno: "",//支付拉卡拉需要的订单号 
     shopprice: "",
     shoptype: "",
     yuechoose: true,
@@ -335,6 +337,17 @@ Page({
 
 
 
+    })
+  },
+  secconds: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    };
+    $.Requests(api.secconds.url, val).then((res) => {
+      console.log("支付回调===>>", res)
+      console.log("支付回调===>>", that.data.orderno)
+      console.log("支付回调===>>", api.secconds.url)
     })
   },
   member: function () { //会员卡查询
@@ -657,14 +670,15 @@ Page({
         }
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
-        
-
+           console.log("下单页面",res)
+          console.log("下单页面", val)
           if (res.status == 0) {
-
-            wx.navigateTo({
-
-              url: `../succell/succell?memberCourseId=${res.data.memberCourseId}&orderNo=${res.data.orderNo}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}&coachCourseId=${that.data.coachCourseId}&starttime=${that.data.tkgymdetails.startTime}`
+            that.setData({
+              orderno: res.data.orderNo,
+              mmcourseid: res.data.memberCourseId
             })
+            that.payindex();
+     
           }
 
         })
@@ -696,14 +710,16 @@ Page({
         $.Requests_json(api.member_order.url, val).then((res) => {
 
           
-
+          console.log("下单页面", res)
 
 
           if (res.status == 0) {
-
-            wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}&coachCourseId=${that.data.coachCourseId}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId + "&coachname=" + that.data.coachName,
+            that.setData({
+              orderno: res.data.orderNo,
+              mmcourseid: res.data.memberCourseId
             })
+            that.payindex();
+    
           }
 
         })
@@ -831,6 +847,52 @@ Page({
       })
     }
 
+  },
+
+  payindex: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    }
+
+    $.Requests_json(api.getlakala.url, val).then((res) => {
+      console.log("拉卡拉", api.getlakala.url)
+      console.log("拉卡拉", that.data.orderno)
+      console.log("拉卡拉sj原生", res)
+      var obj = JSON.parse(res.data.result);
+      console.log("拉卡拉数据解析", obj)
+      wx.requestPayment({
+        'timeStamp': obj.pay_info.timestamp,
+        'nonceStr': obj.pay_info.nonce_str,
+        'package': "prepay_id=" + obj.pay_info.prepay_id,
+        'signType': obj.pay_info.sign_type,
+        'paySign': obj.pay_info.pay_sign,
+        'success': function (res) {
+          console.log("支付chenggong：", res);
+          setTimeout(function () {
+            that.secconds();
+          }, 2000)
+          if (that.data.optionstype == 2 && that.data.sta != 1){
+            wx.navigateTo({
+
+              url: `../succell/succell?memberCourseId=${that.data.mmcourseid}&orderNo=${that.data.orderno}&optionstype=${that.data.optionstype}&tk_id=${that.data.tk_id}&price=${that.data.price * that.data.buy_num}&formatdates=${that.data.formatdates}&buy_num=${that.data.buy_num}&coachCourseId=${that.data.coachCourseId}&starttime=${that.data.tkgymdetails.startTime}`
+            })
+          }
+          if (that.data.optionstype == 2 && that.data.sta == 1){
+            wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + that.data.mmcourseid + "&orderNo=" + that.data.orderno + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}&coachCourseId=${that.data.coachCourseId}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId + "&coachname=" + that.data.coachName,
+            })
+          }
+        
+        },
+        'fail': function (res) {
+          console.log("支付失败：", res);
+          wx.navigateTo({
+            url: '../management/management',
+          })
+        }
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

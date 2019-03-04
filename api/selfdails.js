@@ -222,5 +222,22 @@ appointment_common: { //取消订单
 
     }
   }, 
+  getlakala: { //lakala zhidu
+    url: cf.config.configUrl + 'member_order/order/getLaKaLa',
+    post: {
+      formId: "",
+    }
+  }, 
+  secconds: { //微信支付回调
+    url: cf.config.configUrl + 'notifity/secconds/client',
+    get: {
+      GET: {
+        formId: "",
+      }
 
+    }
+  }, 
+  continue: { //继续支付
+    url: cf.config.configUrl + 'member_order/order/continue',
+  }, 
 }

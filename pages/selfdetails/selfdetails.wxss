@@ -330,7 +330,6 @@ box-sizing:border-box;
 .coupon_maxmon{
   font-size: 96rpx;
   line-height:217rpx;
-margin-left: 15rpx;
 font-weight: bold
 }
 .coupon_choose{

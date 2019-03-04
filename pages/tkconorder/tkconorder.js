@@ -21,7 +21,7 @@ Page({
     yuyuetime: "",
     memberCourseId: "",
     groundId: "",
-    vip:"",
+    vip: "",
     sta: "",
     skgymdetails: "",
     leagueScheduleId: "",
@@ -64,14 +64,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     var that = this;
 
     if (options.orderType == 2 && options.isfj != "undefined") {
 
       that.setData({
         formdatask: JSON.parse1(options.data),
-        formdata: options.data||'',
+        formdata: options.data || '',
         orderType: options.orderType || '',
 
         scheduleDate: JSON.parse(options.data).bookingDate,
@@ -97,7 +97,7 @@ Page({
       success: function (res) {
         that.setData({
           groundName: res.data.groundName
-          
+
         })
 
       }
@@ -163,14 +163,14 @@ Page({
       },
 
       fail: function (res) {
-        
-      
+
+
 
         wx.reLaunch({
-            url: '../land/land',
-          })
+          url: '../land/land',
+        })
 
-   
+
 
       },
     })
@@ -184,7 +184,7 @@ Page({
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
       formatDate: formatDate,
-      id: options.id ||''
+      id: options.id || ''
     })
   },
 
@@ -223,7 +223,7 @@ Page({
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
 
-      
+
 
 
 
@@ -243,9 +243,9 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          
 
-          if (res.data == '' || res.data == null) {
+
+          if (res.data.length == 0) {
 
 
           } else {
@@ -265,8 +265,8 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      
-  
+
+
       var now = new Date();
       var year = now.getFullYear();
       var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
@@ -357,7 +357,7 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      
+
       // 
       var valteo = {
         coachId: that.data.coachId,
@@ -381,7 +381,7 @@ Page({
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-        
+
 
         if (res.status == 0) {
           $.alert("预约成功")
@@ -417,8 +417,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-          
-        
+
+
         if (res.status == 0) {
           // wx.navigateTo({
           //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.tkgymdetails.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime + "&num=" + that.data.num,
@@ -466,8 +466,8 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            
-            
+
+
 
             if (res.status == 0) {
               // wx.navigateTo({

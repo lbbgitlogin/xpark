@@ -15,6 +15,7 @@ Page({
     buy_num: 1,
     gopay: "去支付",
     gosecpay: "支付中",
+    mmnessid: "",
     shopprice: "",
     goodsId: "",
     maxnum: "",
@@ -568,19 +569,28 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-          
+            console.log("下单页面",res)
+          console.log("下单页面", val)
           
           if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
        
-            wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
-            })
-          } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
 
-            wx.navigateTo({
-              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + res.data.memberFitnessId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id + "&shopname=" + that.data.gymdetails.fitnessName,
-              // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
+            // if (res.status == 0) {
+              that.setData({
+                orderno: res.data.orderNo,
+                mmnessid: res.data.memberFitnessId
+              })
+              that.payindex();
+
+            // }
+         
+          } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
+            that.setData({
+              orderno: res.data.orderNo,
+              mmnessid: res.data.memberFitnessId
             })
+            that.payindex();
+        
           } else {
             $.alert("余额支付失败")
           }
@@ -641,7 +651,62 @@ Page({
   onHide: function() {
 
   },
+  payindex: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    }
 
+    $.Requests_json(api.getlakala.url, val).then((res) => {
+      console.log("拉卡拉", api.getlakala.url)
+      console.log("拉卡拉", that.data.orderno)
+      console.log("拉卡拉sj原生", res)
+      var obj = JSON.parse(res.data.result);
+      console.log("拉卡拉数据解析", obj)
+      wx.requestPayment({
+        'timeStamp': obj.pay_info.timestamp,
+        'nonceStr': obj.pay_info.nonce_str,
+        'package': "prepay_id=" + obj.pay_info.prepay_id,
+        'signType': obj.pay_info.sign_type,
+        'paySign': obj.pay_info.pay_sign,
+        'success': function (res) {
+          console.log("支付chenggong：", res);
+          setTimeout(function () {
+            that.secconds();
+          }, 2000)
+          if (that.data.itemNo != "SI-BALL") {
+            wx.navigateTo({
+              url: '../succell/succell?id=' + that.data.id + "&memberFitnessId=" + that.data.mmnessid + "&orderNo=" + that.data.orderno + "&price=" + that.data.price + "&address=" + that.data.address + "&itemNo=" + that.data.itemNo,
+            })
+          }
+          if (that.data.itemNo == "SI-BALL") {
+            wx.navigateTo({
+              url: '../succell/succell?areaId=' + that.data.areaId + "&memberFitnessId=" + that.data.mmnessid + "&orderNo=" + that.data.orderno + "&price=" + that.data.price + "&address=" + that.data.address + "&id=" + that.data.id + "&shopname=" + that.data.gymdetails.fitnessName,
+              // url: '../ballappointment/ballappointment?areaId=' + that.data.areaId,
+            })
+          }
+
+        },
+        'fail': function (res) {
+          console.log("支付失败：", res);
+          wx.navigateTo({
+            url: '../management/management',
+          })
+        }
+      })
+    })
+  },
+  secconds: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    };
+    $.Requests(api.secconds.url, val).then((res) => {
+      console.log("支付回调===>>", res)
+      console.log("支付回调===>>", that.data.orderno)
+      console.log("支付回调===>>", api.secconds.url)
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */

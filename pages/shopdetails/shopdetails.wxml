@@ -85,7 +85,7 @@
            XPARK尊享卡价：{{xparkprice}}元
           </view>
           <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
-            XPARK至尊卡价：{{xparkprice}}元
+            XPARK尊享卡价：{{xparkprice}}元
           </view>
         </view>
       </view>
@@ -120,7 +120,7 @@
   </view>
   <view wx:if="{{showMethod == 2}}" class='location_jiang'>
     <image class='xz' src='../../img/jlkc.png'></image>
-    教练课程
+    教练信息
   </view>
   <view wx:if="{{showMethod == 2}}" class='shop_details'>
     <image class='shop_img_sj' src='{{imgurl}}{{icon ||tkgymdetails.course.icon }}'></image>

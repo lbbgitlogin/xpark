@@ -52,7 +52,7 @@ Page({
       that.setData({
         itemno: 0,
         shoptype: 3,
-        id: options.id
+        id: options.id || ''
       })
     } else if (options.optionstype == 2) { //团课
       that.setData({

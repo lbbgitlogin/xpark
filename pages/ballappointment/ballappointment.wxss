@@ -58,16 +58,18 @@ margin-right:32rpx;
 }
 
 .ball-timeList {
-  margin: 40rpx 28rpx;
+  margin: 40rpx auto;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   border-radius: 10rpx;
-  border: 1rpx solid #1B1E23
+  border: 1rpx solid #1B1E23;
+  width:96%;
+
 }
 
 .ball-timeList-item {
-  width: 172rpx;
+  width: 24.7%;
   height: 100rpx;
   border-right: 1rpx solid #1B1E23;
   border-bottom: 1rpx solid #1B1E23;
@@ -93,8 +95,9 @@ margin-right:32rpx;
 }
 
 .active {
-  background: #E27D00;
-  color: #fff;
+background:#202428;
+color:#CCCCCC;
+
 }
 
 .leftBtn {

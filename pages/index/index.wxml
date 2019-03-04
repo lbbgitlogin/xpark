@@ -59,7 +59,7 @@
     <view class='bjcard'>
          <image class='butcard_pic' src='../../img/buy_cardleft.png'></image>
          <view class='text_box'>  <text class='text_cardfri'>加入尊享会员·</text>
-         <text class='text_cardsrc'>专享商品7.5折起</text></view>
+         <text class='text_cardsrc'>专享商品9折起</text></view>
      <text class='font_button'>立即开通</text>
      <image class='rightcard_pic' src='../../img/buy_cardright.png'></image>
     </view>
@@ -121,7 +121,7 @@
             <view style='font-weight:bold'>￥{{item.price}}</view>
             <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
             <view wx:if="{{vip == 2 }}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
-            <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
+            <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
             <!-- <view class='time_shop'>
             <image class='riqiicon' style='' src='../../img/riqiimg.png'></image>
             <view class='tatils_color'>11-15 当日有效</view>
@@ -188,7 +188,7 @@
           <view style='font-weight:bold'>￥{{item.price}}</view>
           <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
           <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
-   <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
+   <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
 
         </view>
       </view>
@@ -227,7 +227,7 @@
           <view style='font-weight:bold'>￥{{item.price}}</view>
           <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
           <view wx:if="{{vip == 2 }}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
-              <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
+              <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
 
         </view>
       </view>
@@ -267,7 +267,7 @@
           <view style='font-weight:bold'>￥{{item.price}}</view>
           <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{item.zxprice}})</view>
           <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{item.zzprice}})</view>
-          <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(item.price*0.8)}})</view>
+          <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(item.price*0.9)}})</view>
 
         </view>
       </view>
@@ -307,7 +307,7 @@
               /起
               <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(items.price*0.9)}})</view>
               <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(items.price*0.8)}})</view>
-                  <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(items.price*0.8)}})</view>
+                  <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(items.price*0.9)}})</view>
 
             </view>
           </view>
@@ -340,7 +340,7 @@
         <view class='show_box bj_color '></view>
         <view class='show_text'>{{item.categoryName}}</view>
       </view>
-      <view data-id='{{items.id}}' wx:key='' data-type='3' catchtap='selfdetailss' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
+      <view data-id='{{items.id}}' wx:key='' data-type='3' catchtap='{{items.stock < 1?"":"selfdetailss"}}' class='shop_details' wx:for="{{item.goods}}" wx:for-item="items">
         <image wx:if='{{items.goodsIcon}}' class='shop_img' src='{{imgurl}}{{items.goodsIcon}}'></image>
         <image wx:else class='shop_img_sj' src='../../img/sj_thumbnail.png'></image>
         <view class='title_shop'>
@@ -352,7 +352,7 @@
             ￥{{items.price}}
             <view wx:if="{{vip == 1}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{items.VipPrice}})</view>
             <view wx:if="{{vip == 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(items.price*0.8)}})</view>
-               <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(至尊卡¥{{filters.toFix(items.price*0.8)}})</view>
+               <view wx:if="{{vip != 1 && vip != 2}}" style='font-size:24rpx;margin-left:20rpx;'>(尊享卡¥{{filters.toFix(items.price*0.9)}})</view>
 
           </view>
 

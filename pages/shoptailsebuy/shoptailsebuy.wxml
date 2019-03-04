@@ -100,7 +100,7 @@
       八折
     </view>
      <view wx:if="{{vip == 1}}"  bindtap='choosecoupon ' class='order_smallname '>
-      九折
+      九五折
     </view>
   </view>
   <!--购买保险 <view class='confirmationbuy_buy '>
@@ -134,13 +134,13 @@
   </view>
   <view class='buy '>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{filters.toFix(xparkprice*buy_num-discount)}}
+     ￥{{filters.toFix(xparkprice*buy_num-discount)<0?'0':filters.toFix(xparkprice*buy_num-discount)}}
     </view>
       <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{filters.toFix(twoprice*buy_num-discount)}}
+     ￥{{filters.toFix(twoprice*buy_num-discount)<0?'0':filters.toFix(twoprice*buy_num-discount)}}
     </view>
       <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{filters.toFix(price*buy_num-discount)}}
+     ￥{{filters.toFix(price*buy_num-discount)<0?'0':filters.toFix(price*buy_num-discount)}}
     </view>
 
 

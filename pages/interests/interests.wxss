@@ -86,12 +86,12 @@ font-weight: bold;
 .card_sec{
       padding: 32rpx 28rpx;
   box-sizing: border-box;
-  width: 660rpx;
+  width: 670rpx;
   color: #fff;
-  height: 320rpx;
- background: url(http://zuul.snail.highlifes.com/common/image/20190108/3c659560-80cc-4090-938e-bbd75952e769.png) center no-repeat;
+  height: 350rpx;
+ background: url(http://zuul.snail.highlifes.com/common/image/20190301/a92a0018-c3bc-4961-bc60-b3d68cb824c2.png) center no-repeat;
    background-size: 100% 100%;
-   margin: 0 auto 24rpx auto;
+   margin:50rpx auto 24rpx auto;
    font-size: 26rpx;
    align-items: center;
    position: relative;

@@ -8,6 +8,7 @@ Page({
    */
   data: {
     vipnum:"" ,
+    orderno: "",
     formatDate:"",
     formatDates:"",
     gymId:"",
@@ -97,14 +98,64 @@ Page({
 
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
-      
+           console.log("购买会员啦",res)   
       
       if (res.status == 0){
-        wx.navigateTo({
-          url: '../succell/succell?cardnum='+1,
+        that.setData({
+          orderno: res.data.orderNo,
         })
+        that.payindex();
       }
 
+    })
+  },
+  secconds: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    };
+    $.Requests(api.secconds.url, val).then((res) => {
+      console.log("支付回调===>>", res)
+      console.log("支付回调===>>", that.data.orderno)
+      console.log("支付回调===>>", api.secconds.url)
+    })
+  },
+  payindex: function () {
+    var that = this;
+    var val = {
+      orderNo: that.data.orderno
+    }
+
+    $.Requests_json(api.getlakala.url, val).then((res) => {
+      console.log("拉卡拉", api.getlakala.url)
+      console.log("拉卡拉", that.data.orderno)
+      console.log("拉卡拉sj原生", res)
+      var obj = JSON.parse(res.data.result);
+      console.log("拉卡拉数据解析", obj)
+      wx.requestPayment({
+        'timeStamp': obj.pay_info.timestamp,
+        'nonceStr': obj.pay_info.nonce_str,
+        'package': "prepay_id=" + obj.pay_info.prepay_id,
+        'signType': obj.pay_info.sign_type,
+        'paySign': obj.pay_info.pay_sign,
+        'success': function (res) {
+          console.log("支付chenggong：", res);
+          setTimeout(function () {
+            that.secconds();
+          }, 2000)
+          wx.navigateTo({
+            url: '../succell/succell?cardnum=' + 1,
+          })
+     
+
+        },
+        'fail': function (res) {
+          console.log("支付失败：", res);
+          wx.navigateTo({
+            url: '../management/management',
+          })
+        }
+      })
     })
   },
   /**

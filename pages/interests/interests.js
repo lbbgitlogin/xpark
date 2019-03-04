@@ -8,6 +8,7 @@ Page({
   data: {
     imgurl: CONFIG.config.imgUrl,
     vipcardcolor:false,
+    activeTab:1,
     zxvip:false
   },
 

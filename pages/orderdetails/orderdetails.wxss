@@ -145,12 +145,10 @@ line-height: 98rpx
  bottom: 0;
  padding:0 28rpx;
 box-sizing:border-box;
-box-shadow: 0px 0px 5px 1rpx #ebebeb;
- background: #fff;
+ background: #36393F;
 margin:0 auto;
 height: 118rpx;
 display:flex;
-border-bottom:1rpx solid #F2F2F2;
 align-items:center;
 justify-content:flex-end;
 
@@ -160,9 +158,9 @@ justify-content:flex-end;
    width: 208rpx;
    height: 72rpx;
    border-radius: 52rpx;
-   color: #666;
+   color: #999999;
    font-size: 32rpx;
-   border: 1rpx solid #D6D6D6;
+   border: 1rpx solid #999999;
    text-align: center;
    line-height: 72rpx;
    margin-right: 24rpx
@@ -173,7 +171,7 @@ justify-content:flex-end;
    border-radius: 52rpx;
    color: #FFFFFF;
   font-size: 32rpx;
-   border: 1rpx solid #D6D6D6;
+   border: 1rpx solid #E27D00;
    text-align: center;
     line-height: 72rpx;
 

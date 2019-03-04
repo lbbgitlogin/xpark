@@ -215,6 +215,7 @@ text-align:center;
 .u-num-btn{float:left;
 width:50rpx;
 height:50rpx;
+font-size:45rpx;
 background:#444951;
 border-radius:50rpx;
 }

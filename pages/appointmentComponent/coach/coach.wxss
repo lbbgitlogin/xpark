@@ -53,7 +53,7 @@ box-sizing:border-box;
 
   .bj_pic {
     width: 93%;
-background-image: url('http://i2.bvimg.com/677757/6d754f13e833342e.png');
+background-image: url('http://zuul.snail.highlifes.com/common/image/20190304/e2c47d77-7ecd-4868-8dbe-2fc9c28e2752.png');
 background-size:100% 100%;
 margin:-17rpx auto 0 auto;
 

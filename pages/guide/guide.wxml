@@ -6,13 +6,14 @@
     </block>
   </view>
 <view class='tiao'></view>
+ <rich-text   class='title_sm' nodes='{{contentshow}}'></rich-text>
 <!--下面这一句是重点,这里是内容切换区域-->
- <swiper circular='true' style='height:{{clientHeight*2}}rpx;padding:20rpx;box-sizing:border-box' bindchange='swiperChange' current='{{activeTab}}'>
-    <block wx:key='id' wx:for="{{cardViewContent}}">
-      <swiper-item>
+ <!-- <swiper circular='true' style='height:{{clientHeight}}px;padding:20rpx;box-sizing:border-box' bindchange='swiperChange' current='{{activeTab}}'> 
+  <block wx:key='' wx:for="{{cardViewContent}}"> 
+      <swiper-item> -->
         <view class='ra-co-cardview'>
           <view class='ra-ca-viewtitle'>
-               <html-view class='title_sm' innerText='{{item.content}}'></html-view>
+              
           </view>
           <!--double line-->
           <!--版本二的显示双行内容，不用理会
@@ -24,8 +25,8 @@
           <!--singel line-->
      
         </view>
-      </swiper-item>
-    </block>
-  </swiper>
+      <!-- </swiper-item>
+    </block> 
+  </swiper> -->
 
 </view>

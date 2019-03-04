@@ -259,7 +259,7 @@ Page({
         }
 
         $.Requests(apicou.coupon_entity.url, val).then((res) => {
-
+   console.log("优惠券查询",res)
           res.data.map(item => {
             item.endTime = item.endTime.substring(0, item.endTime.length - 10)
             return item;

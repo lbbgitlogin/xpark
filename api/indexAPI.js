@@ -116,6 +116,15 @@ module.exports = {
     put: {
 
     }
+  },
+    ground_appointment: { //获取场地当前日期可约场次
+      url: cf.config.configUrl + 'ground_appointment/findByAreaId/appointmnetCount',
+    get: {
+
+    }
   }
+
+
+  
 
 }

@@ -7,9 +7,10 @@
 已取消
 </view>
 <view wx:if="{{orderstate == 0}}" class='order font-colormode'>
-待支付
+待支付订单
+ <!-- 00:{{downTime}} -->
 </view>
-<view class='order_list'>
+<view class='order_list' style='padding:{{orderstate == 0?"40rpx 0 150rpx  0":""}}'>
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
      <view class='datails_imghead'>
@@ -127,7 +128,7 @@
     </view>
   </view>
 
-  <view class='erweima' wx:if="{{ordertype == 'sp'&& orderstate != 3}}">
+  <view class='erweima' wx:if="{{ordertype == 'sp'&& orderstate != 3 &&orderstate == 1}}">
     <view class='erweima_name'>
       <view class='name_first'>商品提货码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>
@@ -136,6 +137,6 @@
   </view>
    </view>
      <view wx:if="{{orderstate == 0}}" class='but_manage'>
-        <view bindtap='qxorder' class='close_manage'>取消订单</view>
-         <view class='payment bj_color'>立即付款</view>
+        <view bindtap='{{choosebtn?"qxorder":""}}' class='close_manage'>取消订单</view>
+         <view bindtap='{{choosebtn?"jx_order":""}}' class='payment bj_color'>继续支付</view>
       </view>
