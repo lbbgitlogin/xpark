@@ -41,11 +41,13 @@ Page({
       },
       fail: function (res) {
       
- 
+        setTimeout(function () {
 
           wx.reLaunch({
             url: '../land/land',
           })
+
+        }, 100)
 
 
 

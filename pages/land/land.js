@@ -255,6 +255,8 @@ Page({
             page.onLoad();
           }
         })
+      }else{
+       $.alert("验证码错误！")
       }
     });
 

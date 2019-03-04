@@ -51,9 +51,13 @@ Page({
    
       
 
-        wx.reLaunch({
+        setTimeout(function () {
+
+          wx.reLaunch({
             url: '../land/land',
           })
+
+        }, 100)
 
      
       },
