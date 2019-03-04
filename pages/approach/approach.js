@@ -11,8 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    memberId:"",
-    uesCode:"",
+    memberId: "",
+    uesCode: "",
     text: "",
     gymName: "",
   },
@@ -26,7 +26,7 @@ Page({
       success: function (res) {
         that.setData({
           gymName: res.data.gymName,
-        
+
 
         })
 
@@ -56,31 +56,31 @@ Page({
 
       },
       fail: function (res) {
-  
-    
+
+
 
         wx.reLaunch({
-            url: '../land/land',
-          })
+          url: '../land/land',
+        })
 
 
-        
+
       },
     })
 
   },
-  qrCode:function(){
-     var that = this;
+  qrCode: function () {
+    var that = this;
     var val = {
       memberId: that.data.memberId,
     }
     $.Requests(api.qrCode.url, val).then((res) => {
-   
-      
-      if (res.status == 0){
+
+
+      if (res.status == 0) {
         var that = this;
         that.setData({
-          uesCode:res.data
+          uesCode: res.data
         })
         drawQrcode({
           width: 168, //二维码宽高,宽高要与canvas标签宽高一致
@@ -90,11 +90,11 @@ Page({
         })
 
 
-      }else{
+      } else {
         $.alert("获取二维码失败")
       }
-   
-   
+
+
 
     })
   },
@@ -102,48 +102,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

@@ -3,12 +3,12 @@
   <view class='showtime'>{{shopname}}的可约期限</view>
 
 
-  <block wx:for="{{timelist.time}}" wx:key='id'  wx:for-item="item">
+  <block wx:for="{{timelist.time}}" wx:key='id' wx:for-item="item">
     <view class='choose_time'>
-    <view   class='font_week' style='flex:1'>{{ item.time }}</view>
-  <view   class='font_week'>{{ item.des }}场可定</view>
- 
-<!--       
+      <view class='font_week' style='flex:1'>{{ item.time }}</view>
+      <view class='font_week'>{{ item.des }}场可定</view>
+
+      <!--       
       <view wx:for="{{item.week}}"  wx:for-item="tiemss"  class='font_week'  style='flex:1'>{{ items }}</view> -->
       <view data-day='{{ item.time }}' bindtap='ballappointment' class='but_bj bj_color'>
         预定

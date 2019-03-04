@@ -59,11 +59,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
 
     var that = this;
 
-   
+
     wx.getStorage({
       key: 'groundName',
       success: function (res) {
@@ -73,12 +73,12 @@ Page({
         var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
         var formatDate = year + '-' + month + '-' + day;
 
-         
+
         that.setData({
           formatDate: formatDate,
           groundName: res.data.groundName,
           tk_id: options.tk_id,
-          yuyueformdate: options.day +''+  options.time + ':00',
+          yuyueformdate: options.day + '' + options.time + ':00',
         })
         that.coach_course()
       }
@@ -94,7 +94,7 @@ Page({
           yuyueday: options.day || '',
           skTime: options.bookingTime + ':00' || '',
           yuyuetime: options.time + ':00' || '',
-        
+
           optionstype: options.optionstype,
           // tk_id: JSON.parse(options.data).tk_id,
           memberCourseId: options.memberCourseId
@@ -166,17 +166,16 @@ Page({
       isShowText: false,
       focus: true
     })
-  }
-  ,
+  },
   coach_course: function () { //私课详情
     var that = this;
     var val = {
       schduleDate: that.data.bookingDate,
     }
- 
+
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
+
+
 
 
 
@@ -190,7 +189,7 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-      
+
 
       var now = new Date();
       var year = now.getFullYear();
@@ -276,44 +275,44 @@ Page({
 
     var that = this;
     let formdatask = that.data.formdatask
-  
-      let Formdata = JSON.parse(this.data.formdata)
-      
-      // 
-      var valteo = {
-        coachId: that.data.coachId,
-        coachcourseid: that.data.tk_id,
-        memberCourseId: that.data.memberCourseId,
-        gymId: 1,
-        numb:1,
-        bookingDate: that.data.bookingDate,
-        memberId: that.data.memberId,
+
+    let Formdata = JSON.parse(this.data.formdata)
+
+    // 
+    var valteo = {
+      coachId: that.data.coachId,
+      coachcourseid: that.data.tk_id,
+      memberCourseId: that.data.memberCourseId,
+      gymId: 1,
+      numb: 1,
+      bookingDate: that.data.bookingDate,
+      memberId: that.data.memberId,
+    }
+
+    let val1 = {
+      remark: that.data.textareavalue,
+      bookingTime: that.data.bookingTime + ':00'
+    }
+    let data = {
+      ...Formdata,
+      ...formdatask,
+      ...val1,
+      ...valteo
+    }
+
+
+    $.Requests_json(api.coach_app.url, data).then(res => {
+
+
+      if (res.status == 0) {
+        wx.navigateTo({
+          url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.appointmentCommon.price + "&bookingTime=" + res.data.appointmentCommon.bookingTime + "&type=" + res.data.state,
+        })
+      } else {
+        $.alert("预约失败")
       }
 
-      let val1 = {
-        remark: that.data.textareavalue,
-        bookingTime: that.data.bookingTime + ':00'
-      }
-      let data = {
-        ...Formdata,
-        ...formdatask,
-        ...val1,
-        ...valteo
-      }
-
-
-      $.Requests_json(api.coach_app.url, data).then(res => {
-        
-        
-        if (res.status == 0) {
-          wx.navigateTo({
-            url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + res.data.appointmentCommon.price + "&bookingTime=" + res.data.appointmentCommon.bookingTime + "&type=" + res.data.state,
-          })
-        } else {
-          $.alert("预约失败")
-        }
-
-      })
+    })
 
 
 

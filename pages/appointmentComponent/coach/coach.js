@@ -11,7 +11,7 @@ Page({
   data: {
     focus: false,
     isShowText: true,
-    price:"",
+    price: "",
     textareavalue: "",
     imgurl: CONFIG.config.imgUrl,
     formData: {
@@ -54,7 +54,7 @@ Page({
       price: options.price || data.price
     })
   },
-  onRemarkInput(event) {               //保存输入框填写内容
+  onRemarkInput(event) { //保存输入框填写内容
     var value = event.detail.value;
     this.setData({
       textareavalue: value,
@@ -73,22 +73,21 @@ Page({
       isShowText: false,
       focus: true
     })
-  }
-  ,
+  },
   submitorder: function () {
     let that = this
     let data = this.data.htmlData
     let time = this.data.htmlData.bookingTime + ':00'
-    
+
     data.bookingTime = time
     let datas = {
       ...data,
       remark: this.data.textareavalue
-      
+
     }
 
     $.Requests_json(api.coach_app.url, datas).then(res => {
-      
+
       if (res.status == 0) {
         // wx.navigateTo({
         //   url: '../../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.htmlData.orderNo + "&remark=" + that.data.htmlData.remark + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.htmlData.address + "&price=" + res.data.appointmentCommon.price + "&type=" + 1 + "&bookingTime=" + res.data.appointmentCommon.bookingTime,

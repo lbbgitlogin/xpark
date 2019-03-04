@@ -25,8 +25,8 @@ Page({
     landnum: 1,
     sendTime: 60, //再次发送时间
     isSend: true, //是否可以再次发送
-    truecode: "",//返回的验证码
-    code: "",//输入的验证码
+    truecode: "", //返回的验证码
+    code: "", //输入的验证码
   },
 
   /**
@@ -34,12 +34,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    
+
     wx.getStorage({
 
       key: 'gymId',
       success: function (res) {
-        
+
         that.setData({
           gymId: res.data.gymId
 
@@ -52,21 +52,21 @@ Page({
       frontColor: '#ffffff', // 必写项
     })
   },
-  phone: function (e) {//输入手机号
+  phone: function (e) { //输入手机号
     this.setData({
       phone: e.detail.value
     });
   },
   testSubmit: function (e) { //获取验证码
-  
+
     var vals = {
       formId: e.detail.formId
     }
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
 
-      
-      
-      
+
+
+
 
     })
     if ($.isNull(this.data.phone)) {
@@ -84,9 +84,9 @@ Page({
           mobile: this.data.phone,
         }
         var thisobj = this;
-        
+
         $.Requests(api.send.url, val).then((res) => {
-          
+
           if (res.status == 0) {
             var inter = setInterval(function () {
 
@@ -136,10 +136,10 @@ Page({
     }
   },
   onGotUserInfo: function (e) {
-  console.log("登陆授权",e)
+
     var that = this;
     if (e.detail.userInfo != null) { //用户点击允许授权
-      
+
       that.setData({
         icon: e.detail.userInfo.avatarUrl,
         gender: e.detail.userInfo.gender,
@@ -150,8 +150,8 @@ Page({
 
     }
   },
-  formSubmit: function (e) {//注册   
-    
+  formSubmit: function (e) { //注册   
+
 
     // if (this.data.userAccount == this.data.passWord) {
     //   setTimeout(function () {
@@ -194,10 +194,10 @@ Page({
       openID: app.globalData.wxopenid,
 
     }
-    
+
     var thisobj = this;
     $.Requests_jsonlogion(api.login.url, val).then((res) => {
-         
+
       if (res.data != null) {
         var obj = {
           icon: res.data.icon,
@@ -230,7 +230,7 @@ Page({
                   data: res.data[0].vip,
                   success: function (res) {
                     // success
-                    
+
                   },
                   fail: function () {
                     // fail
@@ -255,8 +255,8 @@ Page({
             page.onLoad();
           }
         })
-      }else{
-       $.alert("验证码错误！")
+      } else {
+        $.alert("验证码错误！")
       }
     });
 
@@ -264,17 +264,17 @@ Page({
 
 
   },
-  pho_input: function (e) {//输入验证码
+  pho_input: function (e) { //输入验证码
     this.setData({
       landnum: 1
     });
   },
-  dx_input: function (e) {//输入验证码
+  dx_input: function (e) { //输入验证码
     this.setData({
       landnum: 2
     });
   },
-  code: function (e) {//输入验证码
+  code: function (e) { //输入验证码
     this.setData({
       code: e.detail.value,
     });

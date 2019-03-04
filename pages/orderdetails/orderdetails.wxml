@@ -1,22 +1,22 @@
 <!--pages/bookingoreder/bookingoreder.wxml-->
 
-<view  wx:if="{{orderstate == 1}}"  class='order font-colormode'>
-已支付
+<view wx:if="{{orderstate == 1}}" class='order font-colormode'>
+  已支付
 </view>
-<view  wx:if="{{orderstate == 2}}"  class='order font-colormode'>
-已取消
+<view wx:if="{{orderstate == 2}}" class='order font-colormode'>
+  已取消
 </view>
 <view wx:if="{{orderstate == 0}}" class='order font-colormode'>
-待支付订单
- <!-- 00:{{downTime}} -->
+  待支付订单
+  <!-- 00:{{downTime}} -->
 </view>
 <view class='order_list' style='padding:{{orderstate == 0?"40rpx 0 150rpx  0":""}}'>
   <view class='order_title'>选择服务</view>
   <view class='appointment_datails'>
-     <view class='datails_imghead'>
-          <image wx:if="{{img}}" class='datails_imghead' src='{{imgurl}}{{img}}'></image>
-          <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
-      </view>
+    <view class='datails_imghead'>
+      <image wx:if="{{img}}" class='datails_imghead' src='{{imgurl}}{{img}}'></image>
+      <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
+    </view>
     <!-- <view class='datails_imghead'></view> -->
     <view class='datails_title'>{{goodsname}}</view>
     <view class='order_datails'>
@@ -29,26 +29,26 @@
       订单号
     </view>
     <view class='order_smallname'>
-     {{orderno}}
+      {{orderno}}
     </view>
   </view>
- <view wx:if="{{invaliddatetime != 'undefined'}}" class='list_booking'>
+  <view wx:if="{{invaliddatetime != 'undefined'}}" class='list_booking'>
     <view class='order_name'>
       有效期
     </view>
     <view class='order_smallname'>
-    {{invaliddatetime}}
+      {{invaliddatetime}}
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       下单时间
     </view>
     <view class='order_smallname'>
-   {{createtimestr}}
+      {{createtimestr}}
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       门店
     </view>
@@ -56,7 +56,7 @@
       {{gymname}}
     </view>
   </view>
-   <!-- <view class='list_booking'>
+  <!-- <view class='list_booking'>
     <view class='order_name'>
       优惠券
     </view>
@@ -64,7 +64,7 @@
       k1234567(免费使用券)
     </view>
   </view> -->
-   <!-- <view class='list_booking'>
+  <!-- <view class='list_booking'>
     <view class='order_name'>
       活动促销
     </view>
@@ -72,7 +72,7 @@
      无活动促销
     </view>
   </view> -->
-   <!-- <view class='list_booking'>
+  <!-- <view class='list_booking'>
     <view class='order_name'>
       保险金额
     </view>
@@ -80,51 +80,51 @@
     ¥1
     </view>
   </view> -->
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       商品总价
     </view>
     <view class='order_smallname'>
-     ¥{{price}}
+      ¥{{price}}
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       优惠金额
     </view>
     <view class='order_smallname'>
-     -¥{{discountmoney}}
+      -¥{{discountmoney}}
     </view>
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       付款方式
     </view>
     <view wx:if="{{psytype == 'xj'}}" class='order_smallname'>
       现金
     </view>
-      <view wx:if="{{psytype == 'wx'}}" class='order_smallname'>
-     微信支付
+    <view wx:if="{{psytype == 'wx'}}" class='order_smallname'>
+      微信支付
     </view>
-      <view wx:if="{{psytype == 'mf'}}" class='order_smallname'>
+    <view wx:if="{{psytype == 'mf'}}" class='order_smallname'>
       免费券
     </view>
 
   </view>
-   <view class='list_booking'>
+  <view class='list_booking'>
     <view class='order_name'>
       实付款
     </view>
     <view class='order_smallname'>
-¥{{actualmoney}}
+      ¥{{actualmoney}}
     </view>
   </view>
-     <view wx:if='{{orderstate == 3}}' class='list_booking'>
+  <view wx:if='{{orderstate == 3}}' class='list_booking'>
     <view class='order_name'>
       核销时间
     </view>
     <view class='order_smallname'>
-{{updatetimestr}}
+      {{updatetimestr}}
     </view>
   </view>
 
@@ -135,8 +135,8 @@
     </view>
     <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
   </view>
-   </view>
-     <view wx:if="{{orderstate == 0}}" class='but_manage'>
-        <view bindtap='{{choosebtn?"qxorder":""}}' class='close_manage'>取消订单</view>
-         <view bindtap='{{choosebtn?"jx_order":""}}' class='payment bj_color'>继续支付</view>
-      </view>
+</view>
+<view wx:if="{{orderstate == 0}}" class='but_manage'>
+  <view bindtap='{{choosebtn?"qxorder":""}}' class='close_manage'>取消订单</view>
+  <view bindtap='{{choosebtn?"jx_order":""}}' class='payment bj_color'>继续支付</view>
+</view>

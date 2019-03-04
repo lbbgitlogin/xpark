@@ -1,5 +1,5 @@
-  <view class='main_bj' style='height:230rpx;  '>
-  
+<view class='main_bj' style='height:230rpx;  '>
+
 
   <view class='appr_name' bindtap='myinformation'>
     <view class="userUrl">
@@ -7,48 +7,48 @@
     </view>
     <view class="userName" style='{{membershow?"line-height: 53rpx;":"line-height: 0rpx;"}}'>
       <open-data wx:if="{{!membershow}}" type="userNickName"></open-data>
-       <view wx:if="{{vip == 1&&membershow}}">X-PARK尊享卡</view>
-       <view wx:if="{{vip == 2&&membershow}}">X-PARK至尊卡</view>
-     
+      <view wx:if="{{vip == 1&&membershow}}">X-PARK尊享卡</view>
+      <view wx:if="{{vip == 2&&membershow}}">X-PARK至尊卡</view>
+
     </view>
-      <!-- <view  class=''>
+    <!-- <view  class=''>
           <image class='icon_zb' src='../../img/right_zb.png'></image>
         </view> -->
   </view>
   <view class='bj_coupon' style='background: url({{imgurl}}/image/20190108/c625d40f-644d-4c26-b553-0df4ae1fffeb.png) center no-repeat;'>
-       <view  wx:if="{{!membershow}}" style='margin-right:24rpx'>
-       开通X-PARK运动专项特权
-       </view>
-       <view  wx:if="{{!membershow}}" bindtap='datails' class='show_wz' style='flex:1;'>
-       查看特权
-       </view>
-       <view  wx:if="{{!membershow}}"  bindtap='datails' class='oprncard_btn'>
-       开通
-       </view>
-         <view style="font-size: 28rpx;" wx:if="{{membershow}}">会员到期时间：{{viptime}}</view>
-  </view>
-    <image  wx:if="{{membershow}}" class='viplogo' src='../../img/viplogo.png'></image>
-    
-  </view>
-
-    <view class='infortmation_choose' style='padding:50rpx 28rpx'>
-    <navigator class='true_name'  hover-class='none' url="../management/management">
-    <image class='guidbj' src='../../img/orderbj.png'></image>
-      <view class='true_xm'>门店订单</view>
-   <image class='icon_zb' src='../../img/right_zb.png'></image>
-    </navigator>
-    <navigator class='true_name'  hover-class='none'  url="../coupon/coupon">
-       <image class='coupombj' src='../../img/coupombj.png'></image>
-      <label class='true_xm'>优惠券</label>
-     
-  
-            <image class='icon_zb' src='../../img/right_zb.png'></image>
-     
-    </navigator>
-    <!-- hover-class='none' url="../guide/guide" -->
-    <view bindtap='guide' class='true_name' >
-    <image class='guidbj' src='../../img/guidbj.png'></image>
-      <view class='true_xm'>使用指南</view>
-     <image class='icon_zb' src='../../img/right_zb.png'></image>
+    <view wx:if="{{!membershow}}" style='margin-right:24rpx'>
+      开通X-PARK运动专项特权
     </view>
-  </view> 
+    <view wx:if="{{!membershow}}" bindtap='datails' class='show_wz' style='flex:1;'>
+      查看特权
+    </view>
+    <view wx:if="{{!membershow}}" bindtap='datails' class='oprncard_btn'>
+      开通
+    </view>
+    <view style="font-size: 28rpx;" wx:if="{{membershow}}">会员到期时间：{{viptime}}</view>
+  </view>
+  <image wx:if="{{membershow}}" class='viplogo' src='../../img/viplogo.png'></image>
+
+</view>
+
+<view class='infortmation_choose' style='padding:50rpx 28rpx'>
+  <navigator class='true_name' hover-class='none' url="../management/management">
+    <image class='guidbj' src='../../img/orderbj.png'></image>
+    <view class='true_xm'>门店订单</view>
+    <image class='icon_zb' src='../../img/right_zb.png'></image>
+  </navigator>
+  <navigator class='true_name' hover-class='none' url="../coupon/coupon">
+    <image class='coupombj' src='../../img/coupombj.png'></image>
+    <label class='true_xm'>优惠券</label>
+
+
+    <image class='icon_zb' src='../../img/right_zb.png'></image>
+
+  </navigator>
+  <!-- hover-class='none' url="../guide/guide" -->
+  <view bindtap='guide' class='true_name'>
+    <image class='guidbj' src='../../img/guidbj.png'></image>
+    <view class='true_xm'>使用指南</view>
+    <image class='icon_zb' src='../../img/right_zb.png'></image>
+  </view>
+</view>

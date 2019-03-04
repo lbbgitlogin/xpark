@@ -73,8 +73,7 @@ Page({
         useNotes: "使用流程",
         state: 1,
       },
-      coachAppointments: [
-        {
+      coachAppointments: [{
           id: 2,
           commonId: 0,
           gymId: 1,
@@ -131,11 +130,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log("options",options)
+
     var that = this;
 
     that.setData({
-      areaId: options.areaId ||'',
+      areaId: options.areaId || '',
       address: options.address || '',
       shopname: options.shopname || '',
       id: options.id || '',
@@ -152,8 +151,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
   addnumber: function () {
     this.setData({
       number: this.data.number + 1
@@ -165,12 +163,12 @@ Page({
       areaId: that.data.areaId
     }
     $.Requests(api.groundball.url, val).then((res) => {
-    console.log("球场列表",res)
+
 
       that.setData({
         roundName: res.data,
         groundId: res.data[0].id,
-       groundNames: res.data[0].groundName,
+        groundNames: res.data[0].groundName,
         // groundId: res.data.groundId,
         // groundName: res.data.groundName
       })
@@ -188,34 +186,34 @@ Page({
 
   },
   classifyClick: function (e) {
-    var that =this;
-    console.log("场地选择",e)
+    var that = this;
 
-    if (e == undefined){
+
+    if (e == undefined) {
       var val = {
         areaId: that.data.areaId,
         appointmentDate: that.data.day,
-        groundId:  that.data.groundId,
+        groundId: that.data.groundId,
       }
       that.setData({
         groundId: that.data.groundId,
-        groundname:that.data.groundNames
+        groundname: that.data.groundNames
       })
-    }else{
+    } else {
       var val = {
         areaId: that.data.areaId,
         appointmentDate: that.data.day,
-        groundId: e.currentTarget.dataset.id ,
+        groundId: e.currentTarget.dataset.id,
       }
       that.setData({
         groundId: e.currentTarget.dataset.id,
         groundname: e.currentTarget.dataset.groundname,
       })
     }
-    console.log("that.data.groundId", that.data.groundId)
+
     $.Requests(api.appointment.url, val).then((res) => {
-      console.log("222",res)
-      console.log("222", val)
+
+
       let _this = this
 
 
@@ -257,7 +255,10 @@ Page({
     let _this = this
     const data = this.data.data // 接口数据
 
-    let { businessEndTime, businessStartTime } = data.groundRegular
+    let {
+      businessEndTime,
+      businessStartTime
+    } = data.groundRegular
     var type = wx.getSystemInfoSync().system;
     let date = new Date(this.data.day)
     let years = date.getFullYear()
@@ -272,7 +273,10 @@ Page({
     } else {
       var scheduleDate = `${years}-${months}-${days}`
     }
-    const { dailyStart, dailyEnd } = data.gym
+    const {
+      dailyStart,
+      dailyEnd
+    } = data.gym
 
     const timeLength = 60 // 课程时长
     const coachAppointments = data.groundAppointments // 预约信息
@@ -300,7 +304,7 @@ Page({
         Minutes = '0' + Minutes
       }
       times = Hours + ':' + Minutes
-      uptime = uptime + (timeLength * 60 * 1000)   // 每次递增增加时间
+      uptime = uptime + (timeLength * 60 * 1000) // 每次递增增加时间
       falg = coachAppointments.some(function (item, index, array) {
         let now = new Date(`${scheduleDate} ${times}:00`).getTime()
         let last = new Date(`${scheduleDate} ${item.appointmentTime}`).getTime()
@@ -327,11 +331,15 @@ Page({
 
   },
   add: function (item) {
-    const { canSelect, time, index, falg } = item.currentTarget.dataset.item
+    const {
+      canSelect,
+      time,
+      index,
+      falg
+    } = item.currentTarget.dataset.item
     if (canSelect) {
       let newdata = this.data.yuyueList
-      if (newdata[index - 1].falg) {
-      } else {
+      if (newdata[index - 1].falg) {} else {
         if (newdata[index - 1].acticed) {
           newdata[index - 1].acticed = false
           this.setData({

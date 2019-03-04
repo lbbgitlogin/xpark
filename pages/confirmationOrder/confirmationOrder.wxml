@@ -8,9 +8,11 @@
       <view class='datails_imghead'>
         <image class='datails_imghead' src='{{imgurl}}{{gymdetails.fitness.icon ||tkgymdetails.course.icon ||skgymdetails.course.icon}}'></image>
       </view>
-      <view class='datails_title'>{{gymdetails.fitnessName ||tkgymdetails.course.courseName||skgymdetails.course.courseName}}</view>
+      <view class='datails_title'>{{gymdetails.fitnessName
+        ||tkgymdetails.course.courseName||skgymdetails.course.courseName}}</view>
       <view class='order_datails'>
-        <view class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price || skgymdetails.price}}</view>
+        <view class='order_mon'>¥{{gymdetails.price== 0?'0':gymdetails.price || tkgymdetails.price ||
+          skgymdetails.price}}</view>
         <view class='num_order'>x1</view>
       </view>
     </view>
@@ -27,7 +29,8 @@
         地点
       </view>
       <view class='order_smallname'>
-        {{groundName||gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address ||skgymdetails.gym.address}}
+        {{groundName||gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address
+        ||skgymdetails.gym.address}}
       </view>
     </view>
     <view class='list_booking'>
@@ -53,8 +56,9 @@
     </view>
     <view class='remarks'>
       <view class='order_name'>备注要求</view>
-      <textarea class='input_box_input_input {{focus?"show":"hide"}}' placeholder="" placeholder-style="color:#999;font-size:26rpx" bindinput="textareavalue" fixed="true" bindblur='onShowText' style='background-colo:#fff' value="{{textareavalue}}" focus="{{focus}}"
-        show-confirm-bar="{{bar}}" cursor-spacing="60px" maxlength="150" />
+      <textarea class='input_box_input_input {{focus?"show":"hide"}}' placeholder="" placeholder-style="color:#999;font-size:26rpx"
+        bindinput="textareavalue" fixed="true" bindblur='onShowText' style='background-colo:#fff' value="{{textareavalue}}"
+        focus="{{focus}}" show-confirm-bar="{{bar}}" cursor-spacing="60px" maxlength="150" />
       <view class='textcls {{focus?"hide":"show"}}' bindtap='onShowTextare' wx:if="{{isShowText}}">{{textareavalue}}</view>
     </view>
 

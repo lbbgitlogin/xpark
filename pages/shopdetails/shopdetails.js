@@ -57,19 +57,19 @@ Page({
     formatDate: "",
     memberId: "",
   },
-  buynow: function() {
+  buynow: function () {
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           hidden: 0
         })
       },
-      fail: function(res) {
+      fail: function (res) {
 
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.navigateTo({
             url: '../land/land',
@@ -80,7 +80,7 @@ Page({
       }
     })
   },
-  closebuynow: function() {
+  closebuynow: function () {
     this.setData({
       hidden: 1
     })
@@ -88,7 +88,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
 
     var that = this;
@@ -140,7 +140,7 @@ Page({
     })
     wx.getStorage({
       key: 'gymId',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           gymId: res.data.gymId
         })
@@ -182,30 +182,30 @@ Page({
 
 
   },
-  shopdetails: function() {
+  shopdetails: function () {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
 
-      console.log("商品", res)
+
       that.setData({
         shopdetails: res.data,
         xparkprice: (res.data.price * 0.9).toFixed(2),
         twoprice: (res.data.price * 0.8).toFixed(2),
         latitudenum: res.data.gym.latitude,
         longitudenum: res.data.gym.longitude,
-         
+
       })
 
 
 
     })
   },
-  couponlist: function() {
+  couponlist: function () {
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
 
         var val = {
 
@@ -234,23 +234,23 @@ Page({
 
 
   },
-  datails: function() {
+  datails: function () {
     wx.navigateTo({
       url: '../interests/interests?vip=' + this.data.vip,
     })
   },
-  member: function() { //会员卡查询
+  member: function () { //会员卡查询
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         var val = {
           memberId: res.data.memberId,
 
         }
         $.Requests(api.member.url, val).then((res) => {
 
-          console.log("会员卡", res)
+
           if (res.data == '' || res.data == null) {
 
 
@@ -267,7 +267,7 @@ Page({
     })
 
   },
-  coach_course: function() { //私课详情
+  coach_course: function () { //私课详情
     var that = this;
     var val = {
       schduleDate: that.data.scheduleDate,
@@ -282,7 +282,7 @@ Page({
       })
     })
   },
-  league_schedule: function() {
+  league_schedule: function () {
     var that = this;
     var val = {}
 
@@ -327,20 +327,20 @@ Page({
       })
     })
   },
-  next_self: function(e) {
+  next_self: function (e) {
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId
         })
       },
-      fail: function(res) {
+      fail: function (res) {
 
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.reLaunch({
             url: '../land/land',
@@ -367,8 +367,8 @@ Page({
     }
 
   },
-  mapNavigation: function(e) {
-  
+  mapNavigation: function (e) {
+
     var addr = e.currentTarget.dataset.addr;
     var name = e.currentTarget.dataset.name;
     var key = 'VAKBZ-RO6RU-G3CV6-BCR6Z-LJEY3-R4BTJ';
@@ -378,7 +378,7 @@ Page({
     });
     wx.getLocation({
       type: 'gcj02',
-      success: function(res) {
+      success: function (res) {
         wx.openLocation({
           latitude: that.data.latitudenum,
           longitude: that.data.longitudenum,
@@ -389,13 +389,13 @@ Page({
       },
     })
   },
-  tkshoptedails: function(options) { //团课或者私教判断是否能购买
+  tkshoptedails: function (options) { //团课或者私教判断是否能购买
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         if (that.data.sta != 1) {
           var val = {
             courseId: that.data.coachCourseId,
@@ -442,13 +442,13 @@ Page({
 
 
   },
-  shoptedails: function(options) {
+  shoptedails: function (options) {
 
 
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
 
         var val = {
           areaId: that.data.areaId,
@@ -483,7 +483,7 @@ Page({
 
 
   },
-  gymdetails: function() {
+  gymdetails: function () {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -516,7 +516,7 @@ Page({
 
 
   },
-  appointment: function() {
+  appointment: function () {
 
     var that = this;
     if (that.data.optionstype == 1) { //球类已购买 去预约页面预约
@@ -539,7 +539,7 @@ Page({
 
 
   },
-  choosecoupon: function(e) {
+  choosecoupon: function (e) {
 
     if (this.data.choose) {
       this.setData({
@@ -557,50 +557,50 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function(res) {
-    console.log("分享", res)
+  onShareAppMessage: function (res) {
+
 
     return {
 
@@ -610,15 +610,15 @@ Page({
       path: 'pages/shopdetails/shopdetails?id=' + res.target.dataset.id + "&itemNo=" + res.target.dataset.itemno + "&type=" + res.target.dataset.type + "&sta=" + res.target.dataset.sta + "&coachCourseId=" + res.target.dataset.coachcourseid + "&timechoose=" + res.target.dataset.timechoose + "&timeshow=" + res.target.dataset.timeshow + "&courseid=" + res.target.dataset.courseid + "&scheduledate=" + res.target.dataset.scheduledate,
       //分享成功后执行
 
-      success: function(res) {
+      success: function (res) {
 
-        console.log("--------------转发成功--------------------")
+
 
       },
 
-      fail: function(res) {
+      fail: function (res) {
 
-        console.log("--------------转发失败--------------------")
+
 
       }
 

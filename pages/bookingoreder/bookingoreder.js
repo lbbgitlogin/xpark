@@ -6,7 +6,7 @@ var api = require('../../api/selfdails.js');
 var indexapi = require('../../api/indexAPI.js');
 var apicou = require('../../api/coupon.js');
 var QRCode = require('../../utils/weapp.qrcode.esm.js');
-import drawQrcode from '../../utils/weapp.qrcode.esm.js' 
+import drawQrcode from '../../utils/weapp.qrcode.esm.js'
 var qrcode;
 
 
@@ -18,11 +18,11 @@ Page({
 
   data: {
     imgurl: CONFIG.config.imgUrl,
-    id:"",
+    id: "",
     groundname: "",
-    icon:"",
+    icon: "",
     outdooraddress: "",
-    text:"",
+    text: "",
     updatetimestr: "",
     cancelprice: "",
     num: "",
@@ -30,19 +30,19 @@ Page({
     coachname: "",
     price: "",
     mobilephone: "",
-    ordertype:"",
+    ordertype: "",
     uesCode: "",
-    gymName:"",
+    gymName: "",
     dingdanid: "",
     bookingName: "",
-    formatDate:"",
-    gymdetails:""
+    formatDate: "",
+    gymdetails: ""
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     var that = this;
     wx.getStorage({
       key: 'userinfo',
@@ -51,21 +51,21 @@ Page({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
           memberName: res.data.memberName,
-          
+
         })
-        
+
         wx.getStorage({
           key: 'gymId',
           success: function (res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id || '',
-              memberFitnessId: options.memberFitnessId ||'',
+              memberFitnessId: options.memberFitnessId || '',
               icon: options.icon || '',
               outdooraddress: options.outdooraddress || '',
               coachname: options.coachname || '',
               groundname: options.groundname || '',
-              num:options.num || '',
+              num: options.num || '',
               bookingName: options.bookingName || '',
               updatetimestr: options.updatetimestr || '',
               cancelprice: options.cancelprice || '',
@@ -90,7 +90,7 @@ Page({
         wx.reLaunch({
           url: '../land/land',
         })
-        
+
       },
     })
 
@@ -102,8 +102,8 @@ Page({
     var day = now.getDate();
     var formatDate = year + '-' + month + '-' + day;
     that.setData({
-      formatDate: options.bookingTime || options.bookingdate +' '+ options.bookingtime|| formatDate,
-      id: options.id ||''
+      formatDate: options.bookingTime || options.bookingdate + ' ' + options.bookingtime || formatDate,
+      id: options.id || ''
     })
   },
 
@@ -111,7 +111,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
   call: function (e) {
     wx.makePhoneCall({
@@ -132,38 +132,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
-  appointment_common:function(){
-  
+  appointment_common: function () {
+
     var that = this;
     that.checkcancel();
 
-  
 
-  
+
+
   },
-  checkcancel:function(){
-     var that = this;
+  checkcancel: function () {
+    var that = this;
     var val = {}
     $.Requestsput(api.checkcancel.url + '/' + that.data.dingdanid, val).then((res) => {
-      
-      
-      if(res.data == 0){
+
+
+      if (res.data == 0) {
         wx.showModal({
           title: '提示',
           content: '您确定要取消该课程吗？',
@@ -201,11 +201,11 @@ Page({
             }
           }
         })
-      }else{
+      } else {
 
         wx.showModal({
           title: '提示',
-          content: '将扣除'+res.data+'元手续费，是否取消？',
+          content: '将扣除' + res.data + '元手续费，是否取消？',
           success(res) {
             if (res.confirm) {
               var val = {}
@@ -241,7 +241,7 @@ Page({
           }
         })
       }
-     
+
     })
   },
 
@@ -249,12 +249,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
   xparkshop: function () {
     var val = {}
     $.Requests(indexapi.xparkshop.url + '/' + 1, val).then((res) => {
-      
+
       this.setData({
         mobilephone: res.data.mobile
       })
@@ -265,13 +265,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

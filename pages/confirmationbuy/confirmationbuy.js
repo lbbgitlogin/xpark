@@ -21,8 +21,8 @@ Page({
     maxnum: "",
     minnum: "",
     areaId: "",
-    clickshow:true,
-    vip:"",
+    clickshow: true,
+    vip: "",
     tkareaId: "",
     price: "",
     coachId: "",
@@ -55,7 +55,7 @@ Page({
     openid: "",
     itemNo: "",
     shopid: "",
-    buttonif:false,
+    buttonif: false,
     yuenum: "",
     formatDate: "",
     gymdetails: "",
@@ -65,13 +65,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    
+  onLoad: function (options) {
+
     var that = this;
 
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
@@ -90,7 +90,7 @@ Page({
         })
         wx.getStorage({
           key: 'gymId',
-          success: function(res) {
+          success: function (res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id || '',
@@ -113,22 +113,22 @@ Page({
             } else {
               that.gymdetails();
             }
-         
+
             that.yuenum()
           }
         })
 
 
       },
-      fail: function(res) {
-    
+      fail: function (res) {
+
 
 
         wx.reLaunch({
-            url: '../land/land',
-          })
+          url: '../land/land',
+        })
 
-      
+
 
       },
     })
@@ -189,29 +189,31 @@ Page({
 
   },
 
-  shopdetails: function() {
+  shopdetails: function () {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
-      
-      let{price}= res.data
+
+      let {
+        price
+      } = res.data
       that.setData({
         shopdetails: res.data,
         gymName: res.data.gym.gymName,
         areaId: res.data.areaId,
-        xparkprice: (price*0.9).toFixed(2),
-        twoprice: (price*0.8).toFixed(2),
+        xparkprice: (price * 0.9).toFixed(2),
+        twoprice: (price * 0.8).toFixed(2),
         icon: res.data.gym.icon,
         address: res.data.gym.address,
         goodsId: res.data.id,
       })
-      if (that.data.couponid != ""){
+      if (that.data.couponid != "") {
         that.setData({
-          price:0
+          price: 0
         })
       }
-      
-      
+
+
 
     })
   },
@@ -225,8 +227,8 @@ Page({
 
         }
         $.Requests(api.member.url, val).then((res) => {
-          
-          
+
+
           if (res.data == '' || res.data == null) {
 
 
@@ -243,13 +245,16 @@ Page({
     })
 
   },
-  league_schedule: function() {
+  league_schedule: function () {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    
-      
-      let { price, areaId } = res.data
+
+
+      let {
+        price,
+        areaId
+      } = res.data
 
       var now = new Date();
       var year = now.getFullYear();
@@ -271,19 +276,19 @@ Page({
           price: 0
         })
       }
-      
+
     })
   },
-  coach_course: function() { //私课详情
-  
+  coach_course: function () { //私课详情
+
     var that = this;
     var val = {
       schduleDate: that.data.scheduleDate
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
+
+
 
       that.setData({
         tkgymdetails: res.data,
@@ -298,7 +303,7 @@ Page({
       })
     })
   },
-  yuenum: function() {
+  yuenum: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -314,7 +319,7 @@ Page({
     })
 
   },
-  couponlist: function() {
+  couponlist: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -329,12 +334,12 @@ Page({
 
     })
   },
-  closebuynow: function() {
+  closebuynow: function () {
     this.setData({
       hidden: 1
     })
   },
-  gymdetails: function() {
+  gymdetails: function () {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -351,8 +356,10 @@ Page({
 
     $.Requests(api.gymdetails.url + '/' + that.data.id, val).then((res) => {
 
-  
-    let{price}=res.data
+
+      let {
+        price
+      } = res.data
       that.setData({
         itemNo: res.data.fitness.itemNo,
         gymdetails: res.data,
@@ -360,7 +367,7 @@ Page({
         areaId: res.data.areaId,
         price: price,
         xsprice: price,
-        shopprice:price,
+        shopprice: price,
         gymName: res.data.gym.gymName,
         shopid: res.data.id,
         address: res.data.gym.address,
@@ -386,14 +393,14 @@ Page({
 
 
   },
-  choosecoupon: function() {
+  choosecoupon: function () {
     this.setData({
       choose: true,
       hidden: 0
     })
 
   },
-  choosecouponbtn: function() {
+  choosecouponbtn: function () {
     if (this.data.choose) {
       this.setData({
         choose: false,
@@ -409,9 +416,9 @@ Page({
 
 
   },
-  testSubmit: function(e) {
+  testSubmit: function (e) {
 
-    
+
     var that = this;
 
     that.setData({
@@ -427,12 +434,12 @@ Page({
     var vals = {
       formId: e.detail.formId
     }
-    
+
     $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals])
     if (that.data.yuechoose) {
-   
+
       if (that.data.optionstype == 2 && that.data.sta != 1) {
-       
+
         var val = {
           areaId: that.data.tkareaId,
           couponEntityId: that.data.couponid || 0,
@@ -449,8 +456,8 @@ Page({
         }
 
         $.Requests_json(api.member_ordertk.url, val).then((res) => {
-          
-             
+
+
           if (res.status == 0) {
 
             wx.navigateTo({
@@ -485,14 +492,14 @@ Page({
 
 
         $.Requests_json(api.member_order.url, val).then((res) => {
-          
-            
-          
+
+
+
 
           if (res.status == 0) {
-  
+
             wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId, 
+              url: '../succell/succell?id=' + that.data.id + "&memberCourseId=" + res.data.memberCourseId + "&orderNo=" + res.data.orderNo + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + `&scheduleDate=${that.data.scheduleDate}` + "&tk_id=" + that.data.tk_id + "&coachId=" + that.data.coachId,
             })
           }
 
@@ -519,17 +526,17 @@ Page({
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
 
-          
-          
-          
+
+
+
           if (res.status == 0) {
 
             // var val = {
             //   formId: e.detail.formId
             // }
             // $.Requests_json(api.addFromID.url + '/' + that.data.openid, [val]).then((res) => {
-              
-              
+
+
 
             // })
 
@@ -552,7 +559,7 @@ Page({
 
 
 
-      } else {//球类预约跳转成功页面跳转预约页面
+      } else { //球类预约跳转成功页面跳转预约页面
         var val = {
           areaId: that.data.areaId,
           couponEntityId: that.data.couponid || 0,
@@ -569,28 +576,28 @@ Page({
           remark: "",
         }
         $.Requests_json(api.balancepay.url, val).then((res) => {
-            console.log("下单页面",res)
-          console.log("下单页面", val)
-          
-          if (res.data.success && that.data.itemNo != "SI-BALL") {//场地自助购买跳转
-       
+
+
+
+          if (res.data.success && that.data.itemNo != "SI-BALL") { //场地自助购买跳转
+
 
             // if (res.status == 0) {
-              that.setData({
-                orderno: res.data.orderNo,
-                mmnessid: res.data.memberFitnessId
-              })
-              that.payindex();
-
-            // }
-         
-          } else if (res.data.success && that.data.itemNo == "SI-BALL") {//球类跳转
             that.setData({
               orderno: res.data.orderNo,
               mmnessid: res.data.memberFitnessId
             })
             that.payindex();
-        
+
+            // }
+
+          } else if (res.data.success && that.data.itemNo == "SI-BALL") { //球类跳转
+            that.setData({
+              orderno: res.data.orderNo,
+              mmnessid: res.data.memberFitnessId
+            })
+            that.payindex();
+
           } else {
             $.alert("余额支付失败")
           }
@@ -603,7 +610,7 @@ Page({
     }
 
   },
-  yuechoose: function() {
+  yuechoose: function () {
 
     if (this.data.yuechoose) {
       this.setData({
@@ -617,7 +624,7 @@ Page({
     }
 
   },
-  wxyuechoose: function() {
+  wxyuechoose: function () {
 
     if (this.data.wxyuechoose) {
       this.setData({
@@ -634,21 +641,21 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
   payindex: function () {
@@ -658,11 +665,11 @@ Page({
     }
 
     $.Requests_json(api.getlakala.url, val).then((res) => {
-      console.log("拉卡拉", api.getlakala.url)
-      console.log("拉卡拉", that.data.orderno)
-      console.log("拉卡拉sj原生", res)
+
+
+
       var obj = JSON.parse(res.data.result);
-      console.log("拉卡拉数据解析", obj)
+
       wx.requestPayment({
         'timeStamp': obj.pay_info.timestamp,
         'nonceStr': obj.pay_info.nonce_str,
@@ -670,7 +677,7 @@ Page({
         'signType': obj.pay_info.sign_type,
         'paySign': obj.pay_info.pay_sign,
         'success': function (res) {
-          console.log("支付chenggong：", res);
+
           setTimeout(function () {
             that.secconds();
           }, 2000)
@@ -688,7 +695,7 @@ Page({
 
         },
         'fail': function (res) {
-          console.log("支付失败：", res);
+
           wx.navigateTo({
             url: '../management/management',
           })
@@ -702,36 +709,36 @@ Page({
       orderNo: that.data.orderno
     };
     $.Requests(api.secconds.url, val).then((res) => {
-      console.log("支付回调===>>", res)
-      console.log("支付回调===>>", that.data.orderno)
-      console.log("支付回调===>>", api.secconds.url)
+
+
+
     })
   },
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

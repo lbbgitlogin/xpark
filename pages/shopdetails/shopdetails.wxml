@@ -7,13 +7,13 @@
 
     <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon  ||shopdetails.goodsIcon||icon}}'></image>
   </view> -->
-    <view class='self_banner'>
-     <swiper style="height: 750rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
-        <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:key='' wx:for-item="item">
-          <image wx:if='{{item.length != 0}}' class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
-           <image wx:if='{{item.length == 0}}' class="slide-image" mode="aspectFill" src="../../img/shop_chat.png" />
-        </swiper-item>
-      </swiper>
+  <view class='self_banner'>
+    <swiper style="height: 750rpx" indicator-dots="true" autoplay="true" interval="3000" duration="300">
+      <swiper-item wx:for="{{shopdetails.goodsGalleries}}" wx:key='' wx:for-item="item">
+        <image wx:if='{{item.length != 0}}' class="slide-image" mode="aspectFill" src="{{imgurl}}{{item.url}}" />
+        <image wx:if='{{item.length == 0}}' class="slide-image" mode="aspectFill" src="../../img/shop_chat.png" />
+      </swiper-item>
+    </swiper>
     <!-- <image class='self_banner' src='{{imgurl}}{{gymdetails.fitnessGalleries.icon ||.icon ||shopdetails.gym.icon||icon}}'></image> -->
   </view>
   <view class='self_box'>
@@ -24,7 +24,8 @@
       <!-- <view style='font-size:56rpx;color:#E7E7E7;margin-right:40rpx;'>
         |
       </view> -->
-      <button hover-class='none' data-id='{{id||tk_id}}' data-type='{{optionstype}}' data-name='{{gymdetails.fitnessName ||courseName ||shopdetails.fullName|| tkgymdetails.courseName}}' open-type="share" style="background:#202428;margin-left: 28rpx;">
+      <button hover-class='none' data-id='{{id||tk_id}}' data-type='{{optionstype}}' data-name='{{gymdetails.fitnessName ||courseName ||shopdetails.fullName|| tkgymdetails.courseName}}'
+        open-type="share" style="background:#202428;margin-left: 28rpx;">
         <image class='self_share' src='../../img/share.png'></image>
       </button>
     </view>
@@ -45,17 +46,20 @@
             {{formatDates || formatDate}} 当日有效
           </view>
         </view>
-        <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName ||gymName ||shopdetails.gym.gymName }}' data-addr="{{gymdetails.gym.address ||address ||shopdetails.gym.address}}">
+        <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName ||gymName ||shopdetails.gym.gymName }}'
+          data-addr="{{gymdetails.gym.address ||address ||shopdetails.gym.address}}">
           <view class='loctions'>
             <image class='location' src='../../img/Location.png'></image>
-            <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName||gymName ||tkgymdetails.gym.gymName ||shopdetails.gym.gymName}}' data-addr="{{gymdetails.gym.address||tkgymdetails.address ||tkgymdetails.gym.address ||shopdetails.gym.address}}">
+            <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName||gymName ||tkgymdetails.gym.gymName ||shopdetails.gym.gymName}}'
+              data-addr="{{gymdetails.gym.address||tkgymdetails.address ||tkgymdetails.gym.address ||shopdetails.gym.address}}">
               {{gymdetails.gym.gymName ||gymName ||tkgymdetails.gym.gymName||shopdetails.gym.gymName}}
             </view>
           </view>
 
           <view class='self_fontlast'>
 
-            <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName ||gymName ||tkgymdetails.gym.gymName ||shopdetails.gym.gymName}}' data-addr="{{gymdetails.gym.address ||address ||tkgymdetails.gym.address ||shopdetails.gym.address}}">
+            <view bindtap='mapNavigation' data-name='{{gymdetails.gym.gymName ||gymName ||tkgymdetails.gym.gymName ||shopdetails.gym.gymName}}'
+              data-addr="{{gymdetails.gym.address ||address ||tkgymdetails.gym.address ||shopdetails.gym.address}}">
               {{gymdetails.gym.address ||address ||tkgymdetails.gym.address ||shopdetails.gym.address}}
             </view>
           </view>
@@ -82,7 +86,7 @@
             XPARK至尊卡价：{{twoprice}}元
           </view>
           <view wx:if="{{vip == 1}}" class='self_font'>
-           XPARK尊享卡价：{{xparkprice}}元
+            XPARK尊享卡价：{{xparkprice}}元
           </view>
           <view wx:if="{{vip != 1 && vip!=2}}" class='self_font'>
             XPARK尊享卡价：{{xparkprice}}元
@@ -90,7 +94,8 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{showMethod == 2 && gymdetails.fitness.itemNo == 'SI-BALL' || sta != 1 &&optionstype != 3  &&optionstype != 1 }}" class='yuyue_bar'>
+    <view wx:if="{{showMethod == 2 && gymdetails.fitness.itemNo == 'SI-BALL' || sta != 1 &&optionstype != 3  &&optionstype != 1 }}"
+      class='yuyue_bar'>
       <view class='yuyue_text'>
         已预约
       </view>
@@ -214,7 +219,8 @@
     <image class='xz' src='../../img/sylc.png'></image>
     <view class='introduce_title'>使用流程</view>
   </view>
-  <view wx:if="{{optionstype != 3 && gymdetails.fitness.useNotes || useNotes }}" class='selfsec_box shop_introduce' style='background:#282B30'>
+  <view wx:if="{{optionstype != 3 && gymdetails.fitness.useNotes || useNotes }}" class='selfsec_box shop_introduce'
+    style='background:#282B30'>
 
     <!-- <view class='list font-colormode'>
       <view style='margin-right:18rpx'>01</view>
@@ -254,11 +260,13 @@
     </view>
     <view wx:if="{{vip == 1}}" class='buy_left font-colormode'>
       ¥{{xparkprice}}
-          <text class='m-info-delprice'>  ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price ||tkgymdetails.price}}</text>
+      <text class='m-info-delprice'> ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price
+        ||tkgymdetails.price}}</text>
     </view>
     <view wx:if="{{vip == 2}}" class='buy_left font-colormode'>
       ¥{{twoprice}}
-         <text class='m-info-delprice'>  ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price ||tkgymdetails.price}}</text>
+      <text class='m-info-delprice'> ¥{{gymdetails.price == 0?'0':gymdetails.price || price || shopdetails.price
+        ||tkgymdetails.price}}</text>
     </view>
 
     <view wx:if="{{!appointment && couponlength != 0&& showMethod !=2}}" bindtap='buynow' class='buy_right bj_color'>
@@ -269,10 +277,12 @@
     <view wx:if="{{!appointment && couponlength != 0 && showMethod ==2 }}" bindtap='buynow' class='buy_right bj_color'>
       预约
     </view>
-    <view wx:if="{{!appointment && couponlength == 0 && showMethod ==2 }}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
+    <view wx:if="{{!appointment && couponlength == 0 && showMethod ==2 }}" data-id='{{gymdetails.id || shopdetails.id||id}}'
+      bindtap='next_self' class='buy_right bj_color'>
       预约
     </view>
-    <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}' bindtap='next_self' class='buy_right bj_color'>
+    <view wx:if="{{!appointment && couponlength == 0 && showMethod !=2}}" data-id='{{gymdetails.id || shopdetails.id||id}}'
+      bindtap='next_self' class='buy_right bj_color'>
       购买
     </view>
     <view wx:if="{{appointment}}" data-nullif='num' bindtap='appointment' class='buy_right bj_color'>
@@ -303,7 +313,8 @@
                 <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">{{item.despict}}</view>
                 <view>有效期：{{endtime}}</view>
               </view>
-              <view wx:if="{{item.state == 1}}" data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose' data-discount='{{item.discount}}' data-category='{{item.category}}' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
+              <view wx:if="{{item.state == 1}}" data-index='{{index}}' data-id='{{item.id}}' class='coupon_choose'
+                data-discount='{{item.discount}}' data-category='{{item.category}}' bindtap='{{item.catNo=="a"|| item.catNo=="f"&&shoptype=="1"|| item.catNo=="c"&&shoptype=="2" ||item.catNo=="s"&&shoptype=="3"?"choosecoupon":""}}'>
                 <image wx:if="{{chooseindex != index}}" class='choose_img' src='../../img/choose_false.png'></image>
                 <image wx:else class='choose_img' src='../../img/choose_true.png'></image>
               </view>

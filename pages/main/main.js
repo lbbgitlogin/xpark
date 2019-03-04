@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     var that = this;
+    var that = this;
     that.getdata()
     wx.getStorage({
       key: 'gymId',
@@ -48,8 +48,8 @@ Page({
         that.member()
       },
       fail: function (res) {
-   
-      
+
+
 
         setTimeout(function () {
 
@@ -59,24 +59,23 @@ Page({
 
         }, 100)
 
-     
+
       },
     })
   },
-  guide:function(){
+  guide: function () {
     var that = this;
-    var val = {
-    }
+    var val = {}
     $.Requests(guideapi.guide.url + '/' + that.data.gymId, val).then((res) => {
-         if(res.data.length == 0){
-           $.alert("暂无内容！")
-                   }else{
-                     wx.navigateTo({
-                       url: '../guide/guide',
-                     })
-                   }
-      
-     
+      if (res.data.length == 0) {
+        $.alert("暂无内容！")
+      } else {
+        wx.navigateTo({
+          url: '../guide/guide',
+        })
+      }
+
+
     })
   },
   /**
@@ -118,8 +117,8 @@ Page({
 
     }
     $.Requests(api.member.url, val).then((res) => {
-        
-      
+
+
       if (res.data == '' || res.data == null) {
 
         that.setData({

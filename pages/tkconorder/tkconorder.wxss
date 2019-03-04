@@ -40,7 +40,7 @@ page {
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
-  box-shadow: 0rpx 20rpx 50rpx -15rpx #2D3135  inset
+  box-shadow: 0rpx 20rpx 50rpx -15rpx #2D3135 inset
 }
 
 .order_title {

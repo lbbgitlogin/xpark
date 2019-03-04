@@ -44,22 +44,22 @@
       地点
     </view>
     <view class='order_smallname'>
-      {{groundname}} 
+      {{groundname}}
     </view>
   </view>
-  
-   <view wx:if='{{groundname ==  "undefined"}}' class='list_booking'>
+
+  <view wx:if='{{groundname ==  "undefined"}}' class='list_booking'>
     <view class='order_name'>
       地点
     </view>
     <view wx:if="{{outdooraddress == 'undefined'}}" class='order_smallname'>
-      {{address}} 
+      {{address}}
     </view>
-     <view wx:if="{{outdooraddress != 'undefined'}}" class='order_smallname'>
+    <view wx:if="{{outdooraddress != 'undefined'}}" class='order_smallname'>
       {{outdooraddress}}
     </view>
   </view>
- <view wx:if="{{coachname != 'undefined'}}" class='list_booking'>
+  <view wx:if="{{coachname != 'undefined'}}" class='list_booking'>
     <view class='order_name'>
       教练
     </view>
@@ -68,7 +68,7 @@
     </view>
   </view>
 
-  
+
   <view class='list_booking'>
     <view class='order_name'>
       预约时间
@@ -85,7 +85,7 @@
       {{orderNo}}
     </view>
   </view>
-    <view wx:if="{{ordertype == 0}}" class='list_booking'>
+  <view wx:if="{{ordertype == 0}}" class='list_booking'>
     <view class='order_name'>
       取消时间
     </view>
@@ -94,7 +94,7 @@
     </view>
   </view>
 
-   <view wx:if="{{ordertype == 0}}" class='list_booking'>
+  <view wx:if="{{ordertype == 0}}" class='list_booking'>
     <view class='order_name'>
       手续费
     </view>
@@ -102,7 +102,7 @@
       ￥{{cancelprice}}
     </view>
   </view>
-  
+
   <view class='remarks'>
     <view class='order_name'>备注要求</view>
     <view class='order_remarks'>
@@ -114,9 +114,9 @@
       <view class='name_first'>预约核销码</view>
       <view class='name_thrid'>(使用服务前请核销）</view>
     </view>
-    
-      <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
-   
+
+    <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
+
   </view>
 </view>
 <view wx:if="{{ordertype == 1}}" class='but_order' bindtap='appointment_common'>

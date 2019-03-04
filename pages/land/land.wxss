@@ -1,66 +1,73 @@
 /* pages/land/land.wxss */
 
-.land_title{
+.land_title {
   width: 92%;
   margin: 96rpx auto 72rpx auto;
   font-size: 60rpx;
   color: #fff;
   font-weight: bold
 }
-.land_box{
+
+.land_box {
   width: 92%;
   margin: 0 auto;
 }
-.land_box_child{
-display:flex;
-border-bottom:1rpx solid #D6D6D6;
-width:100%;
-margin:0 auto;
-height:99rpx;
-align-items:center;
-background:#fff;
-border-radius:8rpx;
-padding-left:24rpx;
-box-sizing:border-box;
+
+.land_box_child {
+  display: flex;
+  border-bottom: 1rpx solid #D6D6D6;
+  width: 100%;
+  margin: 0 auto;
+  height: 99rpx;
+  align-items: center;
+  background: #fff;
+  border-radius: 8rpx;
+  padding-left: 24rpx;
+  box-sizing: border-box;
 
 }
-.land_bottom{
- border-bottom: 1rpx solid #46CC8F!important;
+
+.land_bottom {
+  border-bottom: 1rpx solid #46CC8F !important;
 }
-input{
-  height:40rpx;
-border-radius:15rpx;
-font-size:28rpx;
-width:426rpx;
-color:#999999;
-flex:1;
+
+input {
+  height: 40rpx;
+  border-radius: 15rpx;
+  font-size: 28rpx;
+  width: 426rpx;
+  color: #999999;
+  flex: 1;
 
 }
-.sendMsg{
+
+.sendMsg {
   color: #fff;
-  width:180rpx;
-height:99rpx;
-border-top-right-radius:8rpx;
-border-bottom-right-radius:8rpx;
-text-align:center;
-line-height:99rpx;
+  width: 180rpx;
+  height: 99rpx;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  text-align: center;
+  line-height: 99rpx;
 
   font-size: 26rpx
 }
-.buttonnext{
+
+.buttonnext {
   width: 100%;
-  border-radius:8rpx;
+  border-radius: 8rpx;
   padding-left: 0;
   padding-right: 0;
   margin: 122rpx auto;
   color: #fff;
   font-size: 36rpx
 }
-.message_box{
-width:180rpx;
-height:99rpx;
-border-top-right-radius: 8rpx;
-border-bottom-right-radius: 8rpx;
-text-align:center;
-line-height:88rpx;
+
+.message_box {
+  width: 180rpx;
+  height: 99rpx;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  text-align: center;
+  line-height: 88rpx;
 }

@@ -13,7 +13,7 @@
       <view wx:if="{{shoptype != 3}}" class='num_order'>x{{buy_num}}</view>
     </view>
   </view>
-  <view  class='list_booking '>
+  <view class='list_booking '>
     <view class='order_name '>
       数量
     </view>
@@ -37,14 +37,14 @@
     <view class='order_name '>
       地点
     </view>
-     <view wx:if="{{outdoorAddress}}" class='order_smallname '>
+    <view wx:if="{{outdoorAddress}}" class='order_smallname '>
       {{outdoorAddress}}
     </view>
     <view wx:else class='order_smallname '>
       {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
     </view>
   </view>
-    <view class='list_booking '>
+  <view class='list_booking '>
     <view class='order_name '>
       教练
     </view>
@@ -72,8 +72,8 @@
       <view wx:if="{{discountMoney != 0}}" class='order_smallname '>
         -￥{{discountMoney}}
       </view>
-       <view bindtap='allcourseFullDiscount'  class=' m-cell-access' style="margin-top: 10rpx;margin-left: 6rpx;">
-        <image  class='icon_zb' src='../../img/right_zb.png'></image>
+      <view bindtap='allcourseFullDiscount' class=' m-cell-access' style="margin-top: 10rpx;margin-left: 6rpx;">
+        <image class='icon_zb' src='../../img/right_zb.png'></image>
       </view>
     </view>
 
@@ -137,71 +137,66 @@
 <view class="{{mjhidden !=0?'':'hide'}}">
   <view class='coupon {{mjhidden != 0?"bounceInUp animated":"bounceOutDown animated"}} {{couponlength == 1?"frist_coupon":"sec_coupon"}}'>
     <scroll-view scroll-y class='msk-scroll' bindscrolltolower="scrollbo">
-    <view class='cxmj_box'>促销满减</view>
+      <view class='cxmj_box'>促销满减</view>
       <block wx:for="{{allcourseFullDiscount}}" wx:key=''>
-      <view class='cxmj_list'>
-  已购满{{item.fullNumb}}课时，立减{{item.discountMoney}}元
-</view>
+        <view class='cxmj_list'>
+          已购满{{item.fullNumb}}课时，立减{{item.discountMoney}}元
+        </view>
 
       </block>
 
     </scroll-view>
-     <view bindtap='closenow' class='coupon_next bj_color '>
+    <view bindtap='closenow' class='coupon_next bj_color '>
       关闭
     </view>
   </view>
 </view>
 <view class='buy '>
   <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-    ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}}
-  </view>
-  <view wx:if="{{vip == 2}}" class='buy_left font-colormode '>
-    ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}}
-  </view>
-  <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-    ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}}
-  </view>
-
-
-  <form class='buy_right' bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
-    <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
-  </form>
-  <!-- <view bindtap='buynow ' class='buy_right bj_color '>
+    ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}} </view> <view wx:if="{{vip == 2}}"
+      class='buy_left font-colormode '>
+      ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}} </view> <view wx:if="{{vip !=1 && vip !=2}}"
+        class='buy_left font-colormode '>
+        ￥{{price*buy_num-discountMoney-conmoney<0?'0':price*buy_num-discountMoney-conmoney}} </view> <form class='buy_right'
+          bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
+          <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
+          </form>
+          <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买
     </view> -->
-</view>
-<view class="{{hidden==0?' ':'hide '}}">
-  <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}}{{couponlength == 1?"frist_coupon":"sec_coupon"}} '>
-    <view class='coupon_boxheand '>
-      您有抵用券
-    </view>
-    <view class='coupon_list '>
-      <view class='bj_coupon' style='  background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
-        <view class='coupon_left '>
-          <view class='coupon_mon font-colormode '>
-            ¥
+  </view>
+  <view class="{{hidden==0?' ':'hide '}}">
+    <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}}{{couponlength == 1?"frist_coupon":"sec_coupon"}} '>
+      <view class='coupon_boxheand '>
+        您有抵用券
+      </view>
+      <view class='coupon_list '>
+        <view class='bj_coupon' style='  background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
+          <view class='coupon_left '>
+            <view class='coupon_mon font-colormode '>
+              ¥
+            </view>
+            <view class='coupon_maxmon font-colormode '>
+              20
+            </view>
           </view>
-          <view class='coupon_maxmon font-colormode '>
-            20
-          </view>
-        </view>
-        <view class='coupon_right '>
-          <view class='coupon_right_mon '>
-            <view class='coupon_right_name '>免费试用券</view>
-            <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">限美格非门店健身服务1次</view>
-            <view>有效期：2018.11.13 - 2019.12.1</view>
-          </view>
-          <view class='coupon_choose ' bindtap='choosecouponbtn '>
-            <image wx:if="{{choose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
-            <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
-          </view>
+          <view class='coupon_right '>
+            <view class='coupon_right_mon '>
+              <view class='coupon_right_name '>免费试用券</view>
+              <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">限美格非门店健身服务1次</view>
+              <view>有效期：2018.11.13 - 2019.12.1</view>
+            </view>
+            <view class='coupon_choose ' bindtap='choosecouponbtn '>
+              <image wx:if="{{choose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
+              <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
+            </view>
 
+          </view>
         </view>
       </view>
-    </view>
-    <view bindtap='closebuynow ' class='coupon_next bj_color '>
-      下一步
+      <view bindtap='closebuynow ' class='coupon_next bj_color '>
+        下一步
+      </view>
     </view>
   </view>
-</view>
-<view bindtap='closenow' wx:if="{{mjhidden != 0}}" class='hidden_box '></view>
+  <view bindtap='closenow' wx:if="{{mjhidden != 0}}" class='hidden_box '></view>

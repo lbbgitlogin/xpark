@@ -7,10 +7,14 @@
   background: #282B30;
   height: 160rpx;
   border-radius: 8rpx;
-        line-height: 160rpx;
+  line-height: 160rpx;
 }
-.butshow{
-  padding-left:0;padding-right:0;background:#282B30;line-height:40rpx
+
+.butshow {
+  padding-left: 0;
+  padding-right: 0;
+  background: #282B30;
+  line-height: 40rpx
 }
 
 .appointment_box {
@@ -41,87 +45,134 @@
   vertical-align: middle;
   overflow: hidden;
 }
-.m-navbar-item {padding: 32rpx 0;font-size: 28rpx;}
-.m-navbar-item:after {border: none;}
-.m-navbar-item.m-navbar-item-on {background-color: #282B30;color: #E27D00;}
-.m-navbar-item.m-navbar-item-on::before {content: " ";position: absolute;left: 40%;bottom: 0;right: 0;height: 6rpx;width:36rpx;border-bottom: 12rpx solid #E27D00;color: #CCCCCC;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);z-index: 3;}
-.fuwulist{
+
+.m-navbar-item {
+  padding: 32rpx 0;
+  font-size: 28rpx;
+}
+
+.m-navbar-item:after {
+  border: none;
+}
+
+.m-navbar-item.m-navbar-item-on {
+  background-color: #282B30;
+  color: #E27D00;
+}
+
+.m-navbar-item.m-navbar-item-on::before {
+  content: " ";
+  position: absolute;
+  left: 40%;
+  bottom: 0;
+  right: 0;
+  height: 6rpx;
+  width: 36rpx;
+  border-bottom: 12rpx solid #E27D00;
+  color: #CCCCCC;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 3;
+}
+
+.fuwulist {
   width: 100%;
   padding: 10rpx 28rpx 0 28rpx;
-box-sizing:border-box;
-background:#282B30;
-margin:20rpx 0 0 0;
+  box-sizing: border-box;
+  background: #282B30;
+  margin: 20rpx 0 0 0;
 
 
 }
-.fuwulist_box{
-  border-bottom:1rpx solid #1B1E23;
-padding-bottom:24rpx;
+
+.fuwulist_box {
+  border-bottom: 1rpx solid #1B1E23;
+  padding-bottom: 24rpx;
 
 }
-.fuwulist_box_heand{
+
+.fuwulist_box_heand {
   width: 100%;
   display: flex;
   align-items: center;
 }
-.fuwulist_box_heandleft{
+
+.fuwulist_box_heandleft {
   flex: 1;
   font-size: 26rpx;
   color: #CCCCCC
 }
-.fuwulist_box_heandright{
+
+.fuwulist_box_heandright {
 
   font-size: 26rpx;
   color: #46CC8F
 }
-.box_background{
+
+.box_background {
   background: #282B30
 }
-.appointment_datails{
-  width: 100%;margin: 0 auto;padding: 24rpx 0 24rpx 0 ;display: flex;border-bottom: 1rpx solid #1B1E23
+
+.appointment_datails {
+  width: 100%;
+  margin: 0 auto;
+  padding: 24rpx 0 24rpx 0;
+  display: flex;
+  border-bottom: 1rpx solid #1B1E23
 }
-.datails_imghead{
+
+.datails_imghead {
   width: 132rpx;
   height: 132rpx;
   border-radius: 132rpx;
-  margin:0 24rpx 0 0;
+  margin: 0 24rpx 0 0;
 
 }
-.datails_title{
+
+.datails_title {
   font-size: 32rpx;
   color: #FFFFFF;
   font-weight: bold;
 }
-.tiao{
+
+.tiao {
   width: 100%;
   height: 20rpx;
   background: #202428
 }
-.datails_titleif{
+
+.datails_titleif {
   font-size: 26rpx;
   color: #CCCCCC;
 }
-.division{
+
+.division {
   width: 100%;
   height: 20rpx;
   background: #EBECEE
 }
-.appointment_bbj{
-  background:#202428;
-height:320rpx;
-padding-top:124rpx;
-box-sizing:border-box;
+
+.appointment_bbj {
+  background: #202428;
+  height: 320rpx;
+  padding-top: 124rpx;
+  box-sizing: border-box;
 
 }
-.order_pic{
+
+.order_pic {
   width: 156rpx;
   height: 150rpx;
 }
-.order_null{
+
+.order_null {
   width: 156rpx;
   margin: 222rpx auto 32rpx auto
 }
-.order_nullfont{
+
+.order_nullfont {
   font-size: 28rpx;
   color: #666;
   text-align: center

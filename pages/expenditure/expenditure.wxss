@@ -1,11 +1,17 @@
 /* pages/expenditure/expenditure.wxss */
-page{
+page {
   background: #fff
 }
-.entey_box{
-  width: 92%;margin: 40rpx auto 20rpx auto;font-size:48rpx;color: #000;font-weight:bold
+
+.entey_box {
+  width: 92%;
+  margin: 40rpx auto 20rpx auto;
+  font-size: 48rpx;
+  color: #000;
+  font-weight: bold
 }
-.entey_mingxi{
+
+.entey_mingxi {
   display: flex;
   width: 92%;
   margin: 0 auto;
@@ -13,27 +19,32 @@ page{
   align-items: center;
   border-bottom: 1rpx solid #F2F2F2
 }
-.entry_num{
+
+.entry_num {
   font-size: 32rpx;
-  color: #333 ;
-  flex:1;
+  color: #333;
+  flex: 1;
 
 }
-.entry_sz{
+
+.entry_sz {
   font-size: 26rpx;
   color: #666
 }
-.rollback_title{
-    width: 92%;
+
+.rollback_title {
+  width: 92%;
   margin: 100rpx auto 0 auto;
 }
-.rollback_num{
+
+.rollback_num {
   font-size: 26rpx;
   color: #333;
 
-  }
-  .tatile_first{
-    font-size: 26rpx;
-    color: #666;
-    margin-top: 10rpx;
-  }
+}
+
+.tatile_first {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 10rpx;
+}

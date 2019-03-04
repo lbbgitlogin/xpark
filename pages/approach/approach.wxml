@@ -8,10 +8,10 @@
     </view>
 
   </view>
- <!-- <view class='appr_erweima'>
+  <!-- <view class='appr_erweima'>
  </view> -->
-     <canvas class='appr_erweima' style="width: 168px; height:168px;" canvas-id="myQrcode"></canvas>
- <view class='appr_shopname'>
- {{gymName}}
- </view>
+  <canvas class='appr_erweima' style="width: 168px; height:168px;" canvas-id="myQrcode"></canvas>
+  <view class='appr_shopname'>
+    {{gymName}}
+  </view>
 </view>

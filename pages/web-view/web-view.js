@@ -20,8 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("dizhi ", this.data.url)
-    console.log("dizhi ", options)
+    
+    
     let that = this;
     let webUrl = '';
     if (options.orderno) {
@@ -38,12 +38,12 @@ Page({
     }
 
     $.Requests_json(api.getlakala.url, val).then((res) => {
-      console.log("拉卡拉", api.getlakala.url)
-      console.log("拉卡拉", that.data.orderno)
-      console.log("拉卡拉sj", res)
+      
+      
+      
       var obj = JSON.parse(res.data.result);
-      console.log("拉卡拉url", obj)
-      console.log("拉卡拉url", obj.confirm_url)
+      
+      
       that.setData({
         url: obj.confirm_url
       })

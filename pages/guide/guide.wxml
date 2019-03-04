@@ -1,31 +1,32 @@
 <!--pages/guide/guide.wxml-->
 <view class='range-container'>
-<view class='ra-ca-bottom_tab'>
+  <view class='ra-ca-bottom_tab'>
     <block wx:key='id' wx:for="{{bottomTab}}">
-      <view class='m-navbar-item {{activeTab == index ? "m-navbar-item-on" : ""}}' bindtap='rcbBottomTab' data-index='{{index}}' id="{{activeTab == index ? 'selected' : ''}}">{{item.heading}}</view>
+      <view class='m-navbar-item {{activeTab == index ? "m-navbar-item-on" : ""}}' bindtap='rcbBottomTab' data-index='{{index}}'
+        id="{{activeTab == index ? 'selected' : ''}}">{{item.heading}}</view>
     </block>
   </view>
-<view class='tiao'></view>
- <rich-text   class='title_sm' nodes='{{contentshow}}'></rich-text>
-<!--下面这一句是重点,这里是内容切换区域-->
- <!-- <swiper circular='true' style='height:{{clientHeight}}px;padding:20rpx;box-sizing:border-box' bindchange='swiperChange' current='{{activeTab}}'> 
+  <view class='tiao'></view>
+  <rich-text class='title_sm' nodes='{{contentshow}}'></rich-text>
+  <!--下面这一句是重点,这里是内容切换区域-->
+  <!-- <swiper circular='true' style='height:{{clientHeight}}px;padding:20rpx;box-sizing:border-box' bindchange='swiperChange' current='{{activeTab}}'> 
   <block wx:key='' wx:for="{{cardViewContent}}"> 
       <swiper-item> -->
-        <view class='ra-co-cardview'>
-          <view class='ra-ca-viewtitle'>
-              
-          </view>
-          <!--double line-->
-          <!--版本二的显示双行内容，不用理会
+  <view class='ra-co-cardview'>
+    <view class='ra-ca-viewtitle'>
+
+    </view>
+    <!--double line-->
+    <!--版本二的显示双行内容，不用理会
        <view class='ra-co-imgview'>
         <image src='../images/online2.png'></image>
         <image src='{{qrcodeImg}}' bindlongtap='previewImg'></image>
        </view>
        -->
-          <!--singel line-->
-     
-        </view>
-      <!-- </swiper-item>
+    <!--singel line-->
+
+  </view>
+  <!-- </swiper-item>
     </block> 
   </swiper> -->
 

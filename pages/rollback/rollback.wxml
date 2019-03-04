@@ -1,34 +1,33 @@
 <!--pages/rollback/rollback.wxml-->
 <view class='entey_box'>
-结算回退
+  结算回退
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>结算凭据号</view>
-    <view class='entry_sz'>2018112114084856</view>
+  <view class='entry_sz'>2018112114084856</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>时间</view>
-    <view class='entry_sz'>2018-11-21 11:53:21</view>
+  <view class='entry_sz'>2018-11-21 11:53:21</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>门店</view>
-    <view class='entry_sz'>美格菲浦东店</view>
+  <view class='entry_sz'>美格菲浦东店</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>退回方式</view>
-    <view class='entry_sz'>手动</view>
+  <view class='entry_sz'>手动</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>退回金额</view>
-    <view class='entry_sz' style='color:#000000;font-size:36rpx'>-500.00</view>
+  <view class='entry_sz' style='color:#000000;font-size:36rpx'>-500.00</view>
 </view>
 <view class='rollback_title'>
   <view class='rollback_num'>须知：</view>
   <view class='tatile_first'>
-  1. 结算退回金额，只退回门店储值中实际充值尚未使用金额赠送金额不予退回并系统自动清零
+    1. 结算退回金额，只退回门店储值中实际充值尚未使用金额赠送金额不予退回并系统自动清零
   </view>
-   <view  class='tatile_first'>
- 2. 退回金额还未到账，请及时联系门店工作人员
+  <view class='tatile_first'>
+    2. 退回金额还未到账，请及时联系门店工作人员
   </view>
 </view>
-

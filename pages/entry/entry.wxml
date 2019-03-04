@@ -1,28 +1,28 @@
 <!--pages/entry/entry.wxml-->
 <view class='entey_box'>
-充值入账
+  充值入账
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>流水号</view>
-    <view class='entry_sz'>2018112114084856</view>
+  <view class='entry_sz'>2018112114084856</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>时间</view>
-    <view class='entry_sz'>2018-11-21 11:53:21</view>
+  <view class='entry_sz'>2018-11-21 11:53:21</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>门店</view>
-    <view class='entry_sz'>美格菲浦东店</view>
+  <view class='entry_sz'>美格菲浦东店</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>充值方式</view>
-    <view class='entry_sz'>微信支付/系统</view>
+  <view class='entry_sz'>微信支付/系统</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>充值额度</view>
-    <view class='entry_sz' style='color:#000000;font-size:36rpx'>500.00</view>
+  <view class='entry_sz' style='color:#000000;font-size:36rpx'>500.00</view>
 </view>
 <view class='entey_mingxi'>
   <view class='entry_num'>赠送金</view>
-    <view class='entry_sz'>0.00</view>
+  <view class='entry_sz'>0.00</view>
 </view>

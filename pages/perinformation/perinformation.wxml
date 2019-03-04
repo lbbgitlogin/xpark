@@ -13,27 +13,27 @@
     <view class='true_name'>
       <label class='true_xm'>手机号</label>
       <view name="mobile" class='pickershow' style="flex: 1;text-align: right;">
-         {{phone}}
-      
+        {{phone}}
+
       </view>
-   
-     
-           
-     
+
+
+
+
     </view>
-     <view class='true_name'>
+    <view class='true_name'>
       <label class='true_xm'>性别</label>
       <view style="flex: 1;text-align: right;">
         <picker name="gender" class='pickershow' bindchange="pickerClick" value='{{pickerIndex}}' range='{{pickerData}}'>{{pickerData[pickerIndex]}}</picker>
-        
+
       </view>
-  
-            <image class='icon_zb' src='../../img/right_zb.png'></image>
-     
+
+      <image class='icon_zb' src='../../img/right_zb.png'></image>
+
     </view>
     <view class='true_name'>
       <view class='true_xm'>身份证号</view>
-      <input value='{{idCard == ""?"":idCard}}'  type='number' placeholder="请输入身份证号" bindinput="userAccount" name="idCard"></input>
+      <input value='{{idCard == ""?"":idCard}}' type='number' placeholder="请输入身份证号" bindinput="userAccount" name="idCard"></input>
     </view>
     <view class='true_name'>
       <label class='true_xm'>生日</label>
@@ -43,9 +43,9 @@
           {{StrBirthday}}
         </picker>
       </view>
-         
-             <image class='icon_zb' src='../../img/right_zb.png'></image>
-        
+
+      <image class='icon_zb' src='../../img/right_zb.png'></image>
+
     </view>
     <view class='true_name'>
       <label class='true_xm'>身高</label>
@@ -53,8 +53,8 @@
         <picker name='hight' class='pickershow' bindchange="pickerClickheight" value='{{pickerhe}}' range='{{pickerheight}}'>{{height||pickerheight[pickerhe]}}cm</picker>
 
       </view>
-        
-             <image class='icon_zb' src='../../img/right_zb.png'></image>
+
+      <image class='icon_zb' src='../../img/right_zb.png'></image>
 
     </view>
     <view class='true_name'>
@@ -63,7 +63,7 @@
         <picker name='wight' class='pickershow' bindchange="pickerClickweight" value='{{pickerwe}}' range='{{pickerweight}}'>{{weight||pickerweight[pickerwe]}}kg</picker>
 
       </view>
-            <image class='icon_zb' src='../../img/right_zb.png'></image>
+      <image class='icon_zb' src='../../img/right_zb.png'></image>
 
     </view>
   </view>

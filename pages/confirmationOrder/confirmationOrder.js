@@ -10,15 +10,15 @@ Page({
    */
   data: {
     imgurl: CONFIG.config.imgUrl,
-    formdatask:"",
+    formdatask: "",
     formdata: null,
     bookingTime: "",
     groundName: "",
     yuyueday: "",
     yuyuetime: "",
-    focus:false,
+    focus: false,
     memberCourseId: "",
-    isShowText:true,
+    isShowText: true,
     groundId: "",
     sta: "",
     skgymdetails: "",
@@ -35,7 +35,7 @@ Page({
     numb: "1",
     memberFitnessId: "",
     textareavalue: "",
-    areaName: "", 
+    areaName: "",
     couponlenght: "",
     choose: false,
     orderNo: "",
@@ -63,7 +63,7 @@ Page({
     var that = this;
 
     if (options.orderType === '2' && options.isfj != "undefined") {
-   
+
       that.setData({
         formdatask: JSON.parse(options.data),
         formdata: options.data || '',
@@ -77,10 +77,10 @@ Page({
       })
       that.coach_course()
 
-    } else if (options.optionstype == 2){
-         that.setData({
-           tk_id: options.tk_id || '',
-         })
+    } else if (options.optionstype == 2) {
+      that.setData({
+        tk_id: options.tk_id || '',
+      })
     } else if (options.type === '场馆') {
       that.setData({
         formdata: options,
@@ -130,10 +130,14 @@ Page({
                 tk_id: options.coachcourseid || options.tk_id
               })
               that.surebuy()
-              
+
             } else if (options.orderType == 2 && options.isfj == "undefined") {
-           
-              let { tk_id, coachId, memberCourseId } = options
+
+              let {
+                tk_id,
+                coachId,
+                memberCourseId
+              } = options
               that.setData({
                 tk_id: tk_id,
                 sta: options.sta || '',
@@ -189,10 +193,10 @@ Page({
     }
 
     $.Requests(api.coach_course.url + '/' + that.data.tk_id, val).then((res) => {
-      
-      
-      
-      
+
+
+
+
 
       that.setData({
         skgymdetails: res.data,
@@ -204,7 +208,7 @@ Page({
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
-    
+
 
       var now = new Date();
       var year = now.getFullYear();
@@ -227,27 +231,26 @@ Page({
       textareavalue: e.detail.value
     });
   },
-  onRemarkInput(event) {               //保存输入框填写内容
+  onRemarkInput(event) { //保存输入框填写内容
     var value = event.detail.value;
     this.setData({
       textareavalue: value,
     });
   },
-  onShowText:function(){
-   
+  onShowText: function () {
+
     this.setData({
       isShowText: true,
       focus: false
-     
+
     })
   },
-    onShowTextare: function () {
-      this.setData({
-        isShowText: false,
-        focus: true
-      })
-  }
-,
+  onShowTextare: function () {
+    this.setData({
+      isShowText: false,
+      focus: true
+    })
+  },
   gymdetails: function () {
     var that = this;
     var now = new Date();
@@ -316,7 +319,7 @@ Page({
     if (that.data.sta == 1) {
 
       let Formdata = JSON.parse(this.data.formdata)
-      
+
       // 
       var valteo = {
         coachId: that.data.coachId,
@@ -340,7 +343,7 @@ Page({
 
 
       $.Requests_json(api.coach_app.url, data).then(res => {
-    
+
 
         if (res.status == 0) {
           wx.navigateTo({
@@ -353,7 +356,7 @@ Page({
       })
 
     } else if (that.data.optionstype == 2 && that.data.sta != 1) {
- 
+
       var val = {
         memberCourseId: that.data.memberCourseId,
         orderNo: that.data.orderNo,
@@ -365,8 +368,8 @@ Page({
         leagueScheduleId: that.data.leagueScheduleId
       }
       $.Requests_json(api.league_appointment.url, val).then((res) => {
-        
-  
+
+
         if (res.status == 0) {
           wx.navigateTo({
             url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price + "&type=" + res.data.state + "&bookingdate=" + res.data.bookingDate + "&bookingtime=" + res.data.bookingTime,
@@ -385,9 +388,14 @@ Page({
       })
 
 
-    } else if (that.data.formdata.type === '场馆'){
-      
-      let { time, day, memberFitnessId, groundId } = that.data.formdata
+    } else if (that.data.formdata.type === '场馆') {
+
+      let {
+        time,
+        day,
+        memberFitnessId,
+        groundId
+      } = that.data.formdata
       // return
 
       wx.getStorage({
@@ -403,20 +411,20 @@ Page({
             remark: that.data.textareavalue
           }
           $.Requests_json(api.ground_appointment.url, val).then((res) => {
-            
-              
+
+
 
             if (res.status == 0) {
               // wx.navigateTo({
               //   url: '../bookingoreder/bookingoreder?icon=' + res.data.appointmentCommon.icon + "&orderNo=" + that.data.orderNo + "&remark=" + that.data.textareavalue + "&gymName=" + res.data.appointmentCommon.gymName + "&uesCode=" + res.data.appointmentCommon.uesCode + "&bookingName=" + res.data.appointmentCommon.bookingName + "&address=" + that.data.address + "&price=" + that.data.price,
               // })
               $.alert("预约成功")
-              setTimeout(()=> {
+              setTimeout(() => {
                 wx.switchTab({
                   url: '../index/index'
                 })
               }, 500)
-              
+
             } else {
               $.alert("预约失败")
             }

@@ -141,7 +141,11 @@ Page({
 
             } else if (options.orderType == 2 && options.isfj == "undefined") {
 
-              let { tk_id, coachId, memberCourseId } = options
+              let {
+                tk_id,
+                coachId,
+                memberCourseId
+              } = options
               that.setData({
                 tk_id: tk_id,
                 sta: options.sta || '',
@@ -194,7 +198,7 @@ Page({
   onReady: function () {
 
   },
-  onRemarkInput(event) {               //保存输入框填写内容
+  onRemarkInput(event) { //保存输入框填写内容
     var value = event.detail.value;
     this.setData({
       textareavalue: value,
@@ -213,8 +217,7 @@ Page({
       isShowText: false,
       focus: true
     })
-  }
-  ,
+  },
   coach_course: function () { //私课详情
     var that = this;
     var val = {
@@ -450,7 +453,12 @@ Page({
 
     } else if (that.data.formdata.type === '场馆') {
 
-      let { time, day, memberFitnessId, groundId } = that.data.formdata
+      let {
+        time,
+        day,
+        memberFitnessId,
+        groundId
+      } = that.data.formdata
       // return
 
       wx.getStorage({

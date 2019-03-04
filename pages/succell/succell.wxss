@@ -1,35 +1,41 @@
 /* pages/succell/succell.wxss */
-page{
+page {
   background: #282B30
 }
-.succell_img{
+
+.succell_img {
   width: 188rpx;
   height: 188rpx;
   margin: 160rpx auto 60rpx auto;
 }
-.nowbuy{
+
+.nowbuy {
   width: 188rpx;
   height: 188rpx;
 }
-.succell_font{
+
+.succell_font {
   font-size: 40rpx;
   color: #fff;
   text-align: center;
   margin-bottom: 32rpx;
 
 }
-.succell_title{
+
+.succell_title {
   color: #ccc;
   font-size: 28rpx;
   text-align: center;
   margin-bottom: 80rpx;
 }
-.but_succell{
+
+.but_succell {
   width: 88%;
   height: 98rpx;
   line-height: 98rpx;
   color: #fff;
-  text-align: center;border: 1rpx solid #E27D00;
+  text-align: center;
+  border: 1rpx solid #E27D00;
   border-radius: 8rpx;
   margin: 0 auto 36rpx auto
 }

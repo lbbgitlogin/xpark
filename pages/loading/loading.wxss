@@ -638,6 +638,7 @@ background-color:#fff;
     left: -100%;
     opacity: 0
   }
+
   to {
     left: 0rpx;
     opacity: 1
@@ -699,20 +700,20 @@ background-color:#fff;
 }
 
 .ligin_box {
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-/* background-size:cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* background-size:cover;
 background-image: url("http://zuul.snail.highlifes.com/common/image/20190117/ab5071a8-7d95-4080-b6ae-94a5032e53b4.png"); */
-overflow:hidden;
-display:flex;
-  background-repeat:no-repeat;
-    background-position: center center;
-align-items:center;
-justify-content:center;
-background-color:#fff;
+  overflow: hidden;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center center;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
 
 }
 
@@ -731,11 +732,13 @@ background-color:#fff;
   font-size: 36rpx;
   margin: 42rpx auto 16rpx auto;
 }
-.login_sec{
+
+.login_sec {
   position: absolute;
   bottom: 6%;
   left: 23%
 }
+
 .language {
   width: 100%;
   text-align: center;

@@ -66,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     var that = this;
     wx.getStorage({
       key: 'gymId',
@@ -74,17 +74,20 @@ Page({
         that.setData({
           gymId: res.data.gymId,
           orderNo: options.orderNo,
-          price:options.price,
+          price: options.price,
           coachcourseid: options.coachcourseid
         })
         wx.getStorage({
           key: 'userinfo',
           success: function (res) {
-            
+
             let data = JSON.parse(options.data)
-            
-            let { memberCourseId, scheduleDate } = data
-            
+
+            let {
+              memberCourseId,
+              scheduleDate
+            } = data
+
             that.setData({
               sta: options.sta,
               fromData: {
@@ -117,8 +120,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
   addnumber: function () {
     this.setData({
       number: this.data.number + 1
@@ -131,9 +133,12 @@ Page({
     let _this = this
     const data = this.data.sjdata // 接口数据
 
-    let { businessEndTime, businessStartTime } = data.coachSchedule
+    let {
+      businessEndTime,
+      businessStartTime
+    } = data.coachSchedule
     var type = wx.getSystemInfoSync().system;
-    let date = new Date(_this.data.fromData.scheduleDate,)
+    let date = new Date(_this.data.fromData.scheduleDate, )
     let years = date.getFullYear()
     let months = date.getMonth() + 1
     let days = date.getDate()
@@ -143,9 +148,14 @@ Page({
     } else {
       var scheduleDate = `${years}-${months}-${days}`
     }
-    
-    const { scheduleStart, scheduleEnd } = data.coachSchedule
-    const { timeLength } = data.course // 课程时长
+
+    const {
+      scheduleStart,
+      scheduleEnd
+    } = data.coachSchedule
+    const {
+      timeLength
+    } = data.course // 课程时长
     const coachAppointments = data.coachAppointments // 预约信息
     const menStart = new Date(`${scheduleDate} ${scheduleStart}`) // 门店上班时间
     const menEnd = new Date(`${scheduleDate} ${scheduleEnd}`) // 门店下班时间
@@ -174,7 +184,7 @@ Page({
         Minutes = '0' + Minutes
       }
       times = Hours + ':' + Minutes
-      uptime = uptime + (timeLength * 60 * 1000)   // 每次递增增加时间
+      uptime = uptime + (timeLength * 60 * 1000) // 每次递增增加时间
       if (coachAppointments != undefined) {
         falg = coachAppointments.some(function (item, index, array) {
           let now = new Date(`${scheduleDate} ${times}:00`).getTime()
@@ -210,14 +220,17 @@ Page({
   add: function (item) {
 
 
-    const { canSelect, time, index } = item.currentTarget.dataset.item
+    const {
+      canSelect,
+      time,
+      index
+    } = item.currentTarget.dataset.item
 
 
 
     if (canSelect) {
       let newdata = this.data.yuyueList
-      if (newdata[index - 1].falg) {
-      } else {
+      if (newdata[index - 1].falg) {} else {
         if (newdata[index - 1].acticed) {
           newdata[index - 1].acticed = false
           this.setData({
@@ -244,11 +257,24 @@ Page({
 
 
   toNext: function () {
-    
-    let { bookingDate, memberCourseId, numb } = this.data.fromData
-    let { memberId, orderNo } = this.data
-    let { courseName, icon } = this.data.sjdata.course
-    let { address, gymName } = this.data.sjdata.gym
+
+    let {
+      bookingDate,
+      memberCourseId,
+      numb
+    } = this.data.fromData
+    let {
+      memberId,
+      orderNo
+    } = this.data
+    let {
+      courseName,
+      icon
+    } = this.data.sjdata.course
+    let {
+      address,
+      gymName
+    } = this.data.sjdata.gym
     let bookingTime = this.data.timenext
     let coachname = this.data.coachname
     let price = this.data.price
@@ -312,7 +338,7 @@ Page({
     // that.setData({
     //   formatDate: formatDate
     // })
-    
+
     var val = {
       coachId: that.data.coachId,
       // appointmentDate: formatDate,
@@ -323,7 +349,7 @@ Page({
     $.Requests(api.coach_appointment.url, val).then((res) => {
       that.setData({
         sjdata: res.data,
-        coachname:res.data.coachSchedule.coachName
+        coachname: res.data.coachSchedule.coachName
         // gymName: res.data.groundAppointments[0].gymName,
         // id: res.data.groundAppointments[0].id,
       })

@@ -17,14 +17,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log("支付返回", options)
+  onLoad: function (options) {
+
     var that = this;
 
     if (options.sta == 1) { //私教预约跳转
       that.setData({
         itemno: 1,
-        loadngtime: setInterval(function() {
+        loadngtime: setInterval(function () {
           if (that.data.timeshow > 0) {
             that.setData({
               timeshow: that.data.timeshow - 1
@@ -57,7 +57,7 @@ Page({
     } else if (options.optionstype == 2) { //团课
       that.setData({
         itemno: 1,
-        loadngtime: setInterval(function() {
+        loadngtime: setInterval(function () {
           if (that.data.timeshow > 0) {
             that.setData({
               timeshow: that.data.timeshow - 1
@@ -75,7 +75,7 @@ Page({
     } else if (options.cardnum == 1) { // 购卡成功
       that.setData({
         itemno: 3,
-        loadngtime: setInterval(function() {
+        loadngtime: setInterval(function () {
           if (that.data.timeshow > 0) {
             that.setData({
               timeshow: that.data.timeshow - 1,
@@ -85,7 +85,7 @@ Page({
               wx.switchTab({
 
                 url: '../main/main',
-                success: function(e) {
+                success: function (e) {
                   var page = getCurrentPages().pop();
                   if (page == undefined || page == null) return;
                   page.onLoad();
@@ -106,7 +106,7 @@ Page({
     } else { //球类跳转
       that.setData({
         itemno: 1,
-        loadngtime: setInterval(function() {
+        loadngtime: setInterval(function () {
           if (that.data.timeshow > 0) {
             that.setData({
               timeshow: that.data.timeshow - 1
@@ -128,10 +128,10 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
-  onUnload: function() {
+  onUnload: function () {
 
     if (this.data.ifupload == false) {
       clearInterval(this.data.loadngtime)
@@ -147,10 +147,10 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
-  my_appointment: function() {
+  my_appointment: function () {
     this.setData({
       ifupload: true
     })
@@ -158,11 +158,11 @@ Page({
       url: '../appointment/appointment',
     })
   },
-  backhome: function() {
+  backhome: function () {
     clearInterval(this.data.loadngtime)
     wx.switchTab({
       url: '../index/index',
-      success: function(e) {
+      success: function (e) {
         var page = getCurrentPages().pop();
         if (page == undefined || page == null) return;
         page.onLoad();
@@ -177,28 +177,28 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

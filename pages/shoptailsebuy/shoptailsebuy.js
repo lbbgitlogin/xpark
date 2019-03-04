@@ -63,13 +63,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     var that = this;
 
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           memberId: res.data.memberId,
           mobile: res.data.mobile,
@@ -86,7 +86,7 @@ Page({
         })
         wx.getStorage({
           key: 'gymId',
-          success: function(res) {
+          success: function (res) {
             that.setData({
               gymId: res.data.gymId,
               id: options.id || '',
@@ -116,7 +116,7 @@ Page({
 
 
       },
-      fail: function(res) {
+      fail: function (res) {
 
 
 
@@ -136,7 +136,7 @@ Page({
 
   },
   // 减号 1
-  bindMinus: function(e) {
+  bindMinus: function (e) {
     if (this.data.buy_num > 1) {
       this.pay_num(Number(this.data.buy_num) - 1)
     }
@@ -147,13 +147,13 @@ Page({
     }
   },
   // 加号 1
-  bindPlus: function(e) {
+  bindPlus: function (e) {
     if (Number(this.data.buy_num) > 0) {
       this.pay_num(Number(this.data.buy_num) + 1)
     }
   },
 
-  pay_num: function(e) {
+  pay_num: function (e) {
 
     var that = this;
     if (e > 0) {
@@ -185,7 +185,7 @@ Page({
 
   },
 
-  shopdetails: function() {
+  shopdetails: function () {
     var that = this;
     var val = {}
     $.Requests(api.shopdetails.url + '/' + that.data.shopid, val).then((res) => {
@@ -220,11 +220,11 @@ Page({
 
     })
   },
-  member: function() { //会员卡查询
+  member: function () { //会员卡查询
     var that = this;
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         var val = {
           memberId: res.data.memberId,
 
@@ -248,7 +248,7 @@ Page({
     })
 
   },
-  league_schedule: function() {
+  league_schedule: function () {
     var that = this;
     var val = {}
     $.Requests(api.league_schedule.url + '/' + that.data.tk_id, val).then((res) => {
@@ -282,7 +282,7 @@ Page({
 
     })
   },
-  coach_course: function() { //私课详情
+  coach_course: function () { //私课详情
 
     var that = this;
     var val = {
@@ -306,7 +306,7 @@ Page({
       })
     })
   },
-  yuenum: function() {
+  yuenum: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -322,7 +322,7 @@ Page({
     })
 
   },
-  couponlist: function() {
+  couponlist: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -337,12 +337,12 @@ Page({
 
     })
   },
-  closebuynow: function() {
+  closebuynow: function () {
     this.setData({
       hidden: 1
     })
   },
-  gymdetails: function() {
+  gymdetails: function () {
     var that = this;
     var now = new Date();
     var year = now.getFullYear();
@@ -388,14 +388,14 @@ Page({
 
 
   },
-  choosecoupon: function() {
+  choosecoupon: function () {
     this.setData({
       choose: true,
       hidden: 0
     })
 
   },
-  choosecouponbtn: function() {
+  choosecouponbtn: function () {
     if (this.data.choose) {
       this.setData({
         choose: false,
@@ -411,7 +411,7 @@ Page({
 
 
   },
-  testSubmit: function(e) {
+  testSubmit: function (e) {
 
 
 
@@ -421,7 +421,7 @@ Page({
     that.setData({
       buttonif: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
 
       that.setData({
         buttonif: false
@@ -432,13 +432,12 @@ Page({
       formId: e.detail.formId
     }
 
-    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {
-    })
+    $.Requests_json(api.addFromID.url + '/' + app.globalData.wxopenid, [vals]).then((res) => {})
     if (that.data.yuechoose) {
 
       if (that.data.optionstype == 2 && that.data.sta != 1) {
 
-        var val = { 
+        var val = {
           areaId: that.data.tkareaId,
           couponEntityId: that.data.couponid || 0,
           gymId: that.data.gymId,
@@ -519,8 +518,8 @@ Page({
           remark: "",
         }
         $.Requests_json(api.shopbuy.url, val11).then((res) => {
-          console.log("支付成功", val11)
-        console.log("支付成功",res)
+
+
           if (res.status == 0) {
             that.setData({
               orderno: res.data.orderNo
@@ -570,35 +569,35 @@ Page({
     }
 
   },
-   payindex: function() {
+  payindex: function () {
     var that = this;
     var val = {
       orderNo: that.data.orderno
     }
 
     $.Requests_json(api.getlakala.url, val).then((res) => {
-      console.log("拉卡拉", api.getlakala.url)
-      console.log("拉卡拉", that.data.orderno)
-      console.log("拉卡拉sj原生", res)
+
+
+
       var obj = JSON.parse(res.data.result);
-      console.log("拉卡拉数据解析", obj)
+
       wx.requestPayment({
         'timeStamp': obj.pay_info.timestamp,
         'nonceStr': obj.pay_info.nonce_str,
-        'package': "prepay_id="+obj.pay_info.prepay_id,
+        'package': "prepay_id=" + obj.pay_info.prepay_id,
         'signType': obj.pay_info.sign_type,
         'paySign': obj.pay_info.pay_sign,
         'success': function (res) {
-          console.log("支付chenggong：", res);
+
           setTimeout(function () {
             that.secconds();
           }, 2000)
-           wx.navigateTo({
-              url: '../succell/succell?id=' + that.data.id  + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
-            })
+          wx.navigateTo({
+            url: '../succell/succell?id=' + that.data.id + "&price=" + that.data.price + "&address=" + that.data.address + "&gymName=" + that.data.gymName + "&icon=" + that.data.icon + "&sta=" + that.data.sta + "&shoptype=" + that.data.shoptype,
+          })
         },
         'fail': function (res) {
-          console.log("支付失败：", res);
+
           wx.navigateTo({
             url: '../management/management',
           })
@@ -606,7 +605,7 @@ Page({
       })
     })
   },
-  yuechoose: function() {
+  yuechoose: function () {
 
     if (this.data.yuechoose) {
       this.setData({
@@ -620,7 +619,7 @@ Page({
     }
 
   },
-  wxyuechoose: function() {
+  wxyuechoose: function () {
 
     if (this.data.wxyuechoose) {
       this.setData({
@@ -634,63 +633,63 @@ Page({
     }
 
   },
-  secconds:function(){
+  secconds: function () {
     var that = this;
-    var val={
+    var val = {
       orderNo: that.data.orderno
     };
     $.Requests(api.secconds.url, val).then((res) => {
-      console.log("支付回调===>>",res)  
-      console.log("支付回调===>>", that.data.orderno) 
-      console.log("支付回调===>>", api.secconds.url) 
+
+
+
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

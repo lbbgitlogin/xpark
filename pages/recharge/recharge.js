@@ -5,19 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bjnum:0
+    bjnum: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
-  transformation:function(e){
-    if (e.currentTarget.dataset.id == 1){
+  transformation: function (e) {
+    if (e.currentTarget.dataset.id == 1) {
       this.setData({
-        bjnum:1
+        bjnum: 1
 
       });
     }
@@ -34,58 +34,58 @@ Page({
       });
     }
   },
-  details:function(){
-     wx.navigateTo({
-       url: '../detailed/detailed',
-     })
+  details: function () {
+    wx.navigateTo({
+      url: '../detailed/detailed',
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

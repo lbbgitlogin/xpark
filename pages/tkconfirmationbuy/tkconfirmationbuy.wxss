@@ -5,27 +5,32 @@
 page {
   background: #282b30;
 }
-.frist_coupon{
-  height:520rpx
+
+.frist_coupon {
+  height: 520rpx
 }
-.sec_coupon{
-  height:730rpx
+
+.sec_coupon {
+  height: 730rpx
 }
-.bytt_if{
+
+.bytt_if {
   background: #444951;
-  color: #fff!important
+  color: #fff !important
 }
-.hidden_box{
-  background-color:#000;
-position:fixed;
-height:100%;
-width:100%;
-opacity:0.6;
-z-index:1000;
-top:0;
-left:0;
+
+.hidden_box {
+  background-color: #000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.6;
+  z-index: 1000;
+  top: 0;
+  left: 0;
 
 }
+
 .order {
   width: 100%;
   text-align: center;
@@ -256,12 +261,13 @@ left:0;
 .coupon {
   position: fixed;
   bottom: 0;
-  color:#FFFFFF;
+  color: #FFFFFF;
   width: 100%;
   background: #282B30;
   z-index: 10000;
 }
-.cxmj_list{
+
+.cxmj_list {
   width: 100%;
   height: 112rpx;
   line-height: 112rpx;
@@ -270,23 +276,26 @@ left:0;
   text-align: center;
   border-bottom: 1rpx solid #1B1E23
 }
-.cxmj_box{
-   width: 100%;
-   text-align: center;
-   color: #fff;
-   font-size: 32rpx;
-   margin-top:40rpx;
+
+.cxmj_box {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  margin-top: 40rpx;
 
 }
-.msk-scroll{
-  width:100%;
-height:100%;
-box-sizing:border-box;
-padding-bottom:123rpx;
 
-background:#202428;
+.msk-scroll {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 123rpx;
+
+  background: #202428;
 
 }
+
 .coupon_boxheand {
   width: 100%;
   height: 124rpx;

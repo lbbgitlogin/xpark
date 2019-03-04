@@ -23,46 +23,46 @@
               <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="{{clickshow?'bindPlus':''}}">+</view>
             </view>
     </view>-->
-  </view> 
-  <view  class='list_booking '>
-    <view class='order_name '>
-      数量
-    </view>
-    <view class='order_smallname '>
-      <view class="u-cart-num" style="margin-top:21rpx">
-        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
-        <input type="number" disabled='true' bindchange="pay_num" value="{{buy_num}}" />
-        <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
-      </view>
+</view>
+<view class='list_booking '>
+  <view class='order_name '>
+    数量
+  </view>
+  <view class='order_smallname '>
+    <view class="u-cart-num" style="margin-top:21rpx">
+      <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindMinus">-</view>
+      <input type="number" disabled='true' bindchange="pay_num" value="{{buy_num}}" />
+      <view class="u-num-btn" hover-class='u-num-btn-left-hover' catchtap="bindPlus">+</view>
     </view>
   </view>
-  <view class='list_booking '>
-    <view class='order_name '>
-      门店
-         </view>
-    <view class='order_smallname '>
+</view>
+<view class='list_booking '>
+  <view class='order_name '>
+    门店
+  </view>
+  <view class='order_smallname '>
     {{gymdetails.gym.gymName || tkgymdetails.gymName||tkgymdetails.gym.gymName || shopdetails.gym.gymName}}
-    </view>
   </view>
-  <view wx:if="{{shoptype != 3}}" class='list_booking '>
-    <view class='order_name '>
-      地点
-    </view>
-    <view class='order_smallname '>
-       {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
-    </view>
+</view>
+<view wx:if="{{shoptype != 3}}" class='list_booking '>
+  <view class='order_name '>
+    地点
   </view>
-  <view wx:if="{{shoptype != 3}}"  class='list_booking '>
-    <view class='order_name '>
-      预约时间
-    </view>
-    <view class='order_smallname '>
-     {{formatdates || formatDate ||scheduleDate}}
-    </view>
+  <view class='order_smallname '>
+    {{gymdetails.gym.address ||tkgymdetails.address ||tkgymdetails.gym.address}}
   </view>
-  <view wx:if="{{category&&vip}}" class='confirmationbuy_buy '>
-    <view class='confirmationbuy_cou '>优惠信息</view>
-    <!-- <view class='list_booking_buy '>
+</view>
+<view wx:if="{{shoptype != 3}}" class='list_booking '>
+  <view class='order_name '>
+    预约时间
+  </view>
+  <view class='order_smallname '>
+    {{formatdates || formatDate ||scheduleDate}}
+  </view>
+</view>
+<view wx:if="{{category&&vip}}" class='confirmationbuy_buy '>
+  <view class='confirmationbuy_cou '>优惠信息</view>
+  <!-- <view class='list_booking_buy '>
       <view class='order_name '>
         活动促销
       </view>
@@ -77,29 +77,29 @@
       优惠券
     </view>
     <view wx:if="{{category == 2 && vip == 1 }}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{yhxparkprice}}
+      -￥{{yhxparkprice}}
     </view>
-     <view wx:if="{{category == 2  && vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{yhtwoprice}}
+    <view wx:if="{{category == 2  && vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
+      -￥{{yhtwoprice}}
     </view>
-      <view wx:if="{{category == 2  && vip != 2 && vip != 1}}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{shopprice}}
+    <view wx:if="{{category == 2  && vip != 2 && vip != 1}}" bindtap='choosecoupon ' class='order_smallname '>
+      -￥{{shopprice}}
     </view>
-     <view wx:if="{{category != 2  }}" bindtap='choosecoupon ' class='order_smallname '>
-     -￥{{discount}}
+    <view wx:if="{{category != 2  }}" bindtap='choosecoupon ' class='order_smallname '>
+      -￥{{discount}}
     </view>
   </view>
-    <view wx:if="{{vip}}" class='list_booking '>
-    <view  wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_name '>
-    尊享卡折扣
+  <view wx:if="{{vip}}" class='list_booking '>
+    <view wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_name '>
+      尊享卡折扣
     </view>
-     <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_name '>
-   至尊卡折扣
+    <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_name '>
+      至尊卡折扣
     </view>
     <view wx:if="{{vip == 2}}" bindtap='choosecoupon ' class='order_smallname '>
       八折
     </view>
-     <view wx:if="{{vip == 1}}"  bindtap='choosecoupon ' class='order_smallname '>
+    <view wx:if="{{vip == 1}}" bindtap='choosecoupon ' class='order_smallname '>
       九折
     </view>
   </view>
@@ -116,74 +116,69 @@
     </view>
 
   </view> -->
-  
+
 </view>
 <view class='confirmationbuy_buy '>
-    <view class='confirmationbuy_cou '>支付类型</view>
-    <view class='list_booking_buy '>
-      <image class='wallet ' src='../../img/wx_min.png '></image>
-      <view class='order_name '>
-       微信支付
-      </view>
-      <view class='coupon_choose ' bindtap='yuechoose '>
-        <image wx:if="{{yuechoose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
-        <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
-      </view>
+  <view class='confirmationbuy_cou '>支付类型</view>
+  <view class='list_booking_buy '>
+    <image class='wallet ' src='../../img/wx_min.png '></image>
+    <view class='order_name '>
+      微信支付
     </view>
-
+    <view class='coupon_choose ' bindtap='yuechoose '>
+      <image wx:if="{{yuechoose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
+      <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
+    </view>
   </view>
-  <view class='buy '>
-    <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
-     ￥{{filters.toFix(xparkprice*buy_num-discount)<0?'0':filters.toFix(xparkprice*buy_num-discount)}}
-    </view>
-      <view wx:if="{{vip == 2}}"  class='buy_left font-colormode '>
-     ￥{{filters.toFix(twoprice*buy_num-discount)<0?'0':filters.toFix(twoprice*buy_num-discount)}}
-    </view>
-      <view wx:if="{{vip !=1 && vip !=2}}" class='buy_left font-colormode '>
-     ￥{{filters.toFix(price*buy_num-discount)<0?'0':filters.toFix(price*buy_num-discount)}}
-    </view>
 
-
-     <form  class='buy_right '  bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
-      <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
- </form>
-    <!-- <view bindtap='buynow ' class='buy_right bj_color '>
+</view>
+<view class='buy '>
+  <view wx:if="{{vip == 1}}" class='buy_left font-colormode '>
+    ￥{{filters.toFix(xparkprice*buy_num-discount)<0?'0':filters.toFix(xparkprice*buy_num-discount)}} </view> <view
+      wx:if="{{vip == 2}}" class='buy_left font-colormode '>
+      ￥{{filters.toFix(twoprice*buy_num-discount)<0?'0':filters.toFix(twoprice*buy_num-discount)}} </view> <view wx:if="{{vip !=1 && vip !=2}}"
+        class='buy_left font-colormode '>
+        ￥{{filters.toFix(price*buy_num-discount)<0?'0':filters.toFix(price*buy_num-discount)}} </view> <form class='buy_right '
+          bindsubmit="{{buttonif?'':'testSubmit'}}" report-submit="true">
+          <button class='buy_right  {{buttonif?"bytt_if":"bj_color"}} ' formType="submit">{{buttonif?gosecpay:gopay}}</button>
+          </form>
+          <!-- <view bindtap='buynow ' class='buy_right bj_color '>
 购买
     </view> -->
   </view>
-<view class="{{hidden==0?' ':'hide '}}">
-  <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}} '>
-    <view class='coupon_boxheand '>
-      您有抵用券
-    </view>
-    <view class='coupon_list '>
-      <view class='bj_coupon ' style=' background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
-        <view class='coupon_left '>
-          <view class='coupon_mon font-colormode '>
-            ¥
+  <view class="{{hidden==0?' ':'hide '}}">
+    <view class='coupon {{hidden==0 ? "bounceInUp animated": "bounceOutDown animated"}} '>
+      <view class='coupon_boxheand '>
+        您有抵用券
+      </view>
+      <view class='coupon_list '>
+        <view class='bj_coupon ' style=' background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
+          <view class='coupon_left '>
+            <view class='coupon_mon font-colormode '>
+              ¥
+            </view>
+            <view class='coupon_maxmon font-colormode '>
+              20
+            </view>
           </view>
-          <view class='coupon_maxmon font-colormode '>
-            20
-          </view>
-        </view>
-        <view class='coupon_right '>
-          <view class='coupon_right_mon '>
-            <view class='coupon_right_name '>免费试用券</view>
-            <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">限美格非门店健身服务1次</view>
-            <view>有效期：2018.11.13 - 2019.12.1</view>
-          </view>
-          <view class='coupon_choose ' bindtap='choosecouponbtn '>
-            <image wx:if="{{choose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
-            <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
-          </view>
+          <view class='coupon_right '>
+            <view class='coupon_right_mon '>
+              <view class='coupon_right_name '>免费试用券</view>
+              <view style="margin: 6px 0 4px 0;wxcs_style_margin: 12rpx 0 8rpx 0;">限美格非门店健身服务1次</view>
+              <view>有效期：2018.11.13 - 2019.12.1</view>
+            </view>
+            <view class='coupon_choose ' bindtap='choosecouponbtn '>
+              <image wx:if="{{choose == false}}" class='choose_img ' src='../../img/choose_false.png '></image>
+              <image wx:else class='choose_img ' src='../../img/choose_true.png '></image>
+            </view>
 
+          </view>
         </view>
       </view>
-    </view>
-    <view bindtap='closebuynow ' class='coupon_next bj_color '>
-      下一步
+      <view bindtap='closebuynow ' class='coupon_next bj_color '>
+        下一步
+      </view>
     </view>
   </view>
-</view>
-<view bindtap='closebuynow ' wx:if="{{hidden == 0}}" class='hidden_box '></view>
-<wxs module="filters" src="../../utils/tofix.wxs"></wxs>
+  <view bindtap='closebuynow ' wx:if="{{hidden == 0}}" class='hidden_box '></view>
+  <wxs module="filters" src="../../utils/tofix.wxs"></wxs>

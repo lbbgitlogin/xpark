@@ -7,11 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    vipnum:"" ,
+    vipnum: "",
     orderno: "",
-    formatDate:"",
-    formatDates:"",
-    gymId:"",
+    formatDate: "",
+    formatDates: "",
+    gymId: "",
     mobile: "",
     memberId: "",
   },
@@ -20,8 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        
-       var that = this;
+
+    var that = this;
     wx.getStorage({
       key: 'gymId',
       success: function (res) {
@@ -35,7 +35,7 @@ Page({
           success: function (res) {
             that.setData({
               memberId: res.data.memberId,
-              mobile:res.data.mobile
+              mobile: res.data.mobile
 
             })
 
@@ -46,9 +46,9 @@ Page({
 
     var now = new Date();
     var year = now.getFullYear();
-    var years = now.getFullYear()+1;
+    var years = now.getFullYear() + 1;
     var month = now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-    
+
     var day = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
     var days = now.getDate() < 10 ? "0" + (now.getDate()) : now.getDate();
     var formatDate = year + '年' + month + '月' + day + '日';
@@ -58,12 +58,11 @@ Page({
       formatDate: formatDate,
       formatDates: formatDates
     })
-    if(options.vipnum == 1){
+    if (options.vipnum == 1) {
       wx.setNavigationBarTitle({
         title: "立即开通尊享卡",
       })
-    }
-    else{
+    } else {
       wx.setNavigationBarTitle({
         title: "立即开通至尊卡",
       })
@@ -74,33 +73,33 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
-  testSubmit:function(){
-      var that = this;
+  testSubmit: function () {
+    var that = this;
     var val = {
 
       gymId: that.data.gymId,
       memberId: that.data.memberId,
       memberMobile: that.data.mobile,
-      orderGoods: [
-        { cardType: that.data.vipnum}
-      ],
+      orderGoods: [{
+        cardType: that.data.vipnum
+      }],
       payType: "wx",
       remark: ""
 
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
-           console.log("购买会员啦",res)   
-      
-      if (res.status == 0){
+
+
+      if (res.status == 0) {
         that.setData({
           orderno: res.data.orderNo,
         })
@@ -115,9 +114,9 @@ Page({
       orderNo: that.data.orderno
     };
     $.Requests(api.secconds.url, val).then((res) => {
-      console.log("支付回调===>>", res)
-      console.log("支付回调===>>", that.data.orderno)
-      console.log("支付回调===>>", api.secconds.url)
+
+
+
     })
   },
   payindex: function () {
@@ -127,11 +126,11 @@ Page({
     }
 
     $.Requests_json(api.getlakala.url, val).then((res) => {
-      console.log("拉卡拉", api.getlakala.url)
-      console.log("拉卡拉", that.data.orderno)
-      console.log("拉卡拉sj原生", res)
+
+
+
       var obj = JSON.parse(res.data.result);
-      console.log("拉卡拉数据解析", obj)
+
       wx.requestPayment({
         'timeStamp': obj.pay_info.timestamp,
         'nonceStr': obj.pay_info.nonce_str,
@@ -139,18 +138,18 @@ Page({
         'signType': obj.pay_info.sign_type,
         'paySign': obj.pay_info.pay_sign,
         'success': function (res) {
-          console.log("支付chenggong：", res);
+
           setTimeout(function () {
             that.secconds();
           }, 2000)
           wx.navigateTo({
             url: '../succell/succell?cardnum=' + 1,
           })
-     
+
 
         },
         'fail': function (res) {
-          console.log("支付失败：", res);
+
           wx.navigateTo({
             url: '../management/management',
           })
@@ -162,34 +161,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

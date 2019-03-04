@@ -1,16 +1,16 @@
 <view class='succell_img'>
-<image class='nowbuy' src='../../img/nowbuy.png'></image>
+    <image class='nowbuy' src='../../img/nowbuy.png'></image>
 </view>
 <view class='succell_font'>支付成功</view>
 <view class='succell_title'>
 
-感谢您的购买，至“门店订单”查看“订单详情”</view>
+    感谢您的购买，至“门店订单”查看“订单详情”</view>
 <view wx:if="{{itemno !=0 && ljyy && itemno !=3 }}" bindtap='my_appointment' class='but_succell bj_color'>
- 立即预约({{timeshow}})
+    立即预约({{timeshow}})
 </view>
 <!-- <view wx:if="{{itemno == 0 && ljyy}}"  bindtap='my_appointment' class='but_succell bj_color'>
  立即预约
 </view> -->
 <view bindtap='backhome' style='color:#E27D00' class='but_succell'>
-返回首页
+    返回首页
 </view>

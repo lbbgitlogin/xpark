@@ -30,9 +30,9 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: function (res) {
-        
+
         that.setData({
-          appointment:[],
+          appointment: [],
           memberId: res.data.memberId,
           time: res.data.createTime,
           runday: res.data.day
@@ -40,7 +40,7 @@ Page({
         that.appointment()
       },
       fail: function (res) {
-      
+
         setTimeout(function () {
 
           wx.reLaunch({
@@ -54,7 +54,7 @@ Page({
       },
     })
   },
-  appointment: function(e) {
+  appointment: function (e) {
     if (e != undefined) {
 
       var vals = {
@@ -83,8 +83,8 @@ Page({
       // start: '0',
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
-      
-      
+
+
       var that = this;
       if (res.data.content.length == 0) {
         that.setData({
@@ -99,8 +99,8 @@ Page({
           })
 
         } else {
-         
-         
+
+
           that.setData({
             appointment: that.data.appointment.concat(res.data.content),
             type: 1,
@@ -113,7 +113,7 @@ Page({
       }
     })
   },
-  appoint: function() {
+  appoint: function () {
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -124,34 +124,34 @@ Page({
     }
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
-     
+
       var that = this;
-     
-        if (res.data.content.length < 20) {
-          
-          
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: false
-          })
 
-        } else {
-       
-       
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: true
-          })
-        }
+      if (res.data.content.length < 20) {
 
 
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: false
+        })
 
-      
+      } else {
+
+
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: true
+        })
+      }
+
+
+
+
     })
   },
-  onReachBottom: function() { //滑动的底部加载下一页
+  onReachBottom: function () { //滑动的底部加载下一页
 
 
     var thisobj = this;
@@ -176,7 +176,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
@@ -211,19 +211,19 @@ Page({
   //     },
   //   })
   // },
-  datalis: function(e) {
+  datalis: function (e) {
 
     wx.navigateTo({
       url: '../bookingoreder/bookingoreder?icon=' + e.currentTarget.dataset.icon + "&gymName=" + e.currentTarget.dataset.gymname + "&uesCode=" + e.currentTarget.dataset.uescode + "&bookingName=" + e.currentTarget.dataset.bookingname + "&type=" + e.currentTarget.dataset.type + "&price=" + e.currentTarget.dataset.price + "&address=" + e.currentTarget.dataset.address + "&dingdanid=" + e.currentTarget.dataset.dingdanid + "&orderno=" + e.currentTarget.dataset.orderno + "&remark=" + e.currentTarget.dataset.remark + "&bookingTime=" + e.currentTarget.dataset.bookingtime + "&updatetimestr=" + e.currentTarget.dataset.updatetimestr + "&cancelprice=" + e.currentTarget.dataset.cancelprice + "&groundname=" + e.currentTarget.dataset.groundname + "&coachname=" + e.currentTarget.dataset.coachname + "&outdooraddress=" + e.currentTarget.dataset.outdooraddress
     })
   },
-  allOrders: function() { //未开始订单
+  allOrders: function () { //未开始订单
     this.setData({
       tapindex: 1,
       type: 1
     });
   },
-  toBePaid: function(e) { //yishiyong 订单
+  toBePaid: function (e) { //yishiyong 订单
     var vals = {
       formId: e.detail.formId
     }
@@ -258,8 +258,8 @@ Page({
         })
       } else {
         if (res.data.content.length < 20) {
-          
-          
+
+
           that.setData({
             appointment: that.data.appointment.concat(res.data.content),
             type: 1,
@@ -267,8 +267,8 @@ Page({
           })
 
         } else {
-        
-        
+
+
           that.setData({
             appointment: that.data.appointment.concat(res.data.content),
             type: 1,
@@ -282,7 +282,7 @@ Page({
 
     })
   },
-  toBePa: function() { //yishiyong 订单
+  toBePa: function () { //yishiyong 订单
     var that = this;
 
     var val = {
@@ -294,32 +294,32 @@ Page({
 
 
       var that = this;
-     
-        if (res.data.content.length < 20) {
-       
-       
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: false
-          })
 
-        } else {
-        
-        
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: true
-          })
-        }
+      if (res.data.content.length < 20) {
 
 
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: false
+        })
 
-   
+      } else {
+
+
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: true
+        })
+      }
+
+
+
+
     })
   },
-  receiptOfGoods: function(e) { //已取消订单
+  receiptOfGoods: function (e) { //已取消订单
     var vals = {
       formId: e.detail.formId
     }
@@ -353,11 +353,11 @@ Page({
       } else {
         if (res.data.content.length < 20) {
 
-       
-       
 
-         
-         
+
+
+
+
           that.setData({
             appointment: that.data.appointment.concat(res.data.content),
             type: 1,
@@ -365,8 +365,8 @@ Page({
           })
 
         } else {
-         
-         
+
+
           that.setData({
             appointment: that.data.appointment.concat(res.data.content),
             type: 1,
@@ -379,7 +379,7 @@ Page({
       }
     })
   },
-  receipt: function() { //已取消订单
+  receipt: function () { //已取消订单
     var that = this;
     var val = {
       memberId: that.data.memberId,
@@ -391,48 +391,48 @@ Page({
     $.Requests(api.appointmentlist.url, val).then((res) => {
 
 
-        if (res.data.content.length < 20) {
-       
-       
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: false
-          })
-
-        } else {
-       
-       
-          that.setData({
-            appointment: that.data.appointment.concat(res.data.content),
-            type: 1,
-            flag: true
-          })
-        }
+      if (res.data.content.length < 20) {
 
 
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: false
+        })
 
-  
+      } else {
+
+
+        that.setData({
+          appointment: that.data.appointment.concat(res.data.content),
+          type: 1,
+          flag: true
+        })
+      }
+
+
+
+
     })
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
@@ -440,7 +440,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

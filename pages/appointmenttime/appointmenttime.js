@@ -71,14 +71,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log("optionsss", options)
+  onLoad: function (options) {
+
 
     var that = this;
 
     wx.getStorage({
       key: 'userinfo',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           hidden: true,
           balance: res.data.cash + res.data.give,
@@ -96,7 +96,7 @@ Page({
         that.showtime();
 
       },
-      fail: function(res) {
+      fail: function (res) {
         that.setData({
           hidden: true
         })
@@ -169,24 +169,24 @@ Page({
       })
     }
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         var h = 750 * res.windowHeight / res.windowWidth
 
 
       }
     })
-    app.GetUserInfo(function() {
+    app.GetUserInfo(function () {
 
     });
   },
-  ground_appointment: function() {
+  ground_appointment: function () {
     var that = this;
     var val = {
       areaId: that.data.areaId
     }
     $.Requests(api.ground_appointment.url, val).then((res) => {
 
-      console.log("可约场次", res)
+
       that.setData({
         groundlength: res.data
       })
@@ -195,10 +195,10 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
-  showtime: function() {
+  showtime: function () {
     var that = this;
     var val = {
       areaId: that.data.areaId
@@ -228,7 +228,7 @@ Page({
 
         daytime[i] = {};
         daytime[i].time = year + "-" + month + "-" + date;
-        daytime[i].des =res.data[i];
+        daytime[i].des = res.data[i];
         //场次数据在这加
         daynewday[i] = year + '-' + month + "-" + date;
         weekend[i] = str;
@@ -243,32 +243,32 @@ Page({
         timelist: timelist,
         daynewday: daynewday,
       })
-      console.log("timelisssst", timelist)
-      console.log("可约场次", res)
-  //  that.setData({
-  //    ground_appointment:res.data
-  //  })
-      
+
+
+      //  that.setData({
+      //    ground_appointment:res.data
+      //  })
+
     })
 
-   
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
-  ballappointment: function(e) {
-    console.log("daeee",e)
+  ballappointment: function (e) {
+
     var that = this;
 
     if (that.data.sta == 1) {
@@ -294,28 +294,28 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

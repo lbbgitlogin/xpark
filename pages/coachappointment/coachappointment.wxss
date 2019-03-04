@@ -53,7 +53,7 @@ page {
 
 .cantSelect {
   background: #202428;
-  color:#ccc;
+  color: #ccc;
 
 }
 
@@ -113,7 +113,7 @@ page {
 }
 
 .appointment {
-  background:#E27D00;
+  background: #E27D00;
 
   color: #fff;
 }

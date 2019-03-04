@@ -33,7 +33,7 @@ page {
   overflow: hidden;
   border-radius: 10rpx;
   border: 1rpx solid #1B1E23;
-  width:96%;
+  width: 96%;
 
 }
 
@@ -64,8 +64,8 @@ page {
 }
 
 .active {
- background:#202428;
-color:#ccc;
+  background: #202428;
+  color: #ccc;
 
 }
 

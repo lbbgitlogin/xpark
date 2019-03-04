@@ -48,7 +48,7 @@ Page({
   },
   closeloding: function () {
     var that = this;
-    
+
     that.setData({
       homeAds: null
     })
@@ -79,7 +79,7 @@ Page({
       }, 1000)
 
     })
-     
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -87,7 +87,7 @@ Page({
   onReady: function () {
 
   },
-  
+
 
   /**
    * 生命周期函数--监听页面显示

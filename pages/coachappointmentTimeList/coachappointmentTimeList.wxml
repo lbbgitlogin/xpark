@@ -5,14 +5,15 @@
 
 <view class='ball-title'>
   <view class='ball-title-left' bindtap="addnumber">
-    <text>{{sjdata.coachSchedule.coachName}}</text> 可约时间 
+    <text>{{sjdata.coachSchedule.coachName}}</text> 可约时间
   </view>
   <view class='ball-title-right'>
-  {{formatDate}}
+    {{formatDate}}
   </view>
 </view>
 <view class='ball-timeList'>
-  <view bindtap="add" data-item='{{item}}'   class='ball-timeList-item {{item.acticed ? "appointment" : ""}} {{ item.canSelect ? "canSelect" : "cantSelect"}} {{ item.falg ? "active" : ""}}' wx:for="{{yuyueList}}"  wx:key="index">
+  <view bindtap="add" data-item='{{item}}' class='ball-timeList-item {{item.acticed ? "appointment" : ""}} {{ item.canSelect ? "canSelect" : "cantSelect"}} {{ item.falg ? "active" : ""}}'
+    wx:for="{{yuyueList}}" wx:key="index">
     <text>{{item.time}}</text>
     <text wx:if="{{!item.canSelect && !item.falg}}">不可约</text>
     <text wx:if="{{item.canSelect && !item.falg && !item.acticed}}">可约</text>
@@ -23,4 +24,3 @@
 <view bindtap="toNext" class="next">
   <text>下一步</text>
 </view>
-

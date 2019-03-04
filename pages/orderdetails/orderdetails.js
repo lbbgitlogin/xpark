@@ -37,8 +37,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log("待支付订单", options)
+  onLoad: function (options) {
+
     var that = this;
     that.setData({
       img: options.img,
@@ -69,14 +69,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
   secconds: function () {
@@ -85,10 +85,10 @@ Page({
       orderNo: that.data.orderno
     };
     $.Requests(api.secconds.url, val).then((res) => {
-      console.log("支付回调===>>", res)
-      console.log("支付回调===>>", that.data.orderno)
-      console.log("支付回调===>>", api.secconds.url)
-      if(res.data != ''){
+
+
+
+      if (res.data != '') {
         wx.navigateTo({
           url: '../management/management',
           success: function (e) {
@@ -97,7 +97,7 @@ Page({
             page.onLoad();
           }
         })
-      } 
+      }
     })
   },
   payindex: function () {
@@ -107,11 +107,11 @@ Page({
     }
 
     $.Requests_json(api.continue.url, val).then((res) => {
-      console.log("拉卡拉", api.continue.url)
-      console.log("拉卡拉", val)
-      console.log("拉卡拉sj原生", res)
+
+
+
       var obj = JSON.parse(res.data.result);
-        console.log("拉卡拉数据解析", obj)
+
       wx.requestPayment({
         'timeStamp': obj.pay_info.timestamp,
         'nonceStr': obj.pay_info.nonce_str,
@@ -120,17 +120,17 @@ Page({
         'paySign': obj.pay_info.pay_sign,
         'success': function (res) {
           $.alert("支付成功！")
-          console.log("支付chenggong：", res);
+
           setTimeout(function () {
             that.secconds();
           }, 2000)
-      
+
 
 
         },
         'fail': function (res) {
-          console.log("支付失败：", res);
-     
+
+
         }
       })
     })
@@ -150,28 +150,28 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
-  jx_order:function(){
- var that = this;
- that.payindex()
+  jx_order: function () {
+    var that = this;
+    that.payindex()
   },
-    qxorder: function() {
+  qxorder: function () {
     var that = this;
     var val = {
       id: that.data.orderid
@@ -180,17 +180,17 @@ Page({
 
 
       if (res.status == 0) {
-        setTimeout(function() {
+        setTimeout(function () {
 
 
           $.alert("取消订单成功！")
 
         }, 1000)
-        setTimeout(function() {
+        setTimeout(function () {
 
           wx.navigateTo({
             url: '../management/management',
-            success: function(e) {
+            success: function (e) {
               var page = getCurrentPages().pop();
               if (page == undefined || page == null) return;
               page.onLoad();
@@ -204,10 +204,10 @@ Page({
 
   },
   // 倒计时
-  countdown: function() {
+  countdown: function () {
     var that = this;
     var ordertime = that.data.createtimestr;
-  //ios时间不显示问题，采用截取数据 拼接   解决
+    //ios时间不显示问题，采用截取数据 拼接   解决
     var ordertimeyea = ordertime.substring(0, 4)
     var ordertimemon = ordertime.substring(5, 7)
     var ordertimeday = ordertime.substring(8, 10)
@@ -216,25 +216,17 @@ Page({
     var ordertimemin = ordertime.substring(18, 20)
     var trueorder = ordertimeyea + '/' + ordertimemon + '/' + ordertimeday + ' ' + ordertimehou + ':' + ordertimesec + ':' + ordertimemin;
     var trueordertime = new Date(trueorder).getTime();
-    // console.log("trueordertime", trueordertime)
-    // console.log("trueorder6666", new Date(trueorder))
-    // console.log("ordertime00", ordertimeyea)
-    // console.log("ordertime00", ordertimemon)
-    // console.log("ordertime00", ordertimeday)
-    // console.log("ordertime00", ordertimehou)
-    // console.log("ordertime00", ordertimesec)
-    // console.log("ordertime00", ordertimemin)
-    var EndTime = Math.floor(new Date(trueorder).getTime()/1000000); //订单下单时间转毫
+
+    var EndTime = Math.floor(new Date(trueorder).getTime() / 1000000); //订单下单时间转毫
     var NowTime = Math.floor(new Date().getTime() / 1000000);
-    // console.log("NowTime", NowTime)
-    // console.log("EndTime", EndTime)
+
     var total_micro_second = NowTime - EndTime; //单位毫秒
     var timeshow = 900000 - total_micro_second;
-    // console.log("timeshow",timeshow)
+
 
     // 渲染倒计时时钟
     if (timeshow >= 1000) {
-      setTimeout(function() {
+      setTimeout(function () {
         if (that.data.choosebtn) {
           timeshow -= 1000;
           that.dateformat(timeshow)
@@ -242,34 +234,34 @@ Page({
         }
 
       }, 1000)
-    } 
+    }
 
   },
 
   // 时间格式化输出，如11天03小时25分钟19秒  每1s都会调用一次
-  dateformat: function(micro_second) {
+  dateformat: function (micro_second) {
     var that = this;
-    // console.log("micro_second", micro_second)
+    // 
     // 总秒数
-    var second = micro_second / 1000000000  ;
-  //  console.log("secondfenzhong",second)
+    var second = micro_second / 1000000000;
+    //  
     // 天数
     var day = Math.floor(second / 3600 / 24);
     // 小时
     var hr = Math.floor(second / 3600 % 24).toString().length == 1 ? '0' + Math.floor(second / 3600 % 24) : Math.floor(second / 3600 % 24);
     // 分钟
-    var min = Math.floor(second / 60 % 60).toString().length == 1 ? '0' + Math.floor(second / 60 % 60)+1 : Math.floor(second / 60 % 60)+1;
+    var min = Math.floor(second / 60 % 60).toString().length == 1 ? '0' + Math.floor(second / 60 % 60) + 1 : Math.floor(second / 60 % 60) + 1;
     // 秒
     var sec = Math.floor(second % 60).toString().length == 1 ? '0' + Math.floor(second % 60) : Math.floor(second % 60);
     var iitime = min + ":" + sec;
-  //  console.log("最终时间", iitime)
-    if(min == '00' && sec == '00'){
-  
+    //  
+    if (min == '00' && sec == '00') {
+
       that.setData({
         choosebtn: false
       })
-  
-    }else{
+
+    } else {
       that.setData({
         downTime: iitime
       })
@@ -279,14 +271,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

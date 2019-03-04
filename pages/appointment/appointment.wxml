@@ -17,24 +17,24 @@
 <view class='{{type == 2?"box_background":""}}'>
   <view class="m-navbar">
 
-      <form style="flex: 1;" class="" bindsubmit="appointment" report-submit="true">
-      <button  class="butshow sendMsg m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" formType="submit">
+    <form style="flex: 1;" class="" bindsubmit="appointment" report-submit="true">
+      <button class="butshow sendMsg m-navbar-item {{tapindex==1?'m-navbar-item-on':''}}" formType="submit">
         <view bindtap="">
-           未开始
+          未开始
         </view>
       </button>
     </form>
-        <form style="flex: 1;" class="" bindsubmit="toBePaid" report-submit="true">
-      <button  class="butshow sendMsg m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" formType="submit">
+    <form style="flex: 1;" class="" bindsubmit="toBePaid" report-submit="true">
+      <button class="butshow sendMsg m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" formType="submit">
         <view bindtap="">
-           已使用
+          已使用
         </view>
       </button>
     </form>
-        <form style="flex: 1;" class="" bindsubmit="receiptOfGoods" report-submit="true">
-      <button  class="butshow sendMsg m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" formType="submit">
+    <form style="flex: 1;" class="" bindsubmit="receiptOfGoods" report-submit="true">
+      <button class="butshow sendMsg m-navbar-item {{tapindex==3?'m-navbar-item-on':''}}" formType="submit">
         <view bindtap="">
-           已取消
+          已取消
         </view>
       </button>
     </form>
@@ -51,11 +51,15 @@
 
 
 
-      <view class='appointment_datails' data-outdoorAddress='{{item.outdoorAddress}}' data-coachname='{{item.coachAppointment.coachName}}' bindtap='datalis' data-cancelprice='{{item.cancelPrice}}' data-updatetimestr='{{item.updateTimeStr}}' data-groundname='{{item.groundName}}' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}'  data-uesCode='{{item.uesCode}}' data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
-        data-remark='{{item.remark}}' data-bookingTime='{{item.bookingTimeStr}}'  data-address='{{item.gymDetails}}' data-bookingName='{{item.bookingName}}'>
+      <view class='appointment_datails' data-outdoorAddress='{{item.outdoorAddress}}' data-coachname='{{item.coachAppointment.coachName}}'
+        bindtap='datalis' data-cancelprice='{{item.cancelPrice}}' data-updatetimestr='{{item.updateTimeStr}}'
+        data-groundname='{{item.groundName}}' data-icon='{{item.icon}}' data-gymName='{{item.gymName}}' data-uesCode='{{item.uesCode}}'
+        data-price='{{item.price}}' data-type='{{item.state}}' data-orderno='{{item.orderNo}}' data-dingdanid='{{item.id}}'
+        data-remark='{{item.remark}}' data-bookingTime='{{item.bookingTimeStr}}' data-address='{{item.gymDetails}}'
+        data-bookingName='{{item.bookingName}}'>
         <view class='datails_imghead'>
           <image wx:if='{{item.icon}}' class='datails_imghead' src='{{imgurl}}{{item.icon}}'></image>
-           <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
+          <image wx:else class='datails_imghead' src='../../img/dd_thumbnail.png'></image>
         </view>
         <view class='datails_title'>{{item.bookingName}}</view>
       </view>
@@ -66,19 +70,19 @@
 
 
     </view>
-      <view wx:if="{{type == 1}}" class="m-loading-box" style="background: #282B30;">
-        <block wx:if="{{flag}}">
-          <view class="u-loadmore">
-            <lael class="u-loading"></lael>
-            <text class="u-loadmore-tips" style='color:#ccc'>正在加载</text>
-          </view>
-        </block>
-        <block wx:else>
-          <view class="u-loadmore u-loadmore-line">
-            <text class="u-loadmore-tips">没有更多了</text>
-          </view>
-        </block>
-      </view>
+    <view wx:if="{{type == 1}}" class="m-loading-box" style="background: #282B30;">
+      <block wx:if="{{flag}}">
+        <view class="u-loadmore">
+          <lael class="u-loading"></lael>
+          <text class="u-loadmore-tips" style='color:#ccc'>正在加载</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="u-loadmore u-loadmore-line">
+          <text class="u-loadmore-tips">没有更多了</text>
+        </view>
+      </block>
+    </view>
 
 
 
