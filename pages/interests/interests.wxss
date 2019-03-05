@@ -160,7 +160,7 @@ swiper {
 .titles {
   font-size: 26rpx;
   color: #ccc;
-  padding: 0 28rpx;
+  padding: 0 40rpx;
   box-sizing: border-box;
 
 

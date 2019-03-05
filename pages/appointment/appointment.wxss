@@ -79,7 +79,7 @@
 
 .fuwulist {
   width: 100%;
-  padding: 10rpx 28rpx 0 28rpx;
+  padding: 19rpx 28rpx 0 28rpx;
   box-sizing: border-box;
   background: #282B30;
   margin: 20rpx 0 0 0;

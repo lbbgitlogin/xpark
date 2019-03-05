@@ -27,10 +27,10 @@
       <view style='color:#fff'>¥199</view>
     </view>
     <view class='card_interes'>
-      全场9折，有效期1年
+     全场9折，有效期一年
     </view>
     <view class='give'>
-      到店还可领X-PARK精美大礼包一份
+   有效期内，门店新品课程免费体验！
     </view>
   </view>
 
@@ -41,20 +41,24 @@
 <view class='titles'>
   <view style='margin-bottom:10rpx'>须知：</view>
   <view class='titles_box'>
-    <view class='doud' style="margin-bottom: 54rpx;"></view>
-    <view class='show_titles'>结算退回金额，只退回门店储值中实际充值尚未使用金额 赠送金额不予退回并系统自动清零</view>
+    <view class='doud' style="margin-bottom: 0rpx;"></view>
+    <view class='show_titles'>有效期：自购买之日起1年有效期；</view>
+  </view>
+  <view class='titles_box'>
+    <view class='doud' ></view>
+    <view class='show_titles'>此卡片在有效期内均可享受会员优惠待遇；</view>
   </view>
   <view class='titles_box'>
     <view class='doud'></view>
-    <view class='show_titles'>余额是否可与优惠一同使用</view>
+    <view class='show_titles'>本卡片为记名制卡片，只可以持卡人使用；</view>
   </view>
   <view class='titles_box'>
     <view class='doud'></view>
-    <view class='show_titles'>余额如何退款，赠送金需要清零</view>
+    <view class='show_titles'>此卡一经售出，不可退换及转让他人；</view>
   </view>
   <view class='titles_box'>
     <view class='doud'></view>
-    <view class='show_titles'>退回金额还未到账，请及时联系门店工作人员</view>
+    <view class='show_titles'>本店保留此卡法律范围内的最终解释权。</view>
   </view>
 
 </view>

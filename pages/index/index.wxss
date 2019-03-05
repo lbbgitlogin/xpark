@@ -6,7 +6,7 @@ page {
 }
 
 .index_pad {
-  padding: 40rpx 0 0rpx 0
+  padding: 28rpx 0 0rpx 0
 }
 
 .bj_rg {
@@ -25,7 +25,7 @@ page {
   margin: 0 auto;
   background: #444951;
   height: 100%;
-  border-radius: 8rpx;
+  border-radius: 10rpx;
   padding: 0 28rpx;
   box-sizing: border-box;
   display: flex;
@@ -112,13 +112,13 @@ page {
 .index_first {
   display: flex;
   width: 92%;
-  margin: 0 auto 35rpx auto;
+  margin: 0 auto 24rpx auto;
   align-items: center;
 }
 
 .index_sec {
   width: 94%;
-  margin: 40rpx auto 34rpx auto;
+  margin: 28rpx auto 34rpx auto;
   padding: 0 10rpx;
   box-sizing: border-box;
 

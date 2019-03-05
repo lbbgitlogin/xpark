@@ -115,7 +115,7 @@
       <view class='name_thrid'>(使用服务前请核销）</view>
     </view>
 
-    <canvas class='pic_ewm' style="width: 168px; height:168px;margin:20rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
+    <canvas class='pic_ewm' style="width: 168px; height:168px;margin:50rpx auto 20rpx auto;" canvas-id="myQrcode"></canvas>
 
   </view>
 </view>

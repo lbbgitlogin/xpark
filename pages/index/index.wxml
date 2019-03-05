@@ -175,7 +175,7 @@
   </view>
   <view class='shop_list' wx:if="{{type == 2}}" style='margin:{{shouldFixedTop?"274rpx auto 2rpx auto":""}}'>
 
-    <view wx:if="{{tk_schedulelist}}" class='list_show' style='padding-top:10rpx'>
+    <view wx:if="{{tk_schedulelist.length > 0}}" class='list_show' style='padding-top:10rpx'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>团课</view>
     </view>
@@ -217,7 +217,7 @@
 
     </view>
 
-    <view wx:if="{{hw_schedulelist}}" class='list_show'>
+    <view wx:if="{{hw_schedulelist.length > 0}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>户外</view>
     </view>
@@ -260,7 +260,7 @@
     </view>
 
 
-    <view wx:if="{{jk_schedulelist}}" class='list_show'>
+    <view wx:if="{{jk_schedulelist.length > 0}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>健康理论</view>
     </view>
@@ -302,7 +302,7 @@
 
     </view>
 
-    <view wx:if="{{sk_schedulelist}}" class='list_show'>
+    <view wx:if="{{sk_schedulelist.length > 0}}" class='list_show'>
       <view class='show_box bj_color '></view>
       <view class='show_text'>私教</view>
     </view>

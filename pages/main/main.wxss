@@ -35,7 +35,7 @@ top:92%;
   width: 694rpx;
   color: #fff;
   height: 100rpx;
-  border-radius:8rpx;
+  border-radius:10rpx;
   background-size: 100% 100%;
   margin: 0 auto 24rpx auto;
   display: flex;

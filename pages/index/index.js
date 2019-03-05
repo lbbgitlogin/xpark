@@ -124,7 +124,7 @@ Page({
       },
     })
 
-
+    that.xparkshop()
     // that.getLocal(that.data.latitude, that.data.longitude);
     wx.getLocation({ //开机立即获取地理位置
       type: 'wgs84', //返回可以用于wx.openLocation的经纬度
@@ -134,7 +134,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude,
         })
-        that.xparkshop()
+   
         // that.imageLoad();
         // that.queryMultipleNodes(); //获取id的高度需要在第一时间执行
 
@@ -1321,10 +1321,11 @@ Page({
     })
     var now = new Date();
     var day = now.getDate();
+    var weekend = '日一二三四五六'.charAt(new Date().getDay());
     this.setData({
       tapindex: 2,
       day: day,
-
+      weekend: weekend,
       timeclickif: 2,
       type: 2
     });
@@ -1341,7 +1342,8 @@ Page({
     $.Requests_json(selapi.addFromID.url + '/' + app.globalData.wxopenid, [vals])
     this.setData({
       tapindex: 3,
-      type: 3
+      type: 3,
+      shopindex:0
     });
     this.ptitemlist()
   },

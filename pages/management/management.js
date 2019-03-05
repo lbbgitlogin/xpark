@@ -38,6 +38,7 @@ Page({
 
 
     var thisobj = this;
+    console.log("thisobj.data.tapindex", thisobj.data.tapindex)
     if (thisobj.data.flag) {
 
 
@@ -103,10 +104,9 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-
-
-
-      if (res.data.content == 0) {
+      console.log("订单", val)
+      console.log("订单",res)
+      if (res.status ==  0) {
         that.setData({
           type: 1
         })
@@ -122,6 +122,7 @@ Page({
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
+       
       }
 
     })
@@ -225,7 +226,7 @@ Page({
 
 
 
-      if (res.data.content == 0) {
+      if (res.status == 0) {
         that.setData({
           type: 1
         })
@@ -292,22 +293,22 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-
-
-      if (res.data.content == 0) {
+      console.log("已=支付",res)
+      console.log("已=支付", val)
+      if (res.status == 0) {
 
         that.setData({
           type: 1
         })
         if (res.data.content.length < 20) {
           that.setData({
-            flag: true,
+            flag: false,
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         } else {
 
           that.setData({
-            flag: false,
+            flag: true,
             member_orderlist: that.data.member_orderlist.concat(res.data.content)
           })
         }
@@ -360,7 +361,7 @@ Page({
       page: that.data.page
     }
     $.Requests(api.member_orderlist.url, val).then((res) => {
-      if (res.data.content == 0) {
+      if (res.status == 0) {
         that.setData({
           type: 1
         })
