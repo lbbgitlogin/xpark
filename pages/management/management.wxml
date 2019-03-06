@@ -6,7 +6,7 @@
     </view>
     <view data-state='0' class="m-navbar-item {{tapindex==2?'m-navbar-item-on':''}}" bindtap="toBePaid">
       待支付
-    </view>
+    </view>   
     <view data-state='1' class="m-navbar-item {{tapindex==3?'m-navbar-item-on':''}} " bindtap="receiptOfGoods">
       已支付
     </view>
