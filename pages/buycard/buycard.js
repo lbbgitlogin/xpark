@@ -98,7 +98,7 @@ Page({
     }
     $.Requests_json(api.memberShipCard.url, val).then((res) => {
 
-
+       console.log("支付",res)
       if (res.status == 0) {
         that.setData({
           orderno: res.data.orderNo,

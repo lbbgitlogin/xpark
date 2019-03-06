@@ -37,6 +37,28 @@ Page({
 
   },
   opencard: function (e) {
+    var that = this;
+    wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        that.setData({
+          memberId: res.data.memberId
+        })
+      },
+      fail: function (res) {
+
+        setTimeout(function () {
+
+          wx.reLaunch({
+            url: '../land/land',
+          })
+
+        }, 100)
+        //延迟时间 这里是1秒
+        return false;
+      }
+
+    })
 
     wx.navigateTo({
       url: '../buycard/buycard?vipnum=' + e.currentTarget.dataset.vip,
