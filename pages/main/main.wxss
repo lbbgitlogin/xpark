@@ -33,7 +33,7 @@ top:92%;
   padding: 0 24rpx;
   box-sizing: border-box;
   width: 694rpx;
-  color: #fff;
+  color: #7D5B22;
   height: 100rpx;
   border-radius:10rpx;
   background-size: 100% 100%;
@@ -50,16 +50,16 @@ top:92%;
   width: 108rpx;
   height: 52rpx;
   background: #333;
-  color: #d6be91;
+  color: #E5D1AA;
   font-size: 26rpx;
   text-align: center;
   line-height: 52rpx;
   border-radius: 52rpx;
 }
-
 .show_wz {
   text-decoration: underline;
   font-size: 26rpx;
+  color: #7D5B22;
 }
 
 .infortmation_choose {

@@ -20,26 +20,38 @@
     </view>
   </swiper-item> -->
 <!-- <swiper-item class="{{activeTab ==1?'choose_sec':'choose_frist'}}"> -->
-<view class='ra-co-cardview' style="margin-bottom: 90rpx;">
-  <view class='card_sec' style='  '>
+<view class='ra-co-cardview' style="margin-bottom: 50rpx;">
+  <view class='card_sec'>
     <view class='frist_box'>
-      <view style='flex:1;color:#fff'>X-PARK尊享卡</view>
-      <view style='color:#fff'>¥199</view>
+      <view style='flex:1;color:#805B1E'>X-PARK尊享卡</view>
     </view>
-    <view class='card_interes'>
-     全场9折，有效期一年
-    </view>
-    <view class='give'>
-   有效期内，门店新品课程免费体验！
-    </view>
+    <view class='card_interes'>全场9折，有效期一年</view>
+    <view class='give'>¥</view>
+    <view  class='give give_one'>199</view>
   </view>
-
 </view>
 <!-- </swiper-item> -->
-
+<view class="middle-cardview">
+  <view>
+    <image src="../../img/discounts.png" mode="aspectFit" lazy-load class='image_all'></image>
+    <view class='cardview-font'>会员专享 9折优惠</view>
+  </view>
+  <view>
+    <image src="../../img/New_curriculum.png" mode="aspectFit" lazy-load class='image_all'></image>
+    <view class='cardview-font'>新品课程 免费体验</view>
+  </view>
+  <view>
+    <image src="../../img/store_discounts.png" mode="aspectFit" lazy-load class='image_all'></image>
+    <view class='cardview-font'>商店折扣 超值低价</view>
+  </view>
+  <view>
+    <image src="../../img/more.png" mode="aspectFit" lazy-load class='image_all'></image>
+    <view class='cardview-font'>更多权益 敬请期待</view>
+  </view>
+</view>
+<view class='description'>规则说明</view>
 <!-- </swiper> -->
 <view class='titles'>
-  <view style='margin-bottom:10rpx'>须知：</view>
   <view class='titles_box'>
     <view class='doud' style="margin-bottom: 0rpx;"></view>
     <view class='show_titles'>有效期：自购买之日起1年有效期；</view>
@@ -64,8 +76,8 @@
 </view>
 
 <view class='bottom_box'>
-  <view wx:if="{{activeTab == 1}}" class='left_btn'>¥199</view>
-  <view wx:else class='left_btn'>¥299</view>
+  <!-- <view wx:if="{{activeTab == 1}}" class='left_btn'>¥199</view>
+  <view wx:else class='left_btn'>¥299</view> -->
 
   <view class='right_btn' data-vip='1' wx:if="{{activeTab == 1 && !vipcardcolor&& !zxvip}}" bindtap='opencard'>立即开通</view>
   <view class='bytt_if' data-vip='1' wx:if="{{activeTab == 1 && !vipcardcolor&&zxvip}}">已开通</view>

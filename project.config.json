@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": -1,
@@ -193,6 +193,12 @@
 					"name": "富文本",
 					"pathName": "pages/confirmationOrder/confirmationOrder",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "尊享卡",
+					"pathName": "pages/interests/interests",
+					"scene": null
 				}
 			]
 		}
