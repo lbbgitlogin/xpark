@@ -152,7 +152,7 @@
         您有抵用券
       </view>
       <view class='coupon_list '>
-        <view class='bj_coupon ' style=' background: url({{imgurl}}/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
+        <view class='bj_coupon ' style=' background: url(http://zuul.snail.highlifes.com/common/image/20181219/023263f4-4914-4be6-b752-d71e59facc61.png) center no-repeat;'>
           <view class='coupon_left '>
             <view class='coupon_mon font-colormode '>
               ¥

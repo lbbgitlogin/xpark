@@ -27,6 +27,7 @@ Page({
         that.setData({
           memberId: res.data.memberId,
         })
+        
         that.member_orderlist()
       },
     })

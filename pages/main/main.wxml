@@ -15,7 +15,7 @@
           <image class='icon_zb' src='../../img/right_zb.png'></image>
         </view> -->
   </view>
-  <view class='bj_coupon' style='background: url({{imgurl}}/image/20190108/c625d40f-644d-4c26-b553-0df4ae1fffeb.png) center no-repeat;'>
+  <view class='bj_coupon' style='background: url(http://zuul.snail.highlifes.com/common/image/20190108/c625d40f-644d-4c26-b553-0df4ae1fffeb.png) center no-repeat;'>
     <view wx:if="{{!membershow}}" style='margin-right:24rpx'>
       开通X-PARK运动专项特权
     </view>

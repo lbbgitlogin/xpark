@@ -303,7 +303,7 @@ function Requests_jsonlogion(url, data) { //接口方法为post时调用
 }
 
 function alert(content, callback, duration) { //普通弹出框
-  
+
   if (content.length <= 7) {
     wx.showToast({
       icon: "success",

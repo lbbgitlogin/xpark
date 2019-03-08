@@ -95,7 +95,6 @@ Page({
     }).exec()
   },
   onLoad: function (options) {
-
     var that = this;
 
     var obj = {

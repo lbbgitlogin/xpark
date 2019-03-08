@@ -85,9 +85,6 @@ Page({
       orderNo: that.data.orderno
     };
     $.Requests(api.secconds.url, val).then((res) => {
-
-
-
       if (res.data != '') {
         wx.navigateTo({
           url: '../management/management',
