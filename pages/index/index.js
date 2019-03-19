@@ -18,6 +18,7 @@ var interval = "";
 var flag_hd = true;
 Page({
   data: {
+    zzlistpic: [],
     imgurl: CONFIG.config.imgUrl,
     imgalist: [],
     userInfo: {},
@@ -420,13 +421,27 @@ Page({
     }
     // zzlist
     $.Requests(api.classification.url, val).then((res) => {
-
+console.log("场地服务",res)
 
       if (res.data.content.length != 0) {
+        var icon = res.data.content;
+        var zzlistpic = [];
+        for(let i in icon){
+            let icons={}
+          icons.icon=icon[i].fitness.icon
+          zzlistpic.push(icons)
+        }
+        console.log(zzlistpic)
+        console.log("zzlist11",that.data.zzlist)
+        var ooo=[];
+        ooo.list1 = res.data.content;
+        ooo.list2 = zzlistpic;
+        console.log(ooo)
         that.setData({
           zzlistlength: true,
-          zzlist: res.data.content
+          zzlist: ooo.list1,
         })
+        console.log("zzlist", that.data.zzlist)
         // var zzlist = res.data.content;
 
         // zzlist.forEach(function(item, index, arrar) {

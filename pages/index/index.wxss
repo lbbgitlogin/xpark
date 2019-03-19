@@ -12,6 +12,14 @@ page {
 .bj_rg {
   height: 20rpx
 }
+/* image{
+transition: all .3s ease;
+opacity: 0;
+}
+.active{
+opacity: 1;
+} */
+
 
 .buycard {
   width: 100%;

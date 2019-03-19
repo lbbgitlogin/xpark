@@ -110,10 +110,11 @@
     </block>
   </scroll-view>
   <view wx:if="{{zzlistlength &&type == 1}}" class='shop_list' style='margin:{{shouldFixedTop?"150rpx auto 0 auto":"20rpx auto 0rpx auto"}}'>
-    <block wx:for="{{zzlist}}" wx:key=''>
+    <block wx:for="{{zzlist}}" wx:key='' class='item item-{{index}}' 
+wx:key="{{index}}">
       <view data-areaId='{{item.areaId}}' data-fittype='{{item.fitness.fitType}}' data-id='{{item.id}}' data-itemNo='{{item.fitness.itemNo}}'
         data-type='1' catchtap='btnselfdetails' class='shop_details'>
-        <image wx:if='{{item.fitness.icon}}' class='shop_img' src='{{imgurl}}{{item.fitness.icon}}'></image>
+        <image wx:if='{{item.fitness.icon}}' class="shop_img {{item.show ? 'active': ''}}" src='{{imgurl}}{{item.fitness.icon}}'></image>
         <image wx:else class='shop_img_sj' src='../../img/kc_thumbnail.png'></image>
         <view class='title_shop'>
           <view class='title_name'>{{item.fitnessName}}</view>

@@ -9,7 +9,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.0",
+	"libVersion": "2.6.2",
 	"appid": "wx77153765d45956c1",
 	"projectname": "xpark%E7%A8%B3%E5%AE%9A",
 	"condition": {

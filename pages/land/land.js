@@ -136,7 +136,7 @@ Page({
     }
   },
   onGotUserInfo: function (e) {
-
+debugger
     var that = this;
     if (e.detail.userInfo != null) { //用户点击允许授权
 
